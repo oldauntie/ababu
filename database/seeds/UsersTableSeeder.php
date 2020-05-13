@@ -14,8 +14,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $rootRole = Role::where('name', 'root')->first();
         $adminRole = Role::where('name', 'admin')->first();
         $medicRole = Role::where('name', 'medic')->first();
+
+        $root = User::create([
+            'name' => 'Root',
+            'email' => 'root@ababu.cloud',
+            'password' => Hash::make('ababu'),
+        ]);
 
         $admin = User::create([
             'name' => 'Admin User',
@@ -35,6 +42,7 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('ababu'),
         ]);
         
+        $root->roles()->attach($rootRole);
         $admin->roles()->attach($adminRole);
         $medic->roles()->attach($medicRole);
     }

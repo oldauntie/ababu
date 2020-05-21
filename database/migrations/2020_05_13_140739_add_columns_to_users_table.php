@@ -15,9 +15,7 @@ class AddColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('clinic_id')->default(0)->after('id');
-
-            $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
+            // $table->unsignedBigInteger('clinic_id')->default(0)->after('id');
         });
     }
 
@@ -29,8 +27,7 @@ class AddColumnsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_clinic_id_foreign');
-            $table->dropColumn('clinic_id');
+            // $table->dropColumn('clinic_id');
         });
     }
 }

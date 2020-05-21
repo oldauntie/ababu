@@ -22,4 +22,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('clinics', 'ClinicController')->middleware('auth')->middleware('roles:root|admin');
+Route::get('/noauth', function () {
+    return view('noauth');
+})->name('noauth');
+
+
+// Route::get('/home', 'ClinicController@show')->name('home');
+// Route::resource('clinics', 'ClinicController')->middleware('auth')->middleware('roles:root|admin');
+Route::resource('clinics', 'ClinicController')->middleware('auth')->middleware('check_clinic');

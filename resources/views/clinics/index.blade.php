@@ -14,15 +14,8 @@
                         </div>
                     @endif
 
-                    <ul>
-                    @foreach (Auth::user()->clinics as $clinic)
-                    <li>
-                        <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }}</a>
-                    </li>
-                    @endforeach
-
-
-                    You are logged in!
+                    You are in th clinic page!
+                    
                 </div>
             </div>
         </div>

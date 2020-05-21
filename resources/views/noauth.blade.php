@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Ooops</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,15 +14,8 @@
                         </div>
                     @endif
 
-                    <ul>
-                    @foreach (Auth::user()->clinics as $clinic)
-                    <li>
-                        <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }}</a>
-                    </li>
-                    @endforeach
+                    No auth
 
-
-                    You are logged in!
                 </div>
             </div>
         </div>

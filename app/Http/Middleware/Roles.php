@@ -18,7 +18,7 @@ class Roles
         $roleArray = explode("|", $roles);
         if (!$request->user()->hasAnyRoles($roleArray))
         {
-            return redirect('unauthorized');
+            return redirect('noauth');
         }
 
         return $next($request);

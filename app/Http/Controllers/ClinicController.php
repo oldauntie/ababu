@@ -46,7 +46,7 @@ class ClinicController extends Controller
      */
     public function show(Clinic $clinic)
     {
-        //
+        return view('clinics.show')->with('clinic', $clinic);
     }
 
     /**

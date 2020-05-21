@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function clinics()
     {
-        return $this->belongsTo('App\Clinic');
+        return $this->belongsToMany('App\Clinic', 'role_user');
     }
 
     public function roles()

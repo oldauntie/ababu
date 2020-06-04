@@ -21,8 +21,9 @@ class ClinicsTableSeeder extends Seeder
         
         // reset the auto-increment value
         DB::statement('ALTER TABLE clinics AUTO_INCREMENT = 1');
-
+        
         // @todo: delete me
+        /*
         $clinic = Clinic::create([
                                 'name' => 'Test clinic A', 
                                 'description' => 'a real test clinic',
@@ -34,5 +35,6 @@ class ClinicsTableSeeder extends Seeder
                                 'description' => 'a real test clinic',
                                 'logo' => 'nologo.png']
                             );
+        */
     }
 }

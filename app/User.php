@@ -66,4 +66,14 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function isRoot()
+    {
+        if($this->id == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

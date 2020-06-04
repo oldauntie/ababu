@@ -15,7 +15,8 @@ class CheckClinic
      */
     public function handle($request, Closure $next)
     {
-        if($request->clinic != null)
+        // if user != root check clinic
+        if($request->user()->id != 0 && $request->clinic != null)
         {
             $checkUser = $request->clinic->users()->where('user_id', $request->user()->id)->first();
             if($checkUser == null)

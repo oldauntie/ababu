@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.index');
     }
 
     /**
@@ -81,5 +84,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ajax()
+    {
+        return Datatables::of(User::all())
+            ->addColumn('action', function ($data) {
+                return '<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-primary float-left">'. __('translate.edit') .'</button></a>'
+                .'<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-danger float-left">'. __('translate.disable') .'</button></a>';
+            })
+            ->make(true);
     }
 }

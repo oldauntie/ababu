@@ -13,11 +13,12 @@ return [
     |
     */
 
+    'edit' => 'edit',
     'Admin' => 'Admin',
     'Clinic' => 'Clinic',
     'Clinics' => 'Clinics',
+    'disable' => 'disable',
     'Owners' => 'Owners',
     'Pets' => 'Pets',
     'Users' => 'Users',
-
 ];

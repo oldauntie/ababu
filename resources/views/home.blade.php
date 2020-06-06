@@ -20,6 +20,7 @@
                         <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }}</a>
                     </li>
                     @endforeach
+                    </ul>
 
 
                     You are logged in!

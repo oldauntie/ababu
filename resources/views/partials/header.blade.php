@@ -47,7 +47,7 @@
                         <a class="dropdown-item" href="#">
                             {{ __('translate.Owners') }}
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{route('users.index')}}">
                             {{ __('translate.Users') }}
                         </a>
                     </div>

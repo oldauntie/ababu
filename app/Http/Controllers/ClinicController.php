@@ -82,4 +82,14 @@ class ClinicController extends Controller
     {
         //
     }
+
+    /**
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function join(Request $request)
+    {
+        dd($request->token);
+    }
 }

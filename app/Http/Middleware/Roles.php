@@ -16,7 +16,7 @@ class Roles
     public function handle($request, Closure $next, $roles)
     {
         $roleArray = explode("|", $roles);
-        if (!$request->user()->hasAnyRoles($roleArray))
+        if ($request->user() == null || !$request->user()->hasAnyRoles($roleArray))
         {
             return redirect('noauth');
         }

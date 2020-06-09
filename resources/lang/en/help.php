@@ -13,16 +13,9 @@ return [
     |
     */
 
-    'Admin' => 'Admin',
-    'Clinic' => 'Clinic',
-    'clinic_create' => 'Create your own clinic',
-    'clinic_join' => 'Join an existing clinic',
-    'Clinics' => 'Clinics',
-    'delete' => 'delete',
-    'disable' => 'disable',
-    'edit' => 'edit',
-    'or' => 'or',
-    'Owners' => 'Owners',
-    'Pets' => 'Pets',
-    'Users' => 'Users',
+    'clinic_create' => 'Create your own clinic in few ,few, few steps and start working immediately.',
+    'clinic_join' => 'Join an existing clinic as an associate Veterinary by writing the clinic code provided by your clinic administrator.',
+    'clinic_not_configured' => 'There is no clinic configured for your account. Please... ',
+    'clinic_token_example' => 'example: 6240b71',
+    'logged_in' => 'You are logged in!',
 ];

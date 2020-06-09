@@ -22,6 +22,6 @@ class RolesTableSeeder extends Seeder
         DB::statement('ALTER TABLE roles AUTO_INCREMENT = 1');
 
         Role::create(['name' => 'admin']);
-        Role::create(['name' => 'medic']);
+        Role::create(['name' => 'veterinarian']);
     }
 }

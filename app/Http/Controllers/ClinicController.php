@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
+use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClinicController extends Controller
 {
@@ -90,6 +92,20 @@ class ClinicController extends Controller
      */
     public function join(Request $request)
     {
-        dd($request->token);
+        $clinic = Clinic::where('token', $request->token)->first();
+
+        if ($clinic == null) {
+            $request->session()->flash('error', __('translate.clinic_join_not_found'));
+        } else {
+            if ($clinic->users->where('id', Auth::user()->id)->count() > 0) {
+                $request->session()->flash('error', __('translate.clinic_join_user_exists'));
+            } else {
+                $veterinarianRole = Role::where('name', 'veterinarian')->first();
+                $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
+
+                $request->session()->flash('success', __('translate.clinic_join_success'));
+            }
+        }
+        return redirect()->route('home');
     }
 }

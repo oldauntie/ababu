@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         $rootRole = Role::where('name', 'root')->first();
         $adminRole = Role::where('name', 'admin')->first();
-        $medicRole = Role::where('name', 'medic')->first();
+        $veterinarianRole = Role::where('name', 'veterinarian')->first();
 
         $root = User::create([
             'name' => 'root',
@@ -38,9 +38,9 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('ababu'),
         ]);
 
-        $medic = User::create([
-            'name' => 'Medic',
-            'email' => 'medic@ababu.cloud',
+        $veterinarian = User::create([
+            'name' => 'veterinarian',
+            'email' => 'veterinarian@ababu.cloud',
             'password' => Hash::make('ababu'),
         ]);
 
@@ -52,6 +52,6 @@ class UsersTableSeeder extends Seeder
         
         $root->roles()->attach($rootRole);
         $admin->roles()->attach($adminRole);
-        $medic->roles()->attach($medicRole);
+        $veterinarian->roles()->attach($veterinarianRole);
     }
 }

@@ -6,6 +6,8 @@ use App\Clinic;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class ClinicController extends Controller
 {
@@ -26,7 +28,7 @@ class ClinicController extends Controller
      */
     public function create()
     {
-        //
+        return view('clinics.create');
     }
 
     /**
@@ -37,7 +39,25 @@ class ClinicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        $request->validate([
+            'name'=>'required|max:255',
+        ]);
+
+        $clinic = new Clinic([
+            'name' => $request->get('name'),
+            'token' => Str::random(8),
+            'description' => $request->get('description'),
+            'logo' => $request->get('logo')
+        ]);
+
+        $clinic->save();
+
+        $veterinarianRole = Role::where('name', 'admin')->first();
+        $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
+
+
+        return redirect('/home')->with('success', __('translate.clinic_create_success'));
     }
 
     /**

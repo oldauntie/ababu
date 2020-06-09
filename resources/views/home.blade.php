@@ -33,8 +33,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col center">
-                                <button type="button"
-                                    class="btn btn-primary btn-lg">{{__('translate.clinic_create')}}</button>
+                                <a href="{{ route('clinics.create') }}" 
+                                    class="btn btn-primary btn-lg">{{__('translate.clinic_create')}}</a>
                                 <small id="help_clinic_create"
                                     class="form-text text-muted">{{__('help.clinic_create')}}</small>
                             </div>

@@ -15,6 +15,11 @@ class CheckClinic
      */
     public function handle($request, Closure $next)
     {
+        if($request->user() == null)
+        {
+            return redirect('noauth');
+        }
+        
         if($request->user()->id != 0 && $request->clinic != null)
         {
             $checkUser = $request->clinic->users()->where('user_id', $request->user()->id)->first();

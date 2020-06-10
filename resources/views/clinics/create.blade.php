@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('translate.clinic_create') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{route('clinics.store')}}">
+                    <form method="POST" action="{{route('clinics.store')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -17,8 +17,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
-                                    maxlength="255">
+                                    name="name" value="{{ old('name') }}" autocomplete="name" required autofocus maxlength="255">
                                 <small id="help_clinic_name"
                                     class="form-text text-muted">{{__('help.clinic_name')}}</small>
 
@@ -37,11 +36,19 @@
                                 class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_description')}}</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description"
-                                    value="{{ old('description') }}" autocomplete="description" autofocus>
+                                <input id="description" type="text"
+                                    class="form-control @error('description') is-invalid @enderror" name="description"
+                                    value="{{ old('description') }}" autocomplete="description" autofocus
+                                    maxlength="255">
                                 <small id="help_clinic_description"
                                     class="form-text text-muted">{{__('help.clinic_description')}}</small>
 
+
+                                @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -51,10 +58,18 @@
                                 class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_logo')}}</label>
 
                             <div class="col-md-6">
-                                <input id="logo" type="text" class="form-control" name="logo" value="{{ old('logo') }}"
-                                    autocomplete="logo" autofocus>
+                                <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror"
+                                    name="logo" accept="image/png, image/jpeg">
                                 <small id="help_clinic_logo"
                                     class="form-text text-muted">{{__('help.clinic_logo')}}</small>
+
+                                @error('logo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+
 
                             </div>
                         </div>

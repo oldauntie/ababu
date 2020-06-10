@@ -41,16 +41,28 @@ class ClinicController extends Controller
     {
         // validate
         $request->validate([
-            'name'=>'required|max:255',
+            'name' => 'required|max:255',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
+
+        $token = Str::random(8);
 
         $clinic = new Clinic([
             'name' => $request->get('name'),
-            'token' => Str::random(8),
+            'token' => $token,
             'description' => $request->get('description'),
-            'logo' => $request->get('logo')
         ]);
+        $clinic->save();
 
+
+        if ($request->file('logo')) {
+            $imagePath = $request->file('logo');
+            $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . $token . '.' . $imagePath->getClientOriginalExtension();
+
+            // $path = $request->file('logo')->storeAs('/uploads', $imageName, 'public');
+            $request->logo->move(public_path('images'), $imageName);
+        }
+        $clinic->logo = $imageName;
         $clinic->save();
 
         $veterinarianRole = Role::where('name', 'admin')->first();

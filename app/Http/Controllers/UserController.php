@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Clinic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -15,9 +16,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($clinic_id = 0)
     {
-        return view('users.index');
+        $clinic = Clinic::findOrFail($clinic_id);
+        return view('users.index')->with('clinic', $clinic);
     }
 
     /**
@@ -86,8 +88,9 @@ class UserController extends Controller
         //
     }
 
-    public function ajax()
+    public function ajax($clinic_id = 0)
     {
+        // d($clinic_id);
         return Datatables::of(User::all())
             ->addColumn('action', function ($data) {
                 return '<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-sm btn-primary float-left">'. __('translate.edit') .'</button></a>'

@@ -5,7 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Users</div>
+                <div class="card-header">{{__('translate.Clinic')}}: 
+                    @if($clinic != null)
+                    {{ $clinic->name }}
+                    @endif
+                    >> {{__('translate.Users')}}
+                </div>
 
                 <div class="card-body">
                     <table id="users" class="table table-bordered data-table">

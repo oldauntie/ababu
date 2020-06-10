@@ -45,19 +45,17 @@ class ClinicController extends Controller
             'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $token = Str::random(8);
-
         $clinic = new Clinic([
             'name' => $request->get('name'),
-            'token' => $token,
+            'token' => Str::random(8),
             'description' => $request->get('description'),
         ]);
         $clinic->save();
 
-
+        $imageName = null;
         if ($request->file('logo')) {
             $imagePath = $request->file('logo');
-            $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . $token . '.' . $imagePath->getClientOriginalExtension();
+            $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
             // $path = $request->file('logo')->storeAs('/uploads', $imageName, 'public');
             $request->logo->move(public_path('images'), $imageName);

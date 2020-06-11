@@ -67,7 +67,7 @@ class ClinicController extends Controller
         $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
 
 
-        return redirect('/home')->with('success', __('translate.clinic_create_success'));
+        return redirect('/home')->with('success', __('message.clinic_create_success'));
     }
 
     /**
@@ -125,15 +125,15 @@ class ClinicController extends Controller
         $clinic = Clinic::where('token', $request->token)->first();
 
         if ($clinic == null) {
-            $request->session()->flash('error', __('translate.clinic_join_not_found'));
+            $request->session()->flash('error', __('message.clinic_join_not_found'));
         } else {
             if ($clinic->users->where('id', Auth::user()->id)->count() > 0) {
-                $request->session()->flash('error', __('translate.clinic_join_user_exists'));
+                $request->session()->flash('error', __('message.clinic_join_user_exists'));
             } else {
                 $veterinarianRole = Role::where('name', 'veterinarian')->first();
                 $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
 
-                $request->session()->flash('success', __('translate.clinic_join_success'));
+                $request->session()->flash('success', __('message.clinic_join_success'));
             }
         }
         return redirect()->route('home');

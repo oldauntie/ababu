@@ -16,10 +16,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($clinic_id = 0)
+    public function index()
+    {
+        return view('users.index');
+    }
+
+    public function list($clinic_id = 0)
     {
         $clinic = Clinic::findOrFail($clinic_id);
-        return view('users.index')->with('clinic', $clinic);
+        return view('users.list')->with('clinic', $clinic);
     }
 
     /**

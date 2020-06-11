@@ -21,7 +21,7 @@
                     <h5>Quick Links</h5>
                     <ul>
                         <li><a href="{{route('clinics.pets.index', $clinic->id)}}">{{__('translate.Pets')}}</a></li>
-                        <li><a href="{{route('clinics.users.index', $clinic->id)}}">{{__('translate.Users')}}</a></li>
+                        <li><a href="{{route('clinics.users.list', $clinic->id)}}">{{__('translate.Users')}}</a></li>
                         <li><a href="#">Visits</a></li>
                         <li><a href="#">Owners</a></li>
                         <li><a href="#">Calendar</a></li>

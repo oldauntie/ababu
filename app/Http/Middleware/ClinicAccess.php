@@ -16,7 +16,6 @@ class ClinicAccess
      */
     public function handle($request, Closure $next)
     {
-        // load a clinic object
         if (is_object($request->clinic)) {
             $clinic = $request->clinic;
         }else{

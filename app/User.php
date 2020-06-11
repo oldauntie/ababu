@@ -47,6 +47,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+
     public function hasAnyRoles($roles)
     {
         if($this->roles()->whereIn('name', $roles)->first())
@@ -67,13 +68,19 @@ class User extends Authenticatable
         return false;
     }
 
-    public function isRoot()
+
+    public function hasRoleByClinicId($role, $clinic_id)
     {
-        if($this->id == 0)
+        if($this->roles()->where('name', $role)->where('clinic_id', $clinic_id)->first())
         {
             return true;
         }
 
         return false;
+    }
+
+    public function isRoot()
+    {
+        return $this->hasRole('root');
     }
 }

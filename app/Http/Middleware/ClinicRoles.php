@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Clinic;
 
-class ClinicAccess
+class ClinicRoles
 {
     /**
      * Handle an incoming request.
@@ -14,15 +14,18 @@ class ClinicAccess
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $roles)
     {
         if (is_object($request->clinic)) {
             $clinic = $request->clinic;
         }else{
             $clinic = Clinic::find($request->clinic);
         }
+        
 
-        if (auth()->check() && auth()->user()->belongsToClinic($clinic->id)) {
+        $roleArray = explode("|", $roles);
+
+        if (auth()->check() && auth()->user()->hasAnyRolesByClinicId($roleArray, $clinic->id)) {
             return $next($request);
         }
 

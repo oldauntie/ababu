@@ -30,15 +30,15 @@ Route::get('/noauth', function () {
 // Route::get('/home', 'ClinicController@show')->name('home');
 // Route::resource('clinics', 'ClinicController')->middleware('auth')->middleware('roles:root|admin');
 Route::get('clinics/join', 'ClinicController@join')->name('clinic.join')->middleware('auth');
+Route::get('clinics/create', 'ClinicController@create')->name('clinics.create')->middleware('auth');
+Route::post('clinics/store', 'ClinicController@store')->name('clinics.store')->middleware('auth');
+Route::resource('clinics', 'ClinicController', ['except' => ['create', 'store', 'index']])->middleware('clinic_access');
 
-// Route::resource('clinics', 'ClinicController')->middleware('clinic_access', 'auth');
-Route::resource('clinics', 'ClinicController')->middleware('clinic_access');
-
-Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');
 
 
+Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
 
 Route::get('/users/ajax', 'UserController@ajax')->name('users.ajax')->middleware('auth')->middleware('roles:root|admin');

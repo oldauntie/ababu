@@ -18,7 +18,6 @@ class ClinicController extends Controller
      */
     public function index()
     {
-        return "index";
     }
 
     /**
@@ -47,7 +46,8 @@ class ClinicController extends Controller
 
         $clinic = new Clinic([
             'name' => $request->get('name'),
-            'token' => Str::random(8),
+            'serial' => Str::random(8),
+            'key' => Str::random(8),
             'description' => $request->get('description'),
         ]);
         $clinic->save();
@@ -122,7 +122,13 @@ class ClinicController extends Controller
      */
     public function join(Request $request)
     {
-        $clinic = Clinic::where('token', $request->token)->first();
+        // split the token and compose serial / key attributes 
+        $aToken = explode('-', $request->token);
+        $serial = $aToken[0];
+        $handshakeRequest = $aToken[1];
+
+        // load a clinic object
+        $clinic = Clinic::where('serial', $serial)->first();
 
         if ($clinic == null) {
             $request->session()->flash('error', __('message.clinic_join_not_found'));
@@ -130,10 +136,16 @@ class ClinicController extends Controller
             if ($clinic->users->where('id', Auth::user()->id)->count() > 0) {
                 $request->session()->flash('error', __('message.clinic_join_user_exists'));
             } else {
-                $veterinarianRole = Role::where('name', 'veterinarian')->first();
-                $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
-
-                $request->session()->flash('success', __('message.clinic_join_success'));
+                // user doen not exists. check the hanshake
+                $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key), 0, 8);
+                if($handshakeRequest === $handshakeResponse){
+                    $veterinarianRole = Role::where('name', 'veterinarian')->first();
+                    $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
+                    
+                    $request->session()->flash('success', __('message.clinic_join_success'));
+                }else{
+                    $request->session()->flash('error', __('message.clinic_join_error'));
+                }
             }
         }
         return redirect()->route('home');

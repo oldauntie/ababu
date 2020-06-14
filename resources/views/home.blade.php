@@ -32,16 +32,16 @@
                     {{__('help.clinic_not_configured')}}
                     <div class="container">
                         <div class="row">
-                            <div class="col center">
+                            <div class="col-5 center">
                                 <a href="{{ route('clinics.create') }}" 
                                     class="btn btn-primary btn-lg">{{__('translate.clinic_create')}}</a>
                                 <small id="help_clinic_create"
                                     class="form-text text-muted">{{__('help.clinic_create')}}</small>
                             </div>
-                            <div class="col center">
+                            <div class="col-2 center">
                                 {{__('translate.or')}}
                             </div>
-                            <div class="col center">
+                            <div class="col-5 center">
                                 @include('clinics.join')
                             </div>
                         </div>

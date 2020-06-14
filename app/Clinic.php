@@ -8,7 +8,8 @@ class Clinic extends Model
 {
     protected $fillable = [
         'name',
-        'token',
+        'serial',
+        'key',
         'description',
         'logo'       
     ];

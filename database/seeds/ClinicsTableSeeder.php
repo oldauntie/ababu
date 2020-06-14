@@ -17,7 +17,8 @@ class ClinicsTableSeeder extends Seeder
         $clinic = Clinic::create([
                         'name' => 'no clinic', 
                         // 'token' => substr(Hash::make('no clinic'), -8),
-                        'token' => Str::random(8),
+                        'serial' => Str::random(8),
+                        'key' => Str::random(8),
                         'description' => 'clinic zero',
                         ]);
         

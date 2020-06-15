@@ -26,7 +26,7 @@
                     <ul>
                         @foreach (Auth::user()->clinics as $clinic)
                         <li>
-                            <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }} ({{$clinic->country->name}} - {{$clinic->locale->language}})</a>
+                            <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }} ({{$clinic->country->name}} - {{Auth::user()->locale->language}})</a>
                         </li>
                         @endforeach
                     </ul>

@@ -28,10 +28,4 @@ class Clinic extends Model
     {
         return $this->belongsTo(Country::class);
     }
-
-    public function locale()
-    {
-        return $this->belongsTo(Locale::class);
-    }
-
 }

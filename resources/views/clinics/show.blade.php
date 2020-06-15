@@ -27,9 +27,9 @@
                         @can('admin', $clinic)
                         <li><a href="{{route('clinics.users.list', $clinic)}}">{{__('translate.Users')}}</a></li>
                         @endcan
-                        <li><a href="#">Visits</a></li>
-                        <li><a href="#">Owners</a></li>
-                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">{{__('translate.Visits')}}</a></li>
+                        <li><a href="#">{{__('translate.Owners')}}</a></li>
+                        <li><a href="#">{{__('translate.Calendar')}}</a></li>
                     </ul>
 
 

@@ -16,7 +16,6 @@ class CreateClinicsTable extends Migration
         Schema::create('clinics', function (Blueprint $table) {
             $table->id();
             $table->string('country_id', 2);
-            $table->string('locale_id', 10);
             $table->string('serial', 100)->unique();
             $table->string('key', 100);
             $table->string('name');
@@ -25,7 +24,6 @@ class CreateClinicsTable extends Migration
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->foreign('locale_id')->references('id')->on('locales')->onDelete('cascade');
             
         });
     }

@@ -9,6 +9,7 @@ return [
     */
 
     'Admin' => 'Admin',
+    'Calendar' => 'Calendar',
     'Clinic' => 'Clinic',
     'clinic_create' => 'Create your own clinic',
     'clinic_your_clinic' => 'Your clinic',
@@ -28,4 +29,6 @@ return [
     'save' => 'save',
     'Users' => 'Users',
     'view' => 'view',
+    'Visits' => 'Visits',
+    
 ];

@@ -16,7 +16,6 @@ class ClinicsTableSeeder extends Seeder
     {
         $clinic = Clinic::create([
                         'country_id' => 'gb', 
-                        'locale_id' => 'en', 
                         'name' => 'no clinic', 
                         'serial' => Str::random(8),
                         'key' => Str::random(8),

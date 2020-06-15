@@ -36,6 +36,12 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\SetLocale::class,
+        ],
+
+        'auth' => [
+            \Illuminate\Auth\Middleware\Authenticate::class,
+            \App\Http\Middleware\SetLocale::class,
         ],
 
         'api' => [
@@ -52,7 +58,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        // 'auth' => \App\Http\Middleware\Authenticate::class,
         'roles' => \App\Http\Middleware\Roles::class,
         'clinic_access' => \App\Http\Middleware\ClinicAccess::class,
         'clinic_roles' => \App\Http\Middleware\ClinicRoles::class,

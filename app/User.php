@@ -47,6 +47,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+    public function locale()
+    {
+        return $this->belongsTo(Locale::class);
+    }
 
     public function belongsToClinic($clinic_id)
     {

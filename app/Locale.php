@@ -9,8 +9,8 @@ class Locale extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    public function countries()
+    public function users()
     {
-        return $this->hasMany(Clinic::class);
+        return $this->hasMany(User::class);
     }
 }

@@ -15,8 +15,9 @@ class ClinicsTableSeeder extends Seeder
     public function run()
     {
         $clinic = Clinic::create([
+                        'country_id' => 'gb', 
+                        'locale_id' => 'en', 
                         'name' => 'no clinic', 
-                        // 'token' => substr(Hash::make('no clinic'), -8),
                         'serial' => Str::random(8),
                         'key' => Str::random(8),
                         'description' => 'clinic zero',

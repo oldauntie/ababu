@@ -23,4 +23,15 @@ class Clinic extends Model
     {
         return $this->belongsToMany('App\User', 'role_user');
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function locale()
+    {
+        return $this->belongsTo(Locale::class);
+    }
+
 }

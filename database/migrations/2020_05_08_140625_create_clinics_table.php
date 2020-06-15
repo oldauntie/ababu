@@ -15,12 +15,18 @@ class CreateClinicsTable extends Migration
     {
         Schema::create('clinics', function (Blueprint $table) {
             $table->id();
-            $table->string('serial', '100')->unique();
-            $table->string('key', '100');
+            $table->string('country_id', 2);
+            $table->string('locale_id', 10);
+            $table->string('serial', 100)->unique();
+            $table->string('key', 100);
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
+
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('locale_id')->references('id')->on('locales')->onDelete('cascade');
+            
         });
     }
 
@@ -31,6 +37,10 @@ class CreateClinicsTable extends Migration
      */
     public function down()
     {
+        Schema::table('clinics', function (Blueprint $table) {
+            $table->dropForeign('clinics_country_id_foreign');
+        });
+
         Schema::dropIfExists('clinics');
     }
 }

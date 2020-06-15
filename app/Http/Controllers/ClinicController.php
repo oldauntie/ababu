@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-
 class ClinicController extends Controller
 {
     /**
@@ -57,7 +56,6 @@ class ClinicController extends Controller
             $imagePath = $request->file('logo');
             $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
-            // $path = $request->file('logo')->storeAs('/uploads', $imageName, 'public');
             $request->logo->move(public_path('images'), $imageName);
         }
         $clinic->logo = $imageName;
@@ -65,7 +63,6 @@ class ClinicController extends Controller
 
         $veterinarianRole = Role::where('name', 'admin')->first();
         $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
-
 
         return redirect('/home')->with('success', __('message.clinic_create_success'));
     }
@@ -89,7 +86,7 @@ class ClinicController extends Controller
      */
     public function edit(Clinic $clinic)
     {
-        //
+        return view('clinics.edit')->with('clinic', $clinic);
     }
 
     /**
@@ -101,7 +98,37 @@ class ClinicController extends Controller
      */
     public function update(Request $request, Clinic $clinic)
     {
-        //
+        // validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $clinic->name = $request->name;
+        $clinic->description = $request->description;
+
+        $imageName = null;
+        if ($request->file('logo')) {
+            $imagePath = $request->file('logo');
+            $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
+
+            $request->logo->move(public_path('images'), $imageName);
+            
+            // delete previous file if exists
+            if($clinic->logo != null && file_exists(public_path('images'). '/'. $clinic->logo))
+            {
+                unlink(public_path('images'). '/'. $clinic->logo);
+            }
+            $clinic->logo = $imageName;
+        }
+
+        if ($clinic->save()) {
+            $request->session()->flash('success', __('message.clinic_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.clinic_update_error');
+        }
+        
+        return redirect()->route('clinics.show', $clinic);
     }
 
     /**

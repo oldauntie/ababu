@@ -21,7 +21,6 @@ class ClinicRoles
         }else{
             $clinic = Clinic::find($request->clinic);
         }
-        
 
         $roleArray = explode("|", $roles);
 

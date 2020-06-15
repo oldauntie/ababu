@@ -20,5 +20,4 @@ return [
     'clinic_name' => 'Your clinic short name (e.g. Dr. Dolittle\'s Clinic)',
     'clinic_not_configured' => 'There is no clinic configured for your account. Please... ',
     'clinic_token_example' => 'example: 6240b71',
-    'logged_in' => 'You are logged in!',
 ];

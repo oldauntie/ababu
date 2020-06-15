@@ -11,6 +11,8 @@ return [
     'Admin' => 'Admin',
     'Clinic' => 'Clinic',
     'clinic_create' => 'Create your own clinic',
+    'clinic_your_clinic' => 'Your clinic',
+    'clinic_your_clinics' => 'Your clinics',
     'clinic_join' => 'Join an existing clinic',
     'clinic_description' => 'Description',
     'clinic_logo' => 'Logo',

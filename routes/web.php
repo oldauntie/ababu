@@ -36,6 +36,8 @@ Route::resource('clinics', 'ClinicController', ['except' => ['create', 'store', 
 
 
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');
+Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinics.users.edit')->middleware('clinic_roles:root|admin');
+Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
 
 
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -65,9 +66,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($clinic_id, $user_id)
     {
-        //
+        $clinic = Clinic::findOrFail($clinic_id);
+        $roles = Role::where('name', '!=', 'root')->get();
+        $user = User::findOrFail($user_id);
+        return view('users.edit')->with( compact('clinic', 'roles', 'user') );
     }
 
     /**

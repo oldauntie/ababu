@@ -7,6 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     {{__('translate.Clinic')}} {{ $clinic->name }}
+                    @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
+                    <a href="{{ route('clinics.edit', $clinic) }}" class="btn btn-sm btn-primary">{{__('translate.edit')}}</a>
+                    @endif
                     <br>
                     <small>{{$clinic->description}}</small>
                 </div>

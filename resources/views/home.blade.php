@@ -18,9 +18,11 @@
                     </div>
                     @endif
 
-                    {{__('help.logged_in')}}
-
+                    
                     @if(Auth::user()->clinics->count() > 0)
+
+                    {{Auth::user()->clinics->count()>1?__('translate.clinic_your_clinics'):__('translate.clinic_your_clinic')}}
+                    
                     <ul>
                         @foreach (Auth::user()->clinics as $clinic)
                         <li>

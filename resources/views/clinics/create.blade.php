@@ -13,7 +13,7 @@
 
                         <div class="form-group row">
                             <label for="name"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_name')}} *</label>
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.name')}} *</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -30,10 +30,29 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('translate.country') }} *</label>
+
+                            <div class="col-md-6">
+                                <select name="country_id" id="country_id" class="form-control">
+                                    @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}"  {{ old('country_id')? "selected":"" }}>{{ $country->name }}</option>  
+                                    @endforeach
+                                </select>
+                                <small id="help_clinic_country"
+                                    class="form-text text-muted">{{__('help.clinic_country')}}</small>
+
+                                @error('country_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="description"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_description')}}</label>
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.description')}}</label>
 
                             <div class="col-md-6">
                                 <input id="description" type="text"
@@ -55,7 +74,7 @@
 
                         <div class="form-group row">
                             <label for="logo"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_logo')}}</label>
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.logo')}}</label>
 
                             <div class="col-md-6">
                                 <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror"

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
+use App\Mail\ClinicJoinMail;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+
+use App\Country;
 
 class ClinicController extends Controller
 {
@@ -26,7 +30,8 @@ class ClinicController extends Controller
      */
     public function create()
     {
-        return view('clinics.create');
+        $countries = Country::all();
+        return view('clinics.create')->with('countries', $countries);
     }
 
     /**
@@ -44,6 +49,7 @@ class ClinicController extends Controller
         ]);
 
         $clinic = new Clinic([
+            'country_id' => $request->get('country_id'),
             'name' => $request->get('name'),
             'serial' => Str::random(8),
             'key' => Str::random(8),
@@ -176,5 +182,34 @@ class ClinicController extends Controller
             }
         }
         return redirect()->route('home');
+    }
+
+    public function invite($clinic){
+        
+        return view('clinics.invite')->with('clinic', $clinic);
+
+
+
+    }
+
+
+    /**
+     * Send invitation to user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function send(Request $request, Clinic $clinic)
+    {
+        // validate email address
+        $request->validate([
+            // email must exists in user table
+            // 'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        Mail::to($request->email)->send(new ClinicJoinMail($clinic));
+        
+        return redirect()->route('clinics.show', $clinic)->with('success', __('message.clinic_invitation_success'));
     }
 }

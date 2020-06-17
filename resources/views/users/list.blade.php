@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{ __('translate.Clinic') }}: 
+                    {{ __('translate.clinic') }}: 
                     {{ $clinic->name }}
                 </div>
 

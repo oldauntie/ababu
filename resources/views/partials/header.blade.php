@@ -36,16 +36,16 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">
-                            {{ __('translate.Clinics') }}
+                            {{ __('translate.clinics') }}
                         </a>
                         <a class="dropdown-item" href="#">
-                            {{ __('translate.Pets') }}
+                            {{ __('translate.pets') }}
                         </a>
                         <a class="dropdown-item" href="#">
-                            {{ __('translate.Owners') }}
+                            {{ __('translate.owners') }}
                         </a>
                         <a class="dropdown-item" href="{{route('users.index')}}">
-                            {{ __('translate.Users') }}
+                            {{ __('translate.users') }}
                         </a>
                     </div>
                 </li>

@@ -40,6 +40,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="locale_id" class="col-md-4 col-form-label text-md-right">{{ __('translate.Language') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="locale_id" id="locale_id" class="form-control">
+                                    @foreach ($locales as $locale)
+                                    <option value="{{ $locale->id }}"  {{ old('locale_id')? "selected":"" }}>{{ $locale->language }}</option>  
+                                    @endforeach
+                                </select>
+
+                                @error('locale_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

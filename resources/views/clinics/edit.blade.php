@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('translate.clinic_edit') }}</div>
+                <div class="card-header">{{ __('translate.clinic') }} {{ __('translate.edit') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{route('clinics.update', $clinic)}}" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
 
                         <div class="form-group row">
                             <label for="name"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_name')}} *</label>
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.name')}} *</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -36,7 +36,7 @@
 
                         <div class="form-group row">
                             <label for="description"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_description')}}</label>
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.description')}}</label>
 
                             <div class="col-md-6">
                                 <input id="description" type="text"
@@ -58,7 +58,7 @@
 
                         <div class="form-group row">
                             <label for="logo"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.clinic_logo')}}</label>
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.logo')}}</label>
                             <img src="{{url('/images/' . $clinic->logo)}}" width="100">
 
                             <div class="col-md-6">

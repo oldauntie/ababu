@@ -1,7 +1,9 @@
-@if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
-<li class="nav-item active">
-    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-</li>
+@isset($clinic)
+
+@if(Auth::user()->hasAnyRoles(['admin', 'veterinarian']) )
+
+
+
 <li class="nav-item">
     <a class="nav-link" href="#">Link</a>
 </li>
@@ -20,6 +22,18 @@
 <li class="nav-item">
     <a class="nav-link disabled" href="#">Disabled</a>
 </li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Clinics
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{route('clinics.show', $clinic->id)}}">Dashboard</a>
+        <a class="dropdown-item" href="{{route('clinics.create')}}">Create</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{route('home')}}">Exit</a>
+    </div>
+</li>
 <li class="nav-item">
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -27,3 +41,5 @@
     </form>
 </li>
 @endif
+
+@endisset

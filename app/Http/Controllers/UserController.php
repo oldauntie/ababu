@@ -81,9 +81,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $clinic_id, $user_id)
     {
-        //
+        $clinic = Clinic::where('id', '=', $clinic_id)->first();
+        $user = User::where('id', '=', $user_id)->first();
+        
+        $currentRoleId = $clinic->roles()->wherePivot('user_id', $user_id)->first();
+
+        foreach ($request->roles as $role_id) {
+            $clinic->roles()->wherePivot('user_id', $user_id)->updateExistingPivot($currentRoleId, ['role_id' => $role_id]);
+        }
+
+        $request->session()->flash('success', __('message.user_update_success'));
+
+
+        return redirect()->route('clinics.users.list', $clinic_id);
     }
 
     /**

@@ -67,8 +67,8 @@ class ClinicController extends Controller
         $clinic->logo = $imageName;
         $clinic->save();
 
-        $veterinarianRole = Role::where('name', 'admin')->first();
-        $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
+        $adminRole = Role::where('name', 'admin')->first();
+        $clinic->roles()->attach($adminRole, ['user_id' => Auth::user()->id]);
 
         return redirect('/home')->with('success', __('message.clinic_create_success'));
     }

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('translate.user_edit') }}</div>
+                <div class="card-header">{{__('translate.user')}}: {{$user->name}} [{{ __('translate.edit') }}]</div>
 
                 <div class="card-body">
                     <form action="{{ route('clinics.users.update', [$clinic, $user]) }}" method="POST">

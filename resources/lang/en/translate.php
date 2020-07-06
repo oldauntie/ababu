@@ -30,6 +30,7 @@ return [
     'pets' => 'Pets',
     'roles' => 'roles',
     'save' => 'save',
+    'user' => 'User',
     'users' => 'Users',
     'view' => 'view',
     'visits' => 'Visits',

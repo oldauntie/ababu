@@ -27,6 +27,7 @@
                         <li><a href="#">{{__('translate.pets')}}</a></li>
                         @can('admin', $clinic)
                         <li><a href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a></li>
+                        <li><a href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a></li>
                         @endcan
                         <li><a href="#">{{__('translate.visits')}}</a></li>
                         <li><a href="#">{{__('translate.owners')}}</a></li>

@@ -6,8 +6,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{ __('translate.clinic') }}:
-                    {{ $clinic->name }}
+                    {{ __('translate.clinic') }}
+                    {{ $clinic->name }}:
+                    {{ __('translate.users') }}
                 </div>
 
                 <div class="card-body">

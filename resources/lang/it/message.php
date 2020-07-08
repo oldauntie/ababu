@@ -17,9 +17,8 @@ return [
     'clinic_join_not_found' => 'Non ci sono cliniche che corrispondono al codice inserito. Per favore riprova o contatta l\'amministratore della clinica per ottenere un codice corretto.',
     'clinic_join_success' => 'Ti sei unito alla clinica con successo.',
     'clinic_join_user_exists' => 'Sei già unito alla clinica. Per favore controlla il codice o contatta l\'amministratore della clinica.',
+    'specie_create_error' => 'Si è verificato un errore. E\' probabile che la specie sia già stata selezionata.',
+    'specie_create_success' => 'La specie selezionata è stata aggiunta.',
     'user_update_success' => 'L\'utente è stato aggiornato.',
-
-
-
 
 ];

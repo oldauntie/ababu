@@ -14,14 +14,14 @@ class CreateSpeciesTable extends Migration
     public function up()
     {
         Schema::create('species', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('tsn')->unsigned();
             $table->bigInteger('clinic_id')->unsigned();
-            $table->string('complete_name');
             $table->string('familiar_name');
             $table->timestamps();
 
-            $table->primary('tsn');
-            $table->index('complete_name');
+            $table->unique(['tsn', 'clinic_id']);
+            $table->index('familiar_name');
         });
     }
 

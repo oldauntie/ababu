@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'add' => 'Aggiungi',
     'admin' => 'Admin',
     'calendar' => 'Calendario',
     'clinic' => 'Clinica',
@@ -30,6 +31,9 @@ return [
     'pets' => 'Animali',
     'roles' => 'ruoli',
     'save' => 'salva',
+    'specie' => 'Specie',
+    'species' => 'Specie',
+    'user' => 'Utente',
     'users' => 'Utenti',
     'view' => 'visualizza',
     'visits' => 'Visite',

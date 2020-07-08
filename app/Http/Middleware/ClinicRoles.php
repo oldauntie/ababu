@@ -19,7 +19,7 @@ class ClinicRoles
         if (is_object($request->clinic)) {
             $clinic = $request->clinic;
         }else{
-            $clinic = Clinic::find($request->clinic);
+            $clinic = Clinic::findOrFail($request->clinic);
         }
 
         $roleArray = explode("|", $roles);

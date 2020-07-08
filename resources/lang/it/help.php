@@ -16,5 +16,7 @@ return [
     'clinic_name' => 'Il nome della tua Clinica (ad es: Dr. Dolittle\'s Clinic)',
     'clinic_not_configured' => 'Non c\'è nessuna clinica configurata con il tuo account. Per favore creane una o unisciti ad une esitente inserendo il codice di autenticazione fornito dall\'amministratore della clinica ',
     'clinic_token_example' => 'es: 6240b71-rugby310',
+    'specie_admin' => 'Seleziona le specie che utilizzerai nella tua clinica (es: cane, gatto, civetta). Puoi selezionare quante specie vuoi ma ti consigliamo di selezionare quelle che veramente andrai a visitare. Puoi aggiungere una specie anche in un secondo momento.',
+    'specie_select' => 'Premi e inizia a digitare le prima lettere del nome scientifico della specie che vuoi utilizzare nella clinica (e.g. Canis Lupus Familiaris)',
 
 ];

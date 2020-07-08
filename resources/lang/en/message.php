@@ -17,6 +17,8 @@ return [
     'clinic_join_not_found' => 'There is no clinic matching your code. Please try again or contact clinic administrator to get correct code.',
     'clinic_join_success' => 'You have joined clinic successfully.',
     'clinic_join_user_exists' => 'You have already joined this clinic. Please check the clinic code or contact clinic administrator.',
+    'specie_create_error' => 'There was an error while adding selected specie (maybe specie already exists).',
+    'specie_create_success' => 'Selected specie has been added.',
     'user_update_success' => 'User has been updated.',
 
 

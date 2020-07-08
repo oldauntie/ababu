@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'add' => 'Add',
     'admin' => 'Admin',
     'calendar' => 'Calendar',
     'clinic' => 'Clinic',
@@ -32,6 +33,8 @@ return [
     'save' => 'save',
     'user' => 'User',
     'users' => 'Users',
+    'specie' => 'Specie',
+    'species' => 'Species',
     'view' => 'view',
     'visits' => 'Visits',
     

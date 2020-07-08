@@ -25,10 +25,10 @@
                     <h5>Quick Links</h5>
                     <ul>
                         <li><a href="#">{{__('translate.pets')}}</a></li>
-                        @can('admin', $clinic)
+                        @canany(['root', 'admin'], $clinic)
                         <li><a href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a></li>
                         <li><a href="{{route('species.index', $clinic)}}">{{__('translate.species')}}</a></li>
-                        @endcan
+                        @endcanany
                         <li><a href="#">{{__('translate.visits')}}</a></li>
                         <li><a href="#">{{__('translate.owners')}}</a></li>
                         <li><a href="#">{{__('translate.calendar')}}</a></li>

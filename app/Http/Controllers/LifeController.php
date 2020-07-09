@@ -82,4 +82,31 @@ class LifeController extends Controller
     {
         //
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        if ($search == '') {
+            $species = Life::orderby('complete_name', 'asc')->select('tsn', 'complete_name')->limit(5)->get();
+        } else {
+            $species = Life::orderby('complete_name', 'asc')->select('tsn', 'complete_name')->where('complete_name', 'like', '%' . $search . '%')->limit(5)->get();
+        }
+
+        $response = array();
+        foreach ($species as $specie) {
+            $response[] = array(
+                "id" => $specie->tsn,
+                "text" => $specie->complete_name
+            );
+        }
+
+        echo json_encode($response);
+        exit;
+    }
 }

@@ -14,4 +14,9 @@ class Specie extends Model
     protected $fillable = [
         'tsn', 'clinic_id', 'familiar_name',
     ];
+
+    public function life()
+    {
+        return $this->belongsTo('App\Life', 'tsn');
+    }
 }

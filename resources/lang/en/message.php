@@ -19,6 +19,8 @@ return [
     'clinic_join_user_exists' => 'You have already joined this clinic. Please check the clinic code or contact clinic administrator.',
     'specie_create_error' => 'There was an error while adding selected specie (maybe specie already exists).',
     'specie_create_success' => 'Selected specie has been added.',
+    'specie_edit_error' => 'There was an error while saving specie.',
+    'specie_edit_success' => 'Specie saved.',
     'user_update_success' => 'User has been updated.',
 
 

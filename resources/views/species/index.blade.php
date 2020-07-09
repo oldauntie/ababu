@@ -6,11 +6,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    {{__('translate.clinic')}} 
-                    {{$clinic->name}}: 
+                    {{__('translate.clinic')}}
+                    {{$clinic->name}}:
                     {{__('translate.species')}}
                     <small id="help_specie_admin" class="form-text text-muted">{{__('help.specie_admin')}}</small>
-
                 </div>
 
                 <div class="card-body">
@@ -65,9 +64,44 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="col-md-4">
+            <table id="users" class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th>{{__('translate.tsn')}}</th>
+                        <th>{{__('translate.complete_name')}}</th>
+                        <th>{{__('translate.familiar_name')}}</th>
+                        <th width="100px">{{__('translate.actions')}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($species as $specie)
+                    <tr>
+                        <td>{{$specie->tsn}}</td>
+                        <td>{{$specie->life()->first()->complete_name}}</td>
+                        <td>{{$specie->familiar_name}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary open_modal"
+                                value="{{$specie->id}}">{{__('translate.edit')}}</button>
+                            <a href="#" onclick="return confirm('{{__('message.are_you_sure')}}')"
+                                class="btn btn-sm btn-danger">{{__('translate.delete')}}</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
 </div>
+
+@include('species.modal.edit')
+
 @endsection
+
 
 @push('scripts')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -79,7 +113,7 @@
         ajax: { 
             placeholder: "Choose specie...",
             minimumInputLength: 3,
-            url: "/species/ajax/search/",
+            url: "/lives/ajax/search/",
             dataType: 'json',
             data: function (params) {
                 return {
@@ -95,6 +129,27 @@
         }
       });
 
+    });
+
+    $(document).on('click','.open_modal',function(){
+        var url = "/species/ajax/get";
+        var id= $(this).val();
+
+        $.get(url + '/' + id, function (data) {
+            //success data
+            var json = JSON.parse(data);
+            console.log(json);
+            $('#modal-complete_name').val(json.complete_name);
+            $('#modal-familiar_name').val(json.familiar_name);
+            $('#modal-specie_id').val(id);
+
+            var action = "species/" + id; 
+            $("#modal-edit-form").attr("action", action);
+            $('#edit-modal').modal('show');
+        }) 
+
+        console.log('id: ' + id);
+ 
     });
 </script>
 

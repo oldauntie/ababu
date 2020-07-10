@@ -92,7 +92,6 @@ class ClinicController extends Controller
      */
     public function edit(Clinic $clinic)
     {
-        return view('clinics.edit')->with('clinic', $clinic);
     }
 
     /**
@@ -145,7 +144,6 @@ class ClinicController extends Controller
      */
     public function destroy(Clinic $clinic)
     {
-        //
     }
 
     /**

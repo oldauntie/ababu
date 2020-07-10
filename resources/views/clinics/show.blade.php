@@ -8,13 +8,8 @@
                 <div class="card-header">
                     {{__('translate.clinic')}} {{ $clinic->name }}
                     @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-                    <a href="{{ route('clinics.edit', $clinic) }}"
-                        class="btn btn-sm btn-primary">{{__('translate.edit')}} old</a>
-                    <button class="btn btn-sm btn-primary open_modal_edit" value="1">{{__('translate.edit')}}</button>
-                    <a href="{{ route('clinics.invite', $clinic) }}"
-                        class="btn btn-sm btn-secondary">{{__('translate.invite')}} old</a>
-                    <button class="btn btn-sm btn-primary open_modal_invite"
-                        value="1">{{__('translate.invite')}}</button>
+                    <button class="btn btn-sm btn-primary open_modal_edit">{{__('translate.edit')}}</button>
+                    <button class="btn btn-sm btn-secondary open_modal_invite">{{__('translate.invite')}}</button>
                     @endif
                     <br>
                     <small>{{$clinic->description}}</small>
@@ -38,12 +33,7 @@
                         <li><a href="#">{{__('translate.owners')}}</a></li>
                         <li><a href="#">{{__('translate.calendar')}}</a></li>
                     </ul>
-
-
-
                     clinic dashboard
-
-
                 </div>
             </div>
 
@@ -52,15 +42,15 @@
     </div>
 </div>
 
+@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 @include('clinics.modal.edit')
 @include('clinics.modal.invite')
+@endif
 
 @endsection
 
-
-
-
 @push('scripts')
+@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 <script type="text/javascript">
     $(document).on('click','.open_modal_edit',function(){
         $('#edit-modal').modal('show');
@@ -70,5 +60,5 @@
         $('#invite-modal').modal('show');
     });
 </script>
-
+@endif
 @endpush

@@ -19,7 +19,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{route('species.store', $clinic->id)}}">
+                    <form method="POST" action="{{route('clinics.species.store', $clinic->id)}}">
                         @csrf
 
                         <div class="form-group row">
@@ -139,10 +139,10 @@
             //success data
             var json = JSON.parse(data);
             console.log(json);
+            console.log(url + '/' + id);
             $('#modal-complete_name').val(json.complete_name);
             $('#modal-familiar_name').val(json.familiar_name);
-            $('#modal-specie_id').val(id);
-
+            
             var action = "species/" + id; 
             $("#modal-edit-form").attr("action", action);
             $('#edit-modal').modal('show');

@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Clinic;
-use App\Specie;
-use App\Life;
+use App\Species;
 use Illuminate\Http\Request;
 
-class SpecieController extends Controller
+class SpeciesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($clinic_id)
+    public function index(Clinic $clinic)
     {
-        $species = Specie::all();
-        // $species = Specie::leftJoin('lives', 'species.tsn', '=', 'lives.tsn')->get();
-        $clinic = Clinic::findOrFail($clinic_id);
+        $species = Species::where('clinic_id', '=', $clinic->id)->get();
+        // $species = Species::leftJoin('lives', 'species.tsn', '=', 'lives.tsn')->get();
+        // $clinic = Clinic::findOrFail($clinic_id);
         return view('species.index')->with('clinic', $clinic)->with('species', $species);
     }
 
@@ -38,25 +37,23 @@ class SpecieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $clinic_id)
+    public function store(Request $request, Clinic $clinic)
     {
         $request->validate([
             'tsn' => 'required',
             'familiar_name' => 'required|max:255',
         ]);
 
-        $specie = new Specie();
-        $specie->tsn = $request->tsn;
-        $specie->clinic_id = $clinic_id;
-        $specie->familiar_name = $request->familiar_name;
-
-        $clinic = Clinic::findOrFail($clinic_id);
+        $species = new Species();
+        $species->tsn = $request->tsn;
+        $species->clinic_id = $clinic->id;
+        $species->familiar_name = $request->familiar_name;
 
         try {
-            $specie->save();
-            return redirect()->route('species.index', $clinic)->with('success', __('message.specie_create_success'));
+            $species->save();
+            return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.specie_create_success'));
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('species.index', $clinic)->with('error', __('message.specie_create_error'));
+            return redirect()->route('clinics.species.index', $clinic)->with('error', __('message.specie_create_error'));
         }
     }
 
@@ -66,18 +63,17 @@ class SpecieController extends Controller
      * @param  \App\Specie  $specie
      * @return \Illuminate\Http\Response
      */
-    public function show(Specie $specie)
+    public function show(Clinic $clinic, Species $species)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Specie  $specie
+     * @param  \App\Species  $species
      * @return \Illuminate\Http\Response
      */
-    public function edit(Specie $specie)
+    public function edit(Species $species)
     {
         //
     }
@@ -86,27 +82,27 @@ class SpecieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Specie  $specie
+     * @param  \App\Species  $species
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $clinic_id, $specie_id)
+    public function update(Request $request, Clinic $clinic, Species $species)
     {
         // validate
         $request->validate([
             'familiar_name' => 'required|max:255',
         ]);
 
-        $clinic = Clinic::find($clinic_id);
-        $specie = Specie::find($specie_id);
+        // $clinic = Clinic::find($clinic_id);
+        // $specie = Specie::find($specie_id);
 
 
-        $specie->familiar_name = $request->familiar_name;
+        $species->familiar_name = $request->familiar_name;
 
+        $species->save();
         try {
-            $specie->save();
-            return redirect()->route('species.index', $clinic)->with('success', __('message.specie_edit_success'));
+            return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.specie_edit_success'));
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('species.index', $clinic)->with('error', __('message.specie_edit_error'));
+            return redirect()->route('clinics.species.index', $clinic)->with('error', __('message.specie_edit_error'));
         }
     }
 
@@ -116,7 +112,7 @@ class SpecieController extends Controller
      * @param  \App\Specie  $specie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Specie $specie)
+    public function destroy(Species $species)
     {
         //
     }
@@ -127,16 +123,13 @@ class SpecieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
+    public function search(Request $request, Species $species)
     {
-        $id = $request->id;
-
-        $specie = Specie::find($id)->first();
-
         $response = array(
-            "tsn" => $specie->tsn,
-            "complete_name" => $specie->life()->first()->complete_name,
-            "familiar_name" => $specie->familiar_name
+            "id" => $species->id,
+            "tsn" => $species->tsn,
+            "complete_name" => $species->life()->first()->complete_name,
+            "familiar_name" => $species->familiar_name
         );
 
         echo json_encode($response);

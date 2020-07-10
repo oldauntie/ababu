@@ -184,12 +184,8 @@ class ClinicController extends Controller
         return redirect()->route('home');
     }
 
-    public function invite($clinic){
-        
+    public function invite(Clinic $clinic){
         return view('clinics.invite')->with('clinic', $clinic);
-
-
-
     }
 
 
@@ -203,7 +199,7 @@ class ClinicController extends Controller
     {
         // validate email address
         $request->validate([
-            // email must exists in user table
+            // Note: invite everyone or email must exists in user table
             // 'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
             'email' => ['required', 'string', 'email', 'max:255'],
         ]);

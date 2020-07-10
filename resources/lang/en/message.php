@@ -11,6 +11,7 @@ return [
     'are_you_sure' => 'Are you sure?',
     'clinic_create_error' => 'There was an error while creating your clinic.',
     'clinic_create_success' => 'You have successfully created your clinic.',
+    'clinic_invitation_success' => 'Invitation successfully sent',
     'clinic_update_error' => 'There was an error while updating your clinic.',
     'clinic_update_success' => 'Your clinic has been updated successfully.',
     'clinic_join_error' => 'You cannot join the clinic.',

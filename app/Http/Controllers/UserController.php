@@ -22,9 +22,8 @@ class UserController extends Controller
         return view('users.index');
     }
 
-    public function list($clinic_id = 0)
+    public function list(Clinic $clinic)
     {
-        $clinic = Clinic::findOrFail($clinic_id);
         return view('users.list')->with('clinic', $clinic);
     }
 
@@ -66,11 +65,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($clinic_id, $user_id)
+    public function edit(Clinic $clinic, User $user)
     {
-        $clinic = Clinic::findOrFail($clinic_id);
         $roles = Role::where('name', '!=', 'root')->get();
-        $user = User::findOrFail($user_id);
         return view('users.edit')->with( compact('clinic', 'roles', 'user') );
     }
 
@@ -81,21 +78,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $clinic_id, $user_id)
+    public function update(Request $request, Clinic $clinic, User $user)
     {
-        $clinic = Clinic::where('id', '=', $clinic_id)->first();
-        $user = User::where('id', '=', $user_id)->first();
-        
-        $currentRoleId = $clinic->roles()->wherePivot('user_id', $user_id)->first();
-
+        $currentRoleId = $clinic->roles()->wherePivot('user_id', $user->id)->first();
         foreach ($request->roles as $role_id) {
-            $clinic->roles()->wherePivot('user_id', $user_id)->updateExistingPivot($currentRoleId, ['role_id' => $role_id]);
+            $clinic->roles()->wherePivot('user_id', $user->id)->updateExistingPivot($currentRoleId, ['role_id' => $role_id]);
         }
-
         $request->session()->flash('success', __('message.user_update_success'));
 
-
-        return redirect()->route('clinics.users.list', $clinic_id);
+        return redirect()->route('clinics.users.list', $clinic);
     }
 
     /**
@@ -109,9 +100,9 @@ class UserController extends Controller
         //
     }
 
-    public function ajax($clinic_id = 0)
+    // @todo: to be finished or @deprecated
+    public function ajaxUserList($clinic_id = 0)
     {
-        // d($clinic_id);
         return Datatables::of(User::all())
             ->addColumn('action', function ($data) {
                 return '<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-sm btn-primary float-left">'. __('translate.edit') .'</button></a>'

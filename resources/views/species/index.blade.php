@@ -146,10 +146,7 @@
             var action = "species/" + id; 
             $("#modal-edit-form").attr("action", action);
             $('#edit-modal').modal('show');
-        }) 
-
-        console.log('id: ' + id);
- 
+        })
     });
 </script>
 

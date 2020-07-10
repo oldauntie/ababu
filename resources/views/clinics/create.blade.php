@@ -97,7 +97,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary btn-lg">{{__('translate.save')}}</button>
+                                <button type="submit" class="btn btn-primary ">{{__('translate.save')}}</button>
+                                <a href="{{route('home')}}" class="btn btn-secondary">{{__('translate.done')}}</a>
                             </div>
                         </div>
                     </form>

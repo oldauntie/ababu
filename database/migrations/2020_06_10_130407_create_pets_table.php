@@ -15,7 +15,36 @@ class CreatePetsTable extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('tsn')->unsigned();
+            $table->bigInteger('clinic_id')->unsigned();
+            $table->bigInteger('owner_id')->unsigned();
+            $table->string('name');
+            $table->char('gender', 1);
+            $table->dateTime('date_of_birth');
+            $table->dateTime('date_of_death')->nullable();
+            $table->text('description')->nullable();
+            $table->string('color')->nullable();
+            $table->string('microchip', 64)->nullable();
+            $table->string('microchip_location', 100)->nullable();
+            $table->string('tatuatge', 64)->nullable();
+            $table->string('tatuatge_location', 100)->nullable();
             $table->timestamps();
+
+            $table->foreign('clinic_id')
+                ->references('id')
+                ->on('clinics')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+            $table->foreign('owner_id')
+                ->references('id')
+                ->on('owners')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
+            $table->foreign(['tsn', 'clinic_id'])
+                ->references(['tsn', 'clinic_id'])
+                ->on('species')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
         });
     }
 
@@ -26,6 +55,11 @@ class CreatePetsTable extends Migration
      */
     public function down()
     {
+        Schema::table('pets', function ($table) {
+            $table->dropForeign('pets_owner_id_foreign');
+            $table->dropForeign('pets_tsn_clinic_id_foreign');
+        });
+
         Schema::dropIfExists('pets');
     }
 }

@@ -20,6 +20,11 @@ class CreateSpeciesTable extends Migration
             $table->string('familiar_name');
             $table->timestamps();
 
+            $table->foreign('clinic_id')
+                ->references('id')
+                ->on('clinics')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
             $table->unique(['tsn', 'clinic_id']);
             $table->index('familiar_name');
         });

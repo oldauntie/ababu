@@ -29,6 +29,7 @@ class CreatePetsTable extends Migration
             $table->string('tatuatge', 64)->nullable();
             $table->string('tatuatge_location', 100)->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('clinic_id')
                 ->references('id')

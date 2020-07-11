@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Clinic extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'country_id',
         'name',
@@ -14,6 +17,8 @@ class Clinic extends Model
         'description',
         'logo'       
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function roles()
     {

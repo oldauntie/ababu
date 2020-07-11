@@ -29,9 +29,10 @@ Route::get('/noauth', function () {
 // clinics
 Route::get('clinics/join', 'ClinicController@join')->name('clinic.join')->middleware('auth');
 Route::get('clinics/create', 'ClinicController@create')->name('clinics.create')->middleware('auth');
+Route::delete('clinics/{clinic}', 'ClinicController@destroy')->name('clinics.destroy')->middleware('clinic_roles:root|admin');
 Route::post('clinics/{clinic}/send', 'ClinicController@send')->name('clinics.send')->middleware('clinic_roles:root|admin');
 Route::post('clinics/store', 'ClinicController@store')->name('clinics.store')->middleware('auth');
-Route::resource('clinics', 'ClinicController', ['except' => ['create', 'store', 'index', 'edit']])->middleware('clinic_access');
+Route::resource('clinics', 'ClinicController', ['except' => ['create', 'store', 'index', 'edit', 'destroy']])->middleware('clinic_access');
 
 // users
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');

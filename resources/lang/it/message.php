@@ -11,6 +11,7 @@ return [
     'are_you_sure' => 'Sei sicuro?',
     'clinic_create_error' => 'Si è verificato un errore durante la creazione della tua clinica.',
     'clinic_create_success' => 'Hai creato la tua clinica con successo.',
+    'clinic_destroy_success' => 'La tua clinica è stata eliminata.',
     'clinic_invitation_success' => 'Invito spedito con successo',
     'clinic_update_error' => 'Si è verificato un errore durante l\'aggiornameto della tua clinica.',
     'clinic_update_success' => 'La tua clinica è stata aggiornata con successo.',

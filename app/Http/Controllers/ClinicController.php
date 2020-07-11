@@ -70,7 +70,7 @@ class ClinicController extends Controller
         $adminRole = Role::where('name', 'admin')->first();
         $clinic->roles()->attach($adminRole, ['user_id' => Auth::user()->id]);
 
-        return redirect('/home')->with('success', __('message.clinic_create_success'));
+        return redirect()->route('home')->with('success', __('message.clinic_create_success'));
     }
 
     /**
@@ -144,6 +144,8 @@ class ClinicController extends Controller
      */
     public function destroy(Clinic $clinic)
     {
+        $clinic->delete();
+        return redirect()->route('home')->with('success', __('message.clinic_destroy_success'));
     }
 
     /**
@@ -182,9 +184,6 @@ class ClinicController extends Controller
         return redirect()->route('home');
     }
 
-    public function invite(Clinic $clinic){
-        return view('clinics.invite')->with('clinic', $clinic);
-    }
 
 
     /**

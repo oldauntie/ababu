@@ -10,6 +10,7 @@ return [
 
     'clinic_create' => 'Create your own clinic in few, few, few steps and start working immediately.',
     'clinic_create' => 'Set the country where your clinic is. Warning!!! This value CAN NOT be changed later on.',
+    'clinic_delete' => 'Warning!!! If you press "delete" all information about your clinic (i.e. animals, owners, visits, calendar events) will be permanently delete. This action can\'t be undone.',
     'clinic_description' => 'Write a short description of your clinic',
     'clinic_logo' => 'Upload an image that represent your company logo',
     'clinic_join' => 'Join an existing clinic as an associate Veterinary by writing the clinic code provided by your clinic administrator.',

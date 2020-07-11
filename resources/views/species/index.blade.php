@@ -138,8 +138,7 @@
         $.get(url + '/' + id, function (data) {
             //success data
             var json = JSON.parse(data);
-            console.log(json);
-            console.log(url + '/' + id);
+            
             $('#modal-complete_name').val(json.complete_name);
             $('#modal-familiar_name').val(json.familiar_name);
             

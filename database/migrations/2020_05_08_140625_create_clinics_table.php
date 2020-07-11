@@ -22,6 +22,7 @@ class CreateClinicsTable extends Migration
             $table->string('description')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             

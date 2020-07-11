@@ -10,6 +10,7 @@
                     @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
                     <button class="btn btn-sm btn-primary open_modal_edit">{{__('translate.edit')}}</button>
                     <button class="btn btn-sm btn-secondary open_modal_invite">{{__('translate.invite')}}</button>
+                    <button class="btn btn-sm btn-danger open_modal_delete">{{__('translate.delete')}}</button>
                     @endif
                     <br>
                     <small>{{$clinic->description}}</small>
@@ -45,6 +46,7 @@
 @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 @include('clinics.modal.edit')
 @include('clinics.modal.invite')
+@include('clinics.modal.confirm-delete')
 @endif
 
 @endsection
@@ -58,6 +60,10 @@
 
     $(document).on('click','.open_modal_invite',function(){
         $('#invite-modal').modal('show');
+    });
+
+    $(document).on('click','.open_modal_delete',function(){
+        $('#confirm-delete-modal').modal('show');
     });
 </script>
 @endif

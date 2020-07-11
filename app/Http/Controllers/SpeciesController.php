@@ -16,8 +16,6 @@ class SpeciesController extends Controller
     public function index(Clinic $clinic)
     {
         $species = Species::where('clinic_id', '=', $clinic->id)->get();
-        // $species = Species::leftJoin('lives', 'species.tsn', '=', 'lives.tsn')->get();
-        // $clinic = Clinic::findOrFail($clinic_id);
         return view('species.index')->with('clinic', $clinic)->with('species', $species);
     }
 

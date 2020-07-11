@@ -10,6 +10,7 @@ return [
     
     'clinic_create' => 'Crea la tua clinica in pochi, pochissimi passaggi e inizia a lavorare immediatamente.',
     'clinic_country' => 'Imposta la nazione in cui si trova la tua clinica. Attenzione!!! Il valore NON può essere cambiato in seguito.',
+    'clinic_delete' => 'Attenzione!!! Premendo "eliminae" tutte le informazioni (animali, proprietari, visite, appuntamenti) andranno perse.',
     'clinic_description' => 'Scrivi una breve descrizione della clinica',
     'clinic_logo' => 'Carica un\'immagine che rappresenta il logo della clinica',
     'clinic_join' => 'Unisciti ad una clinica esistente come Veterinario associato inserendo il codice fornito dall\'amministratore della clinica.',

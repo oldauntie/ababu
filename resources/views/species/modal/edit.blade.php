@@ -4,15 +4,16 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="edit-modal-label">{{__('translate.specie')}} {{__('translate.edit')}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <form method="POST" id="modal-edit-form" action="">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-modal-label">{{__('translate.specie')}} {{__('translate.edit')}}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-            <div class="modal-body" id="attachment-body-content">
-                <form method="POST" id="modal-edit-form" action="">
+                <div class="modal-body" id="attachment-body-content">
                     @csrf
                     {{ method_field('PUT') }}
 
@@ -39,15 +40,14 @@
                             <!-- /familiar_name -->
                         </div>
                     </div>
+                </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">{{__('translate.done')}}</button>
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{__('translate.close')}}</button>
-                    </div>
-
-                </form>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">{{__('translate.done')}}</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">{{__('translate.close')}}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

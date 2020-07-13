@@ -12,6 +12,7 @@
                     <button class="btn btn-sm btn-secondary open_modal_invite">{{__('translate.invite')}}</button>
                     <button class="btn btn-sm btn-danger open_modal_delete">{{__('translate.delete')}}</button>
                     @endif
+                    [{{ __('translate.dashboard') }} ]
                     <br>
                     <small>{{$clinic->description}}</small>
                 </div>
@@ -25,7 +26,7 @@
 
                     <h5>Quick Links</h5>
                     <ul>
-                        <li><a href="#">{{__('translate.pets')}}</a></li>
+                        <li><a href="{{route('clinics.pets.index', $clinic)}}">{{__('translate.pets')}}</a></li>
                         @canany(['root', 'admin'], $clinic)
                         <li><a href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a></li>
                         <li><a href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a></li>
@@ -34,7 +35,7 @@
                         <li><a href="#">{{__('translate.owners')}}</a></li>
                         <li><a href="#">{{__('translate.calendar')}}</a></li>
                     </ul>
-                    clinic dashboard
+                    
                 </div>
             </div>
 

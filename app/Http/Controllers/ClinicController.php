@@ -60,7 +60,7 @@ class ClinicController extends Controller
         $imageName = null;
         if ($request->file('logo')) {
             $imagePath = $request->file('logo');
-            $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
+            $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
             $request->logo->move(public_path('images'), $imageName);
         }
@@ -115,7 +115,7 @@ class ClinicController extends Controller
         $imageName = null;
         if ($request->file('logo')) {
             $imagePath = $request->file('logo');
-            $imageName =  'veterinaty-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
+            $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
             $request->logo->move(public_path('images'), $imageName);
             

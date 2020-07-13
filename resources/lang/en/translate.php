@@ -28,6 +28,7 @@ return [
     'disable' => 'disable',
     'done' => 'done',
     'edit' => 'edit',
+    'email' => 'Email',
     'familiar_name' => 'Familiar Name',
     'invite' => 'invite',
     'language' => 'Language',

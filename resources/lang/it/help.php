@@ -12,6 +12,7 @@ return [
     'clinic_country' => 'Imposta la nazione in cui si trova la tua clinica. Attenzione!!! Il valore NON può essere cambiato in seguito.',
     'clinic_delete' => 'Attenzione!!! Premendo "eliminae" tutte le informazioni (animali, proprietari, visite, appuntamenti) andranno perse.',
     'clinic_description' => 'Scrivi una breve descrizione della clinica',
+    'clinic_invite' => 'Scrivi l\'indirizzo email di un collega veterinario che vuoi invitare a collaborare con la tua clinica',
     'clinic_logo' => 'Carica un\'immagine che rappresenta il logo della clinica',
     'clinic_join' => 'Unisciti ad una clinica esistente come Veterinario associato inserendo il codice fornito dall\'amministratore della clinica.',
     'clinic_name' => 'Il nome della tua Clinica (ad es: Dr. Dolittle\'s Clinic)',

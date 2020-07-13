@@ -28,6 +28,7 @@ return [
     'disable' => 'disabilita',
     'done' => 'fatto',
     'edit' => 'modifica',
+    'email' => 'Email',
     'familiar_name' => 'Nome Comune',
     'invite' => 'invita',
     'language' => 'Lingua',

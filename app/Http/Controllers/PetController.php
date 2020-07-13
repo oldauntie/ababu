@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use App\Clinic;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -12,9 +13,9 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($clinic_id)
+    public function index(Clinic $clinic)
     {
-        return "index of pets " . $clinic_id;
+        return view('pets.index')->with('clinic', $clinic);
     }
 
     /**

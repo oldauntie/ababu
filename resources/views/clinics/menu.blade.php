@@ -1,11 +1,11 @@
 @isset($clinic)
 
-@if(Auth::user()->hasAnyRoles(['admin', 'veterinarian']) )
+@if(Auth::user()->hasAnyRoles(['root', 'admin', 'veterinarian']) )
 <li class="nav-item">
-    <a class="nav-link" href="#">{{__('translate.dashboard')}}</a>
+    <a class="nav-link" href="{{route('clinics.show', $clinic)}}">{{__('translate.dashboard')}}</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#">{{__('translate.pets')}}</a>
+    <a class="nav-link" href="{{route('clinics.pets.index', $clinic)}}">{{__('translate.pets')}}</a>
 </li>
 <li class="nav-item">
     <a class="nav-link" href="#">{{__('translate.owners')}}</a>
@@ -30,8 +30,8 @@
         <a class="dropdown-item" href="{{route('clinics.create')}}">{{__('translate.create')}}</a>
 
         @if(Auth::user()->hasAnyRoles(['admin']) )
-            <a class="dropdown-item" href="#">{{__('translate.users')}}</a>
-            <a class="dropdown-item" href="#">{{__('translate.species')}}</a>
+            <a class="dropdown-item" href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a>
+            <a class="dropdown-item" href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a>
             <a class="dropdown-item" href="#">{{__('translate.preferences')}}</a>
         @endif
 

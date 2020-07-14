@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pet;
 use App\Clinic;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class PetController extends Controller
 {
@@ -82,5 +83,16 @@ class PetController extends Controller
     public function destroy(Pet $pet)
     {
         //
+    }
+
+    public function ajaxPetList($clinic_id = 0)
+    {
+        return Datatables::of(Pet::all())
+            ->addColumn('action', function ($data) {
+                return '<a href="#"><button type="button" class="btn btn-sm btn-primary float-left">'. __('translate.edit') .'</button></a>'
+                .'<a href="#"><button type="button" class="btn btn-sm btn-warning float-left">'. __('translate.disable') .'</button></a>'
+                .'<a href="#"><button type="button" class="btn btn-sm btn-danger float-left">'. __('translate.delete') .'</button></a>';
+            })
+            ->make(true);
     }
 }

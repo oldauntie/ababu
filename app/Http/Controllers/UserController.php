@@ -105,9 +105,9 @@ class UserController extends Controller
     {
         return Datatables::of(User::all())
             ->addColumn('action', function ($data) {
-                return '<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-sm btn-primary float-left">'. __('translate.edit') .'</button></a>'
-                .'<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-sm btn-warning float-left">'. __('translate.disable') .'</button></a>'
-                .'<a href="' . route('users.edit', $data->id) . '"><button type="button" class="btn btn-sm btn-danger float-left">'. __('translate.delete') .'</button></a>';
+                return '<a href="#"><button type="button" class="btn btn-sm btn-primary float-left">'. __('translate.edit') .'</button></a>'
+                .'<a href="#"><button type="button" class="btn btn-sm btn-warning float-left">'. __('translate.disable') .'</button></a>'
+                .'<a href="#"><button type="button" class="btn btn-sm btn-danger float-left">'. __('translate.delete') .'</button></a>';
             })
             ->make(true);
     }

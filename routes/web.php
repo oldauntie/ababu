@@ -49,6 +49,6 @@ Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_role
 Route::get('/lives/ajax/search', 'LifeController@search')->name('lives.search')->middleware('auth')->middleware('roles:root|admin');
 Route::get('/species/ajax/get/{species}', 'SpeciesController@search')->name('species.get')->middleware('auth')->middleware('roles:root|admin');
 
-// root
+// root: to be implemented or deprecated
 Route::get('/users/ajax', 'UserController@ajaxUserList')->name('users.ajax')->middleware('roles:root');
 

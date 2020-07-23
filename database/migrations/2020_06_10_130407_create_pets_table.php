@@ -15,7 +15,7 @@ class CreatePetsTable extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('tsn')->unsigned();
+            $table->bigInteger('species_id')->unsigned();
             $table->bigInteger('clinic_id')->unsigned();
             $table->bigInteger('owner_id')->unsigned();
             $table->string('name');
@@ -31,6 +31,11 @@ class CreatePetsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('species_id')
+                ->references('id')
+                ->on('species')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
             $table->foreign('clinic_id')
                 ->references('id')
                 ->on('clinics')
@@ -39,11 +44,6 @@ class CreatePetsTable extends Migration
             $table->foreign('owner_id')
                 ->references('id')
                 ->on('owners')
-                ->onDelete('cascade')
-                ->onUpdate('no action');
-            $table->foreign(['tsn', 'clinic_id'])
-                ->references(['tsn', 'clinic_id'])
-                ->on('species')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
         });

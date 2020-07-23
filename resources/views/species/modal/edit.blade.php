@@ -6,7 +6,7 @@
 
             <form method="POST" id="modal-edit-form" action="">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="edit-modal-label">{{__('translate.specie')}} {{__('translate.edit')}}
+                    <h5 class="modal-title" id="edit-modal-label">{{__('translate.species')}} {{__('translate.edit')}}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span>
@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label class="col-form-label"
                                     for="modal-familiar_name">{{__('translate.familiar_name')}}</label>
-                                <input type="text" name="familiar_name" class="form-control" id="modal-familiar_name"
+                                <input type="text" name="familiar_name" class="form-control" id="modal-familiar_name" maxlength="255"
                                     required autofocus>
                             </div>
                             <!-- /familiar_name -->

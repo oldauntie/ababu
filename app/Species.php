@@ -15,8 +15,14 @@ class Species extends Model
         'tsn', 'clinic_id', 'familiar_name',
     ];
 
+
     public function life()
     {
         return $this->belongsTo('App\Life', 'tsn');
+    }
+
+    public function pets()
+    {
+        return $this->hasMany('App\Pet');
     }
 }

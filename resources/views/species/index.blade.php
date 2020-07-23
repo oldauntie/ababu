@@ -9,7 +9,7 @@
                     {{__('translate.clinic')}}
                     {{$clinic->name}}:
                     {{__('translate.species')}}
-                    <small id="help_specie_admin" class="form-text text-muted">{{__('help.specie_admin')}}</small>
+                    <small id="help_species_admin" class="form-text text-muted">{{__('help.species_admin')}}</small>
                 </div>
 
                 <div class="card-body">
@@ -23,11 +23,11 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="tsn">{{__('translate.specie')}}</label>
+                            <label for="tsn">{{__('translate.species')}}</label>
                             <div class="col-md-12">
                                 <select id="tsn" name="tsn" class="form-control" required></select>
-                                <small id="help_specie_select"
-                                    class="form-text text-muted">{{__('help.specie_select')}}</small>
+                                <small id="help_species_select"
+                                    class="form-text text-muted">{{__('help.specied_select')}}</small>
 
                                 @error('tsn')
                                 <span class="invalid-feedback" role="alert">
@@ -73,6 +73,7 @@
                         <th>{{__('translate.tsn')}}</th>
                         <th>{{__('translate.complete_name')}}</th>
                         <th>{{__('translate.familiar_name')}}</th>
+                        <th>{{__('translate.number_of_pets_per_species')}}</th>
                         <th width="100px">{{__('translate.actions')}}</th>
                     </tr>
                 </thead>
@@ -82,16 +83,21 @@
                         <td>{{$specie->tsn}}</td>
                         <td>{{$specie->life()->first()->complete_name}}</td>
                         <td>{{$specie->familiar_name}}</td>
+                        <td>{{$specie->pets->count()}}</td>
                         <td>
                             <button class="btn btn-sm btn-primary open_modal"
                                 value="{{$specie->id}}">{{__('translate.edit')}}</button>
-                            <a href="#" onclick="return confirm('{{__('message.are_you_sure')}}')"
-                                class="btn btn-sm btn-danger">{{__('translate.delete')}}</a>
+                        @if ($specie->pets->count() == 0)
+                            <button class="btn btn-sm btn-danger open_modal_delete" data-id="{{ $specie->id }}">{{__('translate.delete')}}</button>
+
+                            @include('species.modal.confirm-delete', ['specie' => $specie])
+                        @endif
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
 
 
@@ -99,6 +105,8 @@
 </div>
 
 @include('species.modal.edit')
+
+
 
 @endsection
 
@@ -132,8 +140,10 @@
     });
 
     $(document).on('click','.open_modal',function(){
-        var url = "/species/ajax/get";
+        var url = "/clinics/{{$clinic->id}}/species/ajax/get";
         var id= $(this).val();
+
+        // console.log(url + '/' + id)
 
         $.get(url + '/' + id, function (data) {
             //success data
@@ -146,6 +156,10 @@
             $("#modal-edit-form").attr("action", action);
             $('#edit-modal').modal('show');
         })
+    });
+
+    $(document).on('click','.open_modal_delete',function(){
+        $('#confirm-delete-modal').modal('show');
     });
 </script>
 

@@ -90,10 +90,6 @@ class SpeciesController extends Controller
             'familiar_name' => 'required|max:255',
         ]);
 
-        // $clinic = Clinic::find($clinic_id);
-        // $specie = Specie::find($specie_id);
-
-
         $species->familiar_name = $request->familiar_name;
 
         $species->save();
@@ -110,9 +106,10 @@ class SpeciesController extends Controller
      * @param  \App\Specie  $specie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Species $species)
+    public function destroy(Clinic $clinic, Species $species)
     {
-        //
+        $species->delete();
+        return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.clinic_destroy_success'));
     }
 
 
@@ -121,7 +118,7 @@ class SpeciesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request, Species $species)
+    public function jsonGetPetDetails(Request $request, Clinic $clinic, Species $species)
     {
         $response = array(
             "id" => $species->id,

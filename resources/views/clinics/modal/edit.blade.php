@@ -63,7 +63,12 @@
 
                     <div class="form-group row">
                         <label for="logo" class="col-md-4 col-form-label text-md-right">{{__('translate.logo')}}</label>
+                        
+                        @if ($clinic->logo != '')
                         <img src="{{url('/images/' . $clinic->logo)}}" width="100">
+                        @else
+                        <img src="{{url('/images/no-image-available.svg')}}" width="100">
+                        @endif
 
                         <div class="col-md-6">
                             <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror"

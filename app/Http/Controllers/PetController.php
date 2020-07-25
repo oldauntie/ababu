@@ -85,13 +85,19 @@ class PetController extends Controller
         //
     }
 
-    public function ajaxPetList($clinic_id = 0)
+    public function ajaxList($clinic_id = 0)
     {
-        return Datatables::of(Pet::all())
+        $pets = Pet::where('pets.clinic_id', '=', $clinic_id)
+                    ->join('species', 'pets.species_id', '=', 'species.id')
+                    ->join('owners', 'pets.owner_id', '=', 'owners.id')
+                    ->select('pets.*','owners.firstname', 'owners.lastname', 'species.familiar_name')
+                    ->get();
+
+        return Datatables::of($pets)
             ->addColumn('action', function ($data) {
-                return '<a href="#"><button type="button" class="btn btn-sm btn-primary float-left">'. __('translate.edit') .'</button></a>'
-                .'<a href="#"><button type="button" class="btn btn-sm btn-warning float-left">'. __('translate.disable') .'</button></a>'
-                .'<a href="#"><button type="button" class="btn btn-sm btn-danger float-left">'. __('translate.delete') .'</button></a>';
+                return '<a href="#"><button type="button" class="btn btn-sm btn-primary">'. __('translate.edit') .'</button></a>'
+                .'<a href="#"><button type="button" class="btn btn-sm btn-dark">'. __('translate.visit') .'</button></a>'
+                .'<a href="#"><button type="button" class="btn btn-sm btn-danger">'. __('translate.delete') .'</button></a>';
             })
             ->make(true);
     }

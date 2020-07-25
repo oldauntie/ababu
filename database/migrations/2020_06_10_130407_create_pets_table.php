@@ -34,7 +34,7 @@ class CreatePetsTable extends Migration
             $table->foreign('species_id')
                 ->references('id')
                 ->on('species')
-                ->onDelete('cascade')
+                ->onDelete('restrict')
                 ->onUpdate('no action');
             $table->foreign('clinic_id')
                 ->references('id')
@@ -58,7 +58,8 @@ class CreatePetsTable extends Migration
     {
         Schema::table('pets', function ($table) {
             $table->dropForeign('pets_owner_id_foreign');
-            $table->dropForeign('pets_tsn_clinic_id_foreign');
+            $table->dropForeign('pets_species_id_foreign');
+            $table->dropForeign('pets_clinic_id_foreign');
         });
 
         Schema::dropIfExists('pets');

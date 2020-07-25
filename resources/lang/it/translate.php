@@ -19,6 +19,7 @@ return [
     'clinic_join' => 'Unisciti a una clinica esistente',
     'clinics' => 'Cliniche',
     'close' => 'chiudi',
+    'color' => 'Colore',
     'complete_name' => 'Nome Scientifico',
     'country' => 'Nazione',
     'create' => 'Crea',
@@ -33,10 +34,12 @@ return [
     'invite' => 'invita',
     'language' => 'Lingua',
     'logo' => 'Logo',
+    'microchip' => 'Microchip',
     'name' => 'Nome',
     'new' => 'Nuovo',
     'number_of_pets_per_species' => 'No. di animali per specie',
     'or' => 'o',
+    'owner' => 'Proprietario',
     'owners' => 'Proprietari',
     'pets' => 'Animali',
     'preferences' => 'Preferenze',
@@ -47,6 +50,7 @@ return [
     'user' => 'Utente',
     'users' => 'Utenti',
     'view' => 'visualizza',
+    'visit' => 'visita',
     'visits' => 'Visite',
 
 ];

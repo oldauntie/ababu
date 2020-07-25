@@ -43,7 +43,8 @@ Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clin
 
 // pets
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
-Route::get('clinics/{clinic}/ajax/get/{pets}', 'PetController@search')->name('pet.get')->middleware('clinic_access');
+Route::get('clinics/{clinic}/ajax/list', 'PetController@ajaxList')->name('pets.get')->middleware('clinic_access');
+// Route::get('/pets/ajax/', 'PetController@ajaxPetList')->name('pets.ajax')->middleware('clinic_access');
 
 // species
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');

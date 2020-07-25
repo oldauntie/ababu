@@ -22,8 +22,14 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>name</th>
-                                        <th>email</th>
+                                        <th>{{__('translate.name')}}</th>
+                                        <th>{{__('translate.species')}}</th>
+                                        <th>{{__('translate.firstname')}}</th>
+                                        <th>{{__('translate.lastname')}}</th>
+                                        <th>{{__('translate.owner')}}</th>
+                                        <th>{{__('translate.microchip')}}</th>
+                                        <th>{{__('translate.description')}}</th>
+                                        <th>{{__('translate.color')}}</th>
                                         <th width="100px">Action</th>
                                     </tr>
                                 </thead>
@@ -64,11 +70,24 @@
     var table = $('#pets').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('users.ajax') }}",
+        search: {
+            caseInsensitive: true
+        },
+        ajax: "{{ route('pets.get', 0) }}",
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
+            {data: 'familiar_name', name: 'familiar_name'},
+            {data: 'firstname', name: 'firstname', visible: false},
+            {data: 'lastname', name: 'lastname', visible: false},
+            {data: 'owner', 
+            render: function ( data, type, row ) {
+                return row.firstname +' '+ row.lastname;
+            },
+            name: 'owner'},
+            {data: 'microchip', name: 'microchip'},
+            {data: 'description', name: 'description'},
+            {data: 'color', name: 'color'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         columnDefs: [

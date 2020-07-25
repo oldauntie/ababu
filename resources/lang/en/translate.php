@@ -19,6 +19,7 @@ return [
     'clinic_join' => 'Join an existing clinic',
     'clinics' => 'Clinics',
     'close' => 'close',
+    'color' => 'Color',
     'complete_name' => 'Complete (Scientific) Name',
     'country' => 'Country',
     'create' => 'Create',
@@ -33,10 +34,12 @@ return [
     'invite' => 'invite',
     'language' => 'Language',
     'logo' => 'Logo',
+    'microchip' => 'Microchip',
     'name' => 'Name',
     'number_of_pets_per_species' => 'No. of Pets per Species',
     'new' => 'New',
     'or' => 'or',
+    'owner' => 'Owner',
     'owners' => 'Owners',
     'pets' => 'Pets',
     'preferences' => 'Preferences',
@@ -47,6 +50,7 @@ return [
     'species' => 'Species',
     'tsn' => 'Tsn',
     'view' => 'view',
+    'visit' => 'visit',
     'visits' => 'Visits',
     
 ];

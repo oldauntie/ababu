@@ -8,7 +8,7 @@
     <a class="nav-link" href="{{route('clinics.pets.index', $clinic)}}">{{__('translate.pets')}}</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#">{{__('translate.owners')}}</a>
+    <a class="nav-link" href="{{route('clinics.owners.index', $clinic)}}">{{__('translate.owners')}}</a>
 </li>
 
 <li class="nav-item">

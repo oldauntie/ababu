@@ -16,11 +16,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{__('translate.pets')}}<br>
-                    <small>{{ __('help.pets_description') }}</small>
+                    {{__('translate.owners')}}<br>
+                    <small>{{ __('help.owners_description') }}</small>
                     <button type="button" id="btnNew" class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
                     <button type="button" id="btnEdit" class="btn btn-sm btn-secondary" disabled>{{__('translate.edit')}}</button>
-                    <button type="button" id="btnVisit" class="btn btn-sm btn-dark" disabled>{{__('translate.visit')}}</button>
                     <button type="button" id="btnDelete" class="btn btn-sm btn-danger" disabled>{{__('translate.delete')}}</button>
                 </div>
 
@@ -32,18 +31,19 @@
                     @endif
                     <div class="row">
                         <div class="col col-md-12">
-                            <table id="pets" class="display compact" style="width:100%">
+                            <table id="owners" class="display compact" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{__('translate.name')}}</th>
-                                        <th>{{__('translate.species')}}</th>
                                         <th>{{__('translate.firstname')}}</th>
                                         <th>{{__('translate.lastname')}}</th>
-                                        <th>{{__('translate.owner')}}</th>
-                                        <th>{{__('translate.microchip')}}</th>
-                                        <th>{{__('translate.description')}}</th>
-                                        <th>{{__('translate.color')}}</th>
+                                        <th>{{__('translate.address')}}</th>
+                                        <th>{{__('translate.postcode')}}</th>
+                                        <th>{{__('translate.city')}}</th>
+                                        <th>{{__('translate.phone')}}</th>
+                                        <th>{{__('translate.mobile')}}</th>
+                                        <th>{{__('translate.email')}}</th>
+                                        <th>{{__('translate.created')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,25 +53,7 @@
                     </div>
                     <!-- first row detail -->
                     <div class="row">
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                    </div>
-                    <!-- second row detail -->
-                    <div class="row">
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
+                        <div class="col col-md-12">
                             <h5>placeholder</h5>
                         </div>
                     </div>
@@ -83,7 +65,7 @@
     </div>
 </div>
 
-@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
+@if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
 @include('clinics.modal.edit')
 @include('clinics.modal.invite')
 @include('clinics.modal.confirm-delete')
@@ -92,59 +74,54 @@
 @endsection
 
 @push('scripts')
-@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
+@if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 
 <script type="text/javascript">
     $(function() {
-        var table = $('#pets').DataTable({
+        var table = $('#owners').DataTable({
             processing: true,
             serverSide: true,
             search: {
                 caseInsensitive: true
             },
-            ajax: "{{ route('pets.get', 0) }}",
+            ajax: "{{ route('owners.ajax.list', 0) }}",
             columns: [{
                     data: 'id',
                     name: 'id'
                 },
                 {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'familiar_name',
-                    name: 'familiar_name'
-                },
-                {
                     data: 'firstname',
-                    name: 'firstname',
-                    visible: false
+                    name: 'firstname'
                 },
                 {
                     data: 'lastname',
-                    name: 'lastname',
-                    visible: false
+                    name: 'lastname'
                 },
                 {
-                    data: 'owner',
-                    render: function(data, type, row) {
-                        return row.firstname + ' ' + row.lastname;
-                    },
-                    name: 'owner'
+                    data: 'address',
+                    name: 'address'
                 },
                 {
-                    data: 'microchip',
-                    name: 'microchip'
+                    data: 'city',
+                    name: 'city'
                 },
                 {
-                    data: 'description',
-                    name: 'description'
+                    data: 'postcode',
+                    name: 'postcode'
                 },
                 {
-                    data: 'color',
-                    name: 'color'
+                    data: 'phone',
+                    name: 'phone'
+                },
+                {
+                    data: 'mobile',
+                    name: 'mobile'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
                 },
             ],
             columnDefs: [{

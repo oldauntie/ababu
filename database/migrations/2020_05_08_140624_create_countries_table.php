@@ -17,6 +17,7 @@ class CreateCountriesTable extends Migration
             $table->string('id', 2);
             $table->string('name', 50);
             $table->string('alpha_3', 3);
+            $table->boolean('enabled');
 
             $table->primary('id');
         });

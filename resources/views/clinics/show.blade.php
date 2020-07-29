@@ -32,7 +32,7 @@
                         <li><a href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a></li>
                         @endcanany
                         <li><a href="#">{{__('translate.visits')}}</a></li>
-                        <li><a href="#">{{__('translate.owners')}}</a></li>
+                        <li><a href="{{route('clinics.owners.index', $clinic)}}">{{__('translate.owners')}}</a></li>
                         <li><a href="#">{{__('translate.calendar')}}</a></li>
                     </ul>
                     

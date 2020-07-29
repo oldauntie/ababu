@@ -41,6 +41,10 @@ Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users
 Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinics.users.edit')->middleware('clinic_roles:root|admin');
 Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
 
+// owners
+Route::resource('clinics.owners', 'OwnerController')->middleware('clinic_access');
+Route::get('clinics/{clinic}/owners/ajax/list', 'OwnerController@ajaxList')->name('owners.ajax.list')->middleware('clinic_access');
+
 // pets
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 Route::get('clinics/{clinic}/ajax/list', 'PetController@ajaxList')->name('pets.get')->middleware('clinic_access');

@@ -94,11 +94,6 @@ class PetController extends Controller
                     ->get();
 
         return Datatables::of($pets)
-            ->addColumn('action', function ($data) {
-                return '<a href="#"><button type="button" class="btn btn-sm btn-primary">'. __('translate.edit') .'</button></a>'
-                .'<a href="#"><button type="button" class="btn btn-sm btn-dark">'. __('translate.visit') .'</button></a>'
-                .'<a href="#"><button type="button" class="btn btn-sm btn-danger">'. __('translate.delete') .'</button></a>';
-            })
             ->make(true);
     }
 }

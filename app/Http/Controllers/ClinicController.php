@@ -30,7 +30,7 @@ class ClinicController extends Controller
      */
     public function create()
     {
-        $countries = Country::all();
+        $countries = Country::where('enabled', '=', true)->get();
         return view('clinics.create')->with('countries', $countries);
     }
 

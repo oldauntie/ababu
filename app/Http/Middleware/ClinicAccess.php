@@ -18,12 +18,14 @@ class ClinicAccess
     {
         if (is_object($request->clinic)) {
             $clinic = $request->clinic;
-        }else{
+        } else {
             $clinic = Clinic::find($request->clinic);
         }
 
-        if (auth()->check() && auth()->user()->belongsToClinic($clinic->id)) {
-            return $next($request);
+        if ($clinic != null) {
+            if (auth()->check() && auth()->user()->belongsToClinic($clinic->id)) {
+                return $next($request);
+            }
         }
 
         return redirect('login');

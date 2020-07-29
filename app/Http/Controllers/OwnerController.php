@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Owner;
+use App\Clinic;
+
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class OwnerController extends Controller
 {
@@ -12,9 +15,9 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Clinic $clinic)
     {
-        //
+        return view('owners.index')->with('clinic', $clinic);
     }
 
     /**
@@ -81,5 +84,14 @@ class OwnerController extends Controller
     public function destroy(Owner $owner)
     {
         //
+    }
+
+    public function ajaxList($clinic_id = 0)
+    {
+        $owners = Owner::where('owners.clinic_id', '=', $clinic_id)
+                    ->get();
+
+        return Datatables::of($owners)
+            ->make(true);
     }
 }

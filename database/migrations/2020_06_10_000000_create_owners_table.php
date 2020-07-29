@@ -28,6 +28,7 @@ class CreateOwnersTable extends Migration
             $table->string('email');
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('clinic_id')
                 ->references('id')

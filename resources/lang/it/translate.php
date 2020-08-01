@@ -29,6 +29,7 @@ return [
     'dashboard' => 'Dashboard',
     'delete' => 'elimina',
     'description' => 'Descrizione',
+    'details' => 'Dettaglio',
     'disable' => 'disabilita',
     'done' => 'fatto',
     'edit' => 'modifica',

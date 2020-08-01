@@ -27,14 +27,18 @@
                     <h5>Quick Links</h5>
                     <ul>
                         <li><a href="{{route('clinics.pets.index', $clinic)}}">{{__('translate.pets')}}</a></li>
-                        @canany(['root', 'admin'], $clinic)
-                        <li><a href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a></li>
-                        <li><a href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a></li>
-                        @endcanany
                         <li><a href="#">{{__('translate.visits')}}</a></li>
                         <li><a href="{{route('clinics.owners.index', $clinic)}}">{{__('translate.owners')}}</a></li>
                         <li><a href="#">{{__('translate.calendar')}}</a></li>
                     </ul>
+                    
+                    @canany(['root', 'admin'], $clinic)
+                    <h5>Admin Links</h5>
+                    <ul>
+                        <li><a href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a></li>
+                        <li><a href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a></li>
+                    </ul>
+                    @endcanany
                     
                 </div>
             </div>

@@ -29,6 +29,7 @@ return [
     'dashboard' => 'Dashboard',
     'delete' => 'delete',
     'description' => 'Description',
+    'details' => 'Details',
     'disable' => 'disable',
     'done' => 'done',
     'edit' => 'edit',

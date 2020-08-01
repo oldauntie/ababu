@@ -89,24 +89,24 @@ class PetController extends Controller
     public function list($clinic_id = 0)
     {
         $pets = Pet::where('pets.clinic_id', '=', $clinic_id)
-                    ->join('species', 'pets.species_id', '=', 'species.id')
-                    ->join('owners', 'pets.owner_id', '=', 'owners.id')
-                    ->select('pets.*','owners.firstname', 'owners.lastname', 'species.familiar_name')
-                    ->get();
+            ->join('species', 'pets.species_id', '=', 'species.id')
+            ->join('owners', 'pets.owner_id', '=', 'owners.id')
+            ->select('pets.*', 'owners.firstname', 'owners.lastname', 'species.familiar_name')
+            ->get();
 
         return Datatables::of($pets)
             ->make(true);
     }
 
-    public function listByOwner(Clinic $clinic, Owner $owner)
+    public function listByOwner(Clinic $clinic, Owner $owner, $return = null)
     {
         $pets = Pet::where('clinic_id', '=', $clinic->id)
-                    ->where('owner_id', '=', $owner->id)
-                    ->get();
+            ->where('owner_id', '=', $owner->id)
+            ->get();
 
-        return Datatables::of($pets)
-            ->make(true);
-
+        if ($return == 'datatable') {
+            return Datatables::of($pets)
+                ->make(true);
+        }
     }
-
 }

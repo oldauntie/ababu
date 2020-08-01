@@ -35,6 +35,7 @@ return [
     'email' => 'Email',
     'familiar_name' => 'Nome Comune',
     'firstname' => 'Nome',
+    'gender' => 'Sesso',
     'invite' => 'invita',
     'language' => 'Lingua',
     'lastname' => 'Cognome',

@@ -121,7 +121,7 @@
         ajax: { 
             placeholder: "Choose specie...",
             minimumInputLength: 3,
-            url: "/lives/ajax/search/",
+            url: "/lives/search/",
             dataType: 'json',
             data: function (params) {
                 return {
@@ -140,7 +140,7 @@
     });
 
     $(document).on('click','.open_modal',function(){
-        var url = "/clinics/{{$clinic->id}}/species/ajax/get";
+        var url = "/clinics/{{$clinic->id}}/species";
         var id= $(this).val();
 
         // console.log(url + '/' + id)

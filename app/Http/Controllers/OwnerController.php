@@ -86,11 +86,10 @@ class OwnerController extends Controller
         //
     }
 
-    public function ajaxList($clinic_id = 0)
+    public function list($clinic_id = 0)
     {
         $owners = Owner::where('owners.clinic_id', '=', $clinic_id)
                     ->get();
-
         return Datatables::of($owners)
             ->make(true);
     }

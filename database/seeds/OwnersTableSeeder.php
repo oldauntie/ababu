@@ -17,9 +17,12 @@ class OwnersTableSeeder extends Seeder
             'country_id' => 'gb',
             'firstname' => 'Phil',
             'lastname' => 'Lynott',
+            'address' => 'Abbot Rd.',
+            'postcode' => 'D03 1X2Y',
+            'city' => 'Dublin',
             'phone' => '+41 000 0 0000',
             'mobile' => '+41 348 0 0000',
-            'email' => 'admin@ababu.cloud',
+            'email' => 'phil.lynott@ababu.cloud',
         ]);
     }
 }

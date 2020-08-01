@@ -118,7 +118,7 @@ class SpeciesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function jsonGetPetDetails(Request $request, Clinic $clinic, Species $species)
+    public function details(Request $request, Clinic $clinic, Species $species)
     {
         $response = array(
             "id" => $species->id,

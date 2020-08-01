@@ -42,18 +42,18 @@ Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinic
 Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
 
 // owners
+Route::get('clinics/{clinic}/owners/list', 'OwnerController@list')->name('clinics.owners.list')->middleware('clinic_access');
 Route::resource('clinics.owners', 'OwnerController')->middleware('clinic_access');
-Route::get('clinics/{clinic}/owners/ajax/list', 'OwnerController@ajaxList')->name('owners.ajax.list')->middleware('clinic_access');
 
 // pets
+Route::get('clinics/{clinic}/pets/list', 'PetController@list')->name('clinics.pets.list')->middleware('clinic_access');
+Route::get('clinics/{clinic}/owners/{owner}/pets/list', 'PetController@listByOwner')->middleware('clinic_access');
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
-Route::get('clinics/{clinic}/ajax/list', 'PetController@ajaxList')->name('pets.get')->middleware('clinic_access');
-// Route::get('/pets/ajax/', 'PetController@ajaxPetList')->name('pets.ajax')->middleware('clinic_access');
 
 // species
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');
-Route::get('clinics/{clinic}/species/ajax/get/{species}', 'SpeciesController@jsonGetPetDetails')->name('species.get')->middleware('auth')->middleware('roles:root|admin');
-Route::get('/lives/ajax/search', 'LifeController@search')->name('lives.search')->middleware('auth')->middleware('roles:root|admin');
+Route::get('clinics/{clinic}/species/{species}', 'SpeciesController@details')->name('species.get')->middleware('auth')->middleware('roles:root|admin');
+Route::get('/lives/search', 'LifeController@search')->name('lives.search')->middleware('auth')->middleware('roles:root|admin');
 
 // root: to be implemented or deprecated
 Route::get('/users/ajax', 'UserController@ajaxUserList')->name('users.ajax')->middleware('roles:root');

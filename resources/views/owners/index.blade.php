@@ -19,8 +19,10 @@
                     {{__('translate.owners')}}<br>
                     <small>{{ __('help.owners_description') }}</small>
                     <button type="button" id="btnNew" class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
-                    <button type="button" id="btnEdit" class="btn btn-sm btn-secondary" disabled>{{__('translate.edit')}}</button>
-                    <button type="button" id="btnDelete" class="btn btn-sm btn-danger" disabled>{{__('translate.delete')}}</button>
+                    <button type="button" id="btnEdit" class="btn btn-sm btn-secondary"
+                        disabled>{{__('translate.edit')}}</button>
+                    <button type="button" id="btnDelete" class="btn btn-sm btn-danger"
+                        disabled>{{__('translate.delete')}}</button>
                 </div>
 
                 <div class="card-body">
@@ -43,7 +45,6 @@
                                         <th>{{__('translate.phone')}}</th>
                                         <th>{{__('translate.mobile')}}</th>
                                         <th>{{__('translate.email')}}</th>
-                                        <th>{{__('translate.created')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,6 +56,18 @@
                     <div class="row">
                         <div class="col col-md-12">
                             <h5>placeholder</h5>
+                            <table id="pets" class="display compact" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{__('translate.name')}}</th>
+                                        <th>{{__('translate.gender')}}</th>
+                                        <th>{{__('translate.description')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -86,66 +99,47 @@
             search: {
                 caseInsensitive: true
             },
-            ajax: "{{ route('owners.ajax.list', 0) }}",
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'firstname',
-                    name: 'firstname'
-                },
-                {
-                    data: 'lastname',
-                    name: 'lastname'
-                },
-                {
-                    data: 'address',
-                    name: 'address'
-                },
-                {
-                    data: 'city',
-                    name: 'city'
-                },
-                {
-                    data: 'postcode',
-                    name: 'postcode'
-                },
-                {
-                    data: 'phone',
-                    name: 'phone'
-                },
-                {
-                    data: 'mobile',
-                    name: 'mobile'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
+            ajax: "{{ route('clinics.owners.list', 0) }}",
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'firstname', name: 'firstname'},
+                {data: 'lastname', name: 'lastname'},
+                {data: 'address', name: 'address'},
+                {data: 'postcode', name: 'postcode'},
+                {data: 'city', name: 'city' },
+                {data: 'phone', name: 'phone'},
+                {data: 'mobile', name: 'mobile'},
+                {data: 'email', name: 'email', 
+                render: function(data, type, row, meta){
+                        if(type === 'display'){
+                            data = '<a href=mailto:"' + data + '">' + data + '</a>';
+                        }
+                        return data;
+                    }
                 },
             ],
-            columnDefs: [{
-                    targets: 0,
-                    "width": "1%"
-                },
-                {
-                    targets: 1,
-                    "width": "150px"
-                },
-                {
-                    targets: 2,
-                    "width": "150px"
-                },
-                {
-                    targets: 3,
-                    "width": "150px"
-                },
+            columnDefs: [
+                {targets: 0, "width": "1%"},
+                {targets: 3, "width": "150px"},
             ]
-        });
+        } );
 
-        $('#pets tbody').on('click', 'tr', function() {
+        var table_pets = $('#pets').DataTable( {
+		//"ajax": "/ajax/objects.txt",
+            data : [],
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'gender', name: 'gender'},
+                {data: 'description', name: 'description'},
+            ]
+	    } );
+
+        $('#owners tbody').on('click', 'tr', function() {
             var rowData = table.row(this).data();
-            // console.log(rowData.id)
+            console.log(rowData.id)
+            table_pets.ajax.url("/clinics/{{$clinic->id}}/owners/" + rowData.id + "/pets/list").load();
+            
             
             if ($(this).hasClass('selected')) {
                 // $(this).removeClass('selected');
@@ -162,9 +156,12 @@
 
         $('#btnEdit').click(function() {
             var selData = table.rows(".selected").data();
-            console.log(selData[0].id);
+            console.log('io: ' + selData[0].id);
+            console.log(table_pets);
         });
     });
+
+    
 
 
     $(document).on('click', '.open_modal_edit', function() {

@@ -104,7 +104,7 @@
             search: {
                 caseInsensitive: true
             },
-            ajax: "{{ route('pets.get', 0) }}",
+            ajax: "{{ route('clinics.pets.list', 0) }}",
             columns: [{
                     data: 'id',
                     name: 'id'

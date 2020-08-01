@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pet;
 use App\Clinic;
+use App\Owner;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -85,7 +86,7 @@ class PetController extends Controller
         //
     }
 
-    public function ajaxList($clinic_id = 0)
+    public function list($clinic_id = 0)
     {
         $pets = Pet::where('pets.clinic_id', '=', $clinic_id)
                     ->join('species', 'pets.species_id', '=', 'species.id')
@@ -96,4 +97,16 @@ class PetController extends Controller
         return Datatables::of($pets)
             ->make(true);
     }
+
+    public function listByOwner(Clinic $clinic, Owner $owner)
+    {
+        $pets = Pet::where('clinic_id', '=', $clinic->id)
+                    ->where('owner_id', '=', $owner->id)
+                    ->get();
+
+        return Datatables::of($pets)
+            ->make(true);
+
+    }
+
 }

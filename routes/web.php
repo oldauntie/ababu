@@ -42,6 +42,7 @@ Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinic
 Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
 
 // owners
+Route::get('clinics/{clinic}/owners/{owner}/get', 'OwnerController@get')->name('clinics.owners.get')->middleware('clinic_access');
 Route::get('clinics/{clinic}/owners/list', 'OwnerController@list')->name('clinics.owners.list')->middleware('clinic_access');
 Route::resource('clinics.owners', 'OwnerController')->middleware('clinic_access');
 

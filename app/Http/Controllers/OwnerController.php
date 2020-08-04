@@ -70,9 +70,38 @@ class OwnerController extends Controller
      * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner)
+    public function update(Request $request, Clinic $clinic, Owner $owner)
     {
-        //
+        // validate
+        $request->validate([
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'address' => 'max:255',
+            'postcode' => 'max:10',
+            'city' => 'max:255',
+            'ssn' => 'max:255',
+            'phone' => 'required|max:255',
+            'mobile' => 'required|max:255',
+            'email' => 'email|required|max:255',
+        ]);
+
+        $owner->firstname = $request->firstname;
+        $owner->lastname = $request->lastname;
+        $owner->address = $request->address;
+        $owner->postcode = $request->postcode;
+        $owner->city = $request->city;
+        $owner->ssn = $request->ssn;
+        $owner->phone = $request->phone;
+        $owner->mobile = $request->mobile;
+        $owner->email = $request->email;
+
+        if ($owner->save()) {
+            $request->session()->flash('success', __('message.owner_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.owner_update_error');
+        }
+        
+        return redirect()->route('clinics.owners.index', [$clinic, $owner]);
     }
 
     /**
@@ -81,16 +110,25 @@ class OwnerController extends Controller
      * @param  \App\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Owner $owner)
+    public function destroy(Clinic $clinic, Owner $owner)
     {
-        //
+        $owner->delete();
+        return redirect()->route('clinics.owners.index', $clinic->id)->with('success', __('message.owner_destroy_success'));
+
     }
 
-    public function list($clinic_id = 0)
+    public function list(Clinic $clinic)
     {
-        $owners = Owner::where('owners.clinic_id', '=', $clinic_id)
+        $owners = Owner::where('owners.clinic_id', '=', $clinic->id)
                     ->get();
         return Datatables::of($owners)
             ->make(true);
+    }
+
+    public function get(Clinic $clinic, Owner $owner)
+    {
+        $owners = $owner->toArray();
+
+        return response()->json($owners);
     }
 }

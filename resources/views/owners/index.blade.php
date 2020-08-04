@@ -116,25 +116,25 @@
 </div>
 
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
-@include('clinics.modal.edit')
-@include('clinics.modal.invite')
-@include('clinics.modal.confirm-delete')
+@include('owners.modal.edit')
+@include('owners.modal.confirm-delete')
 @endif
 
 @endsection
 
 @push('scripts')
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
+<!--
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-<!--
-    <link rel="stylesheet" type="text/css" href="DataTables-1.10.21/css/jquery.dataTables.min.css"/>
-    <script type="text/javascript" src="DataTables-1.10.21/js/jquery.dataTables.min.js"></script>
 -->
+<link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
 
 
 <script type="text/javascript">
     $(function() {
+        // owners table definition
         var table = $('#owners').DataTable({
             processing: true,
             serverSide: true,
@@ -162,6 +162,7 @@
             ]
         } );
 
+        // pet table definition
         var table_pets = $('#pets').DataTable( {
 		    data : [],
             columns: [
@@ -172,20 +173,30 @@
             ],
             bPaginate: false,
             bLengthChange: false,
-            bFilter: true,
+            bFilter: false,
             bInfo: false,
             bAutoWidth: false,
 	    } );
 
+        // on filter enter
+        table.on( 'search.dt', function () {
+            $('#btnEdit').prop('disabled', true);
+            $('#btnDelete').prop('disabled', true);
+            $('#btnVisit').prop('disabled', true);
+            table_pets.clear().draw();
+        } );
 
+        // owners row selection
         $('#owners tbody').on('click', 'tr', function() {
             var rowData = table.row(this).data();
-            console.log(rowData.id)
-            if(rowData.id > 0){
+            
+            if(rowData != undefined && rowData.id > 0){
                 table_pets.ajax.url("/clinics/{{$clinic->id}}/owners/" + rowData.id + "/pets/list/datatable").load();
                 $('#btnVisit').prop('disabled', true);
+
+                $('#btnEdit').prop('disabled', false);
+                $('#btnDelete').prop('disabled', false);
             }
-            
             
             if ($(this).hasClass('selected')) {
                 // $(this).removeClass('selected');
@@ -194,49 +205,92 @@
                 $(this).addClass('selected');
             }
 
-            $('#btnEdit').prop('disabled', false);
-            $('#btnDelete').prop('disabled', false);
+
         });
 
 
+        // pets row selection
         $('#pets tbody').on('click', 'tr', function() {
-            table_pets.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-            $('#btnVisit').prop('disabled', false);
+            var rowData = table_pets.row(this).data();
+            
+            if(rowData != undefined && rowData.id > 0)
+            {
+                table_pets.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $('#btnVisit').prop('disabled', false);
+            }
+
         });
 
+        // new button
+        $('#btnNew').click(function() {
+            console.log('new record');
+        });
 
+        // edit button
         $('#btnEdit').click(function() {
             var selData = table.rows(".selected").data();
-            console.log('io: ' + selData[0].id);
+            var id = selData[0].id;
+            console.log('edit: ' + selData[0].id);
+
+            $.ajax({
+                url: '/clinics/{{$clinic->id}}/owners/' + id +'/get',
+                type: 'get',
+                // data: {userid: userid},
+                success: function(owner){ 
+                    // fill Modal with owner details                    
+                    $('#firstname').val(owner.firstname)
+                    $('#lastname').val(owner.lastname)
+                    $('#address').val(owner.address)
+                    $('#postcode').val(owner.postcode)
+                    $('#city').val(owner.city)
+                    $('#ssn').val(owner.ssn)
+                    $('#phone').val(owner.phone)
+                    $('#mobile').val(owner.mobile)
+                    $('#email').val(owner.email)
+
+
+                    // Display Modal
+                    $('#owner-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/owners/' + id);
+                    $('#owner-edit-modal').modal('show');
+                }
+            });
+
+
         });
 
+        // delete button
+        $('#btnDelete').click(function() {
+            var row = table.rows(".selected").data();
+            var id = row[0].id;
+            $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/owners/' + id);
+            $('#confirm-delete-modal').modal('show');
+        });
+
+
+        $('#owner-edit-modal').on('show.bs.modal', function (event) {
+            console.log(event);
+            /*
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var id = button.data('id') // Extract info from data-* attributes
+
+            var modal = $(this)
+            console.log(id)
+            $("#docsForm").attr("action", "/contact_delete/" + id+"/");
+            */
+        })
+
+        // visit button
         $('#btnVisit').click(function() {
             var selData = table_pets.rows(".selected").data();
             if(selData.length > 0)
             {
                 var pet_id = selData[0].id;
-                console.log(pet_id);
+                console.log('visit: ' +pet_id);
             }
         });
     });
-
-
-
     
-
-
-    $(document).on('click', '.open_modal_edit', function() {
-        $('#edit-modal').modal('show');
-    });
-
-    $(document).on('click', '.open_modal_invite', function() {
-        $('#invite-modal').modal('show');
-    });
-
-    $(document).on('click', '.open_modal_delete', function() {
-        $('#confirm-delete-modal').modal('show');
-    });
 </script>
 @endif
 @endpush

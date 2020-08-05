@@ -8,14 +8,14 @@
                 @method('DELETE')
                 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirm-delete-modal-label">{{__('translate.clinic')}} {{$clinic->name}}
+                    <h5 class="modal-title">{{__('translate.clinic')}} {{$clinic->name}}
                         {{__('translate.delete')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body" id="attachment-body-content">
+                <div class="modal-body">
                     <div>
                     {{ __('message.are_you_sure') }}
                     </div>

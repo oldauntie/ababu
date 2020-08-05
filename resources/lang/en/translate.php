@@ -55,6 +55,7 @@ return [
     'postcode' => 'Post Code',
     'roles' => 'roles',
     'save' => 'save',
+    'ssn' => 'SSN',
     'user' => 'User',
     'users' => 'Users',
     'species' => 'Species',

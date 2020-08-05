@@ -55,6 +55,7 @@ return [
     'postcode' => 'Codice Postale',
     'roles' => 'ruoli',
     'save' => 'salva',
+    'ssn' => 'Codice Fiscale',
     'species' => 'Specie',
     'tsn' => 'Tsn',
     'user' => 'Utente',

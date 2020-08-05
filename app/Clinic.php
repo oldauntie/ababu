@@ -34,4 +34,9 @@ class Clinic extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function owners()
+    {
+        return $this->hasMany('App\Owner');
+    }
 }

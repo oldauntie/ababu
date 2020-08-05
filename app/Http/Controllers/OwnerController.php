@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Owner;
 use App\Clinic;
+use App\Country;
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -17,7 +18,11 @@ class OwnerController extends Controller
      */
     public function index(Clinic $clinic)
     {
-        return view('owners.index')->with('clinic', $clinic);
+        $countries = Country::orderBy('name')->get();
+
+        return view('owners.index')
+                    ->with('clinic', $clinic)
+                    ->with('countries', $countries);
     }
 
     /**
@@ -27,7 +32,7 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,9 +41,37 @@ class OwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic)
     {
-        //
+        // validate
+        $request->validate([
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'address' => 'max:255',
+            'postcode' => 'max:10',
+            'city' => 'max:255',
+            'ssn' => 'max:255',
+            'phone' => 'required|max:255',
+            'mobile' => 'required|max:255',
+            'email' => 'email|required|max:255',
+        ]);
+
+        $owner = new Owner([
+            'clinic_id' => $clinic->id,
+            'country_id' => $request->get('country_id'),
+            'firstname' => $request->get('firstname'),
+            'lastname' => $request->get('lastname'),
+            'address' => $request->get('address'),
+            'postcode' => $request->get('postcode'),
+            'city' => $request->get('city'),
+            'ssn' => $request->get('ssn'),
+            'phone' => $request->get('phone'),
+            'mobile' => $request->get('mobile'),
+            'email' => $request->get('email'),
+        ]);
+        $owner->save();
+
+        return redirect()->route('clinics.owners.index', $clinic)->with('success', __('message.owner_create_success'));
     }
 
     /**
@@ -85,6 +118,7 @@ class OwnerController extends Controller
             'email' => 'email|required|max:255',
         ]);
 
+        $owner->country_id = $request->country_id;
         $owner->firstname = $request->firstname;
         $owner->lastname = $request->lastname;
         $owner->address = $request->address;

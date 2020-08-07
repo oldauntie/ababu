@@ -8,8 +8,8 @@
                 @method('DELETE')
                 
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirm-delete-modal-label">
-                        {{__('translate.owner')}} {{__('translate.delete')}}
+                    <h5 class="modal-title" id="confirm-delete-modal-label"> 
+                        {{__('translate.pet')}} {{__('translate.delete')}}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span>
@@ -21,7 +21,7 @@
                     {{ __('message.are_you_sure') }}
                     </div>
 
-                    <small> {{__('help.owner_delete')}} </small>
+                    <small> {{__('help.pet_delete')}} </small>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">{{__('translate.delete')}}</button>

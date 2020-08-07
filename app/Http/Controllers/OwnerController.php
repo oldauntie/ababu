@@ -21,8 +21,8 @@ class OwnerController extends Controller
         $countries = Country::orderBy('name')->get();
 
         return view('owners.index')
-                    ->with('clinic', $clinic)
-                    ->with('countries', $countries);
+            ->with('clinic', $clinic)
+            ->with('countries', $countries);
     }
 
     /**
@@ -32,7 +32,6 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -134,7 +133,7 @@ class OwnerController extends Controller
         } else {
             $request->session()->flash('error', 'message.owner_update_error');
         }
-        
+
         return redirect()->route('clinics.owners.index', [$clinic, $owner]);
     }
 
@@ -148,14 +147,17 @@ class OwnerController extends Controller
     {
         $owner->delete();
         return redirect()->route('clinics.owners.index', $clinic->id)->with('success', __('message.owner_destroy_success'));
-
     }
 
     public function list(Clinic $clinic)
     {
         $owners = Owner::where('owners.clinic_id', '=', $clinic->id)
-                    ->get();
+            ->get();
         return Datatables::of($owners)
+            ->addColumn('action', function ($data) {
+                return '<a href="#" class="owner-edit-button"><button type="button" class="btn btn-sm btn-secondary float-left">' . __('translate.edit') . '</button></a>'
+                    . '<a href="#" class="owner-delete-button"><button type="button" class="btn btn-sm btn-danger float-left">' . __('translate.delete') . '</button></a>';
+            })
             ->make(true);
     }
 

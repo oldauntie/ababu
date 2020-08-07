@@ -27,4 +27,9 @@ class Owner extends Model
     {
         return $this->belongsTo('App\Clinic');
     }
+
+    public function pets()
+    {
+        return $this->hasMany('App\Pet');
+    }
 }

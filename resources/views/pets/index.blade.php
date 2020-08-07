@@ -16,12 +16,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{__('translate.pets')}}<br>
-                    <small>{{ __('help.pets_description') }}</small>
+                    {{__('translate.pets')}}
                     <button type="button" id="btnNew" class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
-                    <button type="button" id="btnEdit" class="btn btn-sm btn-secondary" disabled>{{__('translate.edit')}}</button>
-                    <button type="button" id="btnVisit" class="btn btn-sm btn-dark" disabled>{{__('translate.visit')}}</button>
-                    <button type="button" id="btnDelete" class="btn btn-sm btn-danger" disabled>{{__('translate.delete')}}</button>
+                    <br>
+                    <small>{{ __('help.pets_description') }}</small>
                 </div>
 
                 <div class="card-body">
@@ -44,6 +42,7 @@
                                         <th>{{__('translate.microchip')}}</th>
                                         <th>{{__('translate.description')}}</th>
                                         <th>{{__('translate.color')}}</th>
+                                        <th>{{__('translate.actions')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,7 +85,7 @@
 @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 @include('clinics.modal.edit')
 @include('clinics.modal.invite')
-@include('clinics.modal.confirm-delete')
+@include('pets.modal.confirm-delete')
 @endif
 
 @endsection
@@ -104,66 +103,23 @@
             search: {
                 caseInsensitive: true
             },
-            ajax: "{{ route('clinics.pets.list', 0) }}",
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'familiar_name',
-                    name: 'familiar_name'
-                },
-                {
-                    data: 'firstname',
-                    name: 'firstname',
-                    visible: false
-                },
-                {
-                    data: 'lastname',
-                    name: 'lastname',
-                    visible: false
-                },
-                {
-                    data: 'owner',
+            ajax: "{{ route('clinics.pets.list', [0, 'datatable']) }}",
+            columns: [
+                {data: "id", name: "id", width: "1%"},
+                {data: "name", name: "name", width: "150"},
+                {data: "familiar_name", name: "familiar_name", width: "150"},
+                {data: "firstname", name: "firstname", visible: false},
+                {data: "lastname", name: "lastname", visible: false},
+                {data: "owner", name: "owner",
                     render: function(data, type, row) {
                         return row.firstname + ' ' + row.lastname;
-                    },
-                    name: 'owner'
+                    },                    
                 },
-                {
-                    data: 'microchip',
-                    name: 'microchip'
-                },
-                {
-                    data: 'description',
-                    name: 'description'
-                },
-                {
-                    data: 'color',
-                    name: 'color'
-                },
+                {data: "microchip", name: "microchip"},
+                {data: "description", name: "description"},
+                {data: "color", name: "color"},
+                {data: "action", name: "action"},
             ],
-            columnDefs: [{
-                    targets: 0,
-                    "width": "1%"
-                },
-                {
-                    targets: 1,
-                    "width": "150px"
-                },
-                {
-                    targets: 2,
-                    "width": "150px"
-                },
-                {
-                    targets: 3,
-                    "width": "150px"
-                },
-            ]
         });
 
         $('#pets tbody').on('click', 'tr', function() {
@@ -176,31 +132,19 @@
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
-
-            $('#btnEdit').prop('disabled', false);
-            $('#btnVisit').prop('disabled', false);
-            $('#btnDelete').prop('disabled', false);
         });
 
-
-        $('#btnEdit').click(function() {
-            var selData = table.rows(".selected").data();
-            console.log(selData[0].id);
+        // delete button
+        $(document).on('click', '.pet-delete-button', function(){
+            var row = table.rows(".selected").data();
+            var id = row[0].id;
+            $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
+            $('#confirm-delete-modal').modal('show');
         });
+
     });
 
 
-    $(document).on('click', '.open_modal_edit', function() {
-        $('#edit-modal').modal('show');
-    });
-
-    $(document).on('click', '.open_modal_invite', function() {
-        $('#invite-modal').modal('show');
-    });
-
-    $(document).on('click', '.open_modal_delete', function() {
-        $('#confirm-delete-modal').modal('show');
-    });
 </script>
 @endif
 @endpush

@@ -49,6 +49,7 @@ return [
     'or' => 'or',
     'owner' => 'Owner',
     'owners' => 'Owners',
+    'pet' => 'Pet',
     'pets' => 'Pets',
     'preferences' => 'Preferences',
     'phone' => 'Phone',

@@ -6,7 +6,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{__('translate.owners')}}<br>
+                    {{__('translate.owners')}}
+                    <button type="button" id="owner-new-button"
+                        class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
+                    <br>
                     <small>{{ __('help.owners_description') }}</small>
                 </div>
 
@@ -30,24 +33,17 @@
                                         <th>{{__('translate.phone')}}</th>
                                         <th>{{__('translate.mobile')}}</th>
                                         <th>{{__('translate.email')}}</th>
+                                        <th>{{__('translate.actions')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
                             </table>
-
-                            <button type="button" id="owner-new-button"
-                                class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
-                            <button type="button" id="owner-edit-button" class="btn btn-sm btn-secondary"
-                                disabled>{{__('translate.edit')}}</button>
-                            <button type="button" id="owner-delete-button" class="btn btn-sm btn-danger"
-                                disabled>{{__('translate.delete')}}</button>
-
                         </div>
                     </div>
 
                     <hr class="divider">
-                    
+
                     <!-- TABS -->
                     <div class="row">
                         <div class="col col-md-12">
@@ -78,15 +74,12 @@
                                                 <th>{{__('translate.name')}}</th>
                                                 <th>{{__('translate.gender')}}</th>
                                                 <th>{{__('translate.description')}}</th>
+                                                <th>{{__('translate.actions')}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         </tbody>
                                     </table>
-
-                                    <button type="button" id="pet-visit-button" class="btn btn-sm btn-primary"
-                                        disabled>{{__('translate.visit')}}</button>
-
                                 </div>
                                 <!-- / tab 1 content -->
 
@@ -149,6 +142,8 @@
                         return data;
                     }
                 },
+                {data: "action", name: "action", searchable: false, width: "100"},
+
             ],
             bPaginate: false,
             bLengthChange: false,
@@ -165,6 +160,7 @@
                 {data: "name", name: "name"},
                 {data: "gender", name: "gender"},
                 {data: "description", name: "description"},
+                {data: "action", name: "action", searchable: false, width: "100"},
             ],
             bPaginate: false,
             bLengthChange: false,
@@ -175,9 +171,6 @@
 
         // on filter enter
         table.on( 'search.dt', function () {
-            $('#owner-edit-button').prop('disabled', true);
-            $('#owner-delete-button').prop('disabled', true);
-            $('#pet-visit-button').prop('disabled', true);
             table_pets.clear().draw();
         } );
 
@@ -187,10 +180,6 @@
             
             if(rowData != undefined && rowData.id > 0){
                 table_pets.ajax.url("/clinics/{{$clinic->id}}/owners/" + rowData.id + "/pets/list/datatable").load();
-                $('#pet-visit-button').prop('disabled', true);
-
-                $('#owner-edit-button').prop('disabled', false);
-                $('#owner-delete-button').prop('disabled', false);
             }
             
             if ($(this).hasClass('selected')) {
@@ -199,8 +188,6 @@
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
-
-
         });
 
 
@@ -211,7 +198,6 @@
             {
                 table_pets.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                $('#pet-visit-button').prop('disabled', false);
             }
         });
 
@@ -224,10 +210,9 @@
 
 
         // edit button
-        $('#owner-edit-button').click(function() {
+        $(document).on('click', '.owner-edit-button', function(){
             var selData = table.rows(".selected").data();
             var id = selData[0].id;
-            console.log('edit: ' + selData[0].id);
 
             $.ajax({
                 url: '/clinics/{{$clinic->id}}/owners/' + id +'/get',
@@ -255,7 +240,7 @@
 
 
         // delete button
-        $('#owner-delete-button').click(function() {
+        $(document).on('click', '.owner-delete-button', function(){
             var row = table.rows(".selected").data();
             var id = row[0].id;
             $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/owners/' + id);
@@ -264,7 +249,7 @@
 
 
         $('#owner-edit-modal').on('show.bs.modal', function (event) {
-            console.log(event);
+            // console.log(event);
             /*
             var button = $(event.relatedTarget) // Button that triggered the modal
             var id = button.data('id') // Extract info from data-* attributes
@@ -276,7 +261,7 @@
         })
 
         // visit button
-        $('#pet-visit-button').click(function() {
+        $(document).on('click', '.pet-visit-button', function(){
             var selData = table_pets.rows(".selected").data();
             if(selData.length > 0)
             {
@@ -285,6 +270,9 @@
             }
         });
     });
+
+
+
 </script>
 @endif
 @endpush

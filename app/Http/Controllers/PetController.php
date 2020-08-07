@@ -81,21 +81,31 @@ class PetController extends Controller
      * @param  \App\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy(Clinic $clinic, Pet $pet)
     {
-        //
+        $pet->delete();
+        return redirect()->route('clinics.pets.index', $clinic->id)->with('success', __('message.pet_destroy_success'));
+
     }
 
-    public function list($clinic_id = 0)
+    public function list(Clinic $clinic, $return = null)
     {
-        $pets = Pet::where('pets.clinic_id', '=', $clinic_id)
+        $pets = Pet::where('pets.clinic_id', '=', $clinic->id)
             ->join('species', 'pets.species_id', '=', 'species.id')
             ->join('owners', 'pets.owner_id', '=', 'owners.id')
             ->select('pets.*', 'owners.firstname', 'owners.lastname', 'species.familiar_name')
             ->get();
 
-        return Datatables::of($pets)
-            ->make(true);
+        if ($return == 'datatable') {
+            return Datatables::of($pets)
+                ->addColumn('action', function ($data) {
+                    return '<a href="#" class="pet-visit-button"><button type="button" class="btn btn-sm btn-dark float-left">' . __('translate.visit') . '</button></a>'
+                        . '<a href="#" class="pet-edit-button"><button type="button" class="btn btn-sm btn-secondary float-left">' . __('translate.edit') . '</button></a>'
+                        . '<a href="#" class="pet-delete-button"><button type="button" class="btn btn-sm btn-danger float-left">' . __('translate.delete') . '</button></a>';
+                    ;
+                })
+                ->make(true);
+        }
     }
 
     public function listByOwner(Clinic $clinic, Owner $owner, $return = null)
@@ -106,6 +116,9 @@ class PetController extends Controller
 
         if ($return == 'datatable') {
             return Datatables::of($pets)
+                ->addColumn('action', function ($data) {
+                    return '<a href="#" class="pet-visit-button"><button type="button" class="btn btn-sm btn-dark float-left">' . __('translate.visit') . '</button></a>';
+                })
                 ->make(true);
         }
     }

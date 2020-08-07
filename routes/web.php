@@ -47,7 +47,7 @@ Route::get('clinics/{clinic}/owners/list', 'OwnerController@list')->name('clinic
 Route::resource('clinics.owners', 'OwnerController')->middleware('clinic_access');
 
 // pets
-Route::get('clinics/{clinic}/pets/list', 'PetController@list')->name('clinics.pets.list')->middleware('clinic_access');
+Route::get('clinics/{clinic}/pets/list/{return?}', 'PetController@list')->name('clinics.pets.list')->middleware('clinic_access');
 Route::get('clinics/{clinic}/owners/{owner}/pets/list/{return?}', 'PetController@listByOwner')->middleware('clinic_access');
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 

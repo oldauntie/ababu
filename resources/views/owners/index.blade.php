@@ -9,6 +9,7 @@
                     {{__('translate.owners')}}
                     <button type="button" id="owner-new-button"
                         class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
+                    <button type="button" id="owner-test-button" class="btn btn-sm btn-primary">test</button>
                     <br>
                     <small>{{ __('help.owners_description') }}</small>
                 </div>
@@ -63,7 +64,7 @@
                             </ul>
                             <!-- / tab headers -->
 
-                            <div class="tab-content" id="myTabContent">
+                            <div class="tab-content">
                                 <!-- tab 1 content -->
                                 <div class="tab-pane fade show active" id="pets-tab-pane" role="tabpanel"
                                     aria-labelledby="pets-tab">
@@ -86,28 +87,54 @@
                                 <!-- tab 2 content -->
                                 <div class="tab-pane fade" id="owners-tab-pane" role="tabpanel"
                                     aria-labelledby="owners-tab">
-                                    owners placeholder
+                                    <div class="row">
+                                        <div class="col-2" id="owner-details-firstname"></div>
+                                        <div class="col-2" id="owner-details-lastname"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2" id="owner-details-address"></div>
+                                        <div class="col-2" id="owner-details-city"></div>
+                                        <div class="col-2" id="owner-details-postcode"></div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-2">
+                                            <a href="#" id="owner-details-phone" data-toggle="modal"
+                                                data-target="#owner-overlay-modal">
+                                            </a>
+                                        </div>
+                                        <div class="col-2">
+                                            <a href="#" id="owner-details-mobile" data-toggle="modal"
+                                                data-target="#owner-overlay-modal">
+                                            </a>
+                                        </div>
+                                        <div class="col-3" id="owner-details-email"></div>
+                                    </div>
                                 </div>
-                                <!-- / tab 2 content -->
                             </div>
+                            <!-- / tab 2 content -->
                         </div>
                     </div>
-                    <!-- / TABS -->
                 </div>
+                <!-- / TABS -->
             </div>
-
-
         </div>
+
+
     </div>
+</div>
 </div>
 
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
 @include('owners.modal.create')
 @include('owners.modal.edit')
 @include('owners.modal.confirm-delete')
+@include('owners.modal.overlay')
 @endif
 
 @endsection
+
+
 
 @push('scripts')
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
@@ -160,7 +187,7 @@
                 {data: "name", name: "name"},
                 {data: "gender", name: "gender"},
                 {data: "description", name: "description"},
-                {data: "action", name: "action", searchable: false, width: "100"},
+                {data: "action", name: "action", searchable: false, width: "150px"},
             ],
             bPaginate: false,
             bLengthChange: false,
@@ -177,10 +204,30 @@
         // owners row selection
         $('#owners tbody').on('click', 'tr', function() {
             var rowData = table.row(this).data();
+            var id = rowData.id;
             
-            if(rowData != undefined && rowData.id > 0){
-                table_pets.ajax.url("/clinics/{{$clinic->id}}/owners/" + rowData.id + "/pets/list/datatable").load();
+            // load pets list by owner
+            if(rowData != undefined && id > 0){
+                table_pets.ajax.url("/clinics/{{$clinic->id}}/owners/" + id + "/pets/list/datatable").load();
             }
+
+            // load owner details
+            $.ajax({
+                url: '/clinics/{{$clinic->id}}/owners/' + id +'/get',
+                type: 'get',
+                // data: {userid: userid},
+                success: function(owner){ 
+                    // fill with owner details                    
+                    $('#owner-details-firstname').html(owner.firstname);
+                    $('#owner-details-lastname').html(owner.lastname);
+                    $('#owner-details-address').html(owner.address);
+                    $('#owner-details-postcode').html(owner.postcode);
+                    $('#owner-details-city').html(owner.city);
+                    $('#owner-details-phone').html(owner.phone);
+                    $('#owner-details-mobile').html(owner.mobile);
+                    $('#owner-details-email').html('<a href="mailto:' + owner.email + '"">' + owner.email + '</a>');
+                }
+            });
             
             if ($(this).hasClass('selected')) {
                 // $(this).removeClass('selected');
@@ -206,6 +253,12 @@
         $('#owner-new-button').click(function() {
             console.log('new record');
             $('#owner-create-modal').modal('show');
+        });
+
+
+        $('#owner-test-button').click(function() {
+            console.log('owner-overlay-modal');
+            $('#owner-overlay-modal').modal('show');
         });
 
 
@@ -248,18 +301,6 @@
         });
 
 
-        $('#owner-edit-modal').on('show.bs.modal', function (event) {
-            // console.log(event);
-            /*
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var id = button.data('id') // Extract info from data-* attributes
-
-            var modal = $(this)
-            console.log(id)
-            $("#docsForm").attr("action", "/contact_delete/" + id+"/");
-            */
-        })
-
         // visit button
         $(document).on('click', '.pet-visit-button', function(){
             var selData = table_pets.rows(".selected").data();
@@ -268,6 +309,20 @@
                 var pet_id = selData[0].id;
                 console.log('visit: ' +pet_id);
             }
+        });
+
+
+        $('#owner-overlay-modal').on('show.bs.modal', function (event) {
+            // console.log(event);
+            /*
+
+            var modal = $(this)
+            console.log(id)
+            $("#docsForm").attr("action", "/contact_delete/" + id+"/");
+            */
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            
+            $('#owner-overlay-modal-label').html( button.text() );
         });
     });
 

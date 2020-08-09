@@ -39,4 +39,9 @@ class Clinic extends Model
     {
         return $this->hasMany('App\Owner');
     }
+
+    public function pets()
+    {
+        return $this->hasMany('App\Pet');
+    }
 }

@@ -22,6 +22,14 @@ class Owner extends Model
         'mobile',
         'email'
     ];
+
+    protected static function boot() {
+        parent::boot();
+    
+        static::deleting(function(Owner $owner) {
+            $owner->pets()->delete();
+        });
+    }
     
     public function clinic()
     {

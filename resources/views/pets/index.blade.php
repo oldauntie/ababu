@@ -118,7 +118,7 @@
                 {data: "microchip", name: "microchip"},
                 {data: "description", name: "description"},
                 {data: "color", name: "color"},
-                {data: "action", name: "action"},
+                {data: "action", name: "action", width: "150px"},
             ],
         });
 

@@ -149,6 +149,7 @@ class OwnerController extends Controller
         return redirect()->route('clinics.owners.index', $clinic->id)->with('success', __('message.owner_destroy_success'));
     }
 
+
     public function list(Clinic $clinic)
     {
         $owners = Owner::where('owners.clinic_id', '=', $clinic->id)
@@ -161,6 +162,7 @@ class OwnerController extends Controller
             ->make(true);
     }
 
+    
     public function get(Clinic $clinic, Owner $owner)
     {
         $owners = $owner->toArray();

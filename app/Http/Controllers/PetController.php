@@ -85,8 +85,8 @@ class PetController extends Controller
     {
         $pet->delete();
         return redirect()->route('clinics.pets.index', $clinic->id)->with('success', __('message.pet_destroy_success'));
-
     }
+
 
     public function list(Clinic $clinic, $return = null)
     {
@@ -108,6 +108,7 @@ class PetController extends Controller
         }
     }
 
+
     public function listByOwner(Clinic $clinic, Owner $owner, $return = null)
     {
         $pets = Pet::where('clinic_id', '=', $clinic->id)
@@ -121,5 +122,11 @@ class PetController extends Controller
                 })
                 ->make(true);
         }
+    }
+
+    public function get(Clinic $clinic, Pet $pet)
+    {
+        $result = $pet->toArray();
+        return response()->json($result);
     }
 }

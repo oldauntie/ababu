@@ -26,8 +26,7 @@
                             <label for="tsn">{{__('translate.species')}}</label>
                             <div class="col-md-12">
                                 <select id="tsn" name="tsn" class="form-control" required></select>
-                                <small id="help_species_select"
-                                    class="form-text text-muted">{{__('help.specied_select')}}</small>
+                                <small class="form-text text-muted">{{__('help.life_select')}}</small>
 
                                 @error('tsn')
                                 <span class="invalid-feedback" role="alert">
@@ -112,8 +111,11 @@
 
 
 @push('scripts')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{{url('/lib/select2-4.1.0-beta.1/dist/css/select2.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function(){

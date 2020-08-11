@@ -130,4 +130,31 @@ class SpeciesController extends Controller
         echo json_encode($response);
         exit;
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Clinic $clinic, Request $request)
+    {
+        $search = $request->search;
+
+        if ($search == '') {
+            $species = Species::where('clinic_id', '=', $clinic->id)->orderby('familiar_name', 'asc')->select('id', 'familiar_name')->limit(5)->get();
+        } else {
+            $species = Species::where('clinic_id', '=', $clinic->id)->where('familiar_name', 'like', '%' . $search . '%')->orderby('familiar_name', 'asc')->select('id', 'familiar_name')->limit(5)->get();
+        }
+
+        $response = array();
+        foreach ($species as $specie) {
+            $response[] = array(
+                "id" => $specie->id,
+                "text" => $specie->familiar_name
+            );
+        }
+
+        echo json_encode($response);
+        exit;
+    }
 }

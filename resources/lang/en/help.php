@@ -18,6 +18,7 @@ return [
     'clinic_name' => 'Your clinic short name (e.g. Dr. Dolittle\'s Clinic)',
     'clinic_not_configured' => 'There is no clinic configured for your account. Please... ',
     'clinic_token_example' => 'example: 6240b71-rugby310',
+    'life_select' => 'Click and start writing the first letters of specie scientific name (e.g. Canis Lupus Familiaris)',
     'owner_address' => '',
     'owner_city' => '',
     'owner_country' => '',
@@ -29,8 +30,9 @@ return [
     'owner_phone' => '',
     'owner_postcode' => '',
     'owner_ssn' => '',
+    'pet_delete' => 'Do you really want to delete selected animal / pet and all related information?',
     'species_admin' => 'Select the species your are going to use in your clinic (e.g. dog, cat, owl). You can choose as many species as you want even if we suggest you to choose those you really suppose to visit. You can add a specie whenever you want.',
     'species_delete' => 'Do you really want to delete selected species?',
-    'species_select' => 'Click and start writing the first letters of specie scientific name (e.g. Canis Lupus Familiaris)',
+    'species_select' => 'Click and start writing the first letters of specie familiar name (e.g. Dog, Cat)',
     
 ];

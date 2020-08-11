@@ -83,8 +83,7 @@
 </div>
 
 @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-@include('clinics.modal.edit')
-@include('clinics.modal.invite')
+@include('pets.modal.edit')
 @include('pets.modal.confirm-delete')
 @endif
 
@@ -92,8 +91,9 @@
 
 @push('scripts')
 @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
 
 <script type="text/javascript">
     $(function() {
@@ -103,7 +103,7 @@
             search: {
                 caseInsensitive: true
             },
-            ajax: "{{ route('clinics.pets.list', [0, 'datatable']) }}",
+            ajax: "{{ route('clinics.pets.list', [$clinic->id, 'datatable']) }}",
             columns: [
                 {data: "id", name: "id", width: "1%"},
                 {data: "name", name: "name", width: "150"},
@@ -134,6 +134,35 @@
             }
         });
 
+
+        // edit button
+        $(document).on('click', '.pet-edit-button', function(){
+            var selData = table.rows(".selected").data();
+            var id = selData[0].id;
+
+            $.ajax({
+                url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
+                type: 'get',
+                success: function(pet){ 
+                    console.log(pet.owner_id)
+                    
+                    // fill Modal with owner details                    
+                    $('#pet-edit-name').val(pet.name)
+                    $('#pet-edit-species_id').val(pet.species_id)
+                    $('#pet-edit-owner_id').val(pet.owner_id)
+                    
+                    $('#pet-edit-sex').val(pet.sex)
+                    $('#pet-edit-color').val(pet.color)
+                    $('#pet-edit-description').val(pet.description)
+                    $('#pet-edit-date_of_birth').val(pet.date_of_birth)
+
+                    // Display Modal
+                    $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/owners/' + id);
+                    $('#pet-edit-modal').modal('show');
+                }
+            });
+        });
+        
         // delete button
         $(document).on('click', '.pet-delete-button', function(){
             var row = table.rows(".selected").data();
@@ -141,6 +170,9 @@
             $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
             $('#confirm-delete-modal').modal('show');
         });
+
+
+
 
     });
 

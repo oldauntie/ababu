@@ -19,7 +19,7 @@ class CreatePetsTable extends Migration
             $table->bigInteger('clinic_id')->unsigned();
             $table->bigInteger('owner_id')->unsigned();
             $table->string('name');
-            $table->char('gender', 1);
+            $table->char('sex', 1);
             $table->dateTime('date_of_birth');
             $table->dateTime('date_of_death')->nullable();
             $table->text('description')->nullable();

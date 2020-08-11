@@ -165,8 +165,30 @@ class OwnerController extends Controller
     
     public function get(Clinic $clinic, Owner $owner)
     {
-        $owners = $owner->toArray();
+        $result = $owner->toArray();
+        return response()->json($result);
+    }
 
-        return response()->json($owners);
+
+    public function search(Clinic $clinic, Request $request)
+    {
+        $search = $request->search;
+
+        if ($search == '') {
+            $owners = Owner::where('clinic_id', '=', $clinic->id)->orderby('lastname', 'asc')->select('id', 'firstname', 'lastname')->limit(5)->get();
+        } else {
+            $owners = Owner::where('clinic_id', '=', $clinic->id)->where('firstname', 'like', '%' . $search . '%')->orWhere('lastname', 'like', '%' . $search . '%')->orderby('lastname', 'asc')->select('id', 'firstname', 'lastname')->limit(5)->get();
+        }
+
+        $response = array();
+        foreach ($owners as $owner) {
+            $response[] = array(
+                "id" => $owner->id,
+                "text" => $owner->firstname . " " . $owner->lastname
+            );
+        }
+
+        echo json_encode($response);
+        exit;
     }
 }

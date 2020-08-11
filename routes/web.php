@@ -42,16 +42,19 @@ Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinic
 Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
 
 // owners
+Route::get('clinics/{clinic}/owners/search', 'OwnerController@search')->name('clinics.owners.search')->middleware('clinic_access');
 Route::get('clinics/{clinic}/owners/{owner}/get', 'OwnerController@get')->name('clinics.owners.get')->middleware('clinic_access');
 Route::get('clinics/{clinic}/owners/list', 'OwnerController@list')->name('clinics.owners.list')->middleware('clinic_access');
 Route::resource('clinics.owners', 'OwnerController')->middleware('clinic_access');
 
 // pets
+Route::get('clinics/{clinic}/pets/{pet}/get', 'PetController@get')->name('clinics.pets.get')->middleware('clinic_access');
 Route::get('clinics/{clinic}/pets/list/{return?}', 'PetController@list')->name('clinics.pets.list')->middleware('clinic_access');
 Route::get('clinics/{clinic}/owners/{owner}/pets/list/{return?}', 'PetController@listByOwner')->middleware('clinic_access');
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
 // species
+Route::get('clinics/{clinic}/species/search', 'SpeciesController@search')->name('clinics.species.search')->middleware('clinic_access');
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');
 Route::get('clinics/{clinic}/species/{species}', 'SpeciesController@details')->name('species.get')->middleware('auth')->middleware('roles:root|admin');
 Route::get('/lives/search', 'LifeController@search')->name('lives.search')->middleware('auth')->middleware('roles:root|admin');

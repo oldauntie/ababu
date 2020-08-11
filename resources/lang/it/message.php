@@ -22,6 +22,7 @@ return [
     'owner_destroy_success' => 'Il proprietario e tutte le informazioni ad esso collegato sono state eliminate.',
     'owner_update_error' => 'Si è verificato un errore durante l\'aggiornamento del proprietario.',
     'owner_update_success' => 'Il proprietario è stato aggiornato con successo.',
+    'pet_destroy_success' => 'L\'animale selezionato è stato cancellato.',
     'specie_create_error' => 'Si è verificato un errore. E\' probabile che la specie sia già stata selezionata.',
     'specie_create_success' => 'La specie selezionata è stata aggiunta.',
     'specie_edit_error' => 'Si è verificato un errore durante l\'aggiornamento della specie.',

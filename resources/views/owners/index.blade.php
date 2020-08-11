@@ -73,7 +73,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>{{__('translate.name')}}</th>
-                                                <th>{{__('translate.gender')}}</th>
+                                                <th>{{__('translate.sex')}}</th>
                                                 <th>{{__('translate.description')}}</th>
                                                 <th>{{__('translate.actions')}}</th>
                                             </tr>
@@ -185,7 +185,7 @@
             columns: [
                 {data: "id", name: "id", visible: false, searchable: false},
                 {data: "name", name: "name"},
-                {data: "gender", name: "gender"},
+                {data: "sex", name: "sex"},
                 {data: "description", name: "description"},
                 {data: "action", name: "action", searchable: false, width: "150px"},
             ],

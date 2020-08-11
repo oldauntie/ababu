@@ -19,7 +19,6 @@
                     @csrf
                     {{ method_field('PUT') }}
 
-
                     <div class="form-group row">
                         <div class="col-md-7">
 
@@ -46,7 +45,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select id="pet-edit-species_id" name="species_id" class="form-control" required></select>
+                                    <select id="pet-edit-species_id" name="species_id" class="form-control"
+                                        required></select>
                                     <small class="form-text text-muted">{{__('help.species_select')}}</small>
                                     @error('species_id')
                                     <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select id="pet-edit-owner_id" name="owner_id" class="form-control" required></select>
+                                    <select id="pet-edit-owner_id" name="owner_id"></select>
                                     <small class="form-text text-muted">{{__('help.owner_select')}}</small>
                                     @error('owner_id')
                                     <span class="invalid-feedback" role="alert">
@@ -131,12 +131,6 @@
                             <!-- age -->
                             <fieldset style="border: thin solid black; padding: 7px">
                                 <legend style="padding: 7px">{{__('translate.age')}}</legend>
-
-
-
-
-
-
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -281,7 +275,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#species_id").select2({
+        $("#pet-edit-species_id").select2({
             ajax: { 
                 placeholder: "Choose species...",
                 minimumInputLength: 3,
@@ -302,7 +296,8 @@
             }
         });
 
-        $("#owner_id").select2({
+
+        $("#pet-edit-owner_id").select2({
             ajax: { 
                 placeholder: "Choose owner...",
                 minimumInputLength: 3,
@@ -322,8 +317,6 @@
                 cache: true
             }
         });
-
-        // $('.datepicker').datepicker();
 
 
         $('#pet-edit-date_of_birth').datepicker({
@@ -355,8 +348,6 @@
                 console.log(days);
             }
         }); 
-
-
     });
 </script>
 

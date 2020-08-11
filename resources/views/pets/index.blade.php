@@ -1,15 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .btn-group-xs>.btn,
-    .btn-xs {
-        padding: .25rem .4rem;
-        font-size: .875rem;
-        line-height: .5;
-        border-radius: .2rem;
-    }
-</style>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -144,13 +135,19 @@
                 url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
                 type: 'get',
                 success: function(pet){ 
-                    console.log(pet.owner_id)
+                    // console.log(pet);
                     
                     // fill Modal with owner details                    
-                    $('#pet-edit-name').val(pet.name)
-                    $('#pet-edit-species_id').val(pet.species_id)
-                    $('#pet-edit-owner_id').val(pet.owner_id)
-                    
+                    $('#pet-edit-name').val(pet.name);
+
+                    $("#pet-edit-species_id").empty();
+                    var speciesOption = new Option(pet.species.familiar_name, pet.species.species_id, false, false);
+                    $('#pet-edit-species_id').append(speciesOption).trigger('change');
+
+                    $("#pet-edit-owner_id").empty();
+                    var ownerOption = new Option(pet.owner.firstname + ' ' + pet.owner.lastname, pet.owner_id, false, false);
+                    $('#pet-edit-owner_id').append(ownerOption).trigger('change');
+        
                     $('#pet-edit-sex').val(pet.sex)
                     $('#pet-edit-color').val(pet.color)
                     $('#pet-edit-description').val(pet.description)
@@ -170,9 +167,6 @@
             $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
             $('#confirm-delete-modal').modal('show');
         });
-
-
-
 
     });
 

@@ -126,7 +126,10 @@ class PetController extends Controller
 
     public function get(Clinic $clinic, Pet $pet)
     {
+        // dd($pet->owner);
         $result = $pet->toArray();
+        $result += ['species' => $pet->species->toArray()];
+        $result += ['owner' => $pet->owner->toArray()];
         return response()->json($result);
     }
 }

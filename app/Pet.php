@@ -17,6 +17,22 @@ class Pet extends Model
         'date_of_death' => 'datetime:d/m/Y',
     ];
 
+    protected $fillable = [
+        'species_id', 
+        'clinic_id',       
+        'owner_id',
+        'name',
+        'sex',
+        'date_of_birth', 
+        'date_of_death', 
+        'description', 
+        'color',
+        'microchip',
+        'microchip_location',
+        'tatuatge',
+        'tatuatge_location',  
+    ];
+
 
 
     // Note: renamed

@@ -7,6 +7,7 @@ use App\Clinic;
 use App\Owner;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Carbon;
 
 class PetController extends Controller
 {
@@ -70,9 +71,39 @@ class PetController extends Controller
      * @param  \App\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pet $pet)
+    public function update(Request $request, Clinic $clinic, Pet $pet)
     {
-        //
+        // validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'sex' => 'required|max:1',
+            'date_of_birth' => 'required',
+        ]);
+        // dd($request);
+
+        $pet->species_id = $request->species_id;
+
+        $pet->clinic_id = $clinic->id;
+        $pet->owner_id = $request->owner_id;
+        $pet->name = $request->name;
+        $pet->sex = $request->sex;
+        $pet->date_of_birth = Carbon::createFromFormat("d/m/Y", $request->date_of_birth);
+        $pet->date_of_death = $request->date_of_death == null ? null : Carbon::createFromFormat("d/m/Y", $request->date_of_death);
+        $pet->description = $request->description;
+        $pet->color = $request->color;
+        $pet->microchip = $request->microchip;
+        $pet->microchip_location = $request->microchip_location;
+        $pet->tatuatge = $request->tatuatge;
+        $pet->tatuatge_location = $request->tatuatge_location;
+
+        if ($pet->save()) {
+            $request->session()->flash('success', __('message.pet_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.pet_update_error');
+        }
+
+
+        return redirect()->route('clinics.pets.index', [$clinic, $pet]);
     }
 
     /**
@@ -101,8 +132,7 @@ class PetController extends Controller
                 ->addColumn('action', function ($data) {
                     return '<a href="#" class="pet-visit-button"><button type="button" class="btn btn-sm btn-dark float-left">' . __('translate.visit') . '</button></a>'
                         . '<a href="#" class="pet-edit-button"><button type="button" class="btn btn-sm btn-secondary float-left">' . __('translate.edit') . '</button></a>'
-                        . '<a href="#" class="pet-delete-button"><button type="button" class="btn btn-sm btn-danger float-left">' . __('translate.delete') . '</button></a>';
-                    ;
+                        . '<a href="#" class="pet-delete-button"><button type="button" class="btn btn-sm btn-danger float-left">' . __('translate.delete') . '</button></a>';;
                 })
                 ->make(true);
         }
@@ -126,13 +156,9 @@ class PetController extends Controller
 
     public function get(Clinic $clinic, Pet $pet)
     {
-        // dd($pet);
         $result = $pet->toArray();
         $result += ['species' => $pet->species->toArray()];
         $result += ['owner' => $pet->owner->toArray()];
-
-        // dd($result);
-
 
         return response()->json($result);
     }

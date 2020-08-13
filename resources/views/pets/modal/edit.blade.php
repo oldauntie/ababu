@@ -88,15 +88,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="pet-edit-sex" class="text-md-right">{{__('translate.sex')}}*</label>
-                                    <input id="pet-edit-sex" type="text"
-                                        class="form-control  form-control-sm @error('sex') is-invalid @enderror"
-                                        name="sex" value="" autocomplete="sex" autofocus maxlength="255">
+                                    <select name="sex" class="form-control" id="pet-edit-sex">
+                                        <option value="M">M</option>
+                                        <option value="F">F</option>
+                                        <option value="0">0</option>
+                                    </select>
+
                                     <small class="form-text text-muted">{{__('help.pet_sex')}}</small>
-                                    @error('sex')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
@@ -302,6 +300,7 @@
     href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
 <script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment.js')}}"></script>
+<script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -397,7 +396,11 @@
             $('#pet-edit-age-months').val(months);
             $('#pet-edit-age-days').val(days);
         } else {
-            alert("Date of death cannot be before Date of birth")
+            
+            bootbox.alert("{{ __('message.pet_date_of_death_warning') }}", function() {
+                console.log("Alert Callback");
+            });
+
             $('#pet-edit-age-years').val('');
             $('#pet-edit-age-months').val('');
             $('#pet-edit-age-days').val('');

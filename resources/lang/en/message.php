@@ -22,6 +22,7 @@ return [
     'owner_destroy_success' => 'Owner and all the related information have been deleted.',
     'owner_update_error' => 'There was an error while updateding the owner.',
     'owner_update_success' => 'Owner has been successfully updated.',
+    'pet_date_of_death_warning' => 'Warning! Date of death cannot be before Date of Birth', 
     'pet_destroy_success' => 'Selected pet has been deleted.',
     'specie_create_error' => 'There was an error while adding selected specie (maybe specie already exists).',
     'specie_create_success' => 'Selected specie has been added.',

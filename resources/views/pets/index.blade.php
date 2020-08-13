@@ -141,7 +141,7 @@
                     $('#pet-edit-name').val(pet.name);
 
                     $("#pet-edit-species_id").empty();
-                    var speciesOption = new Option(pet.species.familiar_name, pet.species.species_id, false, false);
+                    var speciesOption = new Option(pet.species.familiar_name, pet.species.id, false, false);
                     $('#pet-edit-species_id').append(speciesOption).trigger('change');
 
                     $("#pet-edit-owner_id").empty();
@@ -166,7 +166,7 @@
                     setAge();
                     
                     // Display Modal
-                    $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/owners/' + id);
+                    $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
                     $('#pet-edit-modal').modal('show');
                 }
             });

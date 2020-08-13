@@ -1,3 +1,11 @@
+<style>
+    legend {
+        font-size: 1rem;
+        color: lightgray;
+        width: auto;
+        margin-bottom: 0rem;
+    }
+</style>
 <!-- Attachment Modal -->
 <div class="modal fade" id="pet-edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label"
     aria-hidden="true">
@@ -26,8 +34,8 @@
                             <!-- name -->
                             <label for="pet-edit-name" class="text-md-right">{{__('translate.name')}}*</label>
                             <input id="pet-edit-name" type="text"
-                                class="form-control @error('name') is-invalid @enderror" name="name" value=""
-                                autocomplete="name" required autofocus maxlength="255">
+                                class="form-control  form-control-sm @error('name') is-invalid @enderror" name="name"
+                                value="" autocomplete="name" required autofocus maxlength="255">
                             <small class="form-text text-muted">{{__('help.pet_name')}}</small>
 
                             @error('name')
@@ -81,8 +89,8 @@
                                 <div class="col-md-6">
                                     <label for="pet-edit-sex" class="text-md-right">{{__('translate.sex')}}*</label>
                                     <input id="pet-edit-sex" type="text"
-                                        class="form-control @error('sex') is-invalid @enderror" name="sex" value=""
-                                        autocomplete="sex" autofocus maxlength="255">
+                                        class="form-control  form-control-sm @error('sex') is-invalid @enderror"
+                                        name="sex" value="" autocomplete="sex" autofocus maxlength="255">
                                     <small class="form-text text-muted">{{__('help.pet_sex')}}</small>
                                     @error('sex')
                                     <span class="invalid-feedback" role="alert">
@@ -94,8 +102,8 @@
                                 <div class="col-md-6">
                                     <label for="pet-edit-color" class="text-md-right">{{__('translate.color')}}*</label>
                                     <input id="pet-edit-color" type="text"
-                                        class="form-control @error('color') is-invalid @enderror" name="color" value=""
-                                        autocomplete="color" autofocus maxlength="255">
+                                        class="form-control  form-control-sm @error('color') is-invalid @enderror"
+                                        name="color" value="" autocomplete="color" autofocus maxlength="255">
                                     <small class="form-text text-muted">{{__('help.pet_color')}}</small>
 
                                     @error('color')
@@ -115,8 +123,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea id="pet-edit-description" name="description" rows="3" cols="50" onKeyPress
-                                        class="form-control">{{{ old('description') }}}</textarea>
+                                    <textarea id="pet-edit-description" name="description" rows="3" cols="50"
+                                        class="form-contro form-control-sml">{{{ old('description') }}}</textarea>
 
                                     <small class="form-text text-muted">{{__('help.pet_description')}}</small>
                                     @error('description')
@@ -129,46 +137,66 @@
 
 
                             <!-- age -->
-                            <fieldset style="border: thin solid black; padding: 7px">
-                                <legend style="padding: 7px">{{__('translate.age')}}</legend>
+                            <div class="row">
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- date of birth -->
-                                        <label for="pet-edit-date_of_birth"
-                                            class="text-md-right">{{__('translate.date_of_birth')}}*</label>
-                                        <input id="pet-edit-date_of_birth" type="text"
-                                            class="form-control datepicker @error('date_of_birth') is-invalid @enderror"
-                                            name="date_of_birth" value="" autocomplete="date_of_birth" required
-                                            autofocus maxlength="64">
-                                        <small class="form-text text-muted">{{__('help.age')}}</small>
-                                        @error('date_of_birth')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <!-- date of death -->
-                                        <label for="pet-edit-date_of_death"
-                                            class="text-md-right">{{__('translate.date_of_death')}}</label>
-                                        <input id="pet-edit-date_of_death" type="text"
-                                            class="form-control datepicker @error('date_of_death') is-invalid @enderror"
-                                            name="date_of_death" value="" autocomplete="date_of_death" autofocus
-                                            maxlength="64">
-                                        <small class="form-text text-muted">{{__('help.age')}}</small>
-                                        @error('date_of_death')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
+                                <!-- date of birth -->
+                                <div class="col-md-3">
+                                    <label for="pet-edit-date_of_birth"
+                                        class="text-md-right">{{__('translate.date_of_birth')}}*</label>
+                                    <input id="pet-edit-date_of_birth" type="text"
+                                        class="form-control form-control-sm datepicker @error('date_of_birth') is-invalid @enderror"
+                                        name="date_of_birth" value="" autocomplete="date_of_birth" required autofocus
+                                        maxlength="64">
+                                    <small class="form-text text-muted">{{__('help.pet_date_of_birth')}}</small>
+                                    @error('date_of_birth')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
 
-                            </fieldset>
+                                <!-- date of death -->
+                                <div class="col-md-3">
+                                    <label for="pet-edit-date_of_death"
+                                        class="text-md-right">{{__('translate.date_of_death')}}</label>
+                                    <input id="pet-edit-date_of_death" type="text"
+                                        class="form-control form-control-sm input-sm datepicker @error('date_of_death') is-invalid @enderror"
+                                        name="date_of_death" value="" autocomplete="date_of_death" autofocus
+                                        maxlength="64">
+                                    <small class="form-text text-muted">{{__('help.pet_date_of_death')}}</small>
+                                    @error('date_of_death')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <!-- years -->
+                                <div class="col-md-2">
+                                    <label for="pet-edit-age-years"
+                                        class="text-md-right">{{__('translate.years')}}</label>
+                                    <input id="pet-edit-age-years" type="text" class="form-control form-control-sm"
+                                        value="">
+                                </div>
+
+                                <!-- months -->
+                                <div class="col-md-2">
+                                    <label for="pet-edit-age-months"
+                                        class="text-md-right">{{__('translate.months')}}</label>
+                                    <input id="pet-edit-age-months" type="text" class="form-control form-control-sm"
+                                        value="">
+                                </div>
 
 
+                                <!-- days -->
+                                <div class="col-md-2">
+                                    <label for="pet-edit-age-days"
+                                        class="text-md-right">{{__('translate.days')}}</label>
+                                    <input id="pet-edit-age-days" type="text" class="form-control form-control-sm"
+                                        value="">
+                                </div>
+
+                            </div>
                         </div>
 
                         <!-- column 2 -->
@@ -179,9 +207,9 @@
                                 <label for="pet-edit-microchip"
                                     class="text-md-right">{{__('translate.microchip')}}*</label>
                                 <input id="pet-edit-microchip" type="text"
-                                    class="form-control @error('microchip') is-invalid @enderror" name="microchip"
-                                    value="" autocomplete="microchip" autofocus maxlength="64">
-                                <small class="form-text text-muted">{{__('help.microchip')}}</small>
+                                    class="form-control form-control-sm @error('microchip') is-invalid @enderror"
+                                    name="microchip" value="" autocomplete="microchip" autofocus maxlength="64">
+                                <small class="form-text text-muted">{{__('help.pet_microchip')}}</small>
 
                                 @error('microchip')
                                 <span class="invalid-feedback" role="alert">
@@ -192,10 +220,10 @@
                                 <label for="pet-edit-microchip_location"
                                     class="text-md-right">{{__('translate.microchip_location')}}</label>
                                 <input id="pet-edit-microchip_location" type="text"
-                                    class="form-control @error('microchip_location') is-invalid @enderror"
+                                    class="form-control form-control-sm @error('microchip_location') is-invalid @enderror"
                                     name="microchip_location" value="" autocomplete="microchip_location" required
                                     autofocus maxlength="100">
-                                <small class="form-text text-muted">{{__('help.pet_name')}}</small>
+                                <small class="form-text text-muted">{{__('help.pet_microchip_location')}}</small>
 
                                 @error('microchip_location')
                                 <span class="invalid-feedback" role="alert">
@@ -212,9 +240,9 @@
                                 <label for="pet-edit-tatuatge"
                                     class="text-md-right">{{__('translate.tatuatge')}}*</label>
                                 <input id="pet-edit-tatuatge" type="text"
-                                    class="form-control @error('tatuatge') is-invalid @enderror" name="tatuatge"
-                                    value="" autocomplete="tatuatge" autofocus maxlength="64">
-                                <small class="form-text text-muted">{{__('help.tatuatge')}}</small>
+                                    class="form-control form-control-sm @error('tatuatge') is-invalid @enderror"
+                                    name="tatuatge" value="" autocomplete="tatuatge" autofocus maxlength="64">
+                                <small class="form-text text-muted">{{__('help.pet_tatuatge')}}</small>
 
                                 @error('tatuatge')
                                 <span class="invalid-feedback" role="alert">
@@ -225,10 +253,10 @@
                                 <label for="pet-edit-tatuatge_location"
                                     class="text-md-right">{{__('translate.tatuatge_location')}}</label>
                                 <input id="pet-edit-tatuatge_location" type="text"
-                                    class="form-control @error('tatuatge_location') is-invalid @enderror"
+                                    class="form-control form-control-sm @error('tatuatge_location') is-invalid @enderror"
                                     name="tatuatge_location" value="" autocomplete="tatuatge_location" required
                                     autofocus maxlength="100">
-                                <small class="form-text text-muted">{{__('help.pet_name')}}</small>
+                                <small class="form-text text-muted">{{__('help.pet_tatuatge_location')}}</small>
 
                                 @error('tatuatge_location')
                                 <span class="invalid-feedback" role="alert">
@@ -243,7 +271,9 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-secondary btn-lg">{{__('translate.save')}}</button>
+                            <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
+                            <button type="submit" class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
+                            <button type="submit" class="btn btn-secondary btn-sm">{{__('translate.close')}}</button>
                         </div>
                     </div>
                 </form>
@@ -271,7 +301,7 @@
 <link rel="stylesheet" type="text/css"
     href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
-
+<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment.js')}}"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -319,36 +349,64 @@
         });
 
 
-        $('#pet-edit-date_of_birth').datepicker({
-            format: "dd-M-yy",
-            todayHighlight:'TRUE',
-            autoclose: true,
-            minDate: 0,
-            maxDate: '+1Y+6M',
-            onSelect: function (dateStr) {
-                var min = $(this).datepicker('getDate'); 
-                $("#pet-edit-date_of_death").datepicker('option', 'minDate', min || '0');
-            }
-        });
         
-
-        $('#pet-edit-date_of_death').datepicker({
-            format: "dd-M-yy",
-            todayHighlight:'TRUE',
+        var date_of_death = $('#pet-edit-date_of_death').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
             autoclose: true,
-            minDate: '0',
-            maxDate: '+1Y+6M',
-            onSelect: function (dateStr) {
-                var max = $(this).datepicker('getDate'); 
-                // $('#datepicker').datepicker('option', 'maxDate', max || '+1Y+6M');
-                var start = $("#pet-edit-date_of_birth").datepicker("getDate");
-                var end = $("#pet-edit-date_of_death").datepicker("getDate");
-                var days = (end - start) / (1000 * 60 * 60 * 24);
-                // $("#days").val(days);
-                console.log(days);
-            }
-        }); 
+            maxDate: "+100Y"
+        }).on('show', function(e) {
+            
+        }).on('hide', function(e) {
+            setAge();
+        });
+
+        var date_of_birth = $('#pet-edit-date_of_birth').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            autoclose: true,
+        }).on('changeDate', function(e) {
+            
+        }).on('hide', function(e) {
+            $('#pet-edit-date_of_death').datepicker('setStartDate', $('#pet-edit-date_of_birth').val() );
+            setAge();
+        });
     });
+
+    function setAge()
+    {
+        var a = moment();
+        
+        if( $('#pet-edit-date_of_death').val() != ''){
+            var a = moment($('#pet-edit-date_of_death').val(), "DD-MM-YYYY");
+        }
+        var b = moment($('#pet-edit-date_of_birth').val(), "DD-MM-YYYY");
+
+        var years = a.diff(b, 'year');
+        b.add(years, 'years');
+
+        var months = a.diff(b, 'months');
+        b.add(months, 'months');
+
+        var days = a.diff(b, 'days');
+
+        // console.log(years + ' years ' + months + ' months ' + days + ' days');
+
+        if(years >= 0 && months >= 0 && days >= 0 ){
+            $('#pet-edit-age-years').val(years);
+            $('#pet-edit-age-months').val(months);
+            $('#pet-edit-age-days').val(days);
+        } else {
+            alert("Date of death cannot be before Date of birth")
+            $('#pet-edit-age-years').val('');
+            $('#pet-edit-age-months').val('');
+            $('#pet-edit-age-days').val('');
+
+            $('#pet-edit-date_of_death').val('')
+            $('#pet-edit-date_of_death').datepicker('update');
+        }
+
+    }
 </script>
 
 @endpush

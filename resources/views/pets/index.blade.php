@@ -151,8 +151,20 @@
                     $('#pet-edit-sex').val(pet.sex)
                     $('#pet-edit-color').val(pet.color)
                     $('#pet-edit-description').val(pet.description)
-                    $('#pet-edit-date_of_birth').val(pet.date_of_birth)
 
+                    $('#pet-edit-date_of_birth').val(pet.date_of_birth)
+                    $('#pet-edit-date_of_birth').datepicker('update');
+
+                    $('#pet-edit-date_of_death').val(pet.date_of_death);
+                    $('#pet-edit-date_of_death').datepicker('update');
+
+                    $('#pet-edit-microchip').val(pet.microchip)
+                    $('#pet-edit-microchip_location').val(pet.microchip_location)
+                    $('#pet-edit-tatuatge').val(pet.tatuatge)
+                    $('#pet-edit-tatuatge_location').val(pet.tatuatge_location)
+
+                    setAge();
+                    
                     // Display Modal
                     $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/owners/' + id);
                     $('#pet-edit-modal').modal('show');

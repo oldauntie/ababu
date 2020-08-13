@@ -9,7 +9,6 @@
                     {{__('translate.owners')}}
                     <button type="button" id="owner-new-button"
                         class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
-                    <button type="button" id="owner-test-button" class="btn btn-sm btn-primary">test</button>
                     <br>
                     <small>{{ __('help.owners_description') }}</small>
                 </div>
@@ -253,12 +252,6 @@
         $('#owner-new-button').click(function() {
             console.log('new record');
             $('#owner-create-modal').modal('show');
-        });
-
-
-        $('#owner-test-button').click(function() {
-            console.log('owner-overlay-modal');
-            $('#owner-overlay-modal').modal('show');
         });
 
 

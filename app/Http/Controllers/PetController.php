@@ -102,7 +102,6 @@ class PetController extends Controller
             $request->session()->flash('error', 'message.pet_update_error');
         }
 
-
         return redirect()->route('clinics.pets.index', [$clinic, $pet]);
     }
 
@@ -156,9 +155,18 @@ class PetController extends Controller
 
     public function get(Clinic $clinic, Pet $pet)
     {
+        $locale = auth()->user()->locale;
         $result = $pet->toArray();
+        // formatting dates
+        $result['date_of_birth'] = $pet->date_of_birth->format($locale->date_short_format);
+        $result['date_of_death'] = $pet->date_of_birth->format($locale->date_short_format);
+        $result['created_at'] = $pet->created_at ? $pet->created_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
+        $result['updated_at'] = $pet->updated_at ? $pet->updated_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
+        
         $result += ['species' => $pet->species->toArray()];
         $result += ['owner' => $pet->owner->toArray()];
+
+        
 
         return response()->json($result);
     }

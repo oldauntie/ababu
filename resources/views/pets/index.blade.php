@@ -33,6 +33,7 @@
                                         <th>{{__('translate.microchip')}}</th>
                                         <th>{{__('translate.description')}}</th>
                                         <th>{{__('translate.color')}}</th>
+                                        <th>{{__('translate.updated_at')}}</th>
                                         <th>{{__('translate.actions')}}</th>
                                     </tr>
                                 </thead>
@@ -73,15 +74,12 @@
     </div>
 </div>
 
-@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 @include('pets.modal.edit')
 @include('pets.modal.confirm-delete')
-@endif
 
 @endsection
 
 @push('scripts')
-@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 
 <link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
 <script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
@@ -109,6 +107,7 @@
                 {data: "microchip", name: "microchip"},
                 {data: "description", name: "description"},
                 {data: "color", name: "color"},
+                {data: "updated_at", name: "updated_at"},
                 {data: "action", name: "action", width: "150px"},
             ],
         });
@@ -163,6 +162,9 @@
                     $('#pet-edit-tatuatge').val(pet.tatuatge)
                     $('#pet-edit-tatuatge_location').val(pet.tatuatge_location)
 
+                    $('#pet-edit-created_at').html(pet.created_at)
+                    $('#pet-edit-updated_at').html(pet.updated_at)
+
                     setAge();
                     
                     // Display Modal
@@ -184,5 +186,4 @@
 
 
 </script>
-@endif
 @endpush

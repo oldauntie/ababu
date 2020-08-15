@@ -13,8 +13,8 @@ class Pet extends Model
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date_of_birth', 'date_of_death'];
 
     protected $casts = [
-        'date_of_birth' => 'datetime:d/m/Y',
-        'date_of_death' => 'datetime:d/m/Y',
+        // 'date_of_birth' => 'datetime:d/m/Y',
+        // 'date_of_death' => 'datetime:d/m/Y',
     ];
 
     protected $fillable = [

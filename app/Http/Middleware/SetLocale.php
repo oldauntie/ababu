@@ -19,7 +19,7 @@ class SetLocale
     public function handle($request, Closure $next)
     {
         if ($request->user() != null) {
-            app()->setLocale($request->user()->locale->id);
+            app()->setLocale($request->user()->locale->language);
         }
 
         return $next($request);

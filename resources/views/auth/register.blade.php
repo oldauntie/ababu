@@ -45,7 +45,7 @@
                             <div class="col-md-6">
                                 <select name="locale_id" id="locale_id" class="form-control">
                                     @foreach ($locales as $locale)
-                                    <option value="{{ $locale->id }}"  {{ old('locale_id')? "selected":"" }}>{{ $locale->language }}</option>  
+                                    <option value="{{ $locale->id }}"  {{ old('locale_id')? "selected":"" }}>{{ $locale->description }}</option>  
                                     @endforeach
                                 </select>
 

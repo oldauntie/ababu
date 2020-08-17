@@ -134,8 +134,6 @@
                 url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
                 type: 'get',
                 success: function(pet){ 
-                    // console.log(pet);
-                    
                     // fill Modal with owner details                    
                     $('#pet-edit-name').val(pet.name);
 

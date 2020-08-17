@@ -14,7 +14,7 @@ class OwnersTableSeeder extends Seeder
     {
         $owner = Owner::create([
             'clinic_id' => 0,
-            'country_id' => 'gb',
+            'country_id' => 'ie',
             'firstname' => 'Phil',
             'lastname' => 'Lynott',
             'address' => 'Abbot Rd.',

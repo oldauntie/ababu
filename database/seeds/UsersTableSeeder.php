@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         $veterinarianRole = Role::where('name', 'veterinarian')->first();
 
         $root = User::create([
-            'locale_id' => 'en',
+            'locale_id' => 'en-GB',
             'name' => 'root',
             'email' => 'root@ababu.cloud',
             'password' => Hash::make('ababu'),
@@ -34,21 +34,21 @@ class UsersTableSeeder extends Seeder
         DB::statement('ALTER TABLE users AUTO_INCREMENT = 1');
 
         $admin = User::create([
-            'locale_id' => 'en',
+            'locale_id' => 'en-US',
             'name' => 'Admin User',
             'email' => 'admin@ababu.cloud',
             'password' => Hash::make('ababu'),
         ]);
 
         $veterinarian = User::create([
-            'locale_id' => 'en',
+            'locale_id' => 'it-IT',
             'name' => 'veterinarian',
             'email' => 'veterinarian@ababu.cloud',
             'password' => Hash::make('ababu'),
         ]);
 
         $user = User::create([
-            'locale_id' => 'en',
+            'locale_id' => 'en-US',
             'name' => 'Generic User',
             'email' => 'user@ababu.cloud',
             'password' => Hash::make('ababu'),

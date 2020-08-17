@@ -281,13 +281,15 @@
 
 <!-- datatable -->
 <script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}" charset="UTF-8"></script>
-@if(auth()->user()->locale->id != 'en')
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->id . '.min.js')}}" charset="UTF-8"></script>
+@if(auth()->user()->locale->id != 'en-US')
+<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}" charset="UTF-8"></script>
 @endif
 <link rel="stylesheet" type="text/css" href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
 <!-- moment -->
-<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment.js')}}"></script>
+<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
+
+<!-- bootbox -->
 <script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
 
 <script type="text/javascript">
@@ -364,13 +366,13 @@
 
     function setAge()
     {
-        return;
-        var a = moment();
-        
+        var a = moment().locale('{{auth()->user()->locale->short_code}}');
+        var b = moment().locale('{{auth()->user()->locale->short_code}}');
+
         if( $('#pet-edit-date_of_death').val() != ''){
-            var a = moment($('#pet-edit-date_of_death').val(), "DD-MM-YYYY");
+            a = moment($('#pet-edit-date_of_death').val(), a.localeData().longDateFormat('L'));
         }
-        var b = moment($('#pet-edit-date_of_birth').val(), "DD-MM-YYYY");
+        b = moment($('#pet-edit-date_of_birth').val(), b.localeData().longDateFormat('L'));
 
         var years = a.diff(b, 'year');
         b.add(years, 'years');
@@ -387,15 +389,17 @@
             $('#pet-edit-age-months').val(months);
             $('#pet-edit-age-days').val(days);
         } else {
-            
+            // show an alert
             bootbox.alert("{{ __('message.pet_date_of_death_warning') }}", function() {
-                // console.log("Alert Callback");
+                // console.log("Alert Callback when OK is pressed");
             });
 
+            // empty age inputs
             $('#pet-edit-age-years').val('');
             $('#pet-edit-age-months').val('');
             $('#pet-edit-age-days').val('');
 
+            // empty datepicker
             $('#pet-edit-date_of_death').val('')
             $('#pet-edit-date_of_death').datepicker('update');
         }

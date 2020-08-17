@@ -79,7 +79,6 @@ class PetController extends Controller
             'sex' => 'required|max:1',
             'date_of_birth' => 'required',
         ]);
-        // dd($request);
 
         $pet->species_id = $request->species_id;
 
@@ -87,8 +86,8 @@ class PetController extends Controller
         $pet->owner_id = $request->owner_id;
         $pet->name = $request->name;
         $pet->sex = $request->sex;
-        $pet->date_of_birth = Carbon::createFromFormat("d/m/Y", $request->date_of_birth);
-        $pet->date_of_death = $request->date_of_death == null ? null : Carbon::createFromFormat("d/m/Y", $request->date_of_death);
+        $pet->date_of_birth = Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->date_of_birth);
+        $pet->date_of_death = $request->date_of_death == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->date_of_death);
         $pet->description = $request->description;
         $pet->color = $request->color;
         $pet->microchip = $request->microchip;
@@ -157,16 +156,15 @@ class PetController extends Controller
     {
         $locale = auth()->user()->locale;
         $result = $pet->toArray();
+
         // formatting dates
         $result['date_of_birth'] = $pet->date_of_birth->format($locale->date_short_format);
-        $result['date_of_death'] = $pet->date_of_birth->format($locale->date_short_format);
+        $result['date_of_death'] = $pet->date_of_death != null ? $pet->date_of_death->format($locale->date_short_format) : null;
         $result['created_at'] = $pet->created_at ? $pet->created_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
         $result['updated_at'] = $pet->updated_at ? $pet->updated_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
         
         $result += ['species' => $pet->species->toArray()];
         $result += ['owner' => $pet->owner->toArray()];
-
-        
 
         return response()->json($result);
     }

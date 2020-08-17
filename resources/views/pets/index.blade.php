@@ -8,7 +8,8 @@
             <div class="card">
                 <div class="card-header">
                     {{__('translate.pets')}}
-                    <button type="button" id="btnNew" class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
+                    <button type="button" id="pet-create-button"
+                        class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
                     <br>
                     <small>{{ __('help.pets_description') }}</small>
                 </div>
@@ -19,6 +20,24 @@
                         {{ session('status') }}
                     </div>
                     @endif
+
+                    <!-- open modal if errors -->
+                    @if ($errors->any())
+                    @if($errors->has('pet_id'))
+                    <script>
+                        $(function() {
+                            openPetEditModal( {{$errors->first('pet_id')}} )
+                        })
+                    </script>
+                    @else
+                    <script>
+                        $(function() {
+                            $( "#pet-create-button" ).trigger( "click" );
+                        })
+                    </script>
+                    @endif
+                    @endif
+
                     <div class="row">
                         <div class="col col-md-12">
                             <table id="pets" class="display compact" style="width:100%">
@@ -75,17 +94,18 @@
 </div>
 
 @include('pets.modal.edit')
+@include('pets.modal.create')
 @include('pets.modal.confirm-delete')
 
 @endsection
 
 @push('scripts')
-
 <link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
 <script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
 
 <script type="text/javascript">
     $(function() {
+        // load Pet main datatable
         var table = $('#pets').DataTable({
             processing: true,
             serverSide: true,
@@ -112,64 +132,20 @@
             ],
         });
 
+        // set color on selected row
         $('#pets tbody').on('click', 'tr', function() {
-            var rowData = table.row(this).data();
-            // console.log(rowData.id)
-            
-            if ($(this).hasClass('selected')) {
-                // $(this).removeClass('selected');
-            } else {
+            if (!$(this).hasClass('selected')) {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
         });
-
 
         // edit button
         $(document).on('click', '.pet-edit-button', function(){
             var selData = table.rows(".selected").data();
             var id = selData[0].id;
 
-            $.ajax({
-                url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
-                type: 'get',
-                success: function(pet){ 
-                    // fill Modal with owner details                    
-                    $('#pet-edit-name').val(pet.name);
-
-                    $("#pet-edit-species_id").empty();
-                    var speciesOption = new Option(pet.species.familiar_name, pet.species.id, false, false);
-                    $('#pet-edit-species_id').append(speciesOption).trigger('change');
-
-                    $("#pet-edit-owner_id").empty();
-                    var ownerOption = new Option(pet.owner.firstname + ' ' + pet.owner.lastname, pet.owner_id, false, false);
-                    $('#pet-edit-owner_id').append(ownerOption).trigger('change');
-        
-                    $('#pet-edit-sex').val(pet.sex)
-                    $('#pet-edit-color').val(pet.color)
-                    $('#pet-edit-description').val(pet.description)
-
-                    $('#pet-edit-date_of_birth').val(pet.date_of_birth)
-                    $('#pet-edit-date_of_birth').datepicker('update');
-
-                    $('#pet-edit-date_of_death').val(pet.date_of_death);
-                    $('#pet-edit-date_of_death').datepicker('update');
-
-                    $('#pet-edit-microchip').val(pet.microchip)
-                    $('#pet-edit-microchip_location').val(pet.microchip_location)
-                    $('#pet-edit-tatuatge').val(pet.tatuatge)
-                    $('#pet-edit-tatuatge_location').val(pet.tatuatge_location)
-
-                    $('#pet-edit-created_at').html(pet.created_at)
-                    $('#pet-edit-updated_at').html(pet.updated_at)
-
-                    setAge();
-                    
-                    // Display Modal
-                    $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
-                    $('#pet-edit-modal').modal('show');
-                }
-            });
+            openPetEditModal(id);
         });
         
         // delete button
@@ -179,9 +155,97 @@
             $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
             $('#confirm-delete-modal').modal('show');
         });
-
+        
+        // create button
+        $(document).on('click', '#pet-create-button', function(){
+            $('#pet-create-modal').modal('show');
+        });
     });
 
+    // open modal form for edit purpose
+    function openPetEditModal(id)
+    {
+        $.ajax({
+            url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
+            type: 'get',
+            success: function(pet){ 
+                // fill Modal with owner details                    
+                $('#pet-edit-name').val(pet.name);
 
+                $("#pet-edit-species_id").empty();
+                var speciesOption = new Option(pet.species.familiar_name, pet.species.id, false, false);
+                $('#pet-edit-species_id').append(speciesOption).trigger('change');
+
+                $("#pet-edit-owner_id").empty();
+                var ownerOption = new Option(pet.owner.firstname + ' ' + pet.owner.lastname, pet.owner_id, false, false);
+                $('#pet-edit-owner_id').append(ownerOption).trigger('change');
+    
+                $('#pet-edit-sex').val(pet.sex)
+                $('#pet-edit-color').val(pet.color)
+                $('#pet-edit-description').val(pet.description)
+
+                $('#pet-edit-date_of_birth').val(pet.date_of_birth)
+                $('#pet-edit-date_of_birth').datepicker('update');
+
+                $('#pet-edit-date_of_death').val(pet.date_of_death);
+                $('#pet-edit-date_of_death').datepicker('update');
+
+                $('#pet-edit-microchip').val(pet.microchip)
+                $('#pet-edit-microchip_location').val(pet.microchip_location)
+                $('#pet-edit-tatuatge').val(pet.tatuatge)
+                $('#pet-edit-tatuatge_location').val(pet.tatuatge_location)
+
+                $('#pet-edit-created_at').html(pet.created_at)
+                $('#pet-edit-updated_at').html(pet.updated_at)
+
+                setAge();
+                
+                // Display Modal
+                $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
+                $('#pet-edit-modal').modal('show');
+            }
+        });
+    }
+
+    function setAge()
+    {
+        var a = moment().locale('{{auth()->user()->locale->short_code}}');
+        var b = moment().locale('{{auth()->user()->locale->short_code}}');
+
+        if( $('#pet-edit-date_of_death').val() != ''){
+            a = moment($('#pet-edit-date_of_death').val(), a.localeData().longDateFormat('L'));
+        }
+        b = moment($('#pet-edit-date_of_birth').val(), b.localeData().longDateFormat('L'));
+
+        var years = a.diff(b, 'year');
+        b.add(years, 'years');
+
+        var months = a.diff(b, 'months');
+        b.add(months, 'months');
+
+        var days = a.diff(b, 'days');
+
+        console.log(years + ' years ' + months + ' months ' + days + ' days');
+
+        if(years >= 0 && months >= 0 && days >= 0 ){
+            $('#pet-edit-age-years').val(years);
+            $('#pet-edit-age-months').val(months);
+            $('#pet-edit-age-days').val(days);
+        } else {
+            // show an alert
+            bootbox.alert("{{ __('message.pet_date_of_death_warning') }}", function() {
+                // console.log("Alert Callback when OK is pressed");
+            });
+
+            // empty age inputs
+            $('#pet-edit-age-years').val('');
+            $('#pet-edit-age-months').val('');
+            $('#pet-edit-age-days').val('');
+
+            // empty datepicker
+            $('#pet-edit-date_of_death').val('')
+            $('#pet-edit-date_of_death').datepicker('update');
+        }
+    }
 </script>
 @endpush

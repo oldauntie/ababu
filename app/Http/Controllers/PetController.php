@@ -8,6 +8,7 @@ use App\Owner;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class PetController extends Controller
 {
@@ -37,9 +38,32 @@ class PetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic)
     {
-        //
+        // validate
+        /*
+        $validator = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        */
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            $validator->getMessageBag()->add('action_pet_store', 'Errors on Store');
+
+            return redirect()->route('clinics.pets.index', [$clinic])
+                ->withErrors($validator)
+                ->withInput();
+
+            /*
+            return redirect('clinics.pets.index', [$clinic]))
+                        ->withErrors($validator)
+                        ->withInput();
+                        */
+        }
     }
 
     /**
@@ -74,11 +98,26 @@ class PetController extends Controller
     public function update(Request $request, Clinic $clinic, Pet $pet)
     {
         // validate
+        /*
         $request->validate([
             'name' => 'required|max:255',
             'sex' => 'required|max:1',
             'date_of_birth' => 'required',
+            ]);
+            */
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'sex' => 'required|max:1',
+            'date_of_birth' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            $validator->getMessageBag()->add('pet_id', $pet->id);
+
+            return redirect()->route('clinics.pets.index', [$clinic])
+                ->withErrors($validator);
+        }
 
         $pet->species_id = $request->species_id;
 
@@ -162,7 +201,7 @@ class PetController extends Controller
         $result['date_of_death'] = $pet->date_of_death != null ? $pet->date_of_death->format($locale->date_short_format) : null;
         $result['created_at'] = $pet->created_at ? $pet->created_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
         $result['updated_at'] = $pet->updated_at ? $pet->updated_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
-        
+
         $result += ['species' => $pet->species->toArray()];
         $result += ['owner' => $pet->owner->toArray()];
 

@@ -1,11 +1,11 @@
 <!-- Attachment Modal -->
-<div class="modal fade" id="pet-edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label"
+<div class="modal fade" id="pet-create-modal" tabindex="-1" role="dialog" aria-labelledby="edit-modal-label"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">{{__('translate.pet')}} {{__('translate.edit')}}
+                <h5 class="modal-title">{{__('translate.pet')}} {{__('translate.create')}}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span>
@@ -13,18 +13,17 @@
             </div>
 
             <div class="modal-body">
-                <form method="POST" id="pet-edit-modal-form" action="" enctype="multipart/form-data">
+                <form method="POST" id="pet-create-modal-form" action="{{route('clinics.pets.store', $clinic)}}" enctype="multipart/form-data">
                     @csrf
-                    {{ method_field('PUT') }}
 
                     <div class="form-group row">
                         <div class="col-md-7">
 
                             <!-- name -->
-                            <label for="pet-edit-name" class="text-md-right">{{__('translate.name')}}*</label>
-                            <input id="pet-edit-name" type="text"
+                            <label for="pet-create-name" class="text-md-right">{{__('translate.name')}}*</label>
+                            <input id="pet-create-name" type="text"
                                 class="form-control  form-control-sm @error('name') is-invalid @enderror" name="name"
-                                value="" autocomplete="name" required autofocus maxlength="255">
+                                value="{{old('name')}}" autocomplete="name" required autofocus maxlength="255">
                             <small class="form-text text-muted">{{__('help.pet_name')}}</small>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -35,12 +34,12 @@
                             <!-- species -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="pet-edit-species_id">{{__('translate.species')}}</label>
+                                    <label for="pet-create-species_id">{{__('translate.species')}}</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select id="pet-edit-species_id" name="species_id" class="form-control"
+                                    <select id="pet-create-species_id" name="species_id" class="form-control"
                                         required></select>
                                     <small class="form-text text-muted">{{__('help.species_select')}}</small>
                                     @error('species_id')
@@ -54,12 +53,12 @@
                             <!-- owner -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="pet-edit-owner_id">{{__('translate.owner')}}</label>
+                                    <label for="pet-create-owner_id">{{__('translate.owner')}}</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select id="pet-edit-owner_id" name="owner_id"></select>
+                                    <select id="pet-create-owner_id" name="owner_id" class="form-control" required></select>
                                     <small class="form-text text-muted">{{__('help.owner_select')}}</small>
                                     @error('owner_id')
                                     <span class="invalid-feedback" role="alert">
@@ -72,8 +71,8 @@
                             <!-- sex and color -->
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="pet-edit-sex" class="text-md-right">{{__('translate.sex')}}*</label>
-                                    <select name="sex" class="form-control" id="pet-edit-sex">
+                                    <label for="pet-create-sex" class="text-md-right">{{__('translate.sex')}}*</label>
+                                    <select name="sex" class="form-control" id="pet-create-sex">
                                         <option value="M">M</option>
                                         <option value="F">F</option>
                                         <option value="0">0</option>
@@ -83,8 +82,8 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="pet-edit-color" class="text-md-right">{{__('translate.color')}}*</label>
-                                    <input id="pet-edit-color" type="text"
+                                    <label for="pet-create-color" class="text-md-right">{{__('translate.color')}}*</label>
+                                    <input id="pet-create-color" type="text"
                                         class="form-control  form-control-sm @error('color') is-invalid @enderror"
                                         name="color" value="" autocomplete="color" autofocus maxlength="255">
                                     <small class="form-text text-muted">{{__('help.pet_color')}}</small>
@@ -100,12 +99,12 @@
                             <!-- description -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="pet-edit-description">{{__('translate.description')}}</label>
+                                    <label for="pet-create-description">{{__('translate.description')}}</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <textarea id="pet-edit-description" name="description" rows="3" cols="50"
+                                    <textarea id="pet-create-description" name="description" rows="3" cols="50"
                                         class="form-contro form-control-sml">{{{ old('description') }}}</textarea>
 
                                     <small class="form-text text-muted">{{__('help.pet_description')}}</small>
@@ -121,9 +120,9 @@
                             <div class="row">
                                 <!-- date of birth -->
                                 <div class="col-md-3">
-                                    <label for="pet-edit-date_of_birth"
+                                    <label for="pet-create-date_of_birth"
                                         class="text-md-right">{{__('translate.date_of_birth')}}*</label>
-                                    <input id="pet-edit-date_of_birth" type="text"
+                                    <input id="pet-create-date_of_birth" type="text"
                                         class="form-control form-control-sm datepicker @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth" value="" autocomplete="date_of_birth" required autofocus
                                         maxlength="64">
@@ -137,9 +136,9 @@
 
                                 <!-- date of death -->
                                 <div class="col-md-3">
-                                    <label for="pet-edit-date_of_death"
+                                    <label for="pet-create-date_of_death"
                                         class="text-md-right">{{__('translate.date_of_death')}}</label>
-                                    <input id="pet-edit-date_of_death" type="text"
+                                    <input id="pet-create-date_of_death" type="text"
                                         class="form-control form-control-sm input-sm datepicker @error('date_of_death') is-invalid @enderror"
                                         name="date_of_death" value="" autocomplete="date_of_death" autofocus
                                         maxlength="64">
@@ -153,25 +152,25 @@
 
                                 <!-- years -->
                                 <div class="col-md-2">
-                                    <label for="pet-edit-age-years"
+                                    <label for="pet-create-age-years"
                                         class="text-md-right">{{__('translate.years')}}</label>
-                                    <input id="pet-edit-age-years" type="text" class="form-control form-control-sm"
+                                    <input id="pet-create-age-years" type="text" class="form-control form-control-sm"
                                         value="">
                                 </div>
 
                                 <!-- months -->
                                 <div class="col-md-2">
-                                    <label for="pet-edit-age-months"
+                                    <label for="pet-create-age-months"
                                         class="text-md-right">{{__('translate.months')}}</label>
-                                    <input id="pet-edit-age-months" type="text" class="form-control form-control-sm"
+                                    <input id="pet-create-age-months" type="text" class="form-control form-control-sm"
                                         value="">
                                 </div>
 
                                 <!-- days -->
                                 <div class="col-md-2">
-                                    <label for="pet-edit-age-days"
+                                    <label for="pet-create-age-days"
                                         class="text-md-right">{{__('translate.days')}}</label>
-                                    <input id="pet-edit-age-days" type="text" class="form-control form-control-sm"
+                                    <input id="pet-create-age-days" type="text" class="form-control form-control-sm"
                                         value="">
                                 </div>
 
@@ -184,9 +183,9 @@
                                 <legend>{{__('translate.microchip')}}</legend>
 
                                 <!-- microchip -->
-                                <label for="pet-edit-microchip"
+                                <label for="pet-create-microchip"
                                     class="text-md-right">{{__('translate.microchip')}}*</label>
-                                <input id="pet-edit-microchip" type="text"
+                                <input id="pet-create-microchip" type="text"
                                     class="form-control form-control-sm @error('microchip') is-invalid @enderror"
                                     name="microchip" value="" autocomplete="microchip" autofocus maxlength="64">
                                 <small class="form-text text-muted">{{__('help.pet_microchip')}}</small>
@@ -197,9 +196,9 @@
                                 @enderror
 
                                 <!-- microchip_location -->
-                                <label for="pet-edit-microchip_location"
+                                <label for="pet-create-microchip_location"
                                     class="text-md-right">{{__('translate.microchip_location')}}</label>
-                                <input id="pet-edit-microchip_location" type="text"
+                                <input id="pet-create-microchip_location" type="text"
                                     class="form-control form-control-sm @error('microchip_location') is-invalid @enderror"
                                     name="microchip_location" value="" autocomplete="microchip_location" autofocus
                                     maxlength="100">
@@ -217,9 +216,9 @@
                                 <legend>{{__('translate.tatuatge')}}</legend>
 
                                 <!-- tatuatge -->
-                                <label for="pet-edit-tatuatge"
+                                <label for="pet-create-tatuatge"
                                     class="text-md-right">{{__('translate.tatuatge')}}*</label>
-                                <input id="pet-edit-tatuatge" type="text"
+                                <input id="pet-create-tatuatge" type="text"
                                     class="form-control form-control-sm @error('tatuatge') is-invalid @enderror"
                                     name="tatuatge" value="" autocomplete="tatuatge" autofocus maxlength="64">
                                 <small class="form-text text-muted">{{__('help.pet_tatuatge')}}</small>
@@ -230,9 +229,9 @@
                                 @enderror
 
                                 <!-- tatuatge_location -->
-                                <label for="pet-edit-tatuatge_location"
+                                <label for="pet-create-tatuatge_location"
                                     class="text-md-right">{{__('translate.tatuatge_location')}}</label>
-                                <input id="pet-edit-tatuatge_location" type="text"
+                                <input id="pet-create-tatuatge_location" type="text"
                                     class="form-control form-control-sm @error('tatuatge_location') is-invalid @enderror"
                                     name="tatuatge_location" value="" autocomplete="tatuatge_location" autofocus
                                     maxlength="100">
@@ -262,9 +261,9 @@
             <div class="modal-footer justify-content-between">
                 <div class="row" style="width: 95%">
                     <div class="col-2">{{ __('translate.created_at') }}</div>
-                    <div class="col-2" id="pet-edit-created_at">00:00:00</div>
+                    <div class="col-2" id="pet-create-created_at">00:00:00</div>
                     <div class="col-2">{{ __('translate.updated_at') }}</div>
-                    <div class="col-2" id="pet-edit-updated_at">00:00:00</div>
+                    <div class="col-2" id="pet-create-updated_at">00:00:00</div>
                 </div>
             </div>
 
@@ -294,7 +293,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#pet-edit-species_id").select2({
+        $("#pet-create-species_id").select2({
             ajax: { 
                 placeholder: "Choose species...",
                 minimumInputLength: 3,
@@ -316,7 +315,7 @@
         });
 
 
-        $("#pet-edit-owner_id").select2({
+        $("#pet-create-owner_id").select2({
             ajax: { 
                 placeholder: "Choose owner...",
                 minimumInputLength: 3,
@@ -336,10 +335,8 @@
                 cache: true
             }
         });
-
-
         
-        var date_of_death = $('#pet-edit-date_of_death').datepicker({
+        var date_of_death = $('#pet-create-date_of_death').datepicker({
             // format: "dd/mm/yyyy",
             language: "{{ auth()->user()->locale->id}}",
             todayHighlight: true,
@@ -351,7 +348,7 @@
             setAge();
         });
 
-        var date_of_birth = $('#pet-edit-date_of_birth').datepicker({
+        var date_of_birth = $('#pet-create-date_of_birth').datepicker({
             // format: "dd/mm/yyyy",
             language: "{{ auth()->user()->locale->id}}",
             todayHighlight: true,
@@ -359,12 +356,10 @@
         }).on('changeDate', function(e) {
             
         }).on('hide', function(e) {
-            $('#pet-edit-date_of_death').datepicker('setStartDate', $('#pet-edit-date_of_birth').val() );
+            $('#pet-create-date_of_death').datepicker('setStartDate', $('#pet-create-date_of_birth').val() );
             setAge();
         });
     });
-
-    
 </script>
 
 @endpush

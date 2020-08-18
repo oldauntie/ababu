@@ -70,7 +70,7 @@ class ClinicController extends Controller
         $adminRole = Role::where('name', 'admin')->first();
         $clinic->roles()->attach($adminRole, ['user_id' => Auth::user()->id]);
 
-        return redirect()->route('home')->with('success', __('message.clinic_create_success'));
+        return redirect()->route('home')->with('success', __('message.clinic_store_success'));
     }
 
     /**

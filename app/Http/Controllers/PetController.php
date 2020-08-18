@@ -41,14 +41,10 @@ class PetController extends Controller
     public function store(Request $request, Clinic $clinic)
     {
         // validate
-        /*
-        $validator = $request->validate([
-            'name' => 'required|max:255',
-        ]);
-        */
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
+            'sex' => 'required|max:1',
+            'date_of_birth' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -57,13 +53,33 @@ class PetController extends Controller
             return redirect()->route('clinics.pets.index', [$clinic])
                 ->withErrors($validator)
                 ->withInput();
-
-            /*
-            return redirect('clinics.pets.index', [$clinic]))
-                        ->withErrors($validator)
-                        ->withInput();
-                        */
         }
+
+        $pet = new Pet([
+            'clinic_id' => $clinic->id,
+            'species_id' => $request->get('species_id'),
+            'owner_id' => $request->get('owner_id'),
+            'name' => $request->get('name'),
+            'sex' => $request->get('sex'),
+            'date_of_birth' => Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->get('date_of_birth') ),
+            'date_of_death' => $request->get('date_of_death') != null ? Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->get('date_of_death') ) : null,
+            'description' => $request->get('description'),
+            'color' => $request->get('color'),
+            'microchip' => $request->get('microchip'),
+            'microchip_location' => $request->get('microchip_location'),
+            'tatuatge' => $request->get('tatuatge'),
+            'tatuatge_location' => $request->get('tatuatge_location'),
+        ]);
+
+        $pet->save();
+
+        if ($pet->save()) {
+            $request->session()->flash('success', __('message.pet_create_success'));
+        } else {
+            $request->session()->flash('error', 'message.pet_store_error');
+        }
+
+        return redirect()->route('clinics.pets.index', [$clinic, $pet]);
     }
 
     /**
@@ -98,14 +114,6 @@ class PetController extends Controller
     public function update(Request $request, Clinic $clinic, Pet $pet)
     {
         // validate
-        /*
-        $request->validate([
-            'name' => 'required|max:255',
-            'sex' => 'required|max:1',
-            'date_of_birth' => 'required',
-            ]);
-            */
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'sex' => 'required|max:1',
@@ -118,10 +126,9 @@ class PetController extends Controller
             return redirect()->route('clinics.pets.index', [$clinic])
                 ->withErrors($validator);
         }
-
-        $pet->species_id = $request->species_id;
-
+        
         $pet->clinic_id = $clinic->id;
+        $pet->species_id = $request->species_id;
         $pet->owner_id = $request->owner_id;
         $pet->name = $request->name;
         $pet->sex = $request->sex;

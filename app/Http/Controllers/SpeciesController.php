@@ -49,9 +49,9 @@ class SpeciesController extends Controller
 
         try {
             $species->save();
-            return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.specie_create_success'));
+            return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.species_store_success'));
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('clinics.species.index', $clinic)->with('error', __('message.specie_create_error'));
+            return redirect()->route('clinics.species.index', $clinic)->with('error', __('message.species_store_error'));
         }
     }
 
@@ -94,9 +94,9 @@ class SpeciesController extends Controller
 
         $species->save();
         try {
-            return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.specie_edit_success'));
+            return redirect()->route('clinics.species.index', $clinic)->with('success', __('message.specie_update_success'));
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('clinics.species.index', $clinic)->with('error', __('message.specie_edit_error'));
+            return redirect()->route('clinics.species.index', $clinic)->with('error', __('message.specie_update_error'));
         }
     }
 

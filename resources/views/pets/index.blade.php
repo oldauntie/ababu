@@ -10,7 +10,10 @@
                     {{__('translate.pets')}}
                     <button type="button" id="pet-create-button"
                         class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
+                    <button type="button" id="testme"
+                        class="btn btn-sm btn-primary">test me</button>
                     <br>
+
                     <small>{{ __('help.pets_description') }}</small>
                 </div>
 
@@ -93,6 +96,7 @@
     </div>
 </div>
 
+@include('pets.partial.delete')
 @include('pets.modal.edit')
 @include('pets.modal.create')
 @include('pets.modal.confirm-delete')
@@ -100,8 +104,15 @@
 @endsection
 
 @push('scripts')
+<!-- DataTable -->
 <link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
 <script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
+
+<!-- bootbox -->
+<script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
+
+<!-- animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" />
 
 <script type="text/javascript">
     $(function() {
@@ -149,11 +160,22 @@
         });
         
         // delete button
-        $(document).on('click', '.pet-delete-button', function(){
-            var row = table.rows(".selected").data();
-            var id = row[0].id;
-            $('#confirm-delete-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
-            $('#confirm-delete-modal').modal('show');
+        $(document).on('click', '.pet-delete-button', function(e){
+            e.preventDefault();
+            bootbox.confirm({
+                title: "{{__('translate.pet')}} {{__('translate.delete')}}",
+                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.pet_delete')}} </small>",
+                className: 'rubberBand animated',
+                callback: function(result) {
+                    if (result) {
+                        var row = table.rows(".selected").data();
+                        var id = row[0].id;
+                        $('#pet-edit-delete-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
+                        
+                        $('#pet-edit-delete-form').submit();
+                    }
+                }
+            });
         });
         
         // create button
@@ -198,7 +220,7 @@
                 $('#pet-edit-created_at').html(pet.created_at)
                 $('#pet-edit-updated_at').html(pet.updated_at)
 
-                setAge();
+                setAge('edit');
                 
                 // Display Modal
                 $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
@@ -207,15 +229,15 @@
         });
     }
 
-    function setAge()
+    function setAge(operation)
     {
         var a = moment().locale('{{auth()->user()->locale->short_code}}');
         var b = moment().locale('{{auth()->user()->locale->short_code}}');
 
-        if( $('#pet-edit-date_of_death').val() != ''){
-            a = moment($('#pet-edit-date_of_death').val(), a.localeData().longDateFormat('L'));
+        if( $('#pet-' + operation + '-date_of_death').val() != ''){
+            a = moment($('#pet-' + operation + '-date_of_death').val(), a.localeData().longDateFormat('L'));
         }
-        b = moment($('#pet-edit-date_of_birth').val(), b.localeData().longDateFormat('L'));
+        b = moment($('#pet-' + operation + '-date_of_birth').val(), b.localeData().longDateFormat('L'));
 
         var years = a.diff(b, 'year');
         b.add(years, 'years');
@@ -228,9 +250,9 @@
         console.log(years + ' years ' + months + ' months ' + days + ' days');
 
         if(years >= 0 && months >= 0 && days >= 0 ){
-            $('#pet-edit-age-years').val(years);
-            $('#pet-edit-age-months').val(months);
-            $('#pet-edit-age-days').val(days);
+            $('#pet-' + operation + '-age-years').val(years);
+            $('#pet-' + operation + '-age-months').val(months);
+            $('#pet-' + operation + '-age-days').val(days);
         } else {
             // show an alert
             bootbox.alert("{{ __('message.pet_date_of_death_warning') }}", function() {
@@ -238,14 +260,29 @@
             });
 
             // empty age inputs
-            $('#pet-edit-age-years').val('');
-            $('#pet-edit-age-months').val('');
-            $('#pet-edit-age-days').val('');
+            $('#pet-' + operation + '-age-years').val('');
+            $('#pet-' + operation + '-age-months').val('');
+            $('#pet-' + operation + '-age-days').val('');
 
             // empty datepicker
-            $('#pet-edit-date_of_death').val('')
-            $('#pet-edit-date_of_death').datepicker('update');
+            $('#pet-' + operation + '-date_of_death').val('')
+            $('#pet-' + operation + '-date_of_death').datepicker('update');
         }
     }
+
+    $(document).on('click', '#testme', function(e){
+        // alert('click 2');
+        e.preventDefault();
+        bootbox.confirm({
+            message: "This is an alert with additional classes!",
+            className: 'rubberBand animated',
+            callback: function(result) {
+                if (result) {
+                    alert('click');
+                    $('#student_delete_form').submit();
+                }
+            }
+        });
+    });
 </script>
 @endpush

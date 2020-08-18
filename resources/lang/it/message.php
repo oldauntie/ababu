@@ -9,8 +9,8 @@ return [
     */
 
     'are_you_sure' => 'Sei sicuro?',
-    'clinic_create_error' => 'Si è verificato un errore durante la creazione della tua clinica.',
-    'clinic_create_success' => 'Hai creato la tua clinica con successo.',
+    'clinic_store_error' => 'Si è verificato un errore durante la creazione della tua clinica.',
+    'clinic_store_success' => 'Hai creato la tua clinica con successo.',
     'clinic_destroy_success' => 'La tua clinica è stata eliminata.',
     'clinic_invitation_success' => 'Invito spedito con successo',
     'clinic_update_error' => 'Si è verificato un errore durante l\'aggiornameto della tua clinica.',
@@ -24,10 +24,10 @@ return [
     'owner_update_success' => 'Il proprietario è stato aggiornato con successo.',
     'pet_date_of_death_warning' => 'Warning! Date of death cannot be before Date of Birth', 
     'pet_destroy_success' => 'L\'animale selezionato è stato cancellato.',
-    'specie_create_error' => 'Si è verificato un errore. E\' probabile che la specie sia già stata selezionata.',
-    'specie_create_success' => 'La specie selezionata è stata aggiunta.',
-    'specie_edit_error' => 'Si è verificato un errore durante l\'aggiornamento della specie.',
-    'specie_edit_success' => 'La specie selezionata è stata aggiornata.',
+    'species_store_error' => 'Si è verificato un errore. E\' probabile che la specie sia già stata selezionata.',
+    'species_store_success' => 'La specie selezionata è stata aggiunta.',
+    'species_update_error' => 'Si è verificato un errore durante l\'aggiornamento della specie.',
+    'species_update_success' => 'La specie selezionata è stata aggiornata.',
     'user_update_success' => 'L\'utente è stato aggiornato.',
 
 ];

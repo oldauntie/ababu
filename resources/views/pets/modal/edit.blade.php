@@ -251,7 +251,8 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
-                            <button type="button" class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
+                            <button type="button" id="pet-edit-modal-delete-button"
+                                class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
                             <button type="button" class="btn btn-secondary btn-sm"
                                 data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>
@@ -280,17 +281,20 @@
 <link rel="stylesheet" type="text/css" href="{{url('/lib/select2-4.1.0-beta.1/dist/css/select2.min.css')}}" />
 
 <!-- datatable -->
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}"
+    charset="UTF-8"></script>
 @if(auth()->user()->locale->id != 'en-US')
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript"
+    src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}"
+    charset="UTF-8"></script>
 @endif
-<link rel="stylesheet" type="text/css" href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
+<link rel="stylesheet" type="text/css"
+    href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
 <!-- moment -->
 <script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
 
-<!-- bootbox -->
-<script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -336,8 +340,6 @@
                 cache: true
             }
         });
-
-
         
         var date_of_death = $('#pet-edit-date_of_death').datepicker({
             // format: "dd/mm/yyyy",
@@ -348,7 +350,7 @@
         }).on('show', function(e) {
             
         }).on('hide', function(e) {
-            setAge();
+            setAge('edit');
         });
 
         var date_of_birth = $('#pet-edit-date_of_birth').datepicker({
@@ -360,11 +362,11 @@
             
         }).on('hide', function(e) {
             $('#pet-edit-date_of_death').datepicker('setStartDate', $('#pet-edit-date_of_birth').val() );
-            setAge();
+            setAge('edit');
         });
-    });
 
-    
+        
+    });
 </script>
 
 @endpush

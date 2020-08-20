@@ -14,7 +14,7 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/Countries.sql'));
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/Countries.sql'));
         $this->command->info('Countries table seeded!');
         /*
         Country::create([

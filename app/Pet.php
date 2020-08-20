@@ -12,26 +12,37 @@ class Pet extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date_of_birth', 'date_of_death'];
 
+    /*
     protected $casts = [
-        // 'date_of_birth' => 'datetime:d/m/Y',
-        // 'date_of_death' => 'datetime:d/m/Y',
+        'date_of_birth' => 'datetime:d/m/Y',
+        'date_of_death' => 'datetime:d/m/Y',
     ];
+    */
+
+    protected $appends = ['age'];
+
+    public function getAgeAttribute()
+    {
+        $to_date = $this->date_of_death == null ? Carbon::now() : $this->date_of_death;
+        return $to_date->diffInYears($this->date_of_birth);
+    }
 
     protected $fillable = [
-        'species_id', 
-        'clinic_id',       
+        'species_id',
+        'clinic_id',
         'owner_id',
         'name',
         'sex',
-        'date_of_birth', 
-        'date_of_death', 
-        'description', 
+        'date_of_birth',
+        'date_of_death',
+        'description',
         'color',
         'microchip',
         'microchip_location',
         'tatuatge',
-        'tatuatge_location',  
+        'tatuatge_location',
     ];
+
 
 
 

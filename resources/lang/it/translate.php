@@ -8,10 +8,11 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'actions' => 'Azioni',
     'add' => 'Aggiungi',
     'address' => 'Indirizzo',
     'admin' => 'Admin',
-    'actions' => 'Azioni',
+    'age' => 'Età',
     'calendar' => 'Calendario',
     'city' => 'Città',
     'clinic' => 'Clinica',

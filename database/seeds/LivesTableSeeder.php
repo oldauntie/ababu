@@ -13,7 +13,7 @@ class LivesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/ItisLongnames.sql'));
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/ItisLongnames.sql'));
         $this->command->info('ITIS (lives) table seeded!');
     }
 }

@@ -133,8 +133,6 @@
 
 @endsection
 
-
-
 @push('scripts')
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
 
@@ -236,7 +234,6 @@
             }
         });
 
-
         // pets row selection
         $('#pets tbody').on('click', 'tr', function() {
             var rowData = table_pets.row(this).data();
@@ -247,13 +244,11 @@
             }
         });
 
-
         // new button
         $('#owner-new-button').click(function() {
             console.log('new record');
             $('#owner-create-modal').modal('show');
         });
-
 
         // edit button
         $(document).on('click', '.owner-edit-button', function(){
@@ -293,28 +288,18 @@
             $('#confirm-delete-modal').modal('show');
         });
 
-
         // visit button
         $(document).on('click', '.pet-visit-button', function(){
             var selData = table_pets.rows(".selected").data();
             if(selData.length > 0)
             {
                 var pet_id = selData[0].id;
-                console.log('visit: ' +pet_id);
+                location.href = "/clinics/{{ $clinic->id }}/visits/" + pet_id;
             }
         });
 
-
         $('#owner-overlay-modal').on('show.bs.modal', function (event) {
-            // console.log(event);
-            /*
-
-            var modal = $(this)
-            console.log(id)
-            $("#docsForm").attr("action", "/contact_delete/" + id+"/");
-            */
             var button = $(event.relatedTarget); // Button that triggered the modal
-            
             $('#owner-overlay-modal-label').html( button.text() );
         });
     });

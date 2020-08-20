@@ -23,6 +23,13 @@ class Owner extends Model
         'email'
     ];
 
+    protected $appends = ['fullname'];
+
+    public function getFullnameAttribute()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
     protected static function boot() {
         parent::boot();
     

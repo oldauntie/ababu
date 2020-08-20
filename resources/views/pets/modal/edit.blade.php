@@ -251,8 +251,6 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
-                            <button type="button" id="pet-edit-modal-delete-button"
-                                class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
                             <button type="button" class="btn btn-secondary btn-sm"
                                 data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>

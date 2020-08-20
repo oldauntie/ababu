@@ -21,7 +21,6 @@ class CreateDiagnosesTable extends Migration
             
             $table->index('term_name');
             $table->primary('id');
-            // $table->timestamps();
         });
     }
 

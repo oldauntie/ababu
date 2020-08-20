@@ -10,8 +10,6 @@
                     {{__('translate.pets')}}
                     <button type="button" id="pet-create-button"
                         class="btn btn-sm btn-primary">{{__('translate.new')}}</button>
-                    <button type="button" id="testme"
-                        class="btn btn-sm btn-primary">test me</button>
                     <br>
 
                     <small>{{ __('help.pets_description') }}</small>
@@ -138,7 +136,10 @@
                 {data: "microchip", name: "microchip"},
                 {data: "description", name: "description"},
                 {data: "color", name: "color"},
-                {data: "updated_at", name: "updated_at"},
+                {data: "updated_at", name: "updated_at", render:function(data){
+                    var updated = moment.utc(data);
+                    return updated.format( updated.locale('{{auth()->user()->locale->short_code}}').localeData().longDateFormat('LLL') );
+                }},
                 {data: "action", name: "action", width: "150px"},
             ],
         });
@@ -149,6 +150,14 @@
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
+        });
+
+        // visit button
+        $(document).on('click', '.pet-visit-button', function(){
+            var selData = table.rows(".selected").data();
+            var id = selData[0].id;
+
+            location.href = "/clinics/{{$clinic->id}}/visits/" + id;
         });
 
         // edit button
@@ -269,20 +278,5 @@
             $('#pet-' + operation + '-date_of_death').datepicker('update');
         }
     }
-
-    $(document).on('click', '#testme', function(e){
-        // alert('click 2');
-        e.preventDefault();
-        bootbox.confirm({
-            message: "This is an alert with additional classes!",
-            className: 'rubberBand animated',
-            callback: function(result) {
-                if (result) {
-                    alert('click');
-                    $('#student_delete_form').submit();
-                }
-            }
-        });
-    });
 </script>
 @endpush

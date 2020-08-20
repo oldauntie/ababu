@@ -53,6 +53,13 @@ Route::get('clinics/{clinic}/pets/list/{return?}', 'PetController@list')->name('
 Route::get('clinics/{clinic}/owners/{owner}/pets/list/{return?}', 'PetController@listByOwner')->middleware('clinic_access');
 Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
+// visit
+Route::get('clinics/{clinic}/visits/{pet}', 'VisitController@show')->name('clinics.visits.show')->middleware('clinic_access');
+// Route::resource('clinics.visits', 'VisitController')->middleware('clinic_access');
+
+// diagnosis
+Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
+
 // species
 Route::get('clinics/{clinic}/species/search', 'SpeciesController@search')->name('clinics.species.search')->middleware('clinic_access');
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');

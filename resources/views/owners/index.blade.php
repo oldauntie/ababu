@@ -148,7 +148,7 @@
             search: {
                 caseInsensitive: true
             },
-            ajax: "{{ route('clinics.owners.list', 0) }}",
+            ajax: "{{ route('clinics.owners.list', $clinic->id) }}",
             columns: [
                 {data: "id", name: "id", visible: false, searchable: false},
                 {data: "firstname", name: "firstname"},

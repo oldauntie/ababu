@@ -20,11 +20,53 @@
                     <div class="form-group row">
                         <div class="col-md-4">
 
-                            
+
                         </div>
 
                         <!-- column 2 -->
                         <div class="col-md-8">
+                            <div class="row justify-content-center" style="border: thin solid red">
+                                <div class="col-3" style="border: thin solid red">
+                                    <label for="pet-edit-name" class="text-md-right">{{__('translate.name')}}*</label>
+                                    <input id="pet-edit-name" type="text"
+                                        class="form-control  form-control-sm @error('name') is-invalid @enderror"
+                                        name="name" value="" autocomplete="name" required autofocus maxlength="255">
+                                </div>
+                                <div class="col-2" style="border: thin solid red">
+                                    <label for="pet-edit-name" class="text-md-right">{{__('translate.name')}}*</label>
+                                    <input id="pet-edit-name" type="text"
+                                        class="form-control  form-control-sm @error('name') is-invalid @enderror"
+                                        name="name" value="" autocomplete="name" required autofocus maxlength="255">
+
+                                </div>
+                                <div class="col-7">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="pet-edit-name"
+                                                class="text-md-right">{{__('translate.name')}}*</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <input id="pet-edit-name" type="text"
+                                                class="form-control  form-control-sm @error('name') is-invalid @enderror"
+                                                name="name" value="" autocomplete="name" required autofocus
+                                                maxlength="255">
+
+                                        </div>
+                                        <div class="col-8">
+                                            <input id="pet-edit-name" type="text"
+                                                class="form-control  form-control-sm @error('name') is-invalid @enderror"
+                                                name="name" value="" autocomplete="name" required autofocus
+                                                maxlength="255">
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
                             <fieldset>
                                 <legend>{{__('translate.microchip')}}</legend>
 
@@ -66,7 +108,7 @@
 @push('scripts')
 
 <script type="text/javascript">
-    
+
 </script>
 
 @endpush

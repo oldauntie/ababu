@@ -15,9 +15,11 @@
         color: #FFF;
     }
 
+/*
     #problems tr>*:nth-child(1) {
         display: none;
     }
+*/
 </style>
 <div class="row">
     <div class="col-12">
@@ -51,49 +53,16 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($problems as $problem)
                 <tr>
-                    <td>1</td>
-                    <td>31</td>
-                    <td>description</td>
-                    <td>4</td>
+                    <td><img src="{{url('/icons/problem_status_') . $problem->status . '.png'}}"></td>
+                    <td>{{ $problem->diagnosis_id }}</td>
+                    <td>{{ $problem->diagnosis_id }}</td>
+                    <td>{{ $problem->key_problem }}</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>32</td>
-                    <td>description</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>33</td>
-                    <td>description</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>34</td>
-                    <td>description</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>35</td>
-                    <td>description</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>36</td>
-                    <td>description</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>37</td>
-                    <td>description</td>
-                    <td>4</td>
-                </tr>
+                @endforeach
             </tbody>
+            <button id="ok" name="ok" class="ok">ok</button>
         </table>
     </div>
 </div>

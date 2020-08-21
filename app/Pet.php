@@ -46,14 +46,33 @@ class Pet extends Model
 
 
 
+    
+
+    public function owner()
+    {
+        return $this->belongsTo('App\Owner');
+    }
+
+    public function problems()
+    {
+        return $this->hasMany('App\Problem');
+    }
+
     // Note: renamed
     public function species()
     {
         return $this->belongsTo('App\Species');
     }
 
-    public function owner()
-    {
-        return $this->belongsTo('App\Owner');
+    protected static function boot() {
+        parent::boot();
+
+        self::deleting(function (Pet $pet) {
+
+            foreach ($pet->problems as $problem)
+            {
+                $problem->delete();
+            }
+        });
     }
 }

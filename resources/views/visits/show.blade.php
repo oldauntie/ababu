@@ -50,8 +50,6 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4" style="border: thin solid red;">
                             @include('problems.index')
-                            <input type="button" name="OK" class="ok" value="OK" />
-
                         </div>
                         <div class="col-lg-4" style="border: thin solid red;">
                             2

@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Visit;
-use App\Clinic;
-use App\Pet;
-use App\Problem;
-
+use App\Prescription;
 use Illuminate\Http\Request;
 
-class VisitController extends Controller
+class PrescriptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Clinic $clinic)
+    public function index()
     {
-        return view('visits.index')->with('clinic', $clinic);
+        //
     }
 
     /**
@@ -45,26 +41,21 @@ class VisitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Visit  $visit
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function show(Clinic $clinic, Pet $pet)
+    public function show(Prescription $prescription)
     {
-        $problems = Problem::where('pet_id', '=', $pet->id)->get();
-        // dd($pet->species->familiar_name);
-        return view('visits.show')
-                ->with('clinic', $clinic)
-                ->with('problems', $problems)
-                ->with('pet', $pet);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Visit  $visit
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function edit(Visit $visit)
+    public function edit(Prescription $prescription)
     {
         //
     }
@@ -73,10 +64,10 @@ class VisitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Visit  $visit
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Visit $visit)
+    public function update(Request $request, Prescription $prescription)
     {
         //
     }
@@ -84,10 +75,10 @@ class VisitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Visit  $visit
+     * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Visit $visit)
+    public function destroy(Prescription $prescription)
     {
         //
     }

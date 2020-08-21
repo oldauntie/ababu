@@ -12,7 +12,7 @@ class OwnersTableSeeder extends Seeder
      */
     public function run()
     {
-        $owner = Owner::create([
+        Owner::create([
             'clinic_id' => 0,
             'country_id' => 'ie',
             'firstname' => 'Phil',
@@ -20,6 +20,19 @@ class OwnersTableSeeder extends Seeder
             'address' => 'Abbot Rd.',
             'postcode' => 'D03 1X2Y',
             'city' => 'Dublin',
+            'phone' => '+41 000 0 0000',
+            'mobile' => '+41 348 0 0000',
+            'email' => 'phil.lynott@ababu.cloud',
+        ]);
+
+        Owner::create([
+            'clinic_id' => 0,
+            'country_id' => 'ie',
+            'firstname' => 'Rory',
+            'lastname' => 'Gallagher',
+            'address' => 'Abbot Rd.',
+            'postcode' => 'K03 1X2Y',
+            'city' => 'Cork',
             'phone' => '+41 000 0 0000',
             'mobile' => '+41 348 0 0000',
             'email' => 'phil.lynott@ababu.cloud',

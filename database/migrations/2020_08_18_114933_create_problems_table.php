@@ -17,6 +17,7 @@ class CreateProblemsTable extends Migration
             $table->id();
             $table->bigInteger('diagnosis_id')->unsigned();
             $table->bigInteger('pet_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->dateTime('active_from');
             $table->integer('status');
             $table->boolean('key_problem');
@@ -27,8 +28,10 @@ class CreateProblemsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-
             $table->unique(['diagnosis_id','pet_id']);
+
+            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+
         });
     }
 

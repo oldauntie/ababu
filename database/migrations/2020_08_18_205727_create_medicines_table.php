@@ -14,7 +14,8 @@ class CreateMedicinesTable extends Migration
     public function up()
     {
         Schema::create('medicines', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id();
+            $table->string('external_id');
             $table->string('country_id', 2);
             $table->string('name');
             $table->string('company');
@@ -23,6 +24,9 @@ class CreateMedicinesTable extends Migration
             $table->string('pharmaceutical_form')->nullable();
             $table->string('target_species')->nullable();
             $table->text('additional_info')->nullable();
+
+            $table->timestamps();
+            $table->unique(['external_id','country_id']);
         });
     }
 

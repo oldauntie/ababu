@@ -29,14 +29,6 @@ class Owner extends Model
     {
         return $this->firstname . ' ' . $this->lastname;
     }
-
-    protected static function boot() {
-        parent::boot();
-    
-        static::deleting(function(Owner $owner) {
-            $owner->pets()->delete();
-        });
-    }
     
     public function clinic()
     {
@@ -46,5 +38,17 @@ class Owner extends Model
     public function pets()
     {
         return $this->hasMany('App\Pet');
+    }
+
+    protected static function boot() {
+        parent::boot();
+
+        self::deleting(function (Owner $owner) {
+
+            foreach ($owner->pets as $pet)
+            {
+                $pet->delete();
+            }
+        });
     }
 }

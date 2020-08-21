@@ -12,13 +12,31 @@ class PetsTableSeeder extends Seeder
      */
     public function run()
     {
-        $pet = Pet::create([
+        Pet::create([
             'species_id' => '1',
             'clinic_id' => 0,
             'owner_id' => 1,
             'name' => 'Ozzy',
             'sex' => 'M',
             'date_of_birth' => '2012-03-13 23:15:00',
+        ]);
+
+        Pet::create([
+            'species_id' => '1',
+            'clinic_id' => 0,
+            'owner_id' => 1,
+            'name' => 'Martha',
+            'sex' => 'M',
+            'date_of_birth' => '2007-07-14 23:15:00',
+        ]);
+
+        Pet::create([
+            'species_id' => '1',
+            'clinic_id' => 0,
+            'owner_id' => 2,
+            'name' => 'Muddy',
+            'sex' => 'M',
+            'date_of_birth' => '2001-03-21 23:15:00',
         ]);
     }
 }

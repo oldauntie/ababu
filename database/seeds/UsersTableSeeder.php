@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -38,6 +40,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@ababu.cloud',
             'password' => Hash::make('ababu'),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         $veterinarian = User::create([

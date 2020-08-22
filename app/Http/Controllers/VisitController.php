@@ -50,7 +50,9 @@ class VisitController extends Controller
      */
     public function show(Clinic $clinic, Pet $pet)
     {
-        $problems = Problem::where('pet_id', '=', $pet->id)->get();
+        $problems = Problem::where('pet_id', '=', $pet->id)
+                    ->orderBy('status_id', 'desc')    
+                    ->get();
         // dd($pet->species->familiar_name);
         return view('visits.show')
                 ->with('clinic', $clinic)

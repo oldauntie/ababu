@@ -60,6 +60,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-lg-6" style="border: thin solid red;">
+                            <button id="ok" name="ok" class="ok">ok</button>
                             5
                         </div>
                         <div class="col-lg-6" style="border: thin solid red;">

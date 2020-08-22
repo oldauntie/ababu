@@ -18,8 +18,8 @@ class CreateProblemsTable extends Migration
             $table->bigInteger('diagnosis_id')->unsigned();
             $table->bigInteger('pet_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->integer('status_id');
             $table->dateTime('active_from');
-            $table->integer('status');
             $table->boolean('key_problem');
             $table->text('subjective_analysis')->nullable();
             $table->text('objective_analysis')->nullable();

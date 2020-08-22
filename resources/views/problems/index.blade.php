@@ -1,5 +1,5 @@
 <style>
-    .anyClass {
+    .vertical-scroll {
         height: 150px;
         overflow-y: scroll;
     }
@@ -11,24 +11,23 @@
     }
 
     .selected {
-        background-color: brown;
+        background-color: lightseagreen;
         color: #FFF;
     }
 
-/*
+
     #problems tr>*:nth-child(1) {
         display: none;
     }
-*/
+
+    #problems td {
+        border-left: none;
+        border-right: none;
+    }
 </style>
 <div class="row">
     <div class="col-12">
         <!-- owner -->
-        <div class="row">
-            <div class="col-md-12">
-                <label for="diagnosis_id">{{__('translate.owner')}}</label>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <select id="diagnosis_id" name="diagnosis_id"></select>
@@ -42,27 +41,37 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 anyClass">
-        <table id="problems" border="1" style="width:100%">
+    <div class="col-12 vertical-scroll">
+        <table id="problems" border="0" style="width:100%">
+            <!--
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>#</th>
                     <th>#</th>
                     <th>{{__('translate.description')}}</th>
                     <th>#</th>
                 </tr>
             </thead>
+        -->
             <tbody>
                 @foreach ($problems as $problem)
+
                 <tr>
-                    <td><img src="{{url('/icons/problem_status_') . $problem->status . '.png'}}"></td>
+                    <td>{{ $problem->id }}</td>
+                    <td><img title="{{ __('translate.' . $problem->status[$problem->status_id]) }}"
+                            src="{{url('/images/icons/problem_status_' . $problem->status_id . '.png')}}"></td>
                     <td>{{ $problem->diagnosis_id }}</td>
-                    <td>{{ $problem->diagnosis_id }}</td>
-                    <td>{{ $problem->key_problem }}</td>
+                    <td>{{ $problem->diagnosis->term_name }}</td>
+                    <td>
+                        @if( $problem->key_problem == true )
+                        <img title="{{ __('translate.problem_key_problem') }}"
+                            src="{{url('/images/icons/problem_key_problem.png')}}">
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
-            <button id="ok" name="ok" class="ok">ok</button>
         </table>
     </div>
 </div>

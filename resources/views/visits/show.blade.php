@@ -9,8 +9,8 @@
             <div class="card">
                 <!-- card header -->
                 <div class="card-header">
-                    {{__('translate.pet')}} {{ $pet->name }} ({{ $pet->species->familiar_name }}) {{$pet->sex}} -
-                    {{ __('translate.age') }}: {{ $pet->age }} {{ __('translate.years') }}
+                    <b>{{ $pet->name }}</b> ({{ $pet->species->familiar_name }}) {{ $pet->sex }} -
+                    {{ __('translate.age') }}: {{ $pet->age->years }} {{ __('translate.years') }}, {{ $pet->age->months }} {{ __('translate.months') }}, {{ $pet->age->days }} {{ __('translate.days') }}
                     <button type="button" id="testme" class="btn btn-sm btn-primary">test me</button>
                     <br>
                     <small>Owner: {{ $pet->owner->fullname }}:

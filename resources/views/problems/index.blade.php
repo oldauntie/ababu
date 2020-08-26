@@ -59,7 +59,7 @@
 
                 <tr>
                     <td>{{ $problem->id }}</td>
-                    <td><img title="{{ __('translate.' . $problem->status[$problem->status_id]) }}"
+                    <td><img title="{{ __('translate.' . $problem->statuses[$problem->status_id]) }}"
                             src="{{url('/images/icons/problem_status_' . $problem->status_id . '.png')}}"></td>
                     <td>{{ $problem->diagnosis_id }}</td>
                     <td>{{ $problem->diagnosis->term_name }}</td>
@@ -95,6 +95,15 @@
             diagnosis_id = $(this).find('td:eq(1)').html();
         });
 
+        // problem table double click
+        $("#problems tr").dblclick(function(){
+            // todo: delete me ?
+            // problem_id = $(this).find('td:first').html();
+            diagnosis_id = $(this).find('td:eq(2)').html();
+
+            openProblemEditModal(diagnosis_id);
+        });
+
         $("#diagnosis_id").select2({
             ajax: { 
                 placeholder: "Choose owner...",
@@ -118,32 +127,39 @@
 
         $("#diagnosis_id").on("change", function(e) { 
             // what you would like to happen
-            console.log(e);
-            console.log($("#diagnosis_id").val());
+            // console.log(e);
+            console.log("diagnosis_id: " + $("#diagnosis_id").val());
 
 
-            openPetEditModal(1);
+            openProblemEditModal($("#diagnosis_id").val());
 
         });
     
     })
 
 
-    function openPetEditModal(id)
+    function openProblemEditModal(diagnosis_id)
     {
         $.ajax({
-            url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
+            url: '/clinics/{{$clinic->id}}/problem/diagnosis/' + diagnosis_id + '/pet/{{$pet->id}}',
             type: 'get',
-            success: function(pet){ 
+            success: function(problem)
+            {
+                console.log(problem);
                 // fill Modal with owner details                    
-                $('#pet-edit-name').val(pet.name);
+                $('#problem-edit-id').val(problem.id);
+                $('#problem-edit-diagnosis_id').val(problem.diagnosis_id);
+                console.log( $('[name="_method"]').val() );
+
+
 
 
                 // setAge('edit');
                 
                 // Display Modal
-                $('#pet-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + id);
-                $('#pet-edit-modal').modal('show');
+                // set action
+                // $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + diagnosis_id);
+                $('#problem-edit-modal').modal('show');
             }
         });
     }

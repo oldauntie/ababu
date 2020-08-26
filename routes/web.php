@@ -55,6 +55,10 @@ Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
 // visit
 Route::get('clinics/{clinic}/visits/{pet}', 'VisitController@show')->name('clinics.visits.show')->middleware('clinic_access');
+Route::get('clinics/{clinic}/problems/{problem}/get', 'ProblemController@get')->name('clinics.problems.get')->middleware('clinic_access');
+Route::get('clinics/{clinic}/problem/diagnosis/{diagnosis}/pet/{pet}', 'ProblemController@getProblemByDiagnosis')->name('clinics.problems.by.diagnosis')->middleware('clinic_access');
+
+// http://dev.ababu.cloud/clinics/0/problem/diagnosis/328/pet/1
 // Route::resource('clinics.visits', 'VisitController')->middleware('clinic_access');
 
 // diagnosis

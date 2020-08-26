@@ -15,6 +15,7 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->bigInteger('id')->unsigned();
+            $table->string('country_id', 2);
             $table->string('status');
             $table->string('label');
             $table->string('term_name');

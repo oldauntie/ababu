@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Diagnosis;
+use App\Clinic;
 class DiagnosisController extends Controller
 {
     
@@ -33,4 +34,7 @@ class DiagnosisController extends Controller
         echo json_encode($response);
         exit;
     }
+
+
+    
 }

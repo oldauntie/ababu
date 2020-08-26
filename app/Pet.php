@@ -23,8 +23,16 @@ class Pet extends Model
 
     public function getAgeAttribute()
     {
-        $to_date = $this->date_of_death == null ? Carbon::now() : $this->date_of_death;
-        return $to_date->diffInYears($this->date_of_birth);
+        $toDate = $this->date_of_death == null ? Carbon::now() : $this->date_of_death;
+        $formattedAge = $this->date_of_birth->diff($toDate)->format('%y,%m,%d');
+        $tempAge = explode(',', $formattedAge);
+
+        $age = new \stdClass();
+        $age->years = $tempAge[0];
+        $age->months = $tempAge[1];
+        $age->days = $tempAge[2];
+
+        return $age;
     }
 
     protected $fillable = [

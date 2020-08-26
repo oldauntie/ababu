@@ -11,7 +11,7 @@ class Problem extends Model
     use SoftDeletes;
 
 
-    public $status = [
+    public $statuses = [
         '-1' => 'problem_suspect',
         '0' => 'problem_closed',
         '1' => 'problem_active',

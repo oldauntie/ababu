@@ -50,10 +50,6 @@ class Pet extends Model
         'tatuatge',
         'tatuatge_location',
     ];
-
-
-
-
     
 
     public function owner()

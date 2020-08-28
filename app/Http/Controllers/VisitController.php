@@ -53,7 +53,7 @@ class VisitController extends Controller
         $problems = Problem::where('pet_id', '=', $pet->id)
                     ->orderBy('status_id', 'desc')    
                     ->get();
-        // dd($pet->species->familiar_name);
+        // dd($problems);
         return view('visits.show')
                 ->with('clinic', $clinic)
                 ->with('problems', $problems)

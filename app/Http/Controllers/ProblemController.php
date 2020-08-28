@@ -6,7 +6,8 @@ use App\Problem;
 use App\Clinic;
 use App\Pet;
 use App\Diagnosis;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProblemController extends Controller
@@ -37,9 +38,41 @@ class ProblemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic)
     {
-        //
+        // validate
+        // validate
+        $validator = Validator::make($request->all(), [
+            'status_id' => 'required',
+            'active_from' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->route('clinics.visits.show', [$clinic])
+                ->withErrors($validator);
+        }
+
+        
+        $problem = new Problem([
+            'diagnosis_id' => $request->diagnosis_id,
+            'pet_id' => $request->pet_id,
+            'user_id' => auth()->user()->id,
+            'status_id' => $request->status_id,
+            'active_from' => Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->active_from ),
+            'key_problem' => $request->key_problem == 1 ? true : false,
+            // 'date_of_death' => $request->get('date_of_death') != null ? Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->get('date_of_death') ) : null,
+            'subjective_analysis' => $request->subjective_analysis,
+            'objective_analysis' => $request->objective_analysis,
+            'notes' => $request->notes,
+        ]);
+
+
+        if ($problem->save()) {
+            $request->session()->flash('success', __('message.problem_create_success'));
+        } else {
+            $request->session()->flash('error', 'message.problem_store_error');
+        }
+        return redirect()->route('clinics.visits.show', [$clinic, $problem->pet_id]);
     }
 
     /**
@@ -71,9 +104,37 @@ class ProblemController extends Controller
      * @param  \App\Problem  $problem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Problem $problem)
+    public function update(Request $request, Clinic $clinic, Problem $problem)
     {
-        //
+        // validate
+        $validator = Validator::make($request->all(), [
+            'status_id' => 'required',
+            'active_from' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('clinics.visits.show', [$clinic])
+                ->withErrors($validator);
+        }
+
+        // $problem->diagnosis_id = $request->diagnosis_id;
+        $problem->user_id = auth()->user()->id;
+        $problem->status_id = $request->status_id;
+        $problem->active_from = Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->active_from);
+        $problem->key_problem = $request->key_problem == null ? false: true;
+        $problem->subjective_analysis = $request->subjective_analysis;
+        $problem->objective_analysis = $request->objective_analysis;
+        $problem->notes = $request->notes;
+
+        // dd($problem);
+
+        if ($problem->save()) {
+            $request->session()->flash('success', __('message.problem_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.problem_update_error');
+        }
+
+        return redirect()->route('clinics.visits.show', [$clinic, $problem->pet_id]);
     }
 
     /**
@@ -108,16 +169,26 @@ class ProblemController extends Controller
 
     public function getProblemByDiagnosis(Clinic $clinic, Diagnosis $diagnosis, Pet $pet)
     {
+        // load user locale
+        $locale = auth()->user()->locale;
+        
         $problem = Problem::where('diagnosis_id', '=', $diagnosis->id)
             ->where('pet_id', '=', $pet->id)
             ->first();
 
-
+        // create a new problem if is null
         if ($problem == null) {
             $problem = new Problem();
             $problem->diagnosis_id = $diagnosis->id;
+            $problem->active_from = Carbon::now();
         }
         $result = $problem->toArray();
+        
+        // change date format
+        $result['active_from'] = $problem->active_from->format($locale->date_short_format);
+
+        // add diagnosis to results
+        $result += ['diagnosis' => $problem->diagnosis->toArray()];
         
         // dd($problem);
         // dd($result);

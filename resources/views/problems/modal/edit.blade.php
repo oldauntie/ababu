@@ -21,16 +21,15 @@
                         <div class="col-md-4">
                             <fieldset>
                                 <legend>{{ __('translate.problem_status') }}</legend>
-
-
                                 <div>
-                                    @foreach ($problem->statuses as $status_id => $status_name)
+                                    @foreach (App\Problem::statuses as $status_id => $status_name)
                                     <div class="form-check">
-                                        <input name="status_id" type="radio" id="{{ $status_name }}" checked>
-                                        <label for="{{ $status_name }}"><img
-                                                title="{{ __('translate.' . $problem->statuses[$problem->status_id]) }}"
-                                                src="{{url('/images/icons/problem_status_' . $status_id . '.png')}}">
-                                            {{ __('translate.' . $status_name) }}</label>
+                                        <label for="problem-edit-status_id_{{ $status_id }}">
+                                            <input name="status_id" type="radio"
+                                                id="problem-edit-status_id_{{ $status_id }}" value="{{$status_id}}">
+                                            <img src="{{url('/images/icons/problem_status_' . $status_id . '.png')}}">
+                                            {{ __('translate.' . $status_name) }}
+                                        </label>
                                     </div>
                                     @endforeach
 
@@ -42,8 +41,10 @@
                                 <legend>{{ __('translate.problem_key_problem') }}</legend>
                                 <div>
                                     <div class="form-check">
-                                        <input name="key_ptoblem" type="checkbox" id="key_problem" checked>
-                                        <label for="key_problem"><img title="{{ __('translate.problem_key_problem') }}"
+                                        <input name="key_problem" type="checkbox" id="problem-edit-key_problem"
+                                            value="1">
+                                        <label for="problem-edit-key_problem"><img
+                                                title="{{ __('translate.problem_key_problem') }}"
                                                 src="{{url('/images/icons/problem_key_problem.png')}}">
                                             {{ __('translate.problem_key_problem') }}</label>
                                     </div>
@@ -69,7 +70,7 @@
                         <!-- column 2 -->
                         <div class="col-md-8">
                             <div class="row justify-content-center">
-                                <input id="problem-edit-id" type="text" name="id" value="">
+                                <input id="problem-edit-pet_id" type="text" name="pet_id" value="{{ $pet->id }}">
 
                                 <!-- Active From -->
                                 <div class="col-3">
@@ -93,25 +94,88 @@
                                     </div>
                                     <div class="row form-inline">
                                         <input id="problem-edit-diagnosis_id" type="text"
-                                            class="form-control form-control-sm w-25" name="at_age" value="" readonly>
-                                        <input id="problem-edit-at_age" type="text"
-                                            class="form-control form-control-sm w-75" name="at_age" value="" readonly>
+                                            class="form-control form-control-sm w-25" name="diagnosis_id" value=""
+                                            readonly>
+                                        <input id="problem-edit-diagnosis_term_name" type="text"
+                                            class="form-control form-control-sm w-75" name="diagnosis_term_name"
+                                            value="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- clinical data -->
+                            <fieldset>
+                                <legend>{{__('translate.clinical_data')}}</legend>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="problem-edit-diagnosis_id"
+                                            class="text-md-right">{{__('translate.subjective_analysis')}}</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea id="problem-edit-subjective_analysis" name="subjective_analysis"
+                                            rows="3" style="min-width: 100%"
+                                            class="form-contro form-control-sml">{{ old('subjective_analysis') }}</textarea>
+
+                                        <small
+                                            class="form-text text-muted">{{__('help.problem_subjective_analysis')}}</small>
+                                        @error('subjective_analysis')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
 
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="problem-edit-diagnosis_id"
+                                            class="text-md-right">{{__('translate.objective_analysis')}}</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea id="problem-edit-objective_analysis" name="objective_analysis"
+                                            rows="3" style="min-width: 100%"
+                                            class="form-contro form-control-sml">{{ old('objective_analysis') }}</textarea>
 
-                            </div>
-                            <fieldset>
-                                <legend>{{__('translate.microchip')}}</legend>
+                                        <small
+                                            class="form-text text-muted">{{__('help.problem_objective_analysis')}}</small>
+                                        @error('objective_analysis')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="problem-edit-diagnosis_id"
+                                            class="text-md-right">{{__('translate.notes')}}</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea id="problem-edit-notes" name="notes" rows="3" style="min-width: 100%"
+                                            class="form-contro form-control-sml">{{ old('notes') }}</textarea>
+
+                                        <small class="form-text text-muted">{{__('help.problem_notes')}}</small>
+                                        @error('notes')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                             </fieldset>
 
 
-                            <fieldset>
-                                <legend>{{__('translate.tatuatge')}}</legend>
-
-                            </fieldset>
 
                         </div>
                     </div>
@@ -142,8 +206,55 @@
 
 @push('scripts')
 
-<script type="text/javascript">
+<!-- datatable -->
+<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}"
+    charset="UTF-8"></script>
+@if(auth()->user()->locale->id != 'en-US')
+<script type="text/javascript"
+    src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}"
+    charset="UTF-8"></script>
+@endif
+<link rel="stylesheet" type="text/css"
+    href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
+<!-- moment -->
+<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var active_from = $('#problem-edit-active_from').datepicker({
+            // format: "dd/mm/yyyy",
+            language: "{{ auth()->user()->locale->id}}",
+            todayHighlight: true,
+            autoclose: true,
+            maxDate: "+100Y"
+        }).on('show', function(e) {
+            
+        }).on('hide', function(e) {
+            setAtAge();
+        });
+
+    });
+
+    function setAtAge()
+    {
+        // active_from
+        var a = moment().locale('{{auth()->user()->locale->short_code}}');
+        
+        // date of birth
+        var b = moment().locale('{{auth()->user()->locale->short_code}}');
+
+        if( $('#problem-edit-active_from').val() != ''){
+            a = moment($('#problem-edit-active_from').val(), a.localeData().longDateFormat('L'));
+        }
+
+        b = moment('{{$pet->date_of_birth->format( auth()->user()->locale->date_short_format )}}', b.localeData().longDateFormat('L'));
+
+        var years = a.diff(b, 'year');
+        $('#problem-edit-at_age').val(years);
+    }
 </script>
 
 @endpush

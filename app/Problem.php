@@ -10,8 +10,19 @@ class Problem extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'diagnosis_id',
+        'pet_id',
+        'user_id',
+        'status_id',
+        'active_from',
+        'key_problem',
+        'subjective_analysis',
+        'objective_analysis',
+        'notes',
+    ];
 
-    public $statuses = [
+    public const statuses = [
         '-1' => 'problem_suspect',
         '0' => 'problem_closed',
         '1' => 'problem_active',
@@ -19,7 +30,7 @@ class Problem extends Model
         '3' => 'in_evidence',
     ];
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = ['active_from', 'created_at', 'updated_at', 'deleted_at'];
 
     public function diagnosis()
     {

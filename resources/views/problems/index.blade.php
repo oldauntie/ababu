@@ -145,27 +145,47 @@
             type: 'get',
             success: function(problem)
             {
-                console.log(problem);
+                console.log("problem: " + problem);
                 // fill Modal with owner details                    
-                $('#problem-edit-id').val(problem.id);
+
+                $('#problem-edit-active_from').val(problem.active_from);
+                $('#problem-edit-active_from').datepicker('update');
+
+
+                // $('#problem-edit-id').val(problem.id);
                 $('#problem-edit-diagnosis_id').val(problem.diagnosis_id);
+                $('#problem-edit-diagnosis_term_name').val(problem.diagnosis.term_name);
+                $('#problem-edit-subjective_analysis').val(problem.subjective_analysis);
+                $('#problem-edit-objective_analysis').val(problem.objective_analysis);
+                $('#problem-edit-notes').val(problem.notes);
+
+                console.log("problem.status_id: " + problem.status_id);
+                
+                $('#problem-edit-status_id_' + problem.status_id).prop("checked", true);
+                $('#problem-edit-key_problem').prop("checked", problem.key_problem == 1 ? true : false);
+                
+
+                // calculate "At Age"
+                setAtAge();
+
+                // Set action and method
+                if(problem.id > 0){
+                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/problems/' + problem.id);
+                    $('[name="_method"]').val('PUT');
+                }else{
+                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/problems');
+                    $('[name="_method"]').val('POST');
+                }
                 console.log( $('[name="_method"]').val() );
 
-
-
-
-                // setAge('edit');
-                
                 // Display Modal
-                // set action
-                // $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/' + diagnosis_id);
                 $('#problem-edit-modal').modal('show');
             }
         });
     }
 
+
     
-    // var io = 'nanna';
-    
+
 </script>
 @endpush

@@ -64,6 +64,9 @@ Route::get('clinics/{clinic}/problem/diagnosis/{diagnosis}/pet/{pet}', 'ProblemC
 // diagnosis
 Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 
+// problems
+Route::resource('clinics.problems', 'ProblemController')->middleware('clinic_roles:root|admin');
+
 // species
 Route::get('clinics/{clinic}/species/search', 'SpeciesController@search')->name('clinics.species.search')->middleware('clinic_access');
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');

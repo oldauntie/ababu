@@ -2,6 +2,7 @@ fieldset{
     border: thin solid black; 
     padding: 7px;
 }
+
 legend {
     font-size: 1rem;
     color: lightgray;

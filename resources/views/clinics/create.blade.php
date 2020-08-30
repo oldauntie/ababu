@@ -12,12 +12,13 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.name')}} *</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{__('translate.name')}}
+                                *</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" autocomplete="name" required autofocus maxlength="255">
+                                    name="name" value="{{ old('name') }}" autocomplete="name" required autofocus
+                                    maxlength="255">
                                 <small id="help_clinic_name"
                                     class="form-text text-muted">{{__('help.clinic_name')}}</small>
 
@@ -31,21 +32,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('translate.country') }} *</label>
+                            <label for="country_id"
+                                class="col-md-4 col-form-label text-md-right">{{ __('translate.country') }} *</label>
 
                             <div class="col-md-6">
                                 <select name="country_id" id="country_id" class="form-control">
                                     @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}"  {{ old('country_id')? "selected":"" }}>{{ $country->name }}</option>  
+                                    <option value="{{ $country->id }}" {{ old('country_id')? "selected":"" }}>
+                                        {{ $country->name }}</option>
                                     @endforeach
                                 </select>
                                 <small id="help_clinic_country"
                                     class="form-text text-muted">{{__('help.clinic_country')}}</small>
 
                                 @error('country_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -87,9 +90,19 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                            </div>
+                        </div>
 
 
+                        <div class="form-group row">
+                            <label for="species-add-common"
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.species_add_common')}}</label>
 
+                            <div class="col-md-6">
+                                <input id="species-add-common" type="checkbox"
+                                    name="species_add_common" checked>
+                                <small
+                                    class="form-text text-muted">{{__('help.species_add_common')}}</small>
                             </div>
                         </div>
 

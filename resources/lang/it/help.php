@@ -42,6 +42,7 @@ return [
     'pet_sex' => '',
     'pet_tatuatge' => 'Tatuaggio (numero o seriale)',
     'pet_tatuatge_location' => 'Posizione del tatuaggio (es. zampa sinistra)',
+    'species_add_common' => 'Aggiunge un elenco di specie maggiormanete utilizzate alla tua clinica (scelta consigliata). Una volta che avrai creato la tua clinica potrai comunque aggiungere, modificare o eliminare le soecie dal menu Clinica -> Specie.',
     'species_admin' => 'Seleziona le specie che utilizzerai nella tua clinica (es: cane, gatto, civetta). Puoi selezionare quante specie vuoi ma ti consigliamo di selezionare quelle che veramente andrai a visitare. Puoi aggiungere una specie anche in un secondo momento.',
     'species_delete' => 'Si è sicuri di voler eliminare la specie selezionata ?',
     'species_select' => 'Premi e inizia a digitare le prima lettere del nome scientifico della specie che vuoi utilizzare nella clinica (e.g. Canis Lupus Familiaris)',

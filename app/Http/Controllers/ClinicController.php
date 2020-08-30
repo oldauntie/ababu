@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Clinic;
 use App\Mail\ClinicJoinMail;
 use App\Role;
+use App\Species;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -70,6 +71,12 @@ class ClinicController extends Controller
         $adminRole = Role::where('name', 'admin')->first();
         $clinic->roles()->attach($adminRole, ['user_id' => Auth::user()->id]);
 
+        if ($request->has('species_add_common')) {
+            Species::create(['tsn' => '726821', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_dog')]);
+            Species::create(['tsn' => '183798', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_cat')]);
+            Species::create(['tsn' => '180691', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_horse')]);
+        }
+
         return redirect()->route('home')->with('success', __('message.clinic_store_success'));
     }
 
@@ -118,11 +125,10 @@ class ClinicController extends Controller
             $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
             $request->logo->move(public_path('images'), $imageName);
-            
+
             // delete previous file if exists
-            if($clinic->logo != null && file_exists(public_path('images'). '/'. $clinic->logo))
-            {
-                unlink(public_path('images'). '/'. $clinic->logo);
+            if ($clinic->logo != null && file_exists(public_path('images') . '/' . $clinic->logo)) {
+                unlink(public_path('images') . '/' . $clinic->logo);
             }
             $clinic->logo = $imageName;
         }
@@ -132,7 +138,7 @@ class ClinicController extends Controller
         } else {
             $request->session()->flash('error', 'message.clinic_update_error');
         }
-        
+
         return redirect()->route('clinics.show', $clinic);
     }
 
@@ -171,12 +177,12 @@ class ClinicController extends Controller
             } else {
                 // user doen not exists. check the hanshake
                 $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key), 0, 8);
-                if($handshakeRequest === $handshakeResponse){
+                if ($handshakeRequest === $handshakeResponse) {
                     $veterinarianRole = Role::where('name', 'veterinarian')->first();
                     $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
-                    
+
                     $request->session()->flash('success', __('message.clinic_join_success'));
-                }else{
+                } else {
                     $request->session()->flash('error', __('message.clinic_join_error'));
                 }
             }
@@ -202,7 +208,7 @@ class ClinicController extends Controller
         ]);
 
         Mail::to($request->email)->send(new ClinicJoinMail($clinic));
-        
+
         return redirect()->route('clinics.show', $clinic)->with('success', __('message.clinic_invitation_success'));
     }
 }

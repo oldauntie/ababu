@@ -70,8 +70,8 @@ Route::resource('clinics.problems', 'ProblemController')->middleware('clinic_rol
 // species
 Route::get('clinics/{clinic}/species/search', 'SpeciesController@search')->name('clinics.species.search')->middleware('clinic_access');
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');
-Route::get('clinics/{clinic}/species/{species}', 'SpeciesController@details')->name('species.get')->middleware('auth')->middleware('roles:root|admin');
-Route::get('/lives/search', 'LifeController@search')->name('lives.search')->middleware('auth')->middleware('roles:root|admin');
+Route::get('clinics/{clinic}/species/{species}', 'SpeciesController@details')->name('species.details')->middleware('auth')->middleware('roles:root|admin');
+Route::get('/animalia/search', 'AnimaliaController@search')->name('animalia.search')->middleware('auth')->middleware('roles:root|admin');
 
 // root: to be implemented or deprecated
 Route::get('/users/ajax', 'UserController@ajaxUserList')->name('users.ajax')->middleware('roles:root');

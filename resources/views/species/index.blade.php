@@ -26,7 +26,7 @@
                             <label for="tsn">{{__('translate.species')}}</label>
                             <div class="col-md-12">
                                 <select id="tsn" name="tsn" class="form-control" required></select>
-                                <small class="form-text text-muted">{{__('help.life_select')}}</small>
+                                <small class="form-text text-muted">{{__('help.animalia_select')}}</small>
 
                                 @error('tsn')
                                 <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                     @foreach ($species as $specie)
                     <tr>
                         <td>{{$specie->tsn}}</td>
-                        <td>{{$specie->life()->first()->complete_name}}</td>
+                        <td>{{$specie->animalia()->first()->complete_name}}</td>
                         <td>{{$specie->familiar_name}}</td>
                         <td>{{$specie->pets->count()}}</td>
                         <td>
@@ -123,7 +123,7 @@
         ajax: { 
             placeholder: "Choose specie...",
             minimumInputLength: 3,
-            url: "/lives/search/",
+            url: "/animalia/search/",
             dataType: 'json',
             data: function (params) {
                 return {

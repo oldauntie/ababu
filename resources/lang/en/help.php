@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'animalia_select' => 'Click and start writing the first letters of specie scientific name (e.g. Canis Lupus Familiaris)',
     'clinic_create' => 'Create your own clinic in few, few, few steps and start working immediately.',
     'clinic_create' => 'Set the country where your clinic is. Warning!!! This value CAN NOT be changed later on.',
     'clinic_delete' => 'Warning!!! If you press "delete" all information about your clinic (i.e. animals, owners, visits, calendar events) will be permanently delete. This action can\'t be undone.',
@@ -18,7 +19,6 @@ return [
     'clinic_name' => 'Your clinic short name (e.g. Dr. Dolittle\'s Clinic)',
     'clinic_not_configured' => 'There is no clinic configured for your account. Please... ',
     'clinic_token_example' => 'example: 6240b71-rugby310',
-    'life_select' => 'Click and start writing the first letters of specie scientific name (e.g. Canis Lupus Familiaris)',
     'owner_address' => '',
     'owner_city' => '',
     'owner_country' => '',

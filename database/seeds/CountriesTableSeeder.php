@@ -16,12 +16,5 @@ class CountriesTableSeeder extends Seeder
     {
         DB::unprepared(File::get(base_path() . '/database/seeds/sql/Countries.sql'));
         $this->command->info('Countries table seeded!');
-        /*
-        Country::create([
-            'id' => 'gb',
-            'name' => 'United Kingdom',
-            'alpha_3' => 'gbr'
-        ]);
-        */
     }
 }

@@ -5,6 +5,7 @@
 /storage/*.key
 /vendor
 /database/seeds/VeNom/*
+/database/seeds/ITIS/*
 /database/seeds/medicines/*
 .env
 .env.backup

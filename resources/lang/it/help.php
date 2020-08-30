@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     
+    'animalia_select' => 'Premi e inizia a digitare le prima lettere del nome comune della specie (e.g. Cane, Catto)',
     'clinic_create' => 'Crea la tua clinica in pochi, pochissimi passaggi e inizia a lavorare immediatamente.',
     'clinic_country' => 'Imposta la nazione in cui si trova la tua clinica. Attenzione!!! Il valore NON può essere cambiato in seguito.',
     'clinic_delete' => 'Attenzione!!! Premendo "eliminae" tutte le informazioni (animali, proprietari, visite, appuntamenti) andranno perse.',
@@ -18,7 +19,6 @@ return [
     'clinic_name' => 'Il nome della tua Clinica (ad es: Dr. Dolittle\'s Clinic)',
     'clinic_not_configured' => 'Non c\'è nessuna clinica configurata con il tuo account. Per favore creane una o unisciti ad une esitente inserendo il codice di autenticazione fornito dall\'amministratore della clinica ',
     'clinic_token_example' => 'es: 6240b71-rugby310',
-    'life_select' => 'Premi e inizia a digitare le prima lettere del nome comune della specie (e.g. Cane, Catto)',
     'owner_address' => '',
     'owner_city' => '',
     'owner_country' => '',

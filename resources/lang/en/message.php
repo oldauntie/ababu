@@ -24,6 +24,8 @@ return [
     'owner_update_success' => 'Owner has been successfully updated.',
     'pet_date_of_death_warning' => 'Warning! Date of Death cannot be before Date of Birth', 
     'pet_destroy_success' => 'Selected pet has been deleted.',
+    'problem_update_success' => 'Problem has been successfully updated.',
+    'problem_update_error' => 'There was an error while updateding the problem.',
     'species_store_error' => 'There was an error while adding selected specie (maybe specie already exists).',
     'species_store_success' => 'Selected specie has been added.',
     'species_update_error' => 'There was an error while saving specie.',

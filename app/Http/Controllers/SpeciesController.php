@@ -123,7 +123,7 @@ class SpeciesController extends Controller
         $response = array(
             "id" => $species->id,
             "tsn" => $species->tsn,
-            "complete_name" => $species->life()->first()->complete_name,
+            "complete_name" => $species->animalia()->first()->complete_name,
             "familiar_name" => $species->familiar_name
         );
 

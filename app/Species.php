@@ -16,9 +16,9 @@ class Species extends Model
     ];
 
 
-    public function life()
+    public function animalia()
     {
-        return $this->belongsTo('App\Life', 'tsn');
+        return $this->belongsTo('App\Animalia', 'tsn');
     }
 
     public function pets()

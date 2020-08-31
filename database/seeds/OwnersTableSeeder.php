@@ -13,6 +13,7 @@ class OwnersTableSeeder extends Seeder
     public function run()
     {
         Owner::create([
+            'id' => 1,
             'clinic_id' => 0,
             'country_id' => 'ie',
             'firstname' => 'Phil',
@@ -26,6 +27,7 @@ class OwnersTableSeeder extends Seeder
         ]);
 
         Owner::create([
+            'id' => 2,
             'clinic_id' => 0,
             'country_id' => 'ie',
             'firstname' => 'Rory',

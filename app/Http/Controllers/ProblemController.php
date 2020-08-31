@@ -190,8 +190,6 @@ class ProblemController extends Controller
         // add diagnosis to results
         $result += ['diagnosis' => $problem->diagnosis->toArray()];
         
-        // dd($problem);
-        // dd($result);
         return response()->json($result);
     }
 }

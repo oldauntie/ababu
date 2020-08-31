@@ -16,10 +16,10 @@ class ClinicsTableSeeder extends Seeder
     {
         $clinic = Clinic::create([
                         'country_id' => 'gb', 
-                        'name' => 'no clinic', 
+                        'name' => 'White Clinic', 
                         'serial' => Str::random(8),
                         'key' => Str::random(8),
-                        'description' => 'clinic zero',
+                        'description' => 'White Clinic',
                         ]);
         
         // force id to 0
@@ -28,5 +28,6 @@ class ClinicsTableSeeder extends Seeder
         
         // reset the auto-increment value
         DB::statement('ALTER TABLE clinics AUTO_INCREMENT = 1');
+
     }
 }

@@ -1,6 +1,4 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
+-- START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
@@ -8,7 +6,7 @@ SET time_zone = "+00:00";
 --
 
 --
--- Dump dei dati per la tabella `prescriptions`
+-- Dump table `prescriptions`
 --
 
 INSERT INTO `prescriptions` (`problem_id`, `medicine_id`, `user_id`, `quantity`, `dosage`, `in_evidence`, `created_at`, `updated_at`) VALUES

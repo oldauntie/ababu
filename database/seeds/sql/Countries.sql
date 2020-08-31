@@ -2,11 +2,11 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Database: `ababu.win`
+-- Database: `ababu`
 --
 
 --
--- Dump dei dati per la tabella `countries`
+-- Dump table `countries`
 --
 
 INSERT INTO `countries` VALUES('ad', 'Andorra', 'and', 0);

@@ -32,5 +32,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin', function ($user, $clinic) {
             return $user->hasRoleByClinicId('admin', $clinic->id);
         });
+
+        Gate::define('update-pet', function ($user, $pet) {
+            return true;
+            // return $user->id == $post->user_id;
+        });
     }
 }

@@ -24,7 +24,10 @@ class DevelopSeeder extends Seeder
      */
     public function run()
     {
-        $black_clinic = Clinic::create([
+        /**
+         * Black Clinic
+         */
+        Clinic::create([
             'country_id' => 'gb',
             'name' => 'Black Clinic',
             'serial' => Str::random(8),
@@ -32,11 +35,10 @@ class DevelopSeeder extends Seeder
             'description' => 'Black Clinic',
         ]);
 
-        // $clinic->save();
-
+        /**
+         * Black User
+         */
         $adminRole = Role::where('name', 'admin')->first();
-
-
         $black_user = User::create([
             'locale_id' => 'en-GB',
             'name' => 'Black User',
@@ -47,6 +49,24 @@ class DevelopSeeder extends Seeder
 
         $black_user->roles()->attach($adminRole, ['clinic_id' => 1]);
 
+        /**
+         * Species
+         */
+        Species::create([
+            'tsn' => '171341',
+            'clinic_id' => 0,
+            'familiar_name' => 'Wolf',
+        ]);
+
+        Species::create([
+            'tsn' => '171341',
+            'clinic_id' => 1,
+            'familiar_name' => 'Wolf Wolf',
+        ]);
+
+        /**
+         * Owners
+         */
         Owner::create([
             'id' => 1,
             'clinic_id' => 0,
@@ -89,13 +109,9 @@ class DevelopSeeder extends Seeder
             'email' => 'paul.mccartney@ababu.cloud',
         ]);
 
-
-        $species = Species::create([
-            'tsn' => '171341',
-            'clinic_id' => 0,
-            'familiar_name' => 'Wolf',
-        ]);
-
+        /**
+         * Pets
+         */
         Pet::create([
             'species_id' => '1',
             'clinic_id' => 0,
@@ -133,11 +149,15 @@ class DevelopSeeder extends Seeder
         ]);
 
 
-        // PROBLEM
+        /**
+         * Problems
+         */
         DB::unprepared(File::get(base_path() . '/database/seeds/sql/Problems.sql'));
         $this->command->info('Problems table seeded!');
 
-        // PRESCRIPTION
+        /**
+         * Presriptions
+         */
         DB::unprepared(File::get(base_path() . '/database/seeds/sql/Prescriptions.sql'));
         $this->command->info('Prescriptions table seeded!');
 

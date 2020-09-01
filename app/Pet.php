@@ -51,6 +51,10 @@ class Pet extends Model
         'tatuatge_location',
     ];
     
+    public function clinic()
+    {
+        return $this->belongsTo('App\Clinic');
+    }
 
     public function owner()
     {

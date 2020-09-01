@@ -10,6 +10,9 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Gate;
+
+
 class PetController extends Controller
 {
     /**

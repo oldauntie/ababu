@@ -21,6 +21,10 @@ class CreateMedicinesTable extends Migration
             $table->string('company');
             $table->dateTime('date_of_issue');
             $table->dateTime('date_of_withdrawal')->nullable();
+            // $table->text('active_substances')->nullable();
+            // $table->string('gtin', 14)->nullable();
+            // $table->string('atcvet')->nullable();
+            // $table->text('prescription_method')->nullable();
             $table->string('pharmaceutical_form')->nullable();
             $table->string('target_species')->nullable();
             $table->text('additional_info')->nullable();

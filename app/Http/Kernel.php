@@ -62,7 +62,6 @@ class Kernel extends HttpKernel
         'roles' => \App\Http\Middleware\Roles::class,
         'clinic_access' => \App\Http\Middleware\ClinicAccess::class,
         'clinic_roles' => \App\Http\Middleware\ClinicRoles::class,
-        'can_cure' => \App\Http\Middleware\CanCure::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

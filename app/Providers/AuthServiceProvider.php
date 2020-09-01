@@ -33,9 +33,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRoleByClinicId('admin', $clinic->id);
         });
 
-        Gate::define('update-pet', function ($user, $pet) {
-            return true;
-            // return $user->id == $post->user_id;
+        Gate::define('cure', function ($user, $pet) {
+            if ($user->canCure($pet)) {
+                return true;
+            }
+            return false;
         });
     }
 }

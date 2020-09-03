@@ -6,7 +6,7 @@
 /vendor
 /database/seeds/VeNom/*
 /database/seeds/ITIS/*
-/database/seeds/medicines/*
+/database/seeds/medicines/master/*
 .env
 .env.backup
 .phpunit.result.cache

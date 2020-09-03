@@ -13,7 +13,7 @@ class MedicinesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/medicines/gb.sql'));
-        $this->command->info('Medicines GB table seeded!');
+        DB::unprepared(File::get(base_path() . '/database/seeds/medicines/medicines.sql'));
+        $this->command->info('Medicines table seeded! (GB, IT)');
     }
 }

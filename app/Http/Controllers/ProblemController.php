@@ -38,7 +38,7 @@ class ProblemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Clinic $clinic)
+    public function store(Request $request, Clinic $clinic, Pet $pet)
     {
         // validate
         // validate
@@ -55,7 +55,7 @@ class ProblemController extends Controller
         
         $problem = new Problem([
             'diagnosis_id' => $request->diagnosis_id,
-            'pet_id' => $request->pet_id,
+            'pet_id' => $pet->id,
             'user_id' => auth()->user()->id,
             'status_id' => $request->status_id,
             'active_from' => Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->active_from ),
@@ -104,7 +104,7 @@ class ProblemController extends Controller
      * @param  \App\Problem  $problem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clinic $clinic, Problem $problem)
+    public function update(Request $request, Clinic $clinic, Pet $pet, Problem $problem)
     {
         // validate
         $validator = Validator::make($request->all(), [

@@ -43,17 +43,6 @@
 <div class="row">
     <div class="col-12 vertical-scroll">
         <table id="problems" border="0" style="width:100%">
-            <!--
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>#</th>
-                    <th>#</th>
-                    <th>{{__('translate.description')}}</th>
-                    <th>#</th>
-                </tr>
-            </thead>
-        -->
             <tbody>
                 @foreach ($problems as $problem)
 
@@ -87,10 +76,6 @@
     $(function() {
         $("#problems tr").click(function(){
             $(this).addClass('selected').siblings().removeClass('selected');    
-            /*
-            var value=$(this).find('td:first').html();
-            alert(value);
-            */    
             problem_id = $(this).find('td:first').html();
             diagnosis_id = $(this).find('td:eq(1)').html();
         });
@@ -100,13 +85,12 @@
             // todo: delete me ?
             // problem_id = $(this).find('td:first').html();
             diagnosis_id = $(this).find('td:eq(2)').html();
-
             openProblemEditModal(diagnosis_id);
         });
 
         $("#diagnosis_id").select2({
             ajax: { 
-                placeholder: "Choose owner...",
+                placeholder: "Choose problem...",
                 minimumInputLength: 3,
                 url: "/diagnoses/search/",
                 dataType: "json",
@@ -125,14 +109,11 @@
             }
         });
 
-        $("#diagnosis_id").on("change", function(e) { 
-            // what you would like to happen
-            // console.log(e);
-            console.log("diagnosis_id: " + $("#diagnosis_id").val());
-
-
-            openProblemEditModal($("#diagnosis_id").val());
-
+        $("#diagnosis_id").on("select2:select", function(e) { 
+            var id = e.params.data.id;
+            openProblemEditModal(id);
+            // clear selection
+            $('#diagnosis_id').val(null).trigger('change');
         });
     
     })
@@ -145,7 +126,7 @@
             type: 'get',
             success: function(problem)
             {
-                console.log("problem: " + problem);
+                // console.log("problem: " + problem);
                 // fill Modal with owner details                    
 
                 $('#problem-edit-active_from').val(problem.active_from);
@@ -159,9 +140,12 @@
                 $('#problem-edit-objective_analysis').val(problem.objective_analysis);
                 $('#problem-edit-notes').val(problem.notes);
 
-                console.log("problem.status_id: " + problem.status_id);
-                
-                $('#problem-edit-status_id_' + problem.status_id).prop("checked", true);
+                // if status_id is not set, set it to 'active' 
+                if(problem.status_id > 0){
+                    $('#problem-edit-status_id_' + problem.status_id).prop("checked", true);
+                }else{
+                    $('#problem-edit-status_id_1').prop("checked", true);
+                }
                 $('#problem-edit-key_problem').prop("checked", problem.key_problem == 1 ? true : false);
                 
 
@@ -170,10 +154,10 @@
 
                 // Set action and method
                 if(problem.id > 0){
-                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/problems/' + problem.id);
+                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems/' + problem.id);
                     $('[name="_method"]').val('PUT');
                 }else{
-                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/problems');
+                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems');
                     $('[name="_method"]').val('POST');
                 }
                 console.log( $('[name="_method"]').val() );

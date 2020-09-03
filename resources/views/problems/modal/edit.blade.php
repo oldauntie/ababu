@@ -70,8 +70,6 @@
                         <!-- column 2 -->
                         <div class="col-md-8">
                             <div class="row justify-content-center">
-                                <input id="problem-edit-pet_id" type="text" name="pet_id" value="{{ $pet->id }}">
-
                                 <!-- Active From -->
                                 <div class="col-3">
                                     <label for="problem-edit-active_from"

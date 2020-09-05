@@ -72,6 +72,8 @@ return [
     'problem_key_problem' => 'Problema Chiave',
     'problem_status' => 'Stato del Problema',
     'in_evidence' => 'In Evidenza',
+    'prescription_in_evidence' => 'In evidenza',
+    'problem_indipendent' => 'Indipendente dal problema',
     'problem_long_term_active' => 'Attivo Di Lungo Periodo',
     'problem_suspect' => 'Sospetto',
     'roles' => 'ruoli',

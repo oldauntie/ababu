@@ -72,6 +72,8 @@ return [
     'problem_key_problem' => 'Key Problem',
     'problem_status' => 'Problem Status',
     'in_evidence' => 'In Evidence',
+    'prescription_in_evidence' => 'In evidence',
+    'problem_indipendent' => 'Problem Indipendent',
     'problem_long_term_active' => 'Long Term Active',
     'problem_suspect' => 'Suspect',
     'roles' => 'roles',

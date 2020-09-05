@@ -18,6 +18,7 @@ class CreatePrescriptionsTable extends Migration
             $table->string('medicine_id');
             // $table->bigInteger('diagnosis_id')->unsigned();
             $table->bigInteger('problem_id')->unsigned();
+            $table->bigInteger('pet_id')->unsigned();
             $table->bigInteger('user_id');
             $table->bigInteger('quantity');
             $table->string('dosage');
@@ -26,6 +27,7 @@ class CreatePrescriptionsTable extends Migration
             $table->timestamps();
 
             $table->foreign('problem_id')->references('id')->on('problems')->onDelete('restrict');
+            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
         });
     }
 

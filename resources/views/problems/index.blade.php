@@ -31,11 +31,6 @@
         <div class="row">
             <div class="col-md-12">
                 <select id="diagnosis_id" name="diagnosis_id"></select>
-                @error('problem_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
             </div>
         </div>
     </div>
@@ -44,8 +39,17 @@
     <div class="col-12 vertical-scroll">
         <table id="problems" border="0" style="width:100%">
             <tbody>
-                @foreach ($problems as $problem)
+                <tr>
+                    <td>0</td>
+                    <td><img title="{{ __('translate.problem_indipendent') }}"
+                        src="{{url('/images/icons/link_break.png')}}"></td>
+                    <td> ... </td>
+                    <td>{{ __('translate.problem_indipendent') }}</td>
+                    <td><img title="{{ __('translate.problem_indipendent') }}"
+                        src="{{url('/images/icons/problem_indipendent.png')}}"></td>
+                </tr>
 
+                @foreach ($problems as $problem)
                 <tr>
                     <td>{{ $problem->id }}</td>
                     <td><img title="{{ __('translate.' . $problem->statuses[$problem->status_id]) }}"
@@ -167,9 +171,5 @@
             }
         });
     }
-
-
-    
-
 </script>
 @endpush

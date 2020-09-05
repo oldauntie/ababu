@@ -28,7 +28,7 @@ class DevelopSeeder extends Seeder
          * Black Clinic
          */
         Clinic::create([
-            'country_id' => 'gb',
+            'country_id' => 'it',
             'name' => 'Black Clinic',
             'serial' => Str::random(8),
             'key' => Str::random(8),
@@ -158,8 +158,8 @@ class DevelopSeeder extends Seeder
         /**
          * Presriptions
          */
-        DB::unprepared(File::get(base_path() . '/database/seeds/sql/Prescriptions.sql'));
-        $this->command->info('Prescriptions table seeded!');
+        // DB::unprepared(File::get(base_path() . '/database/seeds/sql/Prescriptions.sql'));
+        // $this->command->info('Prescriptions table seeded!');
 
         $this->command->info('*** WARNING! YOU ARE SEEDING DEVELOPMENT DATA ***');
     }

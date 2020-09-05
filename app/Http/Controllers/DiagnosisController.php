@@ -8,9 +8,8 @@ use App\Clinic;
 
 class DiagnosisController extends Controller
 {
-    
     /**
-     * Display a listing of the resource.
+     * Display a listing of possible diagnoses (VeNom).
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,8 +33,5 @@ class DiagnosisController extends Controller
 
         echo json_encode($response);
         exit;
-    }
-
-
-    
+    }    
 }

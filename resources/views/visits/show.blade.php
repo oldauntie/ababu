@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
     <!-- card -->
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -52,7 +52,7 @@
                             @include('problems.index')
                         </div>
                         <div class="col-lg-4" style="border: thin solid red;">
-                            2
+                            @include('prescriptions.index')
                         </div>
                         <div class="col-lg-4" style="border: thin solid red;">
                             3

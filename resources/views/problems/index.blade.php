@@ -39,11 +39,11 @@
     <div class="col-12 vertical-scroll">
         <table id="problems" border="0" style="width:100%">
             <tbody>
-                <tr>
+                <tr class="selected">
                     <td>0</td>
                     <td><img title="{{ __('translate.problem_indipendent') }}"
                         src="{{url('/images/icons/link_break.png')}}"></td>
-                    <td> ... </td>
+                    <td>0</td>
                     <td>{{ __('translate.problem_indipendent') }}</td>
                     <td><img title="{{ __('translate.problem_indipendent') }}"
                         src="{{url('/images/icons/problem_indipendent.png')}}"></td>
@@ -82,6 +82,8 @@
             $(this).addClass('selected').siblings().removeClass('selected');    
             problem_id = $(this).find('td:first').html();
             diagnosis_id = $(this).find('td:eq(1)').html();
+
+            loadPrescriptionsTable(problem_id);
         });
 
         // problem table double click
@@ -120,11 +122,19 @@
             $('#diagnosis_id').val(null).trigger('change');
         });
     
+        // init prescriptions table loading all results
+        loadPrescriptionsTable(0);
     })
 
+    function loadPrescriptionsTable(problem_id){
+        console.log("loadPrescriptionsTable: " + problem_id);
+    }
 
     function openProblemEditModal(diagnosis_id)
     {
+        if(diagnosis_id == 0){
+            return;
+        }
         $.ajax({
             url: '/clinics/{{$clinic->id}}/problem/diagnosis/' + diagnosis_id + '/pet/{{$pet->id}}',
             type: 'get',

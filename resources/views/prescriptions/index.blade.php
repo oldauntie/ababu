@@ -1,28 +1,21 @@
 <style>
-    .vertical-scroll {
-        height: 150px;
-        overflow-y: scroll;
+    #prescriptions tbody tr.selected {
+        color: white;
+        background-color: lightseagreen;
     }
 
-    td {
-        border: 1px #DDD solid;
-        padding: 5px;
+    #prescriptions td {
+        border-left: none;
+        border-right: none;
+    }
+
+    td.details-control {
+        background: url('{{url('/images/icons/add.png')}}') no-repeat center center;
         cursor: pointer;
     }
 
-    .selected {
-        background-color: lightseagreen;
-        color: #FFF;
-    }
-
-
-    #prescription tr>*:nth-child(1) {
-        display: none;
-    }
-
-    #prescription td {
-        border-left: none;
-        border-right: none;
+    tr.shown td.details-control {
+        background: url('{{url('/images/icons/delete.png')}}') no-repeat center center;
     }
 </style>
 <div class="row">
@@ -37,26 +30,19 @@
 </div>
 <div class="row">
     <div class="col-12 vertical-scroll">
-        <table id="prescription" border="0" style="width:100%">
-            <tbody>
-                @foreach ($prescriptions as $prescription)
-
+        <table id="prescriptions" class="display" style="width:100%">
+            <thead style="display: none">
                 <tr>
-                    <td>{{ $prescription->id }}</td>
-                    <td>{{ $prescription->created_at->format( auth()->user()->locale->date_short_format ) }}</td>
-                    <td>{{ $prescription->medicine->name }}</td>
-                    <td>{{ $prescription->quantity }}</td>
-                    <td>{{ $prescription->dosage }}</td>
-                    <td>
-                        @if( $prescription->in_evidence == true )
-                        <img title="{{ __('translate.prescription_in_evidence') }}"
-                            src="{{url('/images/icons/prescription_in_evindence.png')}}">
-                        @else
-                            &nbsp;
-                        @endif
-                    </td>
+                    <th>#</th>
+                    <th>#</th>
+                    <th>{{__('translate.created_at')}}</th>
+                    <th>{{__('translate.name')}}</th>
+                    <th>{{__('translate.quantity')}}</th>
+                    <th>{{__('translate.dosage')}}</th>
+                    <th>{{__('translate.in_evidence')}}</th>
                 </tr>
-                @endforeach
+            </thead>
+            <tbody>
             </tbody>
         </table>
     </div>
@@ -71,20 +57,107 @@
 
 <script type="text/javascript">
     $(function() {
-        $("#prescription tr").click(function(){
-            $(this).addClass('selected').siblings().removeClass('selected');    
-            prescrprion_id = $(this).find('td:first').html();
-            diagnosis_id = $(this).find('td:eq(1)').html();
+        
+        // define main prescriptions table
+        var prescriptions_table = $('#prescriptions').DataTable({
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:   false,
+            ordering: false,
+            info:     false,
+            ajax: "{{ route('clinics.prescriptions.list', [$clinic->id, $pet->id, 'datatable']) }}",
+            rowCallback: function (row, data) {
+                $(row).addClass('master-row');
+            },
+            columns: [
+                {
+                    className: "details-control",
+                    orderable:      false,
+                    data:           null,
+                    defaultContent: ""
+                },
+                {data: "id", name: "id"},
+                {data: "created_at", name: "created_at", render: function(data){
+                    var updated = moment.utc(data);
+                    return updated.format( updated.locale('{{auth()->user()->locale->short_code}}').localeData().longDateFormat('L') );
+                }},
+                {data: "name", name: "name", render: function(data, type, full, meta){
+                    if(type === 'display'){
+                        data = strtrunc(data, 19);
+                    }
+                    return data;
+                }},
+                {data: "quantity", name: "quantity", visible: false},
+                {data: "dosage", name: "dosage", visible: false},
+                {data: "in_evidence", name: "in_evidence", render: function(data){
+                    if(data == 1){
+                        return '<img src="{{url('/images/icons/prescription_in_evindence.png')}}">';
+                    }else{
+                        return "";
+                    }
+                }}
+            ],
         });
+
+        // used to create datatable teaser
+        function strtrunc(str, max, add){
+            add = add || '...';
+            return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
+        };
+
+        /* Formatting function for row details - modify as you need */
+        function format ( d ) {
+            // `d` is the original data object for the row
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                '<tr>'+
+                    '<td colspan="4">' + d.name + '</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>q.ty:</td>'+
+                    '<td>'+d.quantity+'</td>'+
+                    '<td>dosage:</td>'+
+                    '<td>'+d.dosage+'</td>'+
+                '</tr>'+
+            '</table>';
+        }
+
+        // Add event listener for opening and closing details
+        $('#prescriptions tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = prescriptions_table.row( tr );
+
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        } );
+
+
+        $('#prescriptions tbody').on('click', 'tr.master-row', function() {
+            if (!$(this).hasClass('selected')) {
+                prescriptions_table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
 
         // prescrprion table double click
-        $("#prescription tr").dblclick(function(){
-            // todo: delete me ?
-            // prescrprion_id = $(this).find('td:first').html();
-            diagnosis_id = $(this).find('td:eq(2)').html();
-            openPrescriptionEditModal(diagnosis_id);
+        $('#prescriptions tbody').on('dblclick', 'tr.master-row', function(){
+            var selData = prescriptions_table.rows(".selected").data();
+            var id = selData[0].id;
+
+            alert(id);
         });
 
+
+        // Select2 component for medicine selection 
         $("#medicine_id").select2({
             ajax: { 
                 placeholder: "Choose a medicine...",
@@ -106,18 +179,19 @@
             }
         });
 
-        $("#diagnosis_id").on("select2:select", function(e) { 
+        $("#medicine_id").on("select2:select", function(e) { 
             var id = e.params.data.id;
             openPrescriptionEditModal(id);
             // clear selection
-            $('#diagnosis_id').val(null).trigger('change');
+            $('#medicine_id').val(null).trigger('change');
         });
     
     })
 
 
-    function openPrescriptionEditModal(diagnosis_id)
+    function openPrescriptionEditModal(medicine_id)
     {
+        alert(medicine_id)
         $.ajax({
             url: '/clinics/{{$clinic->id}}/prescription/diagnosis/' + diagnosis_id + '/pet/{{$pet->id}}',
             type: 'get',

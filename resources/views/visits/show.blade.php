@@ -48,7 +48,7 @@
                     @endif
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-4" style="border: thin solid red;">
+                        <div class="col-lg-4">
                             @include('problems.index')
                         </div>
                         <div class="col-lg-4" style="border: thin solid red;">

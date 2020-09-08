@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Prescription;
+use App\Clinic;
+use App\Pet;
 use Illuminate\Http\Request;
+
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Carbon;
+
 
 class PrescriptionController extends Controller
 {
@@ -81,5 +87,22 @@ class PrescriptionController extends Controller
     public function destroy(Prescription $prescription)
     {
         //
+    }
+
+
+    public function list(Clinic $clinic, Pet $pet, $return = null)
+    {
+        $prescriptions = Prescription::where('prescriptions.pet_id', '=', $pet->id)
+            ->join('medicines', 'prescriptions.medicine_id', '=', 'medicines.id')
+            ->select('prescriptions.*', 'medicines.name')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+            // dd($prescriptions);
+
+        if ($return == 'datatable') {
+            return Datatables::of($prescriptions)
+                ->make(true);
+        }
     }
 }

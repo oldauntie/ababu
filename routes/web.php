@@ -67,7 +67,7 @@ Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.s
 // medicines
 Route::get('clinics/{clinic}/medicines/search', 'MedicineController@search')->name('clinics.medicines.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 // @yah
-Route::get('clinics/{clinic}/pet/{pet}/prescriptions/list/{return?}', 'PrescriptionController@list')->name('clinics.prescriptions.list')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/list/{problem_id?}/{return?}', 'PrescriptionController@list')->name('clinics.prescriptions.list')->middleware('clinic_access')->middleware('can:cure,pet');
 
 // problems
 Route::put('clinics/{clinic}/pet/{pet}/problems/{problem}', 'ProblemController@update')->name('clinics.problems.update')->middleware('clinic_access')->middleware('can:cure,pet');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Prescription;
 use App\Clinic;
 use App\Pet;
+use App\Problem;
 use Illuminate\Http\Request;
 
 use Yajra\DataTables\Facades\DataTables;
@@ -90,15 +91,20 @@ class PrescriptionController extends Controller
     }
 
 
-    public function list(Clinic $clinic, Pet $pet, $return = null)
+    public function list(Clinic $clinic, Pet $pet, $problem_id = null, $return = null)
     {
-        $prescriptions = Prescription::where('prescriptions.pet_id', '=', $pet->id)
+        // dd('nanna: ' . $problem_id);
+        $query = Prescription::where('prescriptions.pet_id', '=', $pet->id)
             ->join('medicines', 'prescriptions.medicine_id', '=', 'medicines.id')
             ->select('prescriptions.*', 'medicines.name')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('in_evidence', 'desc');
 
-            // dd($prescriptions);
+        if($problem_id > 0){
+            $query->where('problem_id', '=', $problem_id);
+        }
+        $prescriptions = $query->get();
+        // dd($prescriptions);
 
         if ($return == 'datatable') {
             return Datatables::of($prescriptions)

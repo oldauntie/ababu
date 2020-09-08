@@ -158,8 +158,8 @@ class DevelopSeeder extends Seeder
         /**
          * Presriptions
          */
-        // DB::unprepared(File::get(base_path() . '/database/seeds/sql/Prescriptions.sql'));
-        // $this->command->info('Prescriptions table seeded!');
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/Prescriptions.sql'));
+        $this->command->info('Prescriptions table seeded!');
 
         $this->command->info('*** WARNING! YOU ARE SEEDING DEVELOPMENT DATA ***');
     }

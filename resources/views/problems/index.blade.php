@@ -83,7 +83,13 @@
             problem_id = $(this).find('td:first').html();
             diagnosis_id = $(this).find('td:eq(1)').html();
 
-            loadPrescriptionsTable(problem_id);
+            // delegated to custom event
+            // initPrescriptionsTable(problem_id);
+
+            $.event.trigger({
+                type: "change_problem",
+                problem_id: problem_id,
+            });
         });
 
         // problem table double click
@@ -123,12 +129,9 @@
         });
     
         // init prescriptions table loading all results
-        loadPrescriptionsTable(0);
+        // loadPrescriptionsTable(0);
     })
 
-    function loadPrescriptionsTable(problem_id){
-        console.log("loadPrescriptionsTable: " + problem_id);
-    }
 
     function openProblemEditModal(diagnosis_id)
     {

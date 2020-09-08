@@ -59,14 +59,14 @@
     $(function() {
         
         // define main prescriptions table
-        var prescriptions_table = $('#prescriptions').DataTable({
+        prescriptions_table = $('#prescriptions').DataTable({
             processing: true,
             serverSide: true,
             searching: false,
             paging:   false,
             ordering: false,
             info:     false,
-            ajax: "{{ route('clinics.prescriptions.list', [$clinic->id, $pet->id, 'datatable']) }}",
+            ajax: "{{ route('clinics.prescriptions.list', [$clinic->id, $pet->id, 0, 'datatable']) }}",
             rowCallback: function (row, data) {
                 $(row).addClass('master-row');
             },

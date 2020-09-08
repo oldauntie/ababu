@@ -104,16 +104,13 @@
         });
 
         $('.ok').on('click', function(e){
-            // alert($("#problems tr.selected td:first").html());
             alert(problem_id);
             alert(diagnosis_id);
         });
-        
-    })
+    });
     
     
     $(document).on('click', '#testme', function(e){
-        // alert('click 2');
         e.preventDefault();
         bootbox.confirm({
             message: "This is an alert with additional classes!",
@@ -126,5 +123,18 @@
             }
         });
     });
+
+    // add event listener
+    $(document).on("change_problem", changeProblem);
+
+    // change_problem event handler
+    function changeProblem(e) {
+        initPrescriptionsTable(e.problem_id);
+    }
+
+    // init Prescriptions Table
+    function initPrescriptionsTable(problem_id){
+        prescriptions_table.ajax.url( '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/list/' + problem_id + '/datatable' ).load();
+    }
 </script>
 @endpush

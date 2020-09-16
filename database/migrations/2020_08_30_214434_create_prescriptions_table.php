@@ -23,6 +23,8 @@ class CreatePrescriptionsTable extends Migration
             $table->bigInteger('quantity');
             $table->string('dosage');
             $table->boolean('in_evidence');
+            $table->text('notes')->nullable();
+            $table->boolean('print_notes')->default(false);
 
             $table->timestamps();
 

@@ -66,6 +66,9 @@
             paging:   false,
             ordering: false,
             info:     false,
+            language : {
+                zeroRecords: "{{__('translate.prescriptions_zero_records')}}"             
+            },
             ajax: "{{ route('clinics.prescriptions.list', [$clinic->id, $pet->id, 0, 'datatable']) }}",
             rowCallback: function (row, data) {
                 $(row).addClass('master-row');
@@ -92,7 +95,7 @@
                 {data: "dosage", name: "dosage", visible: false},
                 {data: "in_evidence", name: "in_evidence", render: function(data){
                     if(data == 1){
-                        return '<img src="{{url('/images/icons/prescription_in_evindence.png')}}">';
+                        return '<img src="{{url('/images/icons/prescription_in_evidence.png')}}">';
                     }else{
                         return "";
                     }
@@ -153,7 +156,7 @@
             var selData = prescriptions_table.rows(".selected").data();
             var id = selData[0].id;
 
-            alert(id);
+            openPrescriptionEditModal(id);
         });
 
 
@@ -189,17 +192,19 @@
     })
 
 
-    function openPrescriptionEditModal(medicine_id)
+    function openPrescriptionEditModal(id)
     {
-        alert(medicine_id)
+        $('#prescription-edit-modal').modal('show');
+
         $.ajax({
-            url: '/clinics/{{$clinic->id}}/prescription/diagnosis/' + diagnosis_id + '/pet/{{$pet->id}}',
+            url: '/clinics/{{$clinic->id}}/prescriptions/' + id + '/get',
             type: 'get',
             success: function(prescription)
             {
-                // console.log("prescription: " + prescription);
-                // fill Modal with owner details                    
-
+                console.log(prescription);
+                
+                /*
+                // fill Modal with prescription details                    
                 $('#prescription-edit-active_from').val(prescription.active_from);
                 $('#prescription-edit-active_from').datepicker('update');
 
@@ -220,9 +225,6 @@
                 $('#prescription-edit-key_prescription').prop("checked", prescription.key_prescription == 1 ? true : false);
                 
 
-                // calculate "At Age"
-                setAtAge();
-
                 // Set action and method
                 if(prescription.id > 0){
                     $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions/' + prescription.id);
@@ -231,10 +233,10 @@
                     $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions');
                     $('[name="_method"]').val('POST');
                 }
-                console.log( $('[name="_method"]').val() );
 
                 // Display Modal
                 $('#prescription-edit-modal').modal('show');
+                */
             }
         });
     }

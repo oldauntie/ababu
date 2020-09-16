@@ -246,7 +246,6 @@
 
         // new button
         $('#owner-new-button').click(function() {
-            console.log('new record');
             $('#owner-create-modal').modal('show');
         });
 

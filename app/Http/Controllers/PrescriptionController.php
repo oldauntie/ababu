@@ -91,22 +91,31 @@ class PrescriptionController extends Controller
     }
 
 
+    public function get(Clinic $clinic, Prescription $prescription)
+    {
+        $result = $prescription->toArray();
+        $result += ['medicine' => $prescription->medicine->toArray()];
+
+        return response()->json($result);
+    }
+
+
     public function list(Clinic $clinic, Pet $pet, $problem_id = null, $return = null)
     {
-        // dd('nanna: ' . $problem_id);
         $query = Prescription::where('prescriptions.pet_id', '=', $pet->id)
             ->join('medicines', 'prescriptions.medicine_id', '=', 'medicines.id')
             ->select('prescriptions.*', 'medicines.name')
             ->orderBy('created_at', 'desc')
             ->orderBy('in_evidence', 'desc');
 
-        if($problem_id > 0){
+        if ($problem_id > 0)
+        {
             $query->where('problem_id', '=', $problem_id);
         }
         $prescriptions = $query->get();
-        // dd($prescriptions);
 
-        if ($return == 'datatable') {
+        if ($return == 'datatable')
+        {
             return Datatables::of($prescriptions)
                 ->make(true);
         }

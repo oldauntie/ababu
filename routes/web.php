@@ -56,25 +56,22 @@ Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 // visit
 Route::get('clinics/{clinic}/visits/{pet}', 'VisitController@show')->name('clinics.visits.show')->middleware('clinic_access');
 Route::get('clinics/{clinic}/pet/{pet}/problems/{problem}/get', 'ProblemController@get')->name('clinics.problems.get')->middleware('clinic_access');
-// @todo: to be deleted once problem edit has been completed
-// Route::get('clinics/{clinic}/problems/{problem}/get', 'ProblemController@get')->name('clinics.problems.get')->middleware('clinic_access');
 Route::get('clinics/{clinic}/problem/diagnosis/{diagnosis}/pet/{pet}', 'ProblemController@getProblemByDiagnosis')->name('clinics.problems.by.diagnosis')->middleware('clinic_access');
 
 
 // diagnosis
 Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 
-// medicines
+// medicines & prescriptions
 Route::get('clinics/{clinic}/medicines/search', 'MedicineController@search')->name('clinics.medicines.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
-// @yah
 Route::get('clinics/{clinic}/pets/{pet}/prescriptions/list/{problem_id?}/{return?}', 'PrescriptionController@list')->name('clinics.prescriptions.list')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/prescriptions/{prescription}/get', 'PrescriptionController@get')->name('clinics.prescription.get')->middleware('clinic_access');
+
 
 // problems
 Route::put('clinics/{clinic}/pet/{pet}/problems/{problem}', 'ProblemController@update')->name('clinics.problems.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pet/{pet}/problems', 'ProblemController@store')->name('clinics.problems.store')->middleware('clinic_access')->middleware('can:cure,pet');
 
-// @todo: to be deleted once problem edit has been completed
-// Route::resource('clinics.problems', 'ProblemController')->middleware('clinic_roles:root|admin');
 
 // species
 Route::get('clinics/{clinic}/species/search', 'SpeciesController@search')->name('clinics.species.search')->middleware('clinic_access');

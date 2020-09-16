@@ -200,7 +200,7 @@
             url: '/clinics/{{$clinic->id}}/pets/' + id +'/get',
             type: 'get',
             success: function(pet){ 
-                // fill Modal with owner details                    
+                // fill Modal with pet details                    
                 $('#pet-edit-name').val(pet.name);
 
                 $("#pet-edit-species_id").empty();
@@ -256,7 +256,7 @@
 
         var days = a.diff(b, 'days');
 
-        console.log(years + ' years ' + months + ' months ' + days + ' days');
+        // console.log(years + ' years ' + months + ' months ' + days + ' days');
 
         if(years >= 0 && months >= 0 && days >= 0 ){
             $('#pet-' + operation + '-age-years').val(years);

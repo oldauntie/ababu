@@ -143,14 +143,10 @@
             type: 'get',
             success: function(problem)
             {
-                // console.log("problem: " + problem);
-                // fill Modal with owner details                    
-
+                // fill Modal with pet details
                 $('#problem-edit-active_from').val(problem.active_from);
                 $('#problem-edit-active_from').datepicker('update');
 
-
-                // $('#problem-edit-id').val(problem.id);
                 $('#problem-edit-diagnosis_id').val(problem.diagnosis_id);
                 $('#problem-edit-diagnosis_term_name').val(problem.diagnosis.term_name);
                 $('#problem-edit-subjective_analysis').val(problem.subjective_analysis);
@@ -177,7 +173,6 @@
                     $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems');
                     $('[name="_method"]').val('POST');
                 }
-                console.log( $('[name="_method"]').val() );
 
                 // Display Modal
                 $('#problem-edit-modal').modal('show');

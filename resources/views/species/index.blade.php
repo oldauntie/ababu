@@ -145,8 +145,6 @@
         var url = "/clinics/{{$clinic->id}}/species";
         var id= $(this).val();
 
-        // console.log(url + '/' + id)
-
         $.get(url + '/' + id, function (data) {
             //success data
             var json = JSON.parse(data);

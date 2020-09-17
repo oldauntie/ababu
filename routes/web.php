@@ -56,7 +56,9 @@ Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 // visit
 Route::get('clinics/{clinic}/visits/{pet}', 'VisitController@show')->name('clinics.visits.show')->middleware('clinic_access');
 Route::get('clinics/{clinic}/pet/{pet}/problems/{problem}/get', 'ProblemController@get')->name('clinics.problems.get')->middleware('clinic_access');
-Route::get('clinics/{clinic}/problem/diagnosis/{diagnosis}/pet/{pet}', 'ProblemController@getProblemByDiagnosis')->name('clinics.problems.by.diagnosis')->middleware('clinic_access');
+
+// @edit
+Route::get('clinics/{clinic}/pet/{pet}/problem/diagnosis/{diagnosis}', 'ProblemController@getProblemByDiagnosis')->name('clinics.problems.by.diagnosis')->middleware('clinic_access');
 
 
 // diagnosis
@@ -65,7 +67,12 @@ Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.s
 // medicines & prescriptions
 Route::get('clinics/{clinic}/medicines/search', 'MedicineController@search')->name('clinics.medicines.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 Route::get('clinics/{clinic}/pets/{pet}/prescriptions/list/{problem_id?}/{return?}', 'PrescriptionController@list')->name('clinics.prescriptions.list')->middleware('clinic_access')->middleware('can:cure,pet');
-Route::get('clinics/{clinic}/prescriptions/{prescription}/get', 'PrescriptionController@get')->name('clinics.prescription.get')->middleware('clinic_access');
+
+// @todo
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/create/{medicine}/{problem?}', 'PrescriptionController@createPrescriptionByMedicine')->name('clinics.create.prescription.by.medicine')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/edit/{prescription}', 'PrescriptionController@editPrescriptionById')->name('clinics.edit.prescription.by.medicine')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::put('clinics/{clinic}/pet/{pet}/prescriptions/{prescription}', 'PrescriptionController@update')->name('clinics.prescriptions.update')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::post('clinics/{clinic}/pet/{pet}/prescriptions', 'PrescriptionController@store')->name('clinics.prescriptions.store')->middleware('clinic_access')->middleware('can:cure,pet');
 
 
 // problems

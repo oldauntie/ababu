@@ -94,8 +94,6 @@
 
         // problem table double click
         $("#problems tr").dblclick(function(){
-            // todo: delete me ?
-            // problem_id = $(this).find('td:first').html();
             diagnosis_id = $(this).find('td:eq(2)').html();
             openProblemEditModal(diagnosis_id);
         });
@@ -138,8 +136,9 @@
         if(diagnosis_id == 0){
             return;
         }
+
         $.ajax({
-            url: '/clinics/{{$clinic->id}}/problem/diagnosis/' + diagnosis_id + '/pet/{{$pet->id}}',
+            url: '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problem/diagnosis/' + diagnosis_id,
             type: 'get',
             success: function(problem)
             {

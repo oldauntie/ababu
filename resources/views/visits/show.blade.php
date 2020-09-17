@@ -94,21 +94,8 @@
 <link rel="stylesheet" type="text/css" href="{{url('/lib/animate.css/4.1.0/animate.compat.css')}}" />
 
 <script type="text/javascript">
-    var problem_id;
-    var diagnosis_id;
-    $(function() {
-        // owner overlay
-        $('#owner-overlay-modal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            $('#owner-overlay-modal-label').html( button.text() );
-        });
-
-        $('.ok').on('click', function(e){
-            alert(problem_id);
-            alert(diagnosis_id);
-        });
-    });
-    
+    var problem_id = 0;
+    var diagnosis_id = 0;
     
     $(document).on('click', '#testme', function(e){
         e.preventDefault();
@@ -129,6 +116,7 @@
 
     // change_problem event handler
     function changeProblem(e) {
+        problem_id = e.problem_id;
         initPrescriptionsTable(e.problem_id);
     }
 

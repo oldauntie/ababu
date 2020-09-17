@@ -32,13 +32,11 @@
             </div>
 
             <div class="modal-body">
-                <form method="POST" id="prescription-edit-modal-form" action="" enctype="multipart/form-data">
+                <form method="POST" id="prescription-edit-modal-form" action="">
                     @csrf
                     {{ method_field('PUT') }}
 
                     <div class="form-group row">
-
-
 
                         <!-- column 1 -->
                         <div class="col-md-12">
@@ -49,8 +47,10 @@
                                     <div class="col-12">
                                         <label for="prescription-edit-medicine"
                                             class="text-md-right">{{__('translate.medicine')}}</label>
-                                        <input id="prescription-edit-medicine" type="text"
-                                            class="form-control form-control-sm" name="medicine" value="" readonly>
+                                        <input type="hidden" name="medicine_id" value=""
+                                            id="prescription-edit-medicine_id" class="form-control form-control-sm">
+                                        <input type="text" name="medicine" value="" id="prescription-edit-medicine"
+                                            class="form-control form-control-sm" disabled>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
@@ -58,36 +58,37 @@
                                     <div class="col-3">
                                         <label for="prescription-edit-date_of_prescription"
                                             class="text-md-right">{{__('translate.date_of_prescription')}}*</label>
-                                        <input id="prescription-edit-date_of_prescription" type="text"
-                                            class="form-control form-control-sm @error('date_of_prescription') is-invalid @enderror"
-                                            name="date_of_prescription" value="" autocomplete="date_of_prescription"
-                                            required autofocus>
+                                        <input name="date_of_prescription" value="" type="text"
+                                            id="prescription-edit-date_of_prescription"
+                                            class="form-control form-control-sm" disabled>
                                     </div>
                                     <!-- Quantity -->
                                     <div class="col-2">
                                         <label for="prescription-edit-quantity"
                                             class="text-md-right">{{__('translate.quantity')}}*</label>
-                                        <input id="prescription-edit-quantity" type="number" min="0" max="99"
+                                        <input type="number" name="quantity" value="" id="prescription-edit-quantity"
+                                            min="0" max="99"
                                             class="form-control form-control-sm @error('quantity') is-invalid @enderror"
-                                            name="quanity" value="" autocomplete="quantity" required autofocus>
+                                            autocomplete="quantity" required autofocus>
                                     </div>
                                     <!-- Dosage -->
                                     <div class="col-3">
                                         <label for="prescription-edit-dosage"
                                             class="text-md-right">{{__('translate.dosage')}}*</label>
-                                        <input id="prescription-edit-dosage" type="text" maxlength="255"
+                                        <input type="text" name="dosage" value="" id="prescription-edit-dosage"
+                                            maxlength="255"
                                             class="form-control form-control-sm @error('dosage') is-invalid @enderror"
-                                            name="quanity" value="" autocomplete="dosage" required autofocus>
+                                            autocomplete="dosage" required autofocus>
                                     </div>
                                     <!-- In Evidence -->
                                     <div class="col-4 align-self-end">
                                         <div class="checkbox">
                                             <img class="align-center" title="{{ __('translate.in_evidence') }}"
                                                 src="{{url('/images/icons/prescription_in_evidence.png')}}">
-                                            <input name="in_evidence" type="checkbox" id="problem-edit-in_evidence"
-                                                value="1">
+                                            <input type="checkbox" name="in_evidence" value="1"
+                                                id="prescription-edit-in_evidence">
                                             <label class="align-center" style="margin-bottom: 0px;"
-                                                for="problem-edit-in_evidence">
+                                                for="prescription-edit-in_evidence">
                                                 {{ __('translate.in_evidence') }}
                                             </label>
                                         </div>
@@ -100,7 +101,7 @@
                                         <label for="prescription-edit-problem"
                                             class="text-md-right">{{__('translate.problem')}}</label>
                                         <div class="input-group">
-                                            <select id="prescription-edit-problem" name="problem"
+                                            <select name="problem" id="prescription-edit-problem"
                                                 class="form-control form-control-sm" disabled>
                                                 <option value="">{{ __('translate.problem_indipendent') }}</option>
                                                 @foreach ($problems as $problem)
@@ -108,9 +109,9 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            <input type="hidden" name="problem_id" id="prescription-edit-problem_id"
-                                                value="">
-                                            <button id="lock" type="button" class="btn btn-light lock"
+                                            <input type="hidden" name="problem_id" value=""
+                                                id="prescription-edit-problem_id">
+                                            <button type="button" id="lock" class="btn btn-light lock"
                                                 data-toggle="button" aria-pressed="false" autocomplete="off"></button>
                                         </div>
                                     </div>
@@ -122,7 +123,7 @@
                                         <label for="prescription-edit-notes"
                                             class="text-md-right">{{__('translate.notes')}}</label>
                                         <div class="input-group">
-                                            <textarea id="prescription-edit-notes" name="notes" rows="2"
+                                            <textarea name="notes" id="prescription-edit-notes" rows="2"
                                                 style="min-width: 100%"
                                                 class="form-control form-control-sml">{{ old('notes') }}</textarea>
 
@@ -134,8 +135,8 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <input id="prescription-edit-print_notes" name="print_notes" type="checkbox"
-                                            id="problem-edit-print_notes" value="1">
+                                        <input type="checkbox" name="print_notes" value="1"
+                                            id="prescription-edit-print_notes">
                                         <label for="prescription-edit-print_notes"
                                             name="print_notes">{{ __('translate.print_notes')}}</label>
 

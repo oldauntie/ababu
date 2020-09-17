@@ -156,7 +156,7 @@
             var selData = prescriptions_table.rows(".selected").data();
             var id = selData[0].id;
 
-            openPrescriptionEditModal(id);
+            editPrescription(id);
         });
 
 
@@ -184,61 +184,68 @@
 
         $("#medicine_id").on("select2:select", function(e) { 
             var id = e.params.data.id;
-            openPrescriptionEditModal(id);
+            createPrescription(id);
             // clear selection
             $('#medicine_id').val(null).trigger('change');
         });
     
-    })
+    });
 
 
-    function openPrescriptionEditModal(id)
-    {
-        $('#prescription-edit-modal').modal('show');
+    function createPrescription(medicine_id){
+        create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/create/' + medicine_id;
 
+        // add problem to creation if selected any
+        if(problem_id > 0){
+            create_url += '/' + problem_id
+        }
+        
         $.ajax({
-            url: '/clinics/{{$clinic->id}}/prescriptions/' + id + '/get',
+            url: create_url,
             type: 'get',
             success: function(prescription)
             {
-                console.log(prescription);
-                
-                /*
-                // fill Modal with prescription details                    
-                $('#prescription-edit-active_from').val(prescription.active_from);
-                $('#prescription-edit-active_from').datepicker('update');
-
-
-                // $('#prescription-edit-id').val(prescription.id);
-                $('#prescription-edit-diagnosis_id').val(prescription.diagnosis_id);
-                $('#prescription-edit-diagnosis_term_name').val(prescription.diagnosis.term_name);
-                $('#prescription-edit-subjective_analysis').val(prescription.subjective_analysis);
-                $('#prescription-edit-objective_analysis').val(prescription.objective_analysis);
-                $('#prescription-edit-notes').val(prescription.notes);
-
-                // if status_id is not set, set it to 'active' 
-                if(prescription.status_id > 0){
-                    $('#prescription-edit-status_id_' + prescription.status_id).prop("checked", true);
-                }else{
-                    $('#prescription-edit-status_id_1').prop("checked", true);
-                }
-                $('#prescription-edit-key_prescription').prop("checked", prescription.key_prescription == 1 ? true : false);
-                
-
-                // Set action and method
-                if(prescription.id > 0){
-                    $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions/' + prescription.id);
-                    $('[name="_method"]').val('PUT');
-                }else{
-                    $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions');
-                    $('[name="_method"]').val('POST');
-                }
-
-                // Display Modal
-                $('#prescription-edit-modal').modal('show');
-                */
+                openPrescriptionEditModal(prescription);
             }
         });
     }
+
+
+    function editPrescription(id){
+        $.ajax({
+            url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/edit/' + id,
+            type: 'get',
+            success: function(prescription)
+            {
+                openPrescriptionEditModal(prescription);
+            }
+        });
+    }
+
+    function openPrescriptionEditModal(prescription){
+        $('#prescription-edit-medicine_id').val(prescription.medicine.id);
+        $('#prescription-edit-problem').val(prescription.problem_id);
+        $('#prescription-edit-problem_id').val(prescription.problem_id);
+        $('#prescription-edit-medicine').val(prescription.medicine.name);
+        $('#prescription-edit-date_of_prescription').val(prescription.created_at);
+        $('#prescription-edit-quantity').val(prescription.quantity);
+        $('#prescription-edit-dosage').val(prescription.dosage);
+
+        $('#prescription-edit-in_evidence').prop("checked", !! + prescription.in_evidence);
+        $('#prescription-edit-notes').val(prescription.notes);
+        $('#prescription-edit-print_notes').prop("checked", !! + prescription.print_notes);
+
+        // Set action and method
+        if(prescription.id > 0){
+            $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions/' + prescription.id);
+            $('[name="_method"]').val('PUT');
+        }else{
+            $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions');
+            $('[name="_method"]').val('POST');
+        }
+
+        $('#prescription-edit-modal').modal('show');
+    }
+
 </script>
 @endpush

@@ -24,6 +24,8 @@ return [
     'owner_update_success' => 'Il proprietario è stato aggiornato con successo.',
     'pet_date_of_death_warning' => 'Warning! Date of death cannot be before Date of Birth', 
     'pet_destroy_success' => 'L\'animale selezionato è stato cancellato.',
+    'prescription_update_success' => 'La prescrizione è stata aggiornata con successo.',
+    'prescription_update_error' => 'Si è verificato un errore durante l\'aggiornamento della prescrizione.',
     'problem_create_success' => 'Il problema è stato creato con successo.',
     'problem_update_error' => 'Si è verificato un errore durante l\'aggiornamento del problema.',
     'problem_update_success' => 'Il problema è stato aggiornato con successo.',

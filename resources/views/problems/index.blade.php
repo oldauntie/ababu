@@ -70,11 +70,8 @@
 </div>
 
 @include('problems.modal.edit')
-@push('scripts')
-<!-- select2 -->
-<script type="text/javascript" src="{{url('/lib/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
-<link rel="stylesheet" type="text/css" href="{{url('/lib/select2-4.1.0-beta.1/dist/css/select2.min.css')}}" />
 
+@push('scripts')
 
 <script type="text/javascript">
     $(function() {
@@ -167,10 +164,10 @@
                 // Set action and method
                 if(problem.id > 0){
                     $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems/' + problem.id);
-                    $('[name="_method"]').val('PUT');
+                    $('#problem-edit-modal-form input[name="_method"]').val('PUT');
                 }else{
                     $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems');
-                    $('[name="_method"]').val('POST');
+                    $('#problem-edit-modal-form input[name="_method"]').val('POST');
                 }
 
                 // Display Modal

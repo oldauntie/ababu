@@ -48,16 +48,13 @@
     </div>
 </div>
 
+@include('prescriptions.partial.delete')
 @include('prescriptions.modal.edit')
-@push('scripts')
-<!-- select2 -->
-<script type="text/javascript" src="{{url('/lib/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
-<link rel="stylesheet" type="text/css" href="{{url('/lib/select2-4.1.0-beta.1/dist/css/select2.min.css')}}" />
 
+@push('scripts')
 
 <script type="text/javascript">
     $(function() {
-        
         // define main prescriptions table
         prescriptions_table = $('#prescriptions').DataTable({
             processing: true,
@@ -80,7 +77,7 @@
                     data:           null,
                     defaultContent: ""
                 },
-                {data: "id", name: "id"},
+                {data: "id", name: "id", visible: false},
                 {data: "created_at", name: "created_at", render: function(data){
                     var updated = moment.utc(data);
                     return updated.format( updated.locale('{{auth()->user()->locale->short_code}}').localeData().longDateFormat('L') );
@@ -109,6 +106,7 @@
             return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
         };
 
+
         /* Formatting function for row details - modify as you need */
         function format ( d ) {
             // `d` is the original data object for the row
@@ -124,6 +122,7 @@
                 '</tr>'+
             '</table>';
         }
+
 
         // Add event listener for opening and closing details
         $('#prescriptions tbody').on('click', 'td.details-control', function () {
@@ -151,7 +150,7 @@
         });
 
 
-        // prescrprion table double click
+        // prescription table double click
         $('#prescriptions tbody').on('dblclick', 'tr.master-row', function(){
             var selData = prescriptions_table.rows(".selected").data();
             var id = selData[0].id;
@@ -160,7 +159,7 @@
         });
 
 
-        // Select2 component for medicine selection 
+        // Select2 medicine selection (search) 
         $("#medicine_id").select2({
             ajax: { 
                 placeholder: "Choose a medicine...",
@@ -188,14 +187,33 @@
             // clear selection
             $('#medicine_id').val(null).trigger('change');
         });
+
+
+        // delete button
+        $(document).on('click', '#prescription-edit-delete-button', function(e){
+            e.preventDefault();
+            bootbox.confirm({
+                title: "{{__('translate.prescription')}} {{__('translate.delete')}}",
+                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.pet_delete')}} </small>",
+                className: 'rubberBand animated',
+                callback: function(result) {
+                    if (result) {
+                        // get button value
+                        var id = e.target.value;
+                        $('#prescription-edit-delete-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/' + id);
+                        $('#prescription-edit-delete-form').submit();
+                    }
+                }
+            });
+        });
     
     });
 
-
+    // retrieve an empty prescription and pass it to 
     function createPrescription(medicine_id){
         create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/create/' + medicine_id;
 
-        // add problem to creation if selected any
+        // if selected, it add a problem_id to creation url
         if(problem_id > 0){
             create_url += '/' + problem_id
         }
@@ -210,7 +228,7 @@
         });
     }
 
-
+    // retrieve a prescription given an id
     function editPrescription(id){
         $.ajax({
             url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/edit/' + id,
@@ -222,7 +240,10 @@
         });
     }
 
+    // open prescription form for edit
     function openPrescriptionEditModal(prescription){
+        prescription = prescription;
+        $('#prescription-edit-prescription_id').val(prescription.id);
         $('#prescription-edit-medicine_id').val(prescription.medicine.id);
         $('#prescription-edit-problem').val(prescription.problem_id);
         $('#prescription-edit-problem_id').val(prescription.problem_id);
@@ -236,12 +257,20 @@
         $('#prescription-edit-print_notes').prop("checked", !! + prescription.print_notes);
 
         // Set action and method
-        if(prescription.id > 0){
+        if(prescription.id > 0)
+        {
             $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions/' + prescription.id);
-            $('[name="_method"]').val('PUT');
+            $('#prescription-edit-modal-form input[name="_method"]').val('PUT');
+
+            $('#prescription-edit-delete-button').attr('disabled', false);
+            $('#prescription-edit-delete-button').val(prescription.id);
+            $('#prescription-edit-print-button').attr('disabled', false);
         }else{
             $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions');
-            $('[name="_method"]').val('POST');
+            $('#prescription-edit-modal-form input[name="_method"]').val('POST');
+            
+            $('#prescription-edit-delete-button').attr('disabled', true);
+            $('#prescription-edit-print-button').attr('disabled', true);
         }
 
         $('#prescription-edit-modal').modal('show');

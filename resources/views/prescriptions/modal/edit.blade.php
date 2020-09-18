@@ -47,8 +47,7 @@
                                     <div class="col-12">
                                         <label for="prescription-edit-medicine"
                                             class="text-md-right">{{__('translate.medicine')}}</label>
-                                        <input type="hidden" name="medicine_id" value=""
-                                            id="prescription-edit-medicine_id" class="form-control form-control-sm">
+                                        <input type="hidden" name="medicine_id" value="" id="prescription-edit-medicine_id">
                                         <input type="text" name="medicine" value="" id="prescription-edit-medicine"
                                             class="form-control form-control-sm" disabled>
                                     </div>
@@ -164,8 +163,8 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
-                            <button type="button" class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
-                            <button type="button" class="btn btn-info btn-sm">{{__('translate.print')}}</button>
+                            <button type="button" id="prescription-edit-delete-button" class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
+                            <button type="button" id="prescription-edit-print-button" class="btn btn-info btn-sm">{{__('translate.print')}}</button>
                             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>
                     </div>
@@ -189,36 +188,8 @@
 
 @push('scripts')
 
-<!-- datatable -->
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}"
-    charset="UTF-8"></script>
-@if(auth()->user()->locale->id != 'en-US')
-<script type="text/javascript"
-    src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}"
-    charset="UTF-8"></script>
-@endif
-<link rel="stylesheet" type="text/css"
-    href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
-
-<!-- moment -->
-<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
-
-
 <script type="text/javascript">
     $(document).ready(function(){
-
-        var active_from = $('#prescription-edit-active_from').datepicker({
-            // format: "dd/mm/yyyy",
-            language: "{{ auth()->user()->locale->id}}",
-            todayHighlight: true,
-            autoclose: true,
-            maxDate: "+100Y"
-        }).on('show', function(e) {
-            
-        }).on('hide', function(e) {
-            setAtAge();
-        });
-
         // lock / unlock button
         $('#lock').click(function(){
             // change icon
@@ -232,26 +203,7 @@
         $('#prescription-edit-problem').on('change', function(){
             $('#prescription-edit-problem_id').val($(this).val());
         });
-
     });
-
-    function setAtAge()
-    {
-        // active_from
-        var a = moment().locale('{{auth()->user()->locale->short_code}}');
-        
-        // date of birth
-        var b = moment().locale('{{auth()->user()->locale->short_code}}');
-
-        if( $('#prescription-edit-active_from').val() != ''){
-            a = moment($('#prescription-edit-active_from').val(), a.localeData().longDateFormat('L'));
-        }
-
-        b = moment('{{$pet->date_of_birth->format( auth()->user()->locale->date_short_format )}}', b.localeData().longDateFormat('L'));
-
-        var years = a.diff(b, 'year');
-        $('#prescription-edit-at_age').val(years);
-    }
 </script>
 
 @endpush

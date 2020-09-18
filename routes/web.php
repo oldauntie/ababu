@@ -73,6 +73,7 @@ Route::get('clinics/{clinic}/pets/{pet}/prescriptions/create/{medicine}/{problem
 Route::get('clinics/{clinic}/pets/{pet}/prescriptions/edit/{prescription}', 'PrescriptionController@editPrescriptionById')->name('clinics.edit.prescription.by.medicine')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::put('clinics/{clinic}/pet/{pet}/prescriptions/{prescription}', 'PrescriptionController@update')->name('clinics.prescriptions.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pet/{pet}/prescriptions', 'PrescriptionController@store')->name('clinics.prescriptions.store')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::delete('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}', 'PrescriptionController@destroy')->name('clinics.prescriptions.destroy')->middleware('clinic_access')->middleware('can:cure,pet');
 
 
 // problems

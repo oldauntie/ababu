@@ -7,10 +7,10 @@ use App\Clinic;
 use App\Pet;
 use App\Medicine;
 use App\Problem;
-use GuzzleHttp\Handler\Proxy;
+
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Carbon;
 
@@ -153,9 +153,17 @@ class PrescriptionController extends Controller
      * @param  \App\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prescription $prescription)
+    public function destroy(Clinic $clinic, Pet $pet, Prescription $prescription)
     {
-        //
+        if($prescription->delete())
+        {
+            Session::flash('success', __('message.prescription_destroy_success'));
+        }
+        else
+        {
+            Session::flash('success', __('message.prescription_destroy_error'));
+        }
+        return redirect()->route('clinics.visits.show', [$clinic, $pet]);
     }
 
 

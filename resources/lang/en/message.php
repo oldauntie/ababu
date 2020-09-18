@@ -26,6 +26,8 @@ return [
     'pet_destroy_success' => 'Selected pet has been deleted.',
     'prescription_create_success' => 'Prescription has been successfully created.',
     'prescription_create_error' => 'There was an error while creating the prescription.',
+    'prescription_destroy_success' => 'Prescription has been successfully deleted.',
+    'prescription_destroy_error' => 'There was an error while deleting the prescription.',
     'prescription_update_success' => 'Prescription has been successfully updated.',
     'prescription_update_error' => 'There was an error while updateding the prescription.',
     'problem_create_success' => 'Problem has been successfully created.',
@@ -36,8 +38,5 @@ return [
     'species_update_error' => 'There was an error while saving specie.',
     'species_update_success' => 'Specie saved.',
     'user_update_success' => 'User has been updated.',
-
-
-
 
 ];

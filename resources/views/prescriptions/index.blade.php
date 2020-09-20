@@ -32,8 +32,4 @@
 @include('prescriptions.modal.edit')
 
 @push('scripts')
-
-<script type="text/javascript">
-    // moved under visits.show.blade
-</script>
 @endpush

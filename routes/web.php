@@ -65,7 +65,10 @@ Route::get('clinics/{clinic}/pet/{pet}/problem/diagnosis/{diagnosis}', 'ProblemC
 Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 
 // examinations
+Route::get('clinics/{clinic}/diagnostic_tests/search', 'DiagnosticTestController@search')->name('clinics.diagnostic_tests.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 Route::get('clinics/{clinic}/pets/{pet}/examinations/list/{problem_id?}/{return?}', 'ExaminationController@list')->name('clinics.examinations.list')->middleware('clinic_access')->middleware('can:cure,pet');
+
+Route::get('clinics/{clinic}/pets/{pet}/examinations/create/{diagnostic_test}/{problem?}', 'ExaminationController@createExaminationByDiagnosticTest')->name('clinics.create.examination.by.diagnostic_test')->middleware('clinic_access')->middleware('can:cure,pet');
 
 // medicines & prescriptions
 Route::get('clinics/{clinic}/medicines/search', 'MedicineController@search')->name('clinics.medicines.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');

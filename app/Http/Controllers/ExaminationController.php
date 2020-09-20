@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Examination;
 use App\Clinic;
+use App\DiagnosticTest;
 use App\Pet;
 use App\Problem;
 
@@ -88,6 +89,28 @@ class ExaminationController extends Controller
     {
         //
     }
+
+    public function createExaminationByDiagnosticTest(Clinic $clinic, Pet $pet, DiagnosticTest $diagnosticTest, Problem $problem = null)
+    {
+        // load user locale
+        $locale = auth()->user()->locale;
+
+        $examination = new Examination();
+        $examination->problem_id = $problem == null ? null : $problem->id;
+        $examination->diagnostic_test_id = $diagnosticTest->id;
+        $examination->created_at = Carbon::now();
+
+        $result = $examination->toArray();
+
+        // change date format
+        $result['created_at'] = $examination->created_at->format($locale->date_short_format);
+
+        // add diagnosis to results
+        $result += ['diagnostic_test' => $examination->diagnosticTest->toArray()];
+
+        return response()->json($result);
+    }
+
 
     public function list(Clinic $clinic, Pet $pet, $problem_id = null, $return = null)
     {

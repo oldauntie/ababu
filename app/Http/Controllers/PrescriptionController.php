@@ -130,6 +130,7 @@ class PrescriptionController extends Controller
         $prescription->problem_id = $request->problem_id;
         $prescription->user_id = auth()->user()->id;
         $prescription->quantity = $request->quantity;
+        $prescription->dosage = $request->dosage;
         $prescription->in_evidence = $request->in_evidence == null ? false : true;
         $prescription->notes = $request->notes;
         $prescription->print_notes = $request->print_notes == null ? false : true;

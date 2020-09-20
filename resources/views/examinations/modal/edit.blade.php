@@ -45,42 +45,28 @@
                                 <!-- Medicine name -->
                                 <div class="row justify-content-center">
                                     <div class="col-12">
-                                        <label for="examination-edit-medicine"
-                                            class="text-md-right">{{__('translate.medicine')}}</label>
-                                        <input type="hidden" name="medicine_id" value="" id="examination-edit-medicine_id">
-                                        <input type="text" name="medicine" value="" id="examination-edit-medicine"
-                                            class="form-control form-control-sm" disabled>
+                                        <label for="examination-edit-diagnostic_test"
+                                            class="text-md-right">{{__('translate.diagnostic_test')}}</label>
+                                        <div class="input-group">
+                                            <input type="text" name="diagnostic_test_id" value=""
+                                                id="examination-edit-diagnostic_test_id" readonly>
+                                            <input type="text" name="diagnostic_test" value=""
+                                                id="examination-edit-diagnostic_test"
+                                                class="form-control form-control-sm" disabled>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
                                     <!-- Date of examination -->
                                     <div class="col-3">
                                         <label for="examination-edit-date_of_examination"
-                                            class="text-md-right">{{__('translate.date_of_examination')}}*</label>
+                                            class="text-md-right">{{__('translate.date_of_examination')}}</label>
                                         <input name="date_of_examination" value="" type="text"
                                             id="examination-edit-date_of_examination"
                                             class="form-control form-control-sm" disabled>
                                     </div>
-                                    <!-- Quantity -->
-                                    <div class="col-2">
-                                        <label for="examination-edit-quantity"
-                                            class="text-md-right">{{__('translate.quantity')}}*</label>
-                                        <input type="number" name="quantity" value="" id="examination-edit-quantity"
-                                            min="0" max="99"
-                                            class="form-control form-control-sm @error('quantity') is-invalid @enderror"
-                                            autocomplete="quantity" required autofocus>
-                                    </div>
-                                    <!-- Dosage -->
-                                    <div class="col-3">
-                                        <label for="examination-edit-dosage"
-                                            class="text-md-right">{{__('translate.dosage')}}*</label>
-                                        <input type="text" name="dosage" value="" id="examination-edit-dosage"
-                                            maxlength="255"
-                                            class="form-control form-control-sm @error('dosage') is-invalid @enderror"
-                                            autocomplete="dosage" required autofocus>
-                                    </div>
                                     <!-- In Evidence -->
-                                    <div class="col-4 align-self-end">
+                                    <div class="col-9 align-self-end">
                                         <div class="checkbox">
                                             <img class="align-center" title="{{ __('translate.in_evidence') }}"
                                                 src="{{url('/images/icons/in_evidence.png')}}">
@@ -115,6 +101,66 @@
                                         </div>
                                     </div>
                                 </div>
+                            </fieldset>
+
+                            <!-- result -->
+                            <fieldset>
+                                <legend>{{__('translate.examination_result')}}</legend>
+
+                                <div class="row justify-content-between">
+                                    <!-- result label -->
+                                    <div class="col-3">
+                                        <label for="examination-edit-result"
+                                            class="text-md-right">{{__('translate.examination_result')}}</label>
+                                    </div>
+                                    <div class="col-3">
+
+                                        <div class="checkbox">
+                                            <img class="align-center" title="{{ __('translate.is_pathologic') }}"
+                                                src="{{url('/images/icons/is_pathologic.png')}}">
+                                            <input type="checkbox" name="is_pathologic" value="1"
+                                                id="examination-edit-is_pathologic">
+                                            <label class="align-center" style="margin-bottom: 0px;"
+                                                for="examination-edit-is_pathologic">
+                                                {{ __('translate.is_pathologic') }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <!-- Date of examination -->
+                                    <div class="col-12">
+                                        <input type="text" name="result" value="{{ old('result') }}"
+                                            id="examination-edit-result" class="form-control form-control-sm">
+
+                                        <small class="form-text text-muted">{{__('help.examination_result')}}</small>
+                                        @error('result')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <!-- Date of examination -->
+                                    <div class="col-12">
+                                        <label for="examination-edit-medical_report"
+                                            class="text-md-right">{{__('translate.medical_report')}}</label>
+                                        <textarea name="medical_report" id="examination-edit-medical_report" rows="3"
+                                            style="min-width: 100%"
+                                            class="form-control form-control-sml">{{ old('medical_report') }}</textarea>
+
+                                        <small
+                                            class="form-text text-muted">{{__('help.examination_medical_report')}}</small>
+                                        @error('medical_report')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <!-- Notes -->
                                 <div class="row">
@@ -126,8 +172,7 @@
                                                 style="min-width: 100%"
                                                 class="form-control form-control-sml">{{ old('notes') }}</textarea>
 
-                                            <small
-                                                class="form-text text-muted">{{__('help.examination_notes')}}</small>
+                                            <small class="form-text text-muted">{{__('help.examination_notes')}}</small>
                                             @error('notes')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -144,17 +189,6 @@
 
                             </fieldset>
 
-                            <!-- clinical data -->
-                            <fieldset>
-                                <legend>{{__('translate.medicine_detail')}}</legend>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{__('translate.medicine_detail')}}
-                                    </div>
-                                </div>
-                            </fieldset>
-
 
 
                         </div>
@@ -163,9 +197,12 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
-                            <button type="button" id="examination-edit-delete-button" class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
-                            <button type="button" id="examination-edit-print-button" class="btn btn-info btn-sm">{{__('translate.print')}}</button>
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('translate.close')}}</button>
+                            <button type="button" id="examination-edit-delete-button"
+                                class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
+                            <button type="button" id="examination-edit-print-button"
+                                class="btn btn-info btn-sm">{{__('translate.print')}}</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>
                     </div>
                 </form>
@@ -187,23 +224,4 @@
 <!-- /Attachment Modal -->
 
 @push('scripts')
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        // lock / unlock button
-        $('#lock').click(function(){
-            // change icon
-            $(this).toggleClass( 'lock unlock' );
-            // unlock problem_id control
-            var status = $('#examination-edit-problem').prop('disabled');
-            $('#examination-edit-problem').prop('disabled', !status);
-        })
-
-        // on problem change set problem_id hidden input value 
-        $('#examination-edit-problem').on('change', function(){
-            $('#examination-edit-problem_id').val($(this).val());
-        });
-    });
-</script>
-
 @endpush

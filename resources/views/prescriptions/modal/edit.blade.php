@@ -56,7 +56,7 @@
                                     <!-- Date of prescription -->
                                     <div class="col-3">
                                         <label for="prescription-edit-date_of_prescription"
-                                            class="text-md-right">{{__('translate.date_of_prescription')}}*</label>
+                                            class="text-md-right">{{__('translate.date_of_prescription')}}</label>
                                         <input name="date_of_prescription" value="" type="text"
                                             id="prescription-edit-date_of_prescription"
                                             class="form-control form-control-sm" disabled>
@@ -110,7 +110,7 @@
                                             </select>
                                             <input type="hidden" name="problem_id" value=""
                                                 id="prescription-edit-problem_id">
-                                            <button type="button" id="lock" class="btn btn-light lock"
+                                            <button type="button" id="prescription-edit-button-lock" class="btn btn-light lock"
                                                 data-toggle="button" aria-pressed="false" autocomplete="off"></button>
                                         </div>
                                     </div>
@@ -187,9 +187,4 @@
 <!-- /Attachment Modal -->
 
 @push('scripts')
-
-<script type="text/javascript">
-
-</script>
-
 @endpush

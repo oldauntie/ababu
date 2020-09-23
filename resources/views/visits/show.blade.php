@@ -86,17 +86,16 @@
                         <div class="col-lg-4">
                             @include('prescriptions.index')
                         </div>
-                        <div class="col-lg-4" style="border: thin solid red;">
+                        <div class="col-lg-4">
                             @include('examinations.index')
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-lg-6" style="border: thin solid red;">
-                            <button id="ok" name="ok" class="ok">ok</button>
-                            5
+                            4
                         </div>
                         <div class="col-lg-6" style="border: thin solid red;">
-                            6
+                            5
                         </div>
                     </div>
 
@@ -150,13 +149,6 @@
             var button = $(event.relatedTarget); // Button that triggered the modal
             $('#owner-overlay-modal-label').html( button.text() );
         });
-
-        /*
-        $('.ok').on('click', function(e){
-            alert(problem_id);
-            alert(diagnosis_id);
-        });
-        */
     });
 
     $(document).on('click', '#testme', function(e){
@@ -180,11 +172,17 @@
     function changeProblem(e) {
         problem_id = e.problem_id;
         initPrescriptionsTable(e.problem_id);
+        initExaminationsTable(e.problem_id);
     }
 
     // init Prescriptions Table
     function initPrescriptionsTable(problem_id){
         prescriptions_table.ajax.url( '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/list/' + problem_id + '/datatable' ).load();
+    }
+
+    // init Examinations Table
+    function initExaminationsTable(problem_id){
+        examinations_table.ajax.url( '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/examinations/list/' + problem_id + '/datatable' ).load();
     }
 
 
@@ -255,9 +253,9 @@
                     '<td colspan="4">' + d.name + '</td>'+
                 '</tr>'+
                 '<tr>'+
-                    '<td>q.ty:</td>'+
+                    '<td>{{ __('translate.qty') }}:</td>'+
                     '<td>'+d.quantity+'</td>'+
-                    '<td>dosage:</td>'+
+                    '<td>{{ __('translate.dosage') }}:</td>'+
                     '<td>'+d.dosage+'</td>'+
                 '</tr>'+
             '</table>';
@@ -334,7 +332,7 @@
             e.preventDefault();
             bootbox.confirm({
                 title: "{{__('translate.prescription')}} {{__('translate.delete')}}",
-                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.pet_delete')}} </small>",
+                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.prescription_delete')}} </small>",
                 className: 'rubberBand animated',
                 callback: function(result) {
                     if (result) {
@@ -360,9 +358,6 @@
         $('#prescription-edit-problem').on('change', function(){
             $('#prescription-edit-problem_id').val($(this).val());
         });
-
-
-
     });
 
     // retrieve an empty prescription and pass it to 
@@ -399,18 +394,21 @@
     // open prescription form for edit
     function openPrescriptionEditModal(prescription){
         prescription = prescription;
+
         $('#prescription-edit-prescription_id').val(prescription.id);
         $('#prescription-edit-medicine_id').val(prescription.medicine.id);
         $('#prescription-edit-problem').val(prescription.problem_id);
         $('#prescription-edit-problem_id').val(prescription.problem_id);
         $('#prescription-edit-medicine').val(prescription.medicine.name);
-        $('#prescription-edit-date_of_prescription').val(prescription.created_at);
+        $('#prescription-edit-date_of_prescription').val(prescription.date_of_prescription);
         $('#prescription-edit-quantity').val(prescription.quantity);
         $('#prescription-edit-dosage').val(prescription.dosage);
 
         $('#prescription-edit-in_evidence').prop("checked", !! + prescription.in_evidence);
         $('#prescription-edit-notes').val(prescription.notes);
         $('#prescription-edit-print_notes').prop("checked", !! + prescription.print_notes);
+        $('#prescription-edit-created_at').html(prescription.created_at);
+        $('#prescription-edit-updated_at').html(prescription.updated_at);
 
         // Set action and method
         if(prescription.id > 0)
@@ -465,7 +463,7 @@
                     var updated = moment.utc(data);
                     return updated.format( updated.locale('{{auth()->user()->locale->short_code}}').localeData().longDateFormat('L') );
                 }},
-                {data: "result", name: "result", render: function(data, type, full, meta){
+                {data: "term_name", name: "term_name", render: function(data, type, full, meta){
                     if(type === 'display'){
                         data = strtrunc(data, 19);
                     }
@@ -491,15 +489,13 @@
         /* Formatting function for row details - modify as you need */
         function format ( d ) {
             // `d` is the original data object for the row
-            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+            return '<table cellpadding="5" cellspacing="0" border="0" width="100%" style="padding-left:50px;">'+
                 '<tr>'+
-                    '<td colspan="4">' + d.result + '</td>'+
+                    '<td colspan="2">{{__('translate.examination_result')}}' + (d.result == null ? "":d.result) + '</td>'+
                 '</tr>'+
                 '<tr>'+
-                    '<td>q.ty:</td>'+
-                    '<td>'+d.is_pathologic+'</td>'+
-                    '<td>dosage:</td>'+
-                    '<td>'+d.in_evidence+'</td>'+
+                    '<td>{{__('translate.is_pathologic')}}:</td>'+
+                    '<td>'+d.is_pathologic+'</td>'
                 '</tr>'+
             '</table>';
         }
@@ -543,7 +539,7 @@
         // Select2 medicine selection (search) 
         $("#diagnostic_test_id").select2({
             ajax: { 
-                placeholder: "Choose a medicine...",
+                placeholder: "Choose a Diagnostic Test...",
                 minimumInputLength: 3,
                 url: "/clinics/{{$clinic->id}}/diagnostic_tests/search/",
                 dataType: "json",
@@ -575,7 +571,7 @@
             e.preventDefault();
             bootbox.confirm({
                 title: "{{__('translate.examination')}} {{__('translate.delete')}}",
-                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.pet_delete')}} </small>",
+                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.examination_delete')}} </small>",
                 className: 'rubberBand animated',
                 callback: function(result) {
                     if (result) {
@@ -589,8 +585,8 @@
         });
 
 
-        // lock / unlock problem button on modal form
-        $('#lock').click(function(){
+        // lock / unlock problem button on Examination modal form
+        $('#examination-edit-button-lock').click(function(){
             // change icon
             $(this).toggleClass( 'lock unlock' );
             // unlock problem_id control
@@ -639,9 +635,10 @@
     // open examination form for edit
     function openExaminationEditModal(examination){
         examination = examination;
+
         $('#examination-edit-diagnostic_test_id').val(examination.diagnostic_test.id);
         $('#examination-edit-diagnostic_test').val(examination.diagnostic_test.term_name);
-        $('#examination-edit-date_of_examination').val(examination.created_at);
+        $('#examination-edit-date_of_examination').val(examination.date_of_examination);
         $('#examination-edit-in_evidence').prop("checked", !! + examination.in_evidence);
         
         $('#examination-edit-problem').val(examination.problem_id);
@@ -652,8 +649,9 @@
         
         $('#examination-edit-notes').val(examination.notes);
         $('#examination-edit-print_notes').prop("checked", !! + examination.print_notes);
+        $('#examination-edit-created_at').html(examination.created_at);
+        $('#examination-edit-updated_at').html(examination.updated_at);
 
-        /*
         // Set action and method
         if(examination.id > 0)
         {
@@ -670,7 +668,6 @@
             $('#examination-edit-delete-button').attr('disabled', true);
             $('#examination-edit-print-button').attr('disabled', true);
         }
-        */
 
         $('#examination-edit-modal').modal('show');
     }

@@ -96,7 +96,7 @@
                                             </select>
                                             <input type="hidden" name="problem_id" value=""
                                                 id="examination-edit-problem_id">
-                                            <button type="button" id="lock" class="btn btn-light lock"
+                                            <button type="button" id="examination-edit-button-lock" class="btn btn-light lock"
                                                 data-toggle="button" aria-pressed="false" autocomplete="off"></button>
                                         </div>
                                     </div>
@@ -209,12 +209,12 @@
             </div>
 
             <!-- modal footer -->
-            <div class="modal-footer justify-content-between">
+            <div class="modal-footer justify-content-left">
                 <div class="row" style="width: 95%">
                     <div class="col-2">{{ __('translate.created_at') }}</div>
-                    <div class="col-2" id="examination-edit-created_at">00:00:00</div>
+                    <div class="col-3" id="examination-edit-created_at"></div>
                     <div class="col-2">{{ __('translate.updated_at') }}</div>
-                    <div class="col-2" id="examination-edit-updated_at">00:00:00</div>
+                    <div class="col-3" id="examination-edit-updated_at"></div>
                 </div>
             </div>
 

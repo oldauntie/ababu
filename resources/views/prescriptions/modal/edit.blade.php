@@ -172,12 +172,12 @@
             </div>
 
             <!-- modal footer -->
-            <div class="modal-footer justify-content-between">
+            <div class="modal-footer justify-content-left">
                 <div class="row" style="width: 95%">
                     <div class="col-2">{{ __('translate.created_at') }}</div>
-                    <div class="col-2" id="prescription-edit-created_at">00:00:00</div>
+                    <div class="col-3" id="prescription-edit-created_at">00:00:00</div>
                     <div class="col-2">{{ __('translate.updated_at') }}</div>
-                    <div class="col-2" id="prescription-edit-updated_at">00:00:00</div>
+                    <div class="col-3" id="prescription-edit-updated_at">00:00:00</div>
                 </div>
             </div>
 

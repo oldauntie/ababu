@@ -92,6 +92,7 @@ return [
     'problem_indipendent' => 'Indipendente dal problema',
     'problem_long_term_active' => 'Attivo Di Lungo Periodo',
     'problem_suspect' => 'Sospetto',
+    'qty' => 'Q.tà',
     'quantity' => 'Quantità',
     'roles' => 'ruoli',
     'save' => 'salva',

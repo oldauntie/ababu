@@ -46,7 +46,6 @@ class PrescriptionController extends Controller
     public function store(Request $request, Clinic $clinic, Pet $pet)
     {
         // validate
-        // validate
         $validator = Validator::make($request->all(), [
             'quantity' => 'required',
             'dosage' => 'required',
@@ -176,13 +175,14 @@ class PrescriptionController extends Controller
         $prescription = new Prescription();
         $prescription->problem_id = $problem == null ? null : $problem->id;
         $prescription->medicine_id = $medicine->id;
-        $prescription->created_at = Carbon::now();
 
         $result = $prescription->toArray();
 
         // change date format
-        $result['created_at'] = $prescription->created_at->format($locale->date_short_format);
-
+        $result['date_of_prescription'] = Carbon::now()->format($locale->date_short_format);
+        $result['created_at'] = null;
+        $result['updated_at'] = null;
+        
         // add diagnosis to results
         $result += ['medicine' => $prescription->medicine->toArray()];
 
@@ -204,8 +204,10 @@ class PrescriptionController extends Controller
         $result = $prescription->toArray();
 
         // change date format
-        $result['created_at'] = $prescription->created_at->format($locale->date_short_format);
-
+        $result['date_of_prescription'] = $prescription->created_at->format($locale->date_short_format);
+        $result['created_at'] = $prescription->created_at->format($locale->date_short_format . ' ' . $locale->time_long_format);
+        $result['updated_at'] = $prescription->updated_at != null ? $prescription->updated_at->format($locale->date_short_format . ' ' . $locale->time_long_format) : null;
+        
         // add diagnosis to results
         $result += ['medicine' => $prescription->medicine->toArray()];
 

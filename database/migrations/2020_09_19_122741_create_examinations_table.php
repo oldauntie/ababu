@@ -18,9 +18,9 @@ class CreateExaminationsTable extends Migration
             $table->string('diagnostic_test_id');
             $table->bigInteger('problem_id')->unsigned()->nullable();
             $table->bigInteger('pet_id')->unsigned();
-            $table->bigInteger('user_id');
-            $table->text('result');
-            $table->text('medical_report');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->text('result')->nullable();
+            $table->text('medical_report')->nullable();
             $table->boolean('is_pathologic');
             $table->boolean('in_evidence');
             $table->text('notes')->nullable();
@@ -30,6 +30,7 @@ class CreateExaminationsTable extends Migration
 
             $table->foreign('problem_id')->references('id')->on('problems')->onDelete('set null');
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

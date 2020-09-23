@@ -92,6 +92,7 @@ return [
     'problem_indipendent' => 'Problem Indipendent',
     'problem_long_term_active' => 'Long Term Active',
     'problem_suspect' => 'Suspect',
+    'qty' => 'Q.ty',
     'quantity' => 'Quantity',
     'roles' => 'roles',
     'save' => 'save',

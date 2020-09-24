@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Visit;
 use App\Clinic;
+use App\Note;
 use App\Pet;
 use App\Prescription;
 use App\Problem;
@@ -58,11 +59,16 @@ class VisitController extends Controller
         $prescriptions = Prescription::where('pet_id', '=', $pet->id)
                         ->orderBy('created_at', 'desc')
                         ->get();
+        
+        $notes = Note::where('pet_id', '=', $pet->id)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
         // dd($problems);
         return view('visits.show')
                 ->with('clinic', $clinic)
                 ->with('problems', $problems)
                 ->with('prescriptions', $prescriptions)
+                ->with('notes', $notes)
                 ->with('pet', $pet);
     }
 

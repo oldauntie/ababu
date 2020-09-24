@@ -84,6 +84,10 @@ Route::put('clinics/{clinic}/pet/{pet}/prescriptions/{prescription}', 'Prescript
 Route::post('clinics/{clinic}/pet/{pet}/prescriptions', 'PrescriptionController@store')->name('clinics.prescriptions.store')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::delete('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}', 'PrescriptionController@destroy')->name('clinics.prescriptions.destroy')->middleware('clinic_access')->middleware('can:cure,pet');
 
+// notes
+Route::put('clinics/{clinic}/pet/{pet}/notes/{note}', 'NoteController@update')->name('clinics.notes.update')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::post('clinics/{clinic}/pet/{pet}/notes', 'NoteController@store')->name('clinics.notes.store')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::delete('clinics/{clinic}/pets/{pet}/notes/{note}', 'NoteController@destroy')->name('clinics.notes.destroy')->middleware('clinic_access')->middleware('can:cure,pet');
 
 // problems
 Route::put('clinics/{clinic}/pet/{pet}/problems/{problem}', 'ProblemController@update')->name('clinics.problems.update')->middleware('clinic_access')->middleware('can:cure,pet');

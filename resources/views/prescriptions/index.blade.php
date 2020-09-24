@@ -3,6 +3,7 @@
         <!-- owner -->
         <div class="row">
             <div class="col-md-12">
+                <label for="note_text" class="col-form-label">{{__('translate.prescription')}}</label>
                 <select id="medicine_id" name="medicine_id"></select>
             </div>
         </div>

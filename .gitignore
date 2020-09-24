@@ -7,6 +7,7 @@
 /database/seeds/VeNom/*
 /database/seeds/ITIS/*
 /database/seeds/medicines/master/*
+/database/seeds/sql/develop/*
 .env
 .env.backup
 .phpunit.result.cache

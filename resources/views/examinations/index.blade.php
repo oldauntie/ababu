@@ -4,6 +4,7 @@
         <!-- owner -->
         <div class="row">
             <div class="col-md-12">
+                <label for="note_text" class="col-form-label">{{__('translate.examination')}}</label>
                 <select id="diagnostic_test_id" name="diagnostic_test_id"></select>
             </div>
         </div>

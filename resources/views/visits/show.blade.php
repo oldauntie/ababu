@@ -91,8 +91,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-6" style="border: thin solid red;">
-                            4
+                        <div class="col-lg-6">
+                            @include('notes.index')
                         </div>
                         <div class="col-lg-6" style="border: thin solid red;">
                             5

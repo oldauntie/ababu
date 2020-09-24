@@ -57,7 +57,6 @@ class PrescriptionController extends Controller
             ->withErrors($validator);
         }
 
-
         $prescription = new Prescription([
             'medicine_id' => $request->medicine_id,
             'problem_id' => $request->problem_id,
@@ -69,7 +68,6 @@ class PrescriptionController extends Controller
             'notes' => $request->notes,
             'print_notes' => $request->print_notes == 1 ? true : false,
         ]);
-
 
         if ($prescription->save())
         {

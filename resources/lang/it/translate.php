@@ -68,6 +68,7 @@ return [
     'months' => 'Mesi',
     'name' => 'Nome',
     'new' => 'Nuovo',
+    'note' => 'Nota',
     'notes' => 'Note',
     'number_of_pets_per_species' => 'No. di animali per specie',
     'objective_analysis' => 'Analisi Oggettiva',

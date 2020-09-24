@@ -20,6 +20,7 @@ return [
     'clinic_not_configured' => 'Non c\'è nessuna clinica configurata con il tuo account. Per favore creane una o unisciti ad une esitente inserendo il codice di autenticazione fornito dall\'amministratore della clinica ',
     'clinic_token_example' => 'es: 6240b71-rugby310',
     'examination_delete' => 'Si è sicuri di voler eliminare l\'accentertamento selezionato e tutte le informazioni ad esso collegato?',
+    'note_delete' => 'Si è sicuri di voler eliminare la nota selezionata e tutte le informazioni ad esso collegato?',
     'owner_address' => '',
     'owner_city' => '',
     'owner_country' => '',

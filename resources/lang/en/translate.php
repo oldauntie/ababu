@@ -69,6 +69,7 @@ return [
     'name' => 'Name',
     'number_of_pets_per_species' => 'No. of Pets per Species',
     'new' => 'New',
+    'note' => 'Note',
     'notes' => 'Notes',
     'objective_analysis' => 'Objective Analysis',
     'or' => 'or',

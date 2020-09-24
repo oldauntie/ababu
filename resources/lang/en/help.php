@@ -20,6 +20,7 @@ return [
     'clinic_not_configured' => 'There is no clinic configured for your account. Please... ',
     'clinic_token_example' => 'example: 6240b71-rugby310',
     'examination_delete' => 'Do you really want to delete selected examination and all related information?',
+    'note_delete' => 'Do you really want to delete selected note and all related information?',
     'owner_address' => '',
     'owner_city' => '',
     'owner_country' => '',

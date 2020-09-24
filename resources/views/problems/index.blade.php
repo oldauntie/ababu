@@ -30,6 +30,7 @@
         <!-- owner -->
         <div class="row">
             <div class="col-md-12">
+                <label for="note_text" class="col-form-label">{{__('translate.problem')}}</label>
                 <select id="diagnosis_id" name="diagnosis_id"></select>
             </div>
         </div>

@@ -172,8 +172,8 @@ class DevelopSeeder extends Seeder
         /**
          * Notes
          */
-        // DB::unprepared(File::get(base_path() . '/database/seeds/sql/develop/Notes.sql'));
-        // $this->command->info('Notes table seeded!');
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/develop/Notes.sql'));
+        $this->command->info('Notes table seeded!');
 
 
         $this->command->info('*** WARNING! YOU ARE SEEDING DEVELOPMENT DATA ***');

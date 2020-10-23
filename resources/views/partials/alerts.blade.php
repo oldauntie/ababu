@@ -6,7 +6,7 @@
 
 @if(session('warning'))
     <div class="alert alert-warning" role="alert">
-        {{ session('error') }}
+        {{ session('warning') }}
     </div>
 @endif
 

@@ -25,8 +25,8 @@
                         class="form-control form-control-sm">
                 </div>
                 <div class="col-md-8">
-                    <input type="text" name="note_text" value="{{$note->note_text}}"
-                        class="form-control form-control-sm" required>
+                    <textarea name="note_text" rows="2" style="min-width: 100%" class="form-control form-control-sml"
+                        required>{{$note->note_text}}</textarea>
                 </div>
                 <div class="col-md-1 d-flex align-items-center">
                     <input type="image" name="" src="{{url('/images/icons/accept.png')}}" border="0" alt="" style="" />

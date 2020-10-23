@@ -42,7 +42,9 @@
                 <!-- card header -->
                 <div class="card-header">
                     <b>{{ $pet->name }}</b> ({{ $pet->species->familiar_name }}) {{ $pet->sex }} -
-                    {{ __('translate.age') }}: {{ $pet->age->years }} {{ __('translate.years') }}, {{ $pet->age->months }} {{ __('translate.months') }}, {{ $pet->age->days }} {{ __('translate.days') }}
+                    {{ __('translate.age') }}: {{ $pet->age->years }} {{ __('translate.years') }},
+                    {{ $pet->age->months }} {{ __('translate.months') }}, {{ $pet->age->days }}
+                    {{ __('translate.days') }}
                     <button type="button" id="testme" class="btn btn-sm btn-primary">test me</button>
                     <br>
                     <small>Owner: {{ $pet->owner->fullname }}:
@@ -94,8 +96,44 @@
                         <div class="col-lg-6">
                             @include('notes.index')
                         </div>
-                        <div class="col-lg-6" style="border: thin solid red;">
-                            5
+                        <div class="col-lg-6">
+
+
+
+
+
+
+
+                            <!-- Tab Headers -->
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                        href="#nav-home" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">{{__('translate.treatments')}} /
+                                        {{__('translate.procedures')}} / {{__('translate.vaccinations')}}</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                        href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                        aria-selected="false">{{__('translate.materials')}}</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                        aria-selected="false">{{__('translate.certificates')}}</a>
+                                </div>
+                            </nav>
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-home-tab">treatments, procedures, vaccinations</div>
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">materials</div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">certificates</div>
+                            </div>
+
+
+
+
+
+
                         </div>
                     </div>
 
@@ -123,11 +161,15 @@
 <script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
 
 <!-- DatePicker -->
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}"
+    charset="UTF-8"></script>
 @if(auth()->user()->locale->id != 'en-US')
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript"
+    src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}"
+    charset="UTF-8"></script>
 @endif
-<link rel="stylesheet" type="text/css" href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
+<link rel="stylesheet" type="text/css"
+    href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
 <!-- bootbox -->
 <script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>

@@ -45,19 +45,19 @@
 @push('scripts')
 <script>
     function deleteNote(id)
-{
-    bootbox.confirm({
-    title: "{{__('translate.note')}} {{__('translate.delete')}}",
-    message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.note_delete')}} </small>",
-    className: 'rubberBand animated',
-        callback: function(result) {
-            if (result) {
-                // get button value
-                $('#note-edit-delete-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/notes/' + id);
-                $('#note-edit-delete-form').submit();
+    {
+        bootbox.confirm({
+        title: "{{__('translate.note')}} {{__('translate.delete')}}",
+        message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.note_delete')}} </small>",
+        className: 'rubberBand animated',
+            callback: function(result) {
+                if (result) {
+                    // get button value
+                    $('#note-edit-delete-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/notes/' + id);
+                    $('#note-edit-delete-form').submit();
+                }
             }
-        }
-    });
-}
+        });
+    }
 </script>
 @endpush

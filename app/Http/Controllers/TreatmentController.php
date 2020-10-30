@@ -1,0 +1,104 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Treatment;
+use App\Clinic;
+use App\Pet;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+
+class TreatmentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Treatment  $treatment
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Treatment $treatment)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Treatment  $treatment
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Treatment $treatment)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Treatment  $treatment
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Treatment $treatment)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Treatment  $treatment
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Treatment $treatment)
+    {
+        //
+    }
+
+    public function list(Clinic $clinic, Pet $pet, $problem_id = null, $return = null)
+    {
+        $query = Treatment::where('treatments.pet_id', '=', $pet->id)
+            ->join('procedures', 'treatments.procedure_id', '=', 'procedures.id')
+            ->select('treatments.*', 'procedures.term_name')
+            ->orderBy('created_at', 'desc');
+
+        $treatments = $query->get();
+
+        if ($return == 'datatable')
+        {
+            return Datatables::of($treatments)
+                ->make(true);
+        }
+    }
+}

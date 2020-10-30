@@ -100,6 +100,9 @@ Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_role
 Route::get('clinics/{clinic}/species/{species}', 'SpeciesController@details')->name('species.details')->middleware('auth')->middleware('roles:root|admin');
 Route::get('/animalia/search', 'AnimaliaController@search')->name('animalia.search')->middleware('auth')->middleware('roles:root|admin');
 
+// treatments
+Route::get('clinics/{clinic}/pets/{pet}/treatments/list/{problem_id?}/{return?}', 'TreatmentController@list')->name('clinics.treatments.list')->middleware('clinic_access')->middleware('can:cure,pet');
+
 // root: to be implemented or deprecated
 Route::get('/users/ajax', 'UserController@ajaxUserList')->name('users.ajax')->middleware('roles:root');
 

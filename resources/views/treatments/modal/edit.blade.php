@@ -42,133 +42,51 @@
                         <div class="col-md-12">
                             <fieldset>
                                 <legend>{{__('translate.treatment')}}</legend>
-                                <!-- Medicine name -->
+                                <!-- Procedure name -->
                                 <div class="row justify-content-center">
-                                    <div class="col-12">
-                                        <label for="treatment-edit-diagnostic_test"
-                                            class="text-md-right">{{__('translate.diagnostic_test')}}</label>
+                                    <div class="col-9">
+                                        <label for="treatment-edit-procedure"
+                                            class="text-md-right">{{__('translate.procedure')}}</label>
                                         <div class="input-group">
-                                            <input type="text" name="diagnostic_test_id" value=""
-                                                id="treatment-edit-diagnostic_test_id" readonly>
-                                            <input type="text" name="diagnostic_test" value=""
-                                                id="treatment-edit-diagnostic_test"
+                                            <input type="text" name="procedure_id" value=""
+                                                id="treatment-edit-procedure_id" readonly>
+                                            <input type="text" name="procedure" value="" id="treatment-edit-procedure"
                                                 class="form-control form-control-sm" disabled>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <!-- Date of treatment -->
+                                    <!-- Created At -->
                                     <div class="col-3">
-                                        <label for="treatment-edit-date_of_treatment"
-                                            class="text-md-right">{{__('translate.date_of_treatment')}}</label>
-                                        <input name="date_of_treatment" value="" type="text"
-                                            id="treatment-edit-date_of_treatment"
+                                        <label for="treatment-edit-created_at_short_format"
+                                            class="text-md-right">{{__('translate.created_at')}}</label>
+                                        <input name="created_at" value="" type="text" id="treatment-edit-created_at_short_format"
                                             class="form-control form-control-sm" disabled>
-                                    </div>
-                                    <!-- In Evidence -->
-                                    <div class="col-9 align-self-end">
-                                        <div class="checkbox">
-                                            <img class="align-center" title="{{ __('translate.in_evidence') }}"
-                                                src="{{url('/images/icons/in_evidence.png')}}">
-                                            <input type="checkbox" name="in_evidence" value="1"
-                                                id="treatment-edit-in_evidence">
-                                            <label class="align-center" style="margin-bottom: 0px;"
-                                                for="treatment-edit-in_evidence">
-                                                {{ __('translate.in_evidence') }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Problem -->
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label for="treatment-edit-problem"
-                                            class="text-md-right">{{__('translate.problem')}}</label>
-                                        <div class="input-group">
-                                            <select name="problem" id="treatment-edit-problem"
-                                                class="form-control form-control-sm" disabled>
-                                                <option value="">{{ __('translate.problem_indipendent') }}</option>
-                                                @foreach ($problems as $problem)
-                                                <option value="{{ $problem->id }}">{{ $problem->diagnosis->term_name }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            <input type="hidden" name="problem_id" value=""
-                                                id="treatment-edit-problem_id">
-                                            <button type="button" id="treatment-edit-button-lock" class="btn btn-light lock"
-                                                data-toggle="button" aria-pressed="false" autocomplete="off"></button>
-                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
 
-                            <!-- result -->
+                            <!-- Recall At -->
                             <fieldset>
-                                <legend>{{__('translate.treatment_result')}}</legend>
+                                <legend>{{__('translate.notes')}}</legend>
 
-                                <div class="row justify-content-between">
-                                    <!-- result label -->
-                                    <div class="col-3">
-                                        <label for="treatment-edit-result"
-                                            class="text-md-right">{{__('translate.treatment_result')}}</label>
-                                    </div>
-                                    <div class="col-3">
-
-                                        <div class="checkbox">
-                                            <img class="align-center" title="{{ __('translate.is_pathologic') }}"
-                                                src="{{url('/images/icons/is_pathologic.png')}}">
-                                            <input type="checkbox" name="is_pathologic" value="1"
-                                                id="treatment-edit-is_pathologic">
-                                            <label class="align-center" style="margin-bottom: 0px;"
-                                                for="treatment-edit-is_pathologic">
-                                                {{ __('translate.is_pathologic') }}
-                                            </label>
-                                        </div>
+                                <div class="row justify-content-begin">
+                                    <div class="col-6">
+                                        <label class="align-center" style="margin-bottom: 0px;"
+                                            for="treatment-edit-recall_at">
+                                            {{ __('translate.recall_at') }}
+                                        </label>
+                                        <input type="checkbox" value="1"
+                                            id="treatment-edit-enable_recall_at">
+                                        <input name="recall_at" value="" type="text" id="treatment-edit-recall_at"
+                                            class="" disabled>
                                     </div>
                                 </div>
 
-                                <div class="row justify-content-center">
-                                    <!-- Date of treatment -->
-                                    <div class="col-12">
-                                        <input type="text" name="result" value="{{ old('result') }}"
-                                            id="treatment-edit-result" class="form-control form-control-sm">
-
-                                        <small class="form-text text-muted">{{__('help.treatment_result')}}</small>
-                                        @error('result')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-center">
-                                    <!-- Date of treatment -->
-                                    <div class="col-12">
-                                        <label for="treatment-edit-medical_report"
-                                            class="text-md-right">{{__('translate.medical_report')}}</label>
-                                        <textarea name="medical_report" id="treatment-edit-medical_report" rows="3"
-                                            style="min-width: 100%"
-                                            class="form-control form-control-sml">{{ old('medical_report') }}</textarea>
-
-                                        <small
-                                            class="form-text text-muted">{{__('help.treatment_medical_report')}}</small>
-                                        @error('medical_report')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
 
                                 <!-- Notes -->
                                 <div class="row">
                                     <div class="col-12">
-                                        <label for="treatment-edit-notes"
-                                            class="text-md-right">{{__('translate.notes')}}</label>
                                         <div class="input-group">
-                                            <textarea name="notes" id="treatment-edit-notes" rows="2"
+                                            <textarea name="notes" id="treatment-edit-notes" rows="5"
                                                 style="min-width: 100%"
                                                 class="form-control form-control-sml">{{ old('notes') }}</textarea>
 
@@ -181,16 +99,10 @@
                                         </div>
                                         <input type="checkbox" name="print_notes" value="1"
                                             id="treatment-edit-print_notes">
-                                        <label for="treatment-edit-print_notes"
-                                            name="print_notes">{{ __('translate.print_notes')}}</label>
-
+                                        <label for="treatment-edit-print_notes">{{ __('translate.print_notes')}}</label>
                                     </div>
                                 </div>
-
                             </fieldset>
-
-
-
                         </div>
                     </div>
 
@@ -224,4 +136,26 @@
 <!-- /Attachment Modal -->
 
 @push('scripts')
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // enable datepicker for control
+        var active_from = $('#treatment-edit-recall_at').datepicker({
+            language: "{{ auth()->user()->locale->id}}",
+            todayHighlight: true,
+            autoclose: true,
+            maxDate: "+100Y"
+        }).on('show', function(e) {
+            // 
+        }).on('hide', function(e) {
+            setAtAge();
+        });
+
+        // enable / disable datepicker
+        $("#treatment-edit-enable_recall_at").change(function(){
+            $("#treatment-edit-recall_at").attr("disabled", !$("#treatment-edit-enable_recall_at").is(":checked"));
+        })
+    });
+</script>
+
 @endpush

@@ -18,8 +18,10 @@ class CreateTreatmentsTable extends Migration
             $table->bigInteger('procedure_id')->unsigned();
             $table->bigInteger('pet_id')->unsigned();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->text('notes')->nullable();
             $table->dateTime('recall_at')->nullable();
+            $table->text('notes')->nullable();
+            $table->boolean('print_notes')->default(false);
+
             $table->timestamps();
 
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');

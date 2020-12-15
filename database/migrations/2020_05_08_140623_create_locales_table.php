@@ -19,9 +19,10 @@ class CreateLocalesTable extends Migration
             $table->string('language', 10);
             $table->string('description', 50);
             $table->string('date_short_format', 50);
-            $table->string('date_long_format', 100);
+            $table->string('date_medium_format', 50);
+            $table->string('date_long_format', 50);
             $table->string('time_short_format', 50);
-            $table->string('time_long_format', 100);
+            $table->string('time_long_format', 50);
 
             $table->primary('id');
         });

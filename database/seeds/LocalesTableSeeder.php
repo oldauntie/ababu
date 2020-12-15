@@ -18,7 +18,8 @@ class LocalesTableSeeder extends Seeder
             'language' => 'en',
             'description' => 'English (United States)',
             'date_short_format' => 'm/d/Y',
-            'date_long_format' => 'm/d/Y',
+            'date_medium_format' => 'M d, Y',
+            'date_long_format' => 'F d, Y',
             'time_short_format' => 'g:i a',
             'time_long_format' => 'H:i:s',
         ]);
@@ -29,7 +30,8 @@ class LocalesTableSeeder extends Seeder
             'language' => 'en',
             'description' => 'English (Great Britain)',
             'date_short_format' => 'd/m/Y',
-            'date_long_format' => 'd/m/Y',
+            'date_medium_format' => 'd M Y',
+            'date_long_format' => 'd F Y',
             'time_short_format' => 'g:i a',
             'time_long_format' => 'H:i:s',
         ]);
@@ -40,7 +42,8 @@ class LocalesTableSeeder extends Seeder
             'language' => 'it',
             'description' => 'Italiano',
             'date_short_format' => 'd/m/Y',
-            'date_long_format' => 'd/m/Y',
+            'date_medium_format' => 'd M Y',
+            'date_long_format' => 'd F Y',
             'time_short_format' => 'g:i a',
             'time_long_format' => 'H:i:s',
         ]);

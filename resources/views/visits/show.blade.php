@@ -740,13 +740,7 @@
                 $(row).addClass('master-row');
             },
             columns: [
-                {
-                    className: "details-control",
-                    orderable:      false,
-                    data:           null,
-                    defaultContent: ""
-                },
-                {data: "id", name: "id", visible: false},
+                {data: "id", name: "id", visible: true},
                 {data: "created_at", name: "created_at", render: function(data){
                     var created_at = moment.utc(data);
                     return created_at.format( created_at.locale('{{auth()->user()->locale->short_code}}').localeData().longDateFormat('L') );
@@ -765,7 +759,6 @@
                         return "no recall set";
                     }
                 }},
-                {data: "notes", name: "noteds", visible: false},
             ],
         });
 
@@ -776,37 +769,6 @@
             return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
         };
         
-
-
-        /* Formatting function for row details - modify as you need */
-        function format ( d ) {
-            // `d` is the original data object for the row
-            return '<table cellpadding="5" cellspacing="0" border="0" width="100%" style="padding-left:50px;">'+
-                '<tr>'+
-                    '<td>{{__('translate.notes')}}:</td>'+
-                    '<td>'+d.notes+'</td>'
-                '</tr>'+
-            '</table>';
-        }
-
-
-        // Add event listener for opening and closing details
-        $('#treatments tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = treatments_table.row( tr );
-
-            if ( row.child.isShown() ) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
-            }
-            else {
-                // Open this row
-                row.child( format(row.data()) ).show();
-                tr.addClass('shown');
-            }
-        } );
-
 
         $('#treatments tbody').on('click', 'tr.master-row', function() {
             if (!$(this).hasClass('selected')) {
@@ -821,16 +783,17 @@
             var selData = treatments_table.rows(".selected").data();
             var id = selData[0].id;
 
-            editExamination(id);
+
+            editTreatment(id);
         });
 
 
         // Select2 medicine selection (search) 
-        $("#diagnostic_test_id").select2({
+        $("#procedure_id").select2({
             ajax: { 
                 placeholder: "Choose a Diagnostic Test...",
                 minimumInputLength: 3,
-                url: "/clinics/{{$clinic->id}}/diagnostic_tests/search/",
+                url: "/clinics/{{$clinic->id}}/procedures/search/",
                 dataType: "json",
                 dropdownAutoWidth : true,
                 data: function (params) {
@@ -876,6 +839,7 @@
 
         // lock / unlock problem button on Examination modal form
         $('#examination-edit-button-lock').click(function(){
+            
             // change icon
             $(this).toggleClass( 'lock unlock' );
             // unlock problem_id control
@@ -892,9 +856,67 @@
 
 
 
+    // retrieve an empty examination and pass it to 
+    function createTreatment(procedure_id){
+        create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/create/' + procedure_id;
+        
+        $.ajax({
+            url: create_url,
+            type: 'get',
+            success: function(treatment)
+            {
+                openTreatmentEditModal(treatment);
+            }
+        });
+    }
 
+    // retrieve a examination given an id
+    function editTreatment(id){
+        $.ajax({
+            url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/edit/' + id,
+            type: 'get',
+            success: function(treatment)
+            {
+                openTreatmentEditModal(treatment);
+            }
+        });
+    }
 
+    // open examination form for edit
+    function openTreatmentEditModal(treatment){
+        
+        
+        console.log(treatment);
+        
+        $("#treatment-edit-procedure_id").val(treatment.procedure.id);
+        $("#treatment-edit-procedure").val(treatment.procedure.term_name);
+        $("#treatment-edit-created_at_short_format").val(treatment.created_at_short_format);
+        $("#treatment-edit-recall_at").val(treatment.recall_at);
+        $("#treatment-edit-notes").val(treatment.notes);
+        $('#treatment-edit-print_notes').prop("checked", !! + treatment.print_notes);
 
+        $('#treatment-edit-created_at').html(treatment.created_at);
+        $('#treatment-edit-updated_at').html(treatment.updated_at);
+
+        // Set action and method
+        if(treatment.id > 0)
+        {
+            $('#treatment-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + treatment.id);
+            $('#treatment-edit-modal-form input[name="_method"]').val('PUT');
+
+            $('#treatment-edit-delete-button').attr('disabled', false);
+            $('#treatment-edit-delete-button').val(treatment.id);
+            $('#treatment-edit-print-button').attr('disabled', false);
+        }else{
+            $('#treatment-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments');
+            $('#treatment-edit-modal-form input[name="_method"]').val('POST');
+            
+            $('#treatment-edit-delete-button').attr('disabled', true);
+            $('#treatment-edit-print-button').attr('disabled', true);
+        }
+
+        $('#treatment-edit-modal').modal('show');
+    }
 
 </script>
 @endpush

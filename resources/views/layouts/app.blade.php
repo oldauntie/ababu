@@ -21,6 +21,7 @@
     <link href="{{ asset('css/ababu.css') }}" rel="stylesheet">
 
     @stack('scripts')
+    @stack('styles')
 </head>
 <body>
     <div id="app">

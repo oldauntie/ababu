@@ -49,5 +49,6 @@ return [
     'species_admin' => 'Select the species your are going to use in your clinic (e.g. dog, cat, owl). You can choose as many species as you want even if we suggest you to choose those you really suppose to visit. You can add a specie whenever you want.',
     'species_delete' => 'Do you really want to delete selected species?',
     'species_select' => 'Click and start writing the first letters of specie familiar name (e.g. Dog, Cat)',
+    'treatment_notes' => 'Write notes about treatment (optional)',
     
 ];

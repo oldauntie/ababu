@@ -74,17 +74,18 @@ class TreatmentController extends Controller
      */
     public function update(Request $request, Clinic $clinic, Pet $pet, Treatment $treatment)
     {
+        
         $treatment->procedure_id = $request->procedure_id;
         $treatment->pet_id = $pet->id;
         $treatment->user_id = auth()->user()->id;
+        
 
-
-        $treatment->recall_at = Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->recall_at);
-        // $treatment->recall_at = $request->recall_at == null ? null : $request->recall_at;
+        
+        $treatment->recall_at = $request->recall_at == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->recall_at);
         $treatment->notes = $request->notes;
         $treatment->print_notes = $request->print_notes == null ? false : true;
-
-
+        
+        
         if ($treatment->save())
         {
             $request->session()->flash('success', __('message.treatment_update_success'));

@@ -74,10 +74,8 @@
                                             for="treatment-edit-recall_at">
                                             {{ __('translate.recall_at') }}
                                         </label>
-                                        <input type="checkbox" value="1"
-                                            id="treatment-edit-enable_recall_at">
                                         <input name="recall_at" value="" type="text" id="treatment-edit-recall_at"
-                                            class="" disabled>
+                                            class="">
                                     </div>
                                 </div>
 
@@ -148,13 +146,8 @@
         }).on('show', function(e) {
             // 
         }).on('hide', function(e) {
-            setAtAge();
+            //
         });
-
-        // enable / disable datepicker
-        $("#treatment-edit-enable_recall_at").change(function(){
-            $("#treatment-edit-recall_at").attr("disabled", !$("#treatment-edit-enable_recall_at").is(":checked"));
-        })
     });
 </script>
 

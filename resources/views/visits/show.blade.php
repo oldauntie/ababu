@@ -783,15 +783,14 @@
             var selData = treatments_table.rows(".selected").data();
             var id = selData[0].id;
 
-
             editTreatment(id);
         });
 
 
-        // Select2 medicine selection (search) 
+        // Select2 procedure selection (search) 
         $("#procedure_id").select2({
             ajax: { 
-                placeholder: "Choose a Diagnostic Test...",
+                placeholder: "Choose a procedure...",
                 minimumInputLength: 3,
                 url: "/clinics/{{$clinic->id}}/procedures/search/",
                 dataType: "json",
@@ -810,11 +809,13 @@
             }
         });
 
-        $("#diagnostic_test_id").on("select2:select", function(e) { 
-            var id = e.params.data.id;
-            createExamination(id);
+        // @YAH
+
+        $("#procedure_id").on("select2:select", function(e) { 
+            var id = e.params.data.id;            
+            createTreatment(id);
             // clear selection
-            $('#diagnostic_test_id').val(null).trigger('change');
+            $('#procedure_id').val(null).trigger('change');
         });
 
 
@@ -860,6 +861,7 @@
     function createTreatment(procedure_id){
         create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/create/' + procedure_id;
         
+        alert(create_url);
         $.ajax({
             url: create_url,
             type: 'get',
@@ -891,6 +893,14 @@
         $("#treatment-edit-procedure_id").val(treatment.procedure.id);
         $("#treatment-edit-procedure").val(treatment.procedure.term_name);
         $("#treatment-edit-created_at_short_format").val(treatment.created_at_short_format);
+
+        if(treatment.recall_at != null)
+        {
+            $("#treatment-edit-enable_recall_at").attr("checked", true);
+            $("#treatment-edit-recall_at").attr("disabled", false);
+
+        }
+
         $("#treatment-edit-recall_at").val(treatment.recall_at);
         $("#treatment-edit-notes").val(treatment.notes);
         $('#treatment-edit-print_notes').prop("checked", !! + treatment.print_notes);

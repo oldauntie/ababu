@@ -53,16 +53,17 @@ class DevelopSeeder extends Seeder
          * Species
          */
         Species::create([
-            'tsn' => '171341',
+            'tsn' => '726821',
             'clinic_id' => 0,
-            'familiar_name' => 'Wolf',
+            'familiar_name' => 'Dog',
+        ]);
+        
+        Species::create([
+            'tsn' => '183798',
+            'clinic_id' => 1,
+            'familiar_name' => 'Cat',
         ]);
 
-        Species::create([
-            'tsn' => '171341',
-            'clinic_id' => 1,
-            'familiar_name' => 'Wolf Wolf',
-        ]);
 
         /**
          * Owners

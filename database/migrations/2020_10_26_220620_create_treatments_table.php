@@ -18,7 +18,10 @@ class CreateTreatmentsTable extends Migration
             $table->bigInteger('procedure_id')->unsigned();
             $table->bigInteger('pet_id')->unsigned();
             $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->dateTime('executed_at')->nullable();
             $table->dateTime('recall_at')->nullable();
+            $table->string('drug_batch')->nullable();
+            $table->dateTime('drug_batch_expires_at')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('print_notes')->default(false);
 

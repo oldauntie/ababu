@@ -136,7 +136,7 @@
         }
 
         $.ajax({
-            url: '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problem/diagnosis/' + diagnosis_id,
+            url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/problem/diagnosis/' + diagnosis_id,
             type: 'get',
             success: function(problem)
             {
@@ -164,10 +164,10 @@
 
                 // Set action and method
                 if(problem.id > 0){
-                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems/' + problem.id);
+                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/problems/' + problem.id);
                     $('#problem-edit-modal-form input[name="_method"]').val('PUT');
                 }else{
-                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/problems');
+                    $('#problem-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/problems');
                     $('#problem-edit-modal-form input[name="_method"]').val('POST');
                 }
 

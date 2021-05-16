@@ -455,14 +455,14 @@
         // Set action and method
         if(prescription.id > 0)
         {
-            $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions/' + prescription.id);
+            $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/' + prescription.id);
             $('#prescription-edit-modal-form input[name="_method"]').val('PUT');
 
             $('#prescription-edit-delete-button').attr('disabled', false);
             $('#prescription-edit-delete-button').val(prescription.id);
             $('#prescription-edit-print-button').attr('disabled', false);
         }else{
-            $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/prescriptions');
+            $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions');
             $('#prescription-edit-modal-form input[name="_method"]').val('POST');
             
             $('#prescription-edit-delete-button').attr('disabled', true);
@@ -697,14 +697,14 @@
         // Set action and method
         if(examination.id > 0)
         {
-            $('#examination-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/examinations/' + examination.id);
+            $('#examination-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/examinations/' + examination.id);
             $('#examination-edit-modal-form input[name="_method"]').val('PUT');
 
             $('#examination-edit-delete-button').attr('disabled', false);
             $('#examination-edit-delete-button').val(examination.id);
             $('#examination-edit-print-button').attr('disabled', false);
         }else{
-            $('#examination-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pet/{{$pet->id}}/examinations');
+            $('#examination-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/examinations');
             $('#examination-edit-modal-form input[name="_method"]').val('POST');
             
             $('#examination-edit-delete-button').attr('disabled', true);
@@ -861,7 +861,7 @@
     function createTreatment(procedure_id){
         create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/create/' + procedure_id;
         
-        alert(create_url);
+        // alert(create_url);
         $.ajax({
             url: create_url,
             type: 'get',
@@ -894,14 +894,19 @@
         $("#treatment-edit-procedure").val(treatment.procedure.term_name);
         $("#treatment-edit-created_at_short_format").val(treatment.created_at_short_format);
 
+        // @tbe
+        /*
         if(treatment.recall_at != null)
         {
             $("#treatment-edit-enable_recall_at").attr("checked", true);
             $("#treatment-edit-recall_at").attr("disabled", false);
-
         }
+        */
 
+        $("#treatment-edit-executed_at").val(treatment.executed_at);
         $("#treatment-edit-recall_at").val(treatment.recall_at);
+        $("#treatment-edit-drug_batch").val(treatment.drug_batch);
+        $("#treatment-edit-drug_batch_expires_at").val(treatment.drug_batch_expires_at);
         $("#treatment-edit-notes").val(treatment.notes);
         $('#treatment-edit-print_notes').prop("checked", !! + treatment.print_notes);
 

@@ -14,7 +14,7 @@
     <div class="col-12 vertical-scroll">
         @foreach ($notes as $note)
 
-        <form action="/clinics/{{$clinic->id}}/pet/{{$pet->id}}/notes/{{$note->id}}" method="POST">
+        <form action="/clinics/{{$clinic->id}}/pets/{{$pet->id}}/notes/{{$note->id}}" method="POST">
             @csrf
             {{ method_field('PUT') }}
 

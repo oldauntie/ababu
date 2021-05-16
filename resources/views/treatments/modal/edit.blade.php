@@ -23,8 +23,9 @@
 
             <!-- modal header -->
             <div class="modal-header">
-                <h5 class="modal-title">{{__('translate.treatment')}} {{__('translate.insert')}} /
-                    {{__('translate.edit')}}
+                <h5 class="modal-title">{{__('translate.treatment')}} / {{__('translate.vaccination')}}
+                    ({{__('translate.insert')}} /
+                    {{__('translate.edit')}})
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span>
@@ -54,27 +55,54 @@
                                                 class="form-control form-control-sm" disabled>
                                         </div>
                                     </div>
+                                    <!-- TBE -->
                                     <!-- Created At -->
                                     <div class="col-3">
                                         <label for="treatment-edit-created_at_short_format"
                                             class="text-md-right">{{__('translate.created_at')}}</label>
-                                        <input name="created_at" value="" type="text" id="treatment-edit-created_at_short_format"
+                                        <input name="created_at" value="" type="text"
+                                            id="treatment-edit-created_at_short_format"
                                             class="form-control form-control-sm" disabled>
                                     </div>
                                 </div>
                             </fieldset>
 
-                            <!-- Recall At -->
                             <fieldset>
                                 <legend>{{__('translate.notes')}}</legend>
 
-                                <div class="row justify-content-begin">
+                                <!-- Executed At / Recall At -->
+                                <div class="row">
                                     <div class="col-6">
-                                        <label class="align-center" style="margin-bottom: 0px;"
-                                            for="treatment-edit-recall_at">
+                                        <label class="align-center" style="" for="treatment-edit-executed_at">
+                                            {{ __('translate.executed_at') }}
+                                        </label>
+                                        <input name="executed_at" value="" type="text" id="treatment-edit-executed_at"
+                                            class="">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="align-center" style="" for="treatment-edit-recall_at">
                                             {{ __('translate.recall_at') }}
                                         </label>
                                         <input name="recall_at" value="" type="text" id="treatment-edit-recall_at"
+                                            class="">
+                                    </div>
+                                </div>
+
+
+                                <!-- Drug Batch -->
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="align-center" style="" for="treatment-edit-drug_batch">
+                                            {{ __('translate.drug_batch') }}
+                                        </label>
+                                        <input name="drug_batch" value="" type="text"
+                                            id="treatment-edit-drug_batch" class="">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="align-center" style="" for="treatment-edit-drug_batch_expires_at">
+                                            {{ __('translate.expires_at') }}
+                                        </label>
+                                        <input name="drug_batch_expires_at" value="" type="text" id="treatment-edit-drug_batch_expires_at"
                                             class="">
                                     </div>
                                 </div>
@@ -144,7 +172,31 @@
             autoclose: true,
             maxDate: "+100Y"
         }).on('show', function(e) {
-            // 
+            //
+        }).on('hide', function(e) {
+            //
+        });
+
+        // enable datepicker for control
+        var active_from = $('#treatment-edit-executed_at').datepicker({
+            language: "{{ auth()->user()->locale->id}}",
+            todayHighlight: true,
+            autoclose: true,
+            maxDate: "+100Y"
+        }).on('show', function(e) {
+            //
+        }).on('hide', function(e) {
+            //
+        });
+
+        // enable datepicker for control
+        var active_from = $('#treatment-edit-drug_batch_expires_at').datepicker({
+            language: "{{ auth()->user()->locale->id}}",
+            todayHighlight: true,
+            autoclose: true,
+            maxDate: "+100Y"
+        }).on('show', function(e) {
+            //
         }).on('hide', function(e) {
             //
         });

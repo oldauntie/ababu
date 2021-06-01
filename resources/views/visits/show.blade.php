@@ -46,6 +46,8 @@
                     {{ $pet->age->months }} {{ __('translate.months') }}, {{ $pet->age->days }}
                     {{ __('translate.days') }}
                     <button type="button" id="testme" class="btn btn-sm btn-primary">test me</button>
+                    <a href="{{ route('clinics.visits.print', ['clinic' => 0, 'pet' => 1]) }}" id="printme"
+                        class="btn btn-sm btn-primary">print me</a>
                     <br>
                     <small>Owner: {{ $pet->owner->fullname }}:
                         <a href="#" id="owner-details-phone" data-toggle="modal"
@@ -109,7 +111,8 @@
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                         href="#nav-home" role="tab" aria-controls="nav-home"
-                                        aria-selected="true">{{__('translate.treatments')}} & {{__('translate.vaccinations')}}</a>
+                                        aria-selected="true">{{__('translate.treatments')}} &
+                                        {{__('translate.vaccinations')}}</a>
                                     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                         href="#nav-profile" role="tab" aria-controls="nav-profile"
                                         aria-selected="false">{{__('translate.materials')}}</a>
@@ -120,7 +123,8 @@
                             </nav>
                             <!-- Tab Content -->
                             <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-home-tab">
                                     @include('treatments.index')
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel"
@@ -859,7 +863,7 @@
 
     // retrieve an empty examination and pass it to 
     function createTreatment(procedure_id){
-        create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/create/' + procedure_id;
+        create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + procedure_id + '/create';
         
         // alert(create_url);
         $.ajax({
@@ -872,10 +876,10 @@
         });
     }
 
-    // retrieve a examination given an id
+    // retrieve a treatment given an id
     function editTreatment(id){
         $.ajax({
-            url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/edit/' + id,
+            url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + id + '/edit',
             type: 'get',
             success: function(treatment)
             {
@@ -884,25 +888,14 @@
         });
     }
 
-    // open examination form for edit
+    // open treatment form for edit
     function openTreatmentEditModal(treatment){
-        
-        
-        console.log(treatment);
+        // @tbe
+        // console.log(treatment);
         
         $("#treatment-edit-procedure_id").val(treatment.procedure.id);
         $("#treatment-edit-procedure").val(treatment.procedure.term_name);
-        $("#treatment-edit-created_at_short_format").val(treatment.created_at_short_format);
-
-        // @tbe
-        /*
-        if(treatment.recall_at != null)
-        {
-            $("#treatment-edit-enable_recall_at").attr("checked", true);
-            $("#treatment-edit-recall_at").attr("disabled", false);
-        }
-        */
-
+        
         $("#treatment-edit-executed_at").val(treatment.executed_at);
         $("#treatment-edit-recall_at").val(treatment.recall_at);
         $("#treatment-edit-drug_batch").val(treatment.drug_batch);

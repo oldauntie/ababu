@@ -20,7 +20,6 @@
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-
             <!-- modal header -->
             <div class="modal-header">
                 <h5 class="modal-title">{{__('translate.treatment')}} / {{__('translate.vaccination')}}
@@ -45,7 +44,7 @@
                                 <legend>{{__('translate.treatment')}}</legend>
                                 <!-- Procedure name -->
                                 <div class="row justify-content-center">
-                                    <div class="col-9">
+                                    <div class="col-12">
                                         <label for="treatment-edit-procedure"
                                             class="text-md-right">{{__('translate.procedure')}}</label>
                                         <div class="input-group">
@@ -54,15 +53,6 @@
                                             <input type="text" name="procedure" value="" id="treatment-edit-procedure"
                                                 class="form-control form-control-sm" disabled>
                                         </div>
-                                    </div>
-                                    <!-- TBE -->
-                                    <!-- Created At -->
-                                    <div class="col-3">
-                                        <label for="treatment-edit-created_at_short_format"
-                                            class="text-md-right">{{__('translate.created_at')}}</label>
-                                        <input name="created_at" value="" type="text"
-                                            id="treatment-edit-created_at_short_format"
-                                            class="form-control form-control-sm" disabled>
                                     </div>
                                 </div>
                             </fieldset>
@@ -95,15 +85,15 @@
                                         <label class="align-center" style="" for="treatment-edit-drug_batch">
                                             {{ __('translate.drug_batch') }}
                                         </label>
-                                        <input name="drug_batch" value="" type="text"
-                                            id="treatment-edit-drug_batch" class="">
+                                        <input name="drug_batch" value="" type="text" id="treatment-edit-drug_batch"
+                                            class="">
                                     </div>
                                     <div class="col-6">
                                         <label class="align-center" style="" for="treatment-edit-drug_batch_expires_at">
                                             {{ __('translate.expires_at') }}
                                         </label>
-                                        <input name="drug_batch_expires_at" value="" type="text" id="treatment-edit-drug_batch_expires_at"
-                                            class="">
+                                        <input name="drug_batch_expires_at" value="" type="text"
+                                            id="treatment-edit-drug_batch_expires_at" class="">
                                     </div>
                                 </div>
 
@@ -137,8 +127,9 @@
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
                             <button type="button" id="treatment-edit-delete-button"
                                 class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
-                            <button type="button" id="treatment-edit-print-button"
-                                class="btn btn-info btn-sm">{{__('translate.print')}}</button>
+                            <a href="{{ route('clinics.treatments.print', ['clinic' => $clinic, 'pet' => $pet, 'treatment' => 1 ]) }}"
+                                id="treatment-edit-print-button"
+                                class="btn btn-info btn-sm">{{__('translate.print')}}</a>
                             <button type="button" class="btn btn-secondary btn-sm"
                                 data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>

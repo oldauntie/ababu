@@ -39,6 +39,7 @@ class Pet extends Model
         'species_id',
         'clinic_id',
         'owner_id',
+        'breed',
         'name',
         'sex',
         'date_of_birth',

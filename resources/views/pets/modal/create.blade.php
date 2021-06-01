@@ -34,7 +34,7 @@
                             <!-- species -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="pet-create-species_id">{{__('translate.species')}}</label>
+                                    <label for="pet-create-species_id">{{__('translate.species')}}*</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -50,10 +50,22 @@
                                 </div>
                             </div>
 
+                            <!-- breed -->
+                            <label for="pet-create-breed" class="text-md-right">{{__('translate.breed')}}</label>
+                            <input id="pet-create-breed" type="text"
+                                class="form-control  form-control-sm @error('breed') is-invalid @enderror" name="breed"
+                                value="{{old('breed')}}" autocomplete="breed" autofocus maxlength="255">
+                            <small class="form-text text-muted">{{__('help.pet_name')}}</small>
+                            @error('breed')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                             <!-- owner -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="pet-create-owner_id">{{__('translate.owner')}}</label>
+                                    <label for="pet-create-owner_id">{{__('translate.owner')}}*</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -71,7 +83,7 @@
                             <!-- sex and color -->
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="pet-create-sex" class="text-md-right">{{__('translate.sex')}}*</label>
+                                    <label for="pet-create-sex" class="text-md-right">{{__('translate.sex')}}</label>
                                     <select name="sex" class="form-control" id="pet-create-sex">
                                         <option value="M">M</option>
                                         <option value="F">F</option>
@@ -124,7 +136,7 @@
                                         class="text-md-right">{{__('translate.date_of_birth')}}*</label>
                                     <input id="pet-create-date_of_birth" type="text"
                                         class="form-control form-control-sm datepicker @error('date_of_birth') is-invalid @enderror"
-                                        name="date_of_birth" value="{{__('translate.date_of_birth')}}" autocomplete="date_of_birth" required autofocus
+                                        name="date_of_birth" value="" autocomplete="date_of_birth" required autofocus
                                         maxlength="64">
                                     <small class="form-text text-muted">{{__('help.pet_date_of_birth')}}</small>
                                     @error('date_of_birth')
@@ -184,7 +196,7 @@
 
                                 <!-- microchip -->
                                 <label for="pet-create-microchip"
-                                    class="text-md-right">{{__('translate.microchip')}}*</label>
+                                    class="text-md-right">{{__('translate.microchip')}}</label>
                                 <input id="pet-create-microchip" type="text"
                                     class="form-control form-control-sm @error('microchip') is-invalid @enderror"
                                     name="microchip" value="{{old('microchip')}}" autocomplete="microchip" autofocus maxlength="64">

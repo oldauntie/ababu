@@ -15,6 +15,7 @@ return [
     'admin' => 'Admin',
     'age' => 'Età',
     'at_age' => 'All\'Età',
+    'breed' => 'Razza',
     'calendar' => 'Calendario',
     'certificates' => 'Certificati',
     'city' => 'Città',

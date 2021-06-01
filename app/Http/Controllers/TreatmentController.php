@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
+use PDF;
 
 class TreatmentController extends Controller
 {
@@ -150,11 +151,9 @@ class TreatmentController extends Controller
         $locale = auth()->user()->locale;
 
         $result = $treatment->toArray();
-        
         // change date format
         $result['created_at'] = $treatment->created_at != null ? $treatment->created_at->format($locale->date_medium_format . " " . $locale->time_long_format) : null;
         $result['updated_at'] = $treatment->updated_at != null ? $treatment->updated_at->format($locale->date_medium_format . " " . $locale->time_long_format) : null;
-        $result['created_at_short_format'] = $treatment->created_at != null ? $treatment->created_at->format($locale->date_short_format) : null;
         $result['executed_at'] = $treatment->executed_at != null ? $treatment->executed_at->format($locale->date_short_format) : null;
         $result['recall_at'] = $treatment->recall_at != null ? $treatment->recall_at->format($locale->date_short_format) : null;
         $result['drug_batch_expires_at'] = $treatment->drug_batch_expires_at != null ? $treatment->drug_batch_expires_at->format($locale->date_short_format) : null;
@@ -177,7 +176,6 @@ class TreatmentController extends Controller
         $result = $treatment->toArray();
 
         // change date format
-        // $result['date_of_examination'] = Carbon::now()->format($locale->date_short_format);
         $result['created_at'] = null;
         $result['updated_at'] = null;
         
@@ -204,6 +202,19 @@ class TreatmentController extends Controller
                 ->make(true);
         }
     }
+
+
+    public function print(Clinic $clinic, Pet $pet, Treatment $treatment = null)
+    {
+        $data = ['title' => 'nanna !!'];
+        $pdf = PDF::loadView('treatments.print', $data);
+
+        // return $pdf->download('visti_summary.pdf');
+        return $pdf->stream();
+    }
+
+
+
 
 
     

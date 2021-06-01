@@ -9,6 +9,7 @@ use App\Pet;
 use App\Prescription;
 use App\Problem;
 
+use PDF;
 use Illuminate\Http\Request;
 
 class VisitController extends Controller
@@ -104,5 +105,15 @@ class VisitController extends Controller
     public function destroy(Visit $visit)
     {
         //
+    }
+
+
+    public function print(Clinic $clinic, Pet $pet)
+    {
+        $data = ['title' => 'nanna !!'];
+        $pdf = PDF::loadView('visits.print', $data);
+
+        return $pdf->download('visti_summary.pdf');
+        return $pdf->stream();
     }
 }

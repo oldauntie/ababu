@@ -201,6 +201,7 @@
             type: 'get',
             success: function(pet){ 
                 // fill Modal with pet details                    
+                $('#pet-edit-breed').val(pet.breed);
                 $('#pet-edit-name').val(pet.name);
 
                 $("#pet-edit-species_id").empty();

@@ -51,10 +51,22 @@
                                 </div>
                             </div>
 
+                            <!-- breed -->
+                            <label for="pet-edit-breed" class="text-md-right">{{__('translate.breed')}}</label>
+                            <input id="pet-edit-breed" type="text"
+                                class="form-control  form-control-sm @error('breed') is-invalid @enderror" name="breed"
+                                value="" autocomplete="breed" autofocus maxlength="255">
+                            <small class="form-text text-muted">{{__('help.pet_breed')}}</small>
+                            @error('breed')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                             <!-- owner -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="pet-edit-owner_id">{{__('translate.owner')}}</label>
+                                    <label for="pet-edit-owner_id">{{__('translate.owner')}}*</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -185,7 +197,7 @@
 
                                 <!-- microchip -->
                                 <label for="pet-edit-microchip"
-                                    class="text-md-right">{{__('translate.microchip')}}*</label>
+                                    class="text-md-right">{{__('translate.microchip')}}</label>
                                 <input id="pet-edit-microchip" type="text"
                                     class="form-control form-control-sm @error('microchip') is-invalid @enderror"
                                     name="microchip" value="" autocomplete="microchip" autofocus maxlength="64">
@@ -218,7 +230,7 @@
 
                                 <!-- tatuatge -->
                                 <label for="pet-edit-tatuatge"
-                                    class="text-md-right">{{__('translate.tatuatge')}}*</label>
+                                    class="text-md-right">{{__('translate.tatuatge')}}</label>
                                 <input id="pet-edit-tatuatge" type="text"
                                     class="form-control form-control-sm @error('tatuatge') is-invalid @enderror"
                                     name="tatuatge" value="" autocomplete="tatuatge" autofocus maxlength="64">

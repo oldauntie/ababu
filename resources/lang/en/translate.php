@@ -15,6 +15,7 @@ return [
     'admin' => 'Admin',
     'age' => 'Age',
     'at_age' => 'At Age',
+    'breed' => 'Breed',
     'calendar' => 'Calendar',
     'certificates' => 'Certificates',
     'city' => 'City',

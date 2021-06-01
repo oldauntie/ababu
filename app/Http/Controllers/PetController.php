@@ -62,6 +62,7 @@ class PetController extends Controller
             'clinic_id' => $clinic->id,
             'species_id' => $request->get('species_id'),
             'owner_id' => $request->get('owner_id'),
+            'breed' => $request->get('breed'),
             'name' => $request->get('name'),
             'sex' => $request->get('sex'),
             'date_of_birth' => Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->get('date_of_birth') ),
@@ -133,6 +134,7 @@ class PetController extends Controller
         $pet->clinic_id = $clinic->id;
         $pet->species_id = $request->species_id;
         $pet->owner_id = $request->owner_id;
+        $pet->breed = $request->breed;
         $pet->name = $request->name;
         $pet->sex = $request->sex;
         $pet->date_of_birth = Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->date_of_birth);

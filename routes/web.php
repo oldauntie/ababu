@@ -34,7 +34,6 @@ Route::post('clinics/{clinic}/send', 'ClinicController@send')->name('clinics.sen
 Route::post('clinics/store', 'ClinicController@store')->name('clinics.store')->middleware('auth');
 Route::get('clinics/{clinic}', 'ClinicController@show')->name('clinics.show')->middleware('clinic_access');
 Route::put('clinics/{clinic}', 'ClinicController@update')->name('clinics.update')->middleware('clinic_roles:root|admin');
-// Route::resource('clinics', 'ClinicController', ['except' => ['create', 'store', 'index', 'edit', 'destroy']])->middleware('clinic_access');
 
 // users
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');
@@ -55,6 +54,7 @@ Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
 // visit
 Route::get('clinics/{clinic}/visits/{pet}', 'VisitController@show')->name('clinics.visits.show')->middleware('clinic_access');
+Route::get('clinics/{clinic}/visits/{pet}/print','VisitController@print')->name('clinics.visits.print')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::get('clinics/{clinic}/pets/{pet}/problems/{problem}/get', 'ProblemController@get')->name('clinics.problems.get')->middleware('clinic_access');
 
 // @edit
@@ -93,7 +93,6 @@ Route::delete('clinics/{clinic}/pets/{pet}/notes/{note}', 'NoteController@destro
 Route::put('clinics/{clinic}/pets/{pet}/problems/{problem}', 'ProblemController@update')->name('clinics.problems.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/problems', 'ProblemController@store')->name('clinics.problems.store')->middleware('clinic_access')->middleware('can:cure,pet');
 
-
 // species
 Route::get('clinics/{clinic}/species/search', 'SpeciesController@search')->name('clinics.species.search')->middleware('clinic_access');
 Route::resource('clinics.species', 'SpeciesController')->middleware('clinic_roles:root|admin');
@@ -104,11 +103,11 @@ Route::get('/animalia/search', 'AnimaliaController@search')->name('animalia.sear
 Route::get('clinics/{clinic}/procedures/search', 'ProcedureController@search')->name('clinics.procedures.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 Route::get('clinics/{clinic}/pets/{pet}/treatments/list/{problem_id?}/{return?}', 'TreatmentController@list')->name('clinics.treatments.list')->middleware('clinic_access')->middleware('can:cure,pet');
 
-Route::get('clinics/{clinic}/pets/{pet}/treatments/create/{procedure}', 'TreatmentController@createTreatmentByProcedure')->name('clinics.create.treatment.by.procedure')->middleware('clinic_access')->middleware('can:cure,pet');
-Route::get('clinics/{clinic}/pets/{pet}/treatments/edit/{treatment}', 'TreatmentController@editTreatmentById')->name('clinics.edit.treatment.by.id')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/treatments/{procedure}/create', 'TreatmentController@createTreatmentByProcedure')->name('clinics.create.treatment.by.procedure')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/edit', 'TreatmentController@editTreatmentById')->name('clinics.edit.treatment.by.id')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/print', 'TreatmentController@print')->name('clinics.treatments.print')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::put('clinics/{clinic}/pets/{pet}/treatments/{treatment}', 'TreatmentController@update')->name('clinics.treatments.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/treatments', 'TreatmentController@store')->name('clinics.treatments.store')->middleware('clinic_access')->middleware('can:cure,pet');
 
 // root: to be implemented or deprecated
 Route::get('/users/ajax', 'UserController@ajaxUserList')->name('users.ajax')->middleware('roles:root');
-

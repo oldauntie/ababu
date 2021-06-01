@@ -33,6 +33,7 @@ return [
     'owner_postcode' => '',
     'owner_select' => '',
     'owner_ssn' => '',
+    'pet_breed' => 'Specify, if needed, animal breed',
     'pet_color' => '',
     'pet_date_of_birth' => 'Date of birth',
     'pet_date_of_death' => 'Date of death',

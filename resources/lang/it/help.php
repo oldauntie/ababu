@@ -33,6 +33,7 @@ return [
     'owner_postcode' => '',
     'owner_ssn' => '',
     'owner_select' => '',
+    'pet_breed' => 'Specificare la razza (opzionale)',
     'pet_color' => '',
     'pet_date_of_birth' => 'Data di nascita',
     'pet_date_of_death' => 'Data di morte',

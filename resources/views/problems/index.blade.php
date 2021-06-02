@@ -53,7 +53,7 @@
                 @foreach ($problems as $problem)
                 <tr>
                     <td>{{ $problem->id }}</td>
-                    <td><img title="{{ __('translate.' . $problem->statuses[$problem->status_id]) }}"
+                    <td><img title="{{ __('translate.' . $problem->getStatusDescription($problem->status_id)) }}"
                             src="{{url('/images/icons/problem_status_' . $problem->status_id . '.png')}}"></td>
                     <td>{{ $problem->diagnosis_id }}</td>
                     <td>{{ $problem->diagnosis->term_name }}</td>

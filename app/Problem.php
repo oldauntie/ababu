@@ -30,6 +30,11 @@ class Problem extends Model
         '3' => 'in_evidence',
     ];
 
+    public function getStatusDescription($id)
+    {
+        return self::statuses[$id];
+    }
+
     protected $dates = ['active_from', 'created_at', 'updated_at', 'deleted_at'];
 
     public function diagnosis()

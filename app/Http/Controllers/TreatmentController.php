@@ -8,6 +8,7 @@ use App\Pet;
 use App\Procedure;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -139,9 +140,17 @@ class TreatmentController extends Controller
      * @param  \App\Treatment  $treatment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Treatment $treatment)
+    public function destroy(Clinic $clinic, Pet $pet, Treatment $treatment)
     {
-        //
+        if($treatment->delete())
+        {
+            Session::flash('success', __('message.treatment_destroy_success'));
+        }
+        else
+        {
+            Session::flash('success', __('message.treatment_destroy_error'));
+        }
+        return redirect()->route('clinics.visits.show', [$clinic, $pet]);
     }
 
 

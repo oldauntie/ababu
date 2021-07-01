@@ -127,9 +127,8 @@
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
                             <button type="button" id="treatment-edit-delete-button"
                                 class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
-                            <a href="{{ route('clinics.treatments.print', ['clinic' => $clinic, 'pet' => $pet, 'treatment' => 1 ]) }}"
-                                id="treatment-edit-print-button"
-                                class="btn btn-info btn-sm">{{__('translate.print')}}</a>
+                            <button type="button" id="treatment-edit-print-button"
+                                class="btn btn-info btn-sm">{{__('translate.print')}}</button>
                             <button type="button" class="btn btn-secondary btn-sm"
                                 data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>
@@ -191,7 +190,93 @@
         }).on('hide', function(e) {
             //
         });
+
+        // delete button
+        $(document).on('click', '#treatment-edit-delete-button', function(e){
+            e.preventDefault();
+            bootbox.confirm({
+                title: "{{__('translate.treatment')}} {{__('translate.delete')}}",
+                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.treatment_delete')}} </small>",
+                className: 'rubberBand animated',
+                callback: function(result) {
+                    if (result) {
+                        // get button value
+                        var id = e.target.value;
+                        $('#treatment-edit-delete-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + id);
+                        $('#treatment-edit-delete-form').submit();
+                    }
+                }
+            });
+        });
+
     });
+
+
+    // retrieve an empty examination and pass it to 
+    function createTreatment(procedure_id){
+        create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + procedure_id + '/create';
+        
+        // alert(create_url);
+        $.ajax({
+            url: create_url,
+            type: 'get',
+            success: function(treatment)
+            {
+                openTreatmentEditModal(treatment);
+            }
+        });
+    }
+
+    // retrieve a treatment given an id
+    function editTreatment(id){
+        $.ajax({
+            url: '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + id + '/edit',
+            type: 'get',
+            success: function(treatment)
+            {
+                openTreatmentEditModal(treatment);
+            }
+        });
+    }
+
+
+    // open treatment form for edit
+    function openTreatmentEditModal(treatment){
+        // @tbe
+        // console.log(treatment);
+        
+        $("#treatment-edit-procedure_id").val(treatment.procedure.id);
+        $("#treatment-edit-procedure").val(treatment.procedure.term_name);
+        
+        $("#treatment-edit-executed_at").val(treatment.executed_at);
+        $("#treatment-edit-recall_at").val(treatment.recall_at);
+        $("#treatment-edit-drug_batch").val(treatment.drug_batch);
+        $("#treatment-edit-drug_batch_expires_at").val(treatment.drug_batch_expires_at);
+        $("#treatment-edit-notes").val(treatment.notes);
+        $('#treatment-edit-print_notes').prop("checked", !! + treatment.print_notes);
+
+        $('#treatment-edit-created_at').html(treatment.created_at);
+        $('#treatment-edit-updated_at').html(treatment.updated_at);
+
+        // Set action and method
+        if(treatment.id > 0)
+        {
+            $('#treatment-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + treatment.id);
+            $('#treatment-edit-modal-form input[name="_method"]').val('PUT');
+            $('#treatment-edit-delete-button').attr('disabled', false);
+            $('#treatment-edit-delete-button').val(treatment.id);
+            $('#treatment-edit-print-button').attr('disabled', false);
+        }else{
+            $('#treatment-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments');
+            $('#treatment-edit-modal-form input[name="_method"]').val('POST');
+            $('#treatment-edit-delete-button').attr('disabled', true);
+            $('#treatment-edit-print-button').attr('disabled', true);
+        }
+
+        $('#treatment-edit-modal').modal('show');
+    }
+
+    // href="{{ route('clinics.treatments.print', ['clinic' => $clinic, 'pet' => $pet, 'treatment' => 1 ]) }}"
 </script>
 
 @endpush

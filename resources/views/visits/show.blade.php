@@ -823,23 +823,7 @@
         });
 
 
-        // delete button
-        $(document).on('click', '#examination-edit-delete-button', function(e){
-            e.preventDefault();
-            bootbox.confirm({
-                title: "{{__('translate.examination')}} {{__('translate.delete')}}",
-                message: "<div>{{ __('message.are_you_sure') }}</div><small> {{__('help.examination_delete')}} </small>",
-                className: 'rubberBand animated',
-                callback: function(result) {
-                    if (result) {
-                        // get button value
-                        var id = e.target.value;
-                        $('#examination-edit-delete-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/examinations/' + id);
-                        $('#examination-edit-delete-form').submit();
-                    }
-                }
-            });
-        });
+        
 
 
         // lock / unlock problem button on Examination modal form
@@ -861,6 +845,9 @@
 
 
 
+    
+
+    /*
     // retrieve an empty examination and pass it to 
     function createTreatment(procedure_id){
         create_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + procedure_id + '/create';
@@ -887,7 +874,7 @@
             }
         });
     }
-
+    
     // open treatment form for edit
     function openTreatmentEditModal(treatment){
         // @tbe
@@ -925,6 +912,7 @@
 
         $('#treatment-edit-modal').modal('show');
     }
+    */
 
 </script>
 @endpush

@@ -108,6 +108,7 @@ Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/edit', 'Treatment
 Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/print', 'TreatmentController@print')->name('clinics.treatments.print')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::put('clinics/{clinic}/pets/{pet}/treatments/{treatment}', 'TreatmentController@update')->name('clinics.treatments.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/treatments', 'TreatmentController@store')->name('clinics.treatments.store')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::delete('clinics/{clinic}/pets/{pet}/treatments/{treatment}', 'TreatmentController@destroy')->name('clinics.treatments.destroy')->middleware('clinic_access')->middleware('can:cure,pet');
 
 // root: to be implemented or deprecated
 Route::get('/users/ajax', 'UserController@ajaxUserList')->name('users.ajax')->middleware('roles:root');

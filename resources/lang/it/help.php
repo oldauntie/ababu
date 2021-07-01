@@ -50,6 +50,7 @@ return [
     'species_admin' => 'Seleziona le specie che utilizzerai nella tua clinica (es: cane, gatto, civetta). Puoi selezionare quante specie vuoi ma ti consigliamo di selezionare quelle che veramente andrai a visitare. Puoi aggiungere una specie anche in un secondo momento.',
     'species_delete' => 'Si è sicuri di voler eliminare la specie selezionata ?',
     'species_select' => 'Premi e inizia a digitare le prima lettere del nome scientifico della specie che vuoi utilizzare nella clinica (e.g. Canis Lupus Familiaris)',
+    'treatment_delete' => 'Si è sicuri di voler cancellare il trattamento selezionato e tutte le informazioni correlate?',
     'treatment_notes' => 'Scrivere le note relative al trattamento eseguito (optionale)',
 
 

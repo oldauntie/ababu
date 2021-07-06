@@ -45,11 +45,8 @@
                     {{ __('translate.age') }}: {{ $pet->age->years }} {{ __('translate.years') }},
                     {{ $pet->age->months }} {{ __('translate.months') }}, {{ $pet->age->days }}
                     {{ __('translate.days') }}
-                    <button type="button" id="testme" class="btn btn-sm btn-primary">test me</button>
-                    <a href="{{ route('clinics.visits.print', ['clinic' => 0, 'pet' => 1]) }}" id="printme"
-                        class="btn btn-sm btn-primary">print me</a>
-                    <br>
-                    <small>Owner: {{ $pet->owner->fullname }}:
+                    <br />
+                    <small>{{ __('translate.owner') }}: {{ $pet->owner->fullname }}:
                         <a href="#" id="owner-details-phone" data-toggle="modal"
                             data-target="#owner-overlay-modal">{{ $pet->owner->phone }}</a>
                         <a href="#" id="owner-details-phone" data-toggle="modal"
@@ -197,19 +194,7 @@
         });
     });
 
-    $(document).on('click', '#testme', function(e){
-        e.preventDefault();
-        bootbox.confirm({
-            message: "This is an alert with additional classes!",
-            className: 'rubberBand animated',
-            callback: function(result) {
-                if (result) {
-                    alert('click');
-                    $('#student_delete_form').submit();
-                }
-            }
-        });
-    });
+    
 
     // add event listener
     $(document).on("change_problem", changeProblem);

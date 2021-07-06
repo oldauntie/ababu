@@ -107,7 +107,7 @@ class VisitController extends Controller
         //
     }
 
-
+    // @tbe @todo: modify to print a visit summary
     public function print(Clinic $clinic, Pet $pet)
     {
         $data = ['title' => 'nanna !!'];

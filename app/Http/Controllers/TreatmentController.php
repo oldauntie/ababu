@@ -215,16 +215,15 @@ class TreatmentController extends Controller
 
     public function print(Clinic $clinic, Pet $pet, Treatment $treatment = null)
     {
-        $data = ['title' => 'nanna !!'];
+        $data = [
+            'title' => 'nanna !!',
+            'clinic' => $clinic,
+            'pet' => $pet,
+            'treatment' => $treatment
+            ];
         $pdf = PDF::loadView('treatments.print', $data);
 
         // return $pdf->download('visti_summary.pdf');
         return $pdf->stream();
     }
-
-
-
-
-
-    
 }

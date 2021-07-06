@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
 
         $veterinarian = User::create([
             'locale_id' => 'it-IT',
-            'name' => 'veterinarian',
+            'name' => 'Veterinarian',
             'email' => 'veterinarian@ababu.cloud',
             'password' => Hash::make('ababu'),
         ]);

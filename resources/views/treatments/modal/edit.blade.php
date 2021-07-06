@@ -209,6 +209,14 @@
             });
         });
 
+        // print button
+        $(document).on('click', '#treatment-edit-print-button', function(e){
+            var id = e.target.value;
+            
+            print_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + id + '/print';
+            window.open(print_url);
+        });
+
     });
 
 
@@ -266,6 +274,7 @@
             $('#treatment-edit-delete-button').attr('disabled', false);
             $('#treatment-edit-delete-button').val(treatment.id);
             $('#treatment-edit-print-button').attr('disabled', false);
+            $('#treatment-edit-print-button').val(treatment.id);
         }else{
             $('#treatment-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments');
             $('#treatment-edit-modal-form input[name="_method"]').val('POST');
@@ -276,7 +285,7 @@
         $('#treatment-edit-modal').modal('show');
     }
 
-    // href="{{ route('clinics.treatments.print', ['clinic' => $clinic, 'pet' => $pet, 'treatment' => 1 ]) }}"
+    // href=""
 </script>
 
 @endpush

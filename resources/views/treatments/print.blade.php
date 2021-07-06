@@ -2,10 +2,12 @@
 <html>
 
 <head>
-    <h1>A new print on the block!</h1>
 </head>
 
 <body>
+    <h1>{{ $clinic->name }}</h1>
+    {{ asset('images/' . $clinic->logo) }}
+    <img src="{{ public_path('images') . DIRECTORY_SEPARATOR . $clinic->logo }}" style="width: 200px">
     <h1>Welcome to my page - {{ $title }}</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

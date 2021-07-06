@@ -9,9 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Home
-                    <a href="http://dev.ababu.cloud/clinics/0/visits/1">test me</a>
-                </div>
+                <div class="card-header">Home</div>
 
                 <div class="card-body">
                     @if (session('status'))

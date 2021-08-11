@@ -3,8 +3,6 @@
         <!-- owner -->
         <div class="row">
             <div class="col-md-12">
-                <label for="note_text" class="col-form-label">{{__('translate.procedure')}}</label>
-                <input type="image" name="" src="{{url('/images/icons/printer.png')}}" border="0" alt="" style="" />
                 <select id="procedure_id" name="procedure_id"></select>
             </div>
         </div>

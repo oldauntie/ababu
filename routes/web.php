@@ -26,6 +26,13 @@ Route::get('/noauth', function () {
     return view('noauth');
 })->name('noauth');
 
+
+// change password
+Route::get('change-password', 'ChangePasswordController@index');
+Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
+
+
+
 // clinics
 Route::get('clinics/join', 'ClinicController@join')->name('clinic.join')->middleware('auth');
 Route::get('clinics/create', 'ClinicController@create')->name('clinics.create')->middleware('auth');

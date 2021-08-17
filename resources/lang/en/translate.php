@@ -128,6 +128,7 @@ return [
     'view' => 'view',
     'visit' => 'visit',
     'visits' => 'Visits',
+    'website' => 'Web Site',
     'years' => 'Years',
     
 ];

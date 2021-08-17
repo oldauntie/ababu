@@ -55,6 +55,12 @@ class ClinicController extends Controller
             'serial' => Str::random(8),
             'key' => Str::random(8),
             'description' => $request->get('description'),
+            'address' => $request->get('address'),
+            'postcode' => $request->get('postcode'),
+            'city' => $request->get('city'),
+            'phone' => $request->get('phone'),
+            'website' => $request->get('website'),
+            'email' => $request->get('email'),
         ]);
         $clinic->save();
 
@@ -118,6 +124,12 @@ class ClinicController extends Controller
 
         $clinic->name = $request->name;
         $clinic->description = $request->description;
+        $clinic->address = $request->address;
+        $clinic->postcode = $request->postcode;
+        $clinic->city = $request->city;
+        $clinic->phone = $request->phone;
+        $clinic->website = $request->website;
+        $clinic->email = $request->email;
 
         $imageName = null;
         if ($request->file('logo')) {

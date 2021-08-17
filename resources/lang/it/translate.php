@@ -128,6 +128,7 @@ return [
     'view' => 'visualizza',
     'visit' => 'visita',
     'visits' => 'Visite',
+    'website' => 'Sito internet',
     'years' => 'Anni',
 
 

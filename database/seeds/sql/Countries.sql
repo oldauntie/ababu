@@ -118,7 +118,7 @@ INSERT INTO `countries` VALUES('io', 'British Indian Ocean Territory', '', 0);
 INSERT INTO `countries` VALUES('iq', 'Iraq', 'irq', 0);
 INSERT INTO `countries` VALUES('ir', 'Iran, Islamic Republic of', 'irn', 0);
 INSERT INTO `countries` VALUES('is', 'Iceland', 'isl', 0);
-INSERT INTO `countries` VALUES('it', 'Italy', 'ita', 0);
+INSERT INTO `countries` VALUES('it', 'Italy', 'ita', 1);
 INSERT INTO `countries` VALUES('je', 'Jersey', 'jey', 0);
 INSERT INTO `countries` VALUES('jm', 'Jamaica', 'jam', 0);
 INSERT INTO `countries` VALUES('jo', 'Jordan', 'jor', 0);

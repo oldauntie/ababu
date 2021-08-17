@@ -20,6 +20,12 @@ class CreateClinicsTable extends Migration
             $table->string('key', 100);
             $table->string('name');
             $table->string('description')->nullable();
+            $table->string('address')->nullable();
+            $table->string('postcode', 10)->nullable();
+            $table->string('city')->nullable();
+            $table->string('phone', 64)->nullable();
+            $table->string('website')->nullable();
+            $table->string('email')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
             $table->softDeletes();

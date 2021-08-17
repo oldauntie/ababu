@@ -15,6 +15,12 @@ class Clinic extends Model
         'serial',
         'key',
         'description',
+        'address',
+        'postcode',
+        'city',
+        'phone',
+        'website',
+        'email',
         'logo'       
     ];
 

@@ -9,6 +9,7 @@ return [
     */
 
     'animalia_select' => 'Click and start writing the first letters of specie scientific name (e.g. Canis Lupus Familiaris)',
+    'change_password' => 'Update your password by filling the form below',
     'clinic_create' => 'Create your own clinic in few, few, few steps and start working immediately.',
     'clinic_create' => 'Set the country where your clinic is. Warning!!! This value CAN NOT be changed later on.',
     'clinic_delete' => 'Warning!!! If you press "delete" all information about your clinic (i.e. animals, owners, visits, calendar events) will be permanently delete. This action can\'t be undone.',

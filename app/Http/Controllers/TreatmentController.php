@@ -14,6 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
 use PDF;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TreatmentController extends Controller
 {
@@ -54,13 +55,14 @@ class TreatmentController extends Controller
             return redirect()->route('clinics.visits.show', [$clinic, $pet->pet_id])
                 ->withErrors($validator);
         }
+        
 
         $treatment = new Treatment([
             'procedure_id' => $request->procedure_id,
             'pet_id' => $pet->id,
             'user_id' => auth()->user()->id,
-            'executed_at' => $request->executed_at,
-            'recall_att' => $request->recall_at,
+            'executed_at' => $request->executed_at == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->executed_at),
+            'recall_att' => $request->recall_at == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->recall_at),
             'drug_batch' => $request->drug_batch,
             'drug_batch_expires_at' => $request->drug_batch_expires_at,
             'notes' => $request->notes,
@@ -215,15 +217,35 @@ class TreatmentController extends Controller
 
     public function print(Clinic $clinic, Pet $pet, Treatment $treatment = null)
     {
+
+
+
+        // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
+        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string'));
+        // return $qrcode;
+
+        // dump($qrcode);
+
+        // dd( sys_get_temp_dir() );
+   
         $data = [
             'title' => 'nanna !!',
             'clinic' => $clinic,
             'pet' => $pet,
-            'treatment' => $treatment
+            'treatment' => $treatment,
+            'qrcode' => $qrcode,
             ];
+            
         $pdf = PDF::loadView('treatments.print', $data);
-
-        // return $pdf->download('visti_summary.pdf');
+        
+        $pdf->setOptions(['tempDir' => '/var/tmp']);
+        // $pdf->setOptions(['tempDir' => '/tmp']);
+        
+        /*
+        $pdf->setOptions(['isRemoteEnabled' => true]);
+        $pdf->setOptions(['logOutputFile' => '/tmp/log.htm']);
+        $pdf->setOptions(['isHtml5ParserEnabled' => true]);
+        */
         return $pdf->stream();
     }
 }

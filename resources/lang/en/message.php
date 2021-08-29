@@ -51,8 +51,10 @@ return [
     'species_store_success' => 'Selected specie has been added.',
     'species_update_error' => 'There was an error while saving specie.',
     'species_update_success' => 'Specie saved.',
-    'treatment_destroy_success' => 'Treatment has been successfully deleted.',
+    'treatment_create_success' => 'Treatment has been successfully created.',
     'treatment_destroy_error' => 'There was an error while deleting the treatment.',
+    'treatment_destroy_success' => 'Treatment has been successfully deleted.',
+    'treatment_updated_success' => 'Treatment has been successfully updated.',
     'user_update_success' => 'User has been updated.',
 
 ];

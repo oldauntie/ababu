@@ -51,8 +51,10 @@ return [
     'species_store_success' => 'La specie selezionata è stata aggiunta.',
     'species_update_error' => 'Si è verificato un errore durante l\'aggiornamento della specie.',
     'species_update_success' => 'La specie selezionata è stata aggiornata.',
-    'treatment_destroy_success' => 'Il trattamento è stato eliminato con successo.',
+    'treatment_create_success' => 'Il trattamento è stato creato con successo.'
     'treatment_destroy_error' => 'Si è verificato un errore durante l\'eliminazione del trattamento.',
+    'treatment_destroy_success' => 'Il trattamento è stato eliminato con successo.',
+    'treatment_updated_success' => 'Il trattamento è stato aggiornato con successo.',
     'user_update_success' => 'L\'utente è stato aggiornato.',
 
 ];

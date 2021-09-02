@@ -16,6 +16,7 @@ class AddColumnsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('locale_id', 10)->after('id');
+            $table->string('registration')->nullable()->after('locale_id');
 
             $table->foreign('locale_id')->references('id')->on('locales')->onDelete('cascade');
         });
@@ -34,6 +35,7 @@ class AddColumnsToUsersTable extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('locale_id');
+            $table->dropColumn('registration');
         });
     }
 }

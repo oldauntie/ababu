@@ -217,11 +217,8 @@ class TreatmentController extends Controller
 
     public function print(Clinic $clinic, Pet $pet, Treatment $treatment = null)
     {
-
-
-
         // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
-        $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string'));
+        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
         // return $qrcode;
 
         // dump($qrcode);
@@ -233,12 +230,15 @@ class TreatmentController extends Controller
             'clinic' => $clinic,
             'pet' => $pet,
             'treatment' => $treatment,
-            'qrcode' => $qrcode,
+            'qrCurrentUrl' => $qrCurrentUrl,
             ];
             
         $pdf = PDF::loadView('treatments.print', $data);
         
-        $pdf->setOptions(['tempDir' => '/var/tmp']);
+        // @todo: set TMP for development PHP
+
+
+        // $pdf->setOptions(['tempDir' => '/var/tmp']);
         // $pdf->setOptions(['tempDir' => '/tmp']);
         
         /*

@@ -8,6 +8,48 @@
 </head>
 
 <body>
+
+    <table border="1" width="100%">
+        <tr>
+            <td>1 </td>
+            <td>{{ url()->current() }}</td>
+            <td>
+                <img class="backdrop" src="data:image/svg+xml;base64,{{ $qrCurrentUrl }}" width="71px">
+            </td>
+        </tr>
+
+
+    </table>
+
+
+    <h3>Product: 0001245259636</h3>
+@php
+    $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+@endphp
+  
+{!! $generator->getBarcode('0001245259636', $generator::TYPE_CODE_128) !!}
+  
+  
+<h3>Product 2: 000005263635</h3>
+@php
+    $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+@endphp
+  
+<img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode('000005263635', $generatorPNG::TYPE_CODE_128)) }}">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+            nanna
+        </div>
+    </div>
+
+
+
+
     <h1>{{ $clinic->name }}</h1>
 
     @if($clinic->logo != null)
@@ -15,10 +57,11 @@
     @endif
 
 
-    <img class="backdrop" src="data:image/svg+xml;base64,{{ base64_encode(file_get_contents(public_path('images/no-image-available.svg'))) }}">
-    <img class="backdrop" src="data:image/svg+xml;base64,{{ base64_encode(file_get_contents(public_path('images/beacon.svg'))) }}">
+    <img class="backdrop"
+        src="data:image/svg+xml;base64,{{ base64_encode(file_get_contents(public_path('images/no-image-available.svg'))) }}">
+    <img class="backdrop"
+        src="data:image/svg+xml;base64,{{ base64_encode(file_get_contents(public_path('images/beacon.svg'))) }}">
 
-    <img src="http://dev.ababu.cloud/images/no-image-available.svg" />
 
 
 

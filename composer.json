@@ -16,6 +16,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "picqer/php-barcode-generator": "^2.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "yajra/laravel-datatables-oracle": "~9.0"
     },

@@ -1,12 +1,12 @@
 <?php
-   
+
 namespace App\Http\Controllers;
-   
+
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use App\User;
-  
+
 class ChangePasswordController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class ChangePasswordController extends Controller
     {
         $this->middleware('auth');
     }
-   
+
     /**
      * Show the application dashboard.
      *
@@ -27,8 +27,8 @@ class ChangePasswordController extends Controller
     public function index()
     {
         return view('changePassword');
-    } 
-   
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -41,9 +41,17 @@ class ChangePasswordController extends Controller
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
-   
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-   
-        dd('Password change successfully.');
+
+        try
+        {
+            User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+            $request->session()->flash('success', __('message.password_update_success'));
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            $request->session()->flash('success', __('message.password_update_error'));
+        }
+
+        return redirect()->route('home');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Clinic;
 use App\Role;
 use App\Http\Controllers\Controller;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -98,6 +100,88 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function editPassword()
+    {
+        return view('users.password');
+    }
+
+
+    /**
+     * update User Password.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword],
+            'new_password' => ['required'],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+
+        try
+        {
+            User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+            $request->session()->flash('success', __('message.password_update_success'));
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            $request->session()->flash('success', __('message.password_update_error'));
+        }
+
+        return redirect()->route('home');
+    }
+
+    /**
+     * Show the user profile form.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function editProfile()
+    {
+        return view('users.profile');
+    }
+
+
+    /**
+     * update User Profile data.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'registration' => ['max:255'],
+            'phone' => ['max:64'],
+            'mobile' => ['max:64'],
+        ]);
+
+        try
+        {
+            $user = User::find(auth()->user()->id);
+            $user->name = $request->name;
+            $user->registration = $request->registration;
+            $user->phone = $request->phone;
+            $user->mobile = $request->mobile;
+
+            $user->update();
+            $request->session()->flash('success', __('message.profile_update_success'));
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            $request->session()->flash('success', __('message.profile_update_error'));
+        }
+
+        return redirect()->route('home');
     }
 
     // @todo: to be finished or @deprecated

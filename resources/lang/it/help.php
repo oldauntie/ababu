@@ -9,7 +9,6 @@ return [
     */
     
     'animalia_select' => 'Premi e inizia a digitare le prima lettere del nome comune della specie (e.g. Cane, Catto)',
-    'change_password' => 'Aggiorna la password di accesso completanto il form sottostante',
     'clinic_create' => 'Crea la tua clinica in pochi, pochissimi passaggi e inizia a lavorare immediatamente.',
     'clinic_country' => 'Imposta la nazione in cui si trova la tua clinica. Attenzione!!! Il valore NON può essere cambiato in seguito.',
     'clinic_delete' => 'Attenzione!!! Premendo "eliminae" tutte le informazioni (animali, proprietari, visite, appuntamenti) andranno perse.',
@@ -34,6 +33,7 @@ return [
     'owner_postcode' => '',
     'owner_ssn' => '',
     'owner_select' => '',
+    'password_update' => 'Aggiorna la password di accesso completanto il form sottostante',
     'pet_breed' => 'Specificare la razza (opzionale)',
     'pet_color' => '',
     'pet_date_of_birth' => 'Data di nascita',

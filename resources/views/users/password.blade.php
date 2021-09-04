@@ -4,10 +4,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('help.change_password') }}</div>
+                <div class="card-header">{{ __('help.password_update') }}</div>
    
                 <div class="card-body">
-                    <form method="POST" action="{{ route('change.password') }}">
+                    <form method="POST" action="{{ route('update.password') }}">
                         @csrf 
    
                          @foreach ($errors->all() as $error)

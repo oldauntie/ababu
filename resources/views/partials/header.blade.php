@@ -27,11 +27,11 @@
                 <!-- Authentication Links -->
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('translate.login') }}</a>
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('translate.register') }}</a>
                 </li>
                 @endif
                 @else
@@ -66,14 +66,18 @@
 
                     
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('change.password') }}">
-                            {{ __('Password') }}
+                        <a class="dropdown-item" href="{{ route('profile') }}">
+                            {{ __('translate.profile') }}
+                        </a>
+                        
+                        <a class="dropdown-item" href="{{ route('password') }}">
+                            {{ __('translate.password') }}
                         </a>
                         
                         
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('translate.logout') }}
                         </a>
 
 

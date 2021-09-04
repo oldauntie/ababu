@@ -16,10 +16,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>name</th>
-                                <th>role</th>
-                                <th>email</th>
-                                <th width="100px">Actions</th>
+                                <th>{{__('translate.name')}}</th>
+                                <th>{{__('translate.role')}}</th>
+                                <th>{{__('translate.email')}}</th>
+                                <th width="100px">{{__('translate.actions')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,7 +35,7 @@
 
                                     @if( ($user->hasRole('root') == false) && Auth::user()->id != $user->id )
                                     <a href="{{ route('clinics.users.edit', [$clinic, $user]) }}"
-                                        class="btn btn-sm btn-primary">{{__('translate.edit')}}</a>
+                                        class="btn btn-sm btn-primary">{{__('translate.role')}}</a>
                                     <a href="#" onclick="return confirm('{{__('message.are_you_sure')}}')"
                                         class="btn btn-sm btn-danger">{{__('translate.delete')}}</a>
                                     @endif

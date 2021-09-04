@@ -38,6 +38,7 @@ class UsersTableSeeder extends Seeder
         $admin = User::create([
             'locale_id' => 'en-GB',
             'registration' => 'GB-REG-3',
+            'mobile' => '3480000000',
             'name' => 'Admin User',
             'email' => 'admin@ababu.cloud',
             'password' => Hash::make('ababu'),
@@ -47,6 +48,7 @@ class UsersTableSeeder extends Seeder
         $veterinarian = User::create([
             'locale_id' => 'it-IT',
             'registration' => 'IT-REG-3',
+            'mobile' => '3470000000',
             'name' => 'Veterinarian',
             'email' => 'veterinarian@ababu.cloud',
             'password' => Hash::make('ababu'),

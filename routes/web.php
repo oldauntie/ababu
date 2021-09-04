@@ -27,10 +27,6 @@ Route::get('/noauth', function () {
 })->name('noauth');
 
 
-// change password
-Route::get('change-password', 'ChangePasswordController@index');
-Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
-
 
 
 // clinics
@@ -42,10 +38,17 @@ Route::post('clinics/store', 'ClinicController@store')->name('clinics.store')->m
 Route::get('clinics/{clinic}', 'ClinicController@show')->name('clinics.show')->middleware('clinic_access');
 Route::put('clinics/{clinic}', 'ClinicController@update')->name('clinics.update')->middleware('clinic_roles:root|admin');
 
+// change password
+Route::get('password', 'UserController@editPassword')->name('password');
+Route::post('password', 'UserController@updatePassword')->name('update.password');
+Route::get('profile', 'UserController@editProfile')->name('profile');
+Route::post('profile', 'UserController@updateProfile')->name('update.profile');
+
 // users
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');
 Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinics.users.edit')->middleware('clinic_roles:root|admin');
 Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
+
 
 // owners
 Route::get('clinics/{clinic}/owners/search', 'OwnerController@search')->name('clinics.owners.search')->middleware('clinic_access');

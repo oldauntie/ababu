@@ -49,6 +49,8 @@ return [
     'problem_create_success' => 'Il problema è stato creato con successo.',
     'problem_update_error' => 'Si è verificato un errore durante l\'aggiornamento del problema.',
     'problem_update_success' => 'Il problema è stato aggiornato con successo.',
+    'profile_update_error' => 'Si è verificato un errore duranet l\'aggiornamento del tuo profilo.',
+    'profile_update_success' => 'Il tuo profilo è stato aggiornato con successo.',
     'species_store_error' => 'Si è verificato un errore. E\' probabile che la specie sia già stata selezionata.',
     'species_store_success' => 'La specie selezionata è stata aggiunta.',
     'species_update_error' => 'Si è verificato un errore durante l\'aggiornamento della specie.',

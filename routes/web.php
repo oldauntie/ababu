@@ -27,6 +27,10 @@ Route::get('/noauth', function () {
 })->name('noauth');
 
 
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
+
 
 
 // clinics

@@ -124,6 +124,7 @@ return [
     'subjective_analysis' => 'analisi soggettiva',
     'tatuatge' => 'tatuaggio',
     'tatuatge_location' => 'posizione tatuaggio',
+    'terms_of_service' => 'termini del servizio',
     'treatment' => 'trattamento',
     'treatments' => 'trattamenti',
     'treatments_zero_records' => 'no treatment/vaccination',

@@ -12,7 +12,8 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('translate.name') }}</label>
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('translate.name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -140,6 +141,16 @@
                                     name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4 col-form-label text-md-right"></div>
+
+                            <div class="col-md-6">
+                                <p>{{ __('help.terms_of_service') }} <a href="{{ route('terms') }} ">{{ __('translate.terms_of_service') }}.</a></p>
+                            </div>
+                        </div>
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

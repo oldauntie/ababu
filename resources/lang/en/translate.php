@@ -126,6 +126,7 @@ return [
     'users' => 'users',
     'tatuatge' => 'tatuatge',
     'tatuatge_location' => 'tatuatge location',
+    'terms_of_service' => 'terms of service',
     'treatment' => 'treatment',
     'treatments' => 'treatments',
     'treatments_zero_records' => 'no treatment/vaccination',

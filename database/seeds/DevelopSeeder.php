@@ -28,36 +28,62 @@ class DevelopSeeder extends Seeder
          * Black Clinic
          */
         Clinic::create([
-            'country_id' => 'it',
-            'name' => 'Black Clinic',
+            'country_id' => 'gb',
+            'name' => 'Develop Clinic',
             'serial' => Str::random(8),
             'key' => Str::random(8),
-            'description' => 'Black Clinic',
+            'description' => 'Develop Clinic Description',
         ]);
+        
+
 
         /**
-         * Black User
+         * Creating Users
          */
         $adminRole = Role::where('name', 'admin')->first();
-        $black_user = User::create([
+        $veterinarianRole = Role::where('name', 'veterinarian')->first();
+
+        $admin = User::create([
             'locale_id' => 'en-GB',
-            'name' => 'Black User',
-            'email' => 'black@ababu.cloud',
+            'registration' => 'GB-REG-3',
+            'mobile' => '3480000000',
+            'name' => 'Admin User',
+            'email' => 'admin@ababu.cloud',
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),
         ]);
 
-        $black_user->roles()->attach($adminRole, ['clinic_id' => 1]);
+        $veterinarian = User::create([
+            'locale_id' => 'it-IT',
+            'registration' => 'IT-REG-3',
+            'mobile' => '3470000000',
+            'name' => 'Veterinarian',
+            'email' => 'veterinarian@ababu.cloud',
+            'password' => Hash::make('ababu'),
+        ]);
 
+        $user = User::create([
+            'locale_id' => 'en-US',
+            'name' => 'Generic User',
+            'email' => 'user@ababu.cloud',
+            'password' => Hash::make('ababu'),
+        ]);
+
+        $admin->roles()->attach($adminRole, ['clinic_id' => 1]);
+        $veterinarian->roles()->attach($veterinarianRole, ['clinic_id' => 1]);
+
+
+
+        
         /**
          * Species
          */
         Species::create([
             'tsn' => '726821',
-            'clinic_id' => 0,
+            'clinic_id' => 1,
             'familiar_name' => 'Dog',
         ]);
-        
+
         Species::create([
             'tsn' => '183798',
             'clinic_id' => 1,
@@ -70,7 +96,7 @@ class DevelopSeeder extends Seeder
          */
         Owner::create([
             'id' => 1,
-            'clinic_id' => 0,
+            'clinic_id' => 1,
             'country_id' => 'ie',
             'firstname' => 'Phil',
             'lastname' => 'Lynott',
@@ -84,7 +110,7 @@ class DevelopSeeder extends Seeder
 
         Owner::create([
             'id' => 2,
-            'clinic_id' => 0,
+            'clinic_id' => 1,
             'country_id' => 'ie',
             'firstname' => 'Rory',
             'lastname' => 'Gallagher',
@@ -115,7 +141,7 @@ class DevelopSeeder extends Seeder
          */
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 0,
+            'clinic_id' => 1,
             'owner_id' => 1,
             'name' => 'Ozzy',
             'sex' => 'M',
@@ -124,7 +150,7 @@ class DevelopSeeder extends Seeder
 
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 0,
+            'clinic_id' => 1,
             'owner_id' => 1,
             'name' => 'Martha',
             'sex' => 'M',
@@ -133,7 +159,7 @@ class DevelopSeeder extends Seeder
 
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 0,
+            'clinic_id' => 1,
             'owner_id' => 2,
             'name' => 'Muddy',
             'sex' => 'M',

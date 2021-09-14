@@ -11,7 +11,7 @@ class ProceduresTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/VeNom/procedures.sql'));
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/VeNom/procedures.sql'));
         $this->command->info('VeNom\procedures table seeded!');
     }
 }

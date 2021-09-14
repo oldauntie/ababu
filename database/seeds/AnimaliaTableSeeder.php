@@ -13,7 +13,7 @@ class AnimaliaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/ITIS/Animalia.sql'));
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/animalia/Animalia.sql'));
         $this->command->info('Animalia table seeded!');
     }
 }

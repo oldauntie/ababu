@@ -16,10 +16,10 @@ class ClinicsTableSeeder extends Seeder
     {
         $clinic = Clinic::create([
                         'country_id' => 'gb', 
-                        'name' => 'White Clinic', 
+                        'name' => 'No Clinic', 
                         'serial' => Str::random(8),
                         'key' => Str::random(8),
-                        'description' => 'White Clinic',
+                        'description' => 'Ghost Clinic',
                         ]);
         
         // force id to 0

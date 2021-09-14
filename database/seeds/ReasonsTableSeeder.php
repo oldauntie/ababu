@@ -13,7 +13,7 @@ class ReasonsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/VeNom/reasons.sql'));
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/VeNom/reasons.sql'));
         $this->command->info('VeNom\reasons table seeded!');
     }
 }

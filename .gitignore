@@ -4,9 +4,9 @@
 /public/storage
 /storage/*.key
 /vendor
-/database/seeds/VeNom/*
-/database/seeds/ITIS/*
-/database/seeds/medicines/master/*
+/database/seeds/sql/VeNom/*
+/database/seeds/sql/animalia/*
+/database/seeds/sql/medicines/*
 /database/seeds/sql/develop/*
 .env
 .env.backup

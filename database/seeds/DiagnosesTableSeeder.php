@@ -13,7 +13,7 @@ class DiagnosesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(File::get(base_path() . '/database/seeds/VeNom/diagnoses.sql'));
+        DB::unprepared(File::get(base_path() . '/database/seeds/sql/VeNom/diagnoses.sql'));
         $this->command->info('VeNom\diagnoses table seeded!');
     }
 }

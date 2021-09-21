@@ -62,6 +62,48 @@
 
 
                     <div class="form-group row">
+                        <label for="director"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.director')}}</label>
+                    
+                        <div class="col-md-6">
+                            <input id="director" type="text"
+                                class="form-control @error('director') is-invalid @enderror" name="director"
+                                value="{{ $clinic->director }}" autocomplete="director" autofocus maxlength="100">
+                            <small id="help_clinic_director"
+                                class="form-text text-muted">{{__('help.clinic_director')}}</small>
+                    
+                    
+                            @error('director')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="code"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.code')}}</label>
+                    
+                        <div class="col-md-6">
+                            <input id="code" type="text"
+                                class="form-control @error('code') is-invalid @enderror" name="code"
+                                value="{{ $clinic->code }}" autocomplete="code" autofocus maxlength="100">
+                            <small id="help_clinic_code"
+                                class="form-text text-muted">{{__('help.clinic_code')}}</small>
+                    
+                    
+                            @error('code')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
                         <label for="address"
                             class="col-md-4 col-form-label text-md-right">{{__('translate.address')}}</label>
 

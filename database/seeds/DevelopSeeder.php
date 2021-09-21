@@ -30,6 +30,9 @@ class DevelopSeeder extends Seeder
         Clinic::create([
             'country_id' => 'gb',
             'name' => 'Develop Clinic',
+            'description' => 'A clinic description goes here',
+            'director' => 'Justin A. Director',
+            'code' => 'ACDC-0003',
             'serial' => Str::random(8),
             'key' => Str::random(8),
             'description' => 'Develop Clinic Description',

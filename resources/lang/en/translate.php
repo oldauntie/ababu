@@ -47,6 +47,7 @@ return [
     'done' => 'done',
     'dosage' => 'dosage',
     'drug_batch' => 'drug batch',
+    'duration' => 'duration',
     'edit' => 'edit',
     'email' => 'email',
     'examination' => 'examination',

@@ -28,7 +28,6 @@
     tr.shown td.details-control {
         background: url('{{url('/images/icons/delete.png')}}') no-repeat center center;
     }
-
 </style>
 
 @extends('layouts.app')
@@ -390,6 +389,12 @@
         $('#prescription-edit-problem').on('change', function(){
             $('#prescription-edit-problem_id').val($(this).val());
         });
+
+        
+
+
+
+
     });
 
     // retrieve an empty prescription and pass it to 
@@ -435,6 +440,7 @@
         $('#prescription-edit-date_of_prescription').val(prescription.date_of_prescription);
         $('#prescription-edit-quantity').val(prescription.quantity);
         $('#prescription-edit-dosage').val(prescription.dosage);
+        $('#prescription-edit-duration').val(prescription.duration);
 
         $('#prescription-edit-in_evidence').prop("checked", !! + prescription.in_evidence);
         $('#prescription-edit-notes').val(prescription.notes);
@@ -451,6 +457,7 @@
             $('#prescription-edit-delete-button').attr('disabled', false);
             $('#prescription-edit-delete-button').val(prescription.id);
             $('#prescription-edit-print-button').attr('disabled', false);
+            $('#prescription-edit-print-button').val(prescription.id);
         }else{
             $('#prescription-edit-modal-form').attr('action', '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions');
             $('#prescription-edit-modal-form input[name="_method"]').val('POST');
@@ -461,6 +468,9 @@
 
         $('#prescription-edit-modal').modal('show');
     }
+
+
+
 
 
 
@@ -799,17 +809,13 @@
             }
         });
 
-        // @YAH
-
+        
         $("#procedure_id").on("select2:select", function(e) { 
             var id = e.params.data.id;            
             createTreatment(id);
             // clear selection
             $('#procedure_id').val(null).trigger('change');
         });
-
-
-        
 
 
         // lock / unlock problem button on Examination modal form

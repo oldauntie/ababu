@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Carbon;
 
+use PDF;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PrescriptionController extends Controller
 {
@@ -64,6 +66,7 @@ class PrescriptionController extends Controller
             'user_id' => auth()->user()->id,
             'quantity' => $request->quantity,
             'dosage' => $request->dosage,
+            'duration' => $request->duration,
             'in_evidence' => $request->in_evidence == 1 ? true : false,
             'notes' => $request->notes,
             'print_notes' => $request->print_notes == 1 ? true : false,
@@ -128,6 +131,7 @@ class PrescriptionController extends Controller
         $prescription->user_id = auth()->user()->id;
         $prescription->quantity = $request->quantity;
         $prescription->dosage = $request->dosage;
+        $prescription->duration = $request->duration;
         $prescription->in_evidence = $request->in_evidence == null ? false : true;
         $prescription->notes = $request->notes;
         $prescription->print_notes = $request->print_notes == null ? false : true;
@@ -232,5 +236,30 @@ class PrescriptionController extends Controller
             return Datatables::of($prescriptions)
                 ->make(true);
         }
+    }
+
+
+
+    public function print(Clinic $clinic, Pet $pet, Prescription $precription = null)
+    {
+        // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
+        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
+        // return $qrcode;
+
+        // dump($qrcode);
+
+        // dd( sys_get_temp_dir() );
+   
+        $data = [
+            'title' => 'nanna !!',
+            'clinic' => $clinic,
+            'pet' => $pet,
+            'precription' => $precription,
+            'qrCurrentUrl' => $qrCurrentUrl,
+            ];
+            
+        $pdf = PDF::loadView('prescriptions.print', $data);
+        
+        return $pdf->stream();
     }
 }

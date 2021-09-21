@@ -47,7 +47,8 @@
                                     <div class="col-12">
                                         <label for="prescription-edit-medicine"
                                             class="text-md-right">{{__('translate.medicine')}}</label>
-                                        <input type="hidden" name="medicine_id" value="" id="prescription-edit-medicine_id">
+                                        <input type="hidden" name="medicine_id" value=""
+                                            id="prescription-edit-medicine_id">
                                         <input type="text" name="medicine" value="" id="prescription-edit-medicine"
                                             class="form-control form-control-sm" disabled>
                                     </div>
@@ -71,7 +72,7 @@
                                             autocomplete="quantity" required autofocus>
                                     </div>
                                     <!-- Dosage -->
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="prescription-edit-dosage"
                                             class="text-md-right">{{__('translate.dosage')}}*</label>
                                         <input type="text" name="dosage" value="" id="prescription-edit-dosage"
@@ -79,8 +80,17 @@
                                             class="form-control form-control-sm @error('dosage') is-invalid @enderror"
                                             autocomplete="dosage" required autofocus>
                                     </div>
+                                    <!-- Duration -->
+                                    <div class="col-2">
+                                        <label for="prescription-edit-duration"
+                                            class="text-md-right">{{__('translate.duration')}}*</label>
+                                        <input type="number" name="duration" value="" id="prescription-edit-duration"
+                                            min="0" max="999"
+                                            class="form-control form-control-sm @error('duration') is-invalid @enderror"
+                                            autocomplete="duration" required autofocus>
+                                    </div>
                                     <!-- In Evidence -->
-                                    <div class="col-4 align-self-end">
+                                    <div class="col-3 align-self-end">
                                         <div class="checkbox">
                                             <img class="align-center" title="{{ __('translate.in_evidence') }}"
                                                 src="{{url('/images/icons/in_evidence.png')}}">
@@ -110,8 +120,9 @@
                                             </select>
                                             <input type="hidden" name="problem_id" value=""
                                                 id="prescription-edit-problem_id">
-                                            <button type="button" id="prescription-edit-button-lock" class="btn btn-light lock"
-                                                data-toggle="button" aria-pressed="false" autocomplete="off"></button>
+                                            <button type="button" id="prescription-edit-button-lock"
+                                                class="btn btn-light lock" data-toggle="button" aria-pressed="false"
+                                                autocomplete="off"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -163,9 +174,12 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary btn-sm">{{__('translate.save')}}</button>
-                            <button type="button" id="prescription-edit-delete-button" class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
-                            <button type="button" id="prescription-edit-print-button" class="btn btn-info btn-sm">{{__('translate.print')}}</button>
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('translate.close')}}</button>
+                            <button type="button" id="prescription-edit-delete-button"
+                                class="btn btn-danger btn-sm">{{__('translate.delete')}}</button>
+                            <button type="button" id="prescription-edit-print-button"
+                                class="btn btn-info btn-sm">{{__('translate.print')}}</button>
+                            <button type="button" class="btn btn-secondary btn-sm"
+                                data-dismiss="modal">{{__('translate.close')}}</button>
                         </div>
                     </div>
                 </form>
@@ -187,4 +201,14 @@
 <!-- /Attachment Modal -->
 
 @push('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){
+        // print action
+        $('#prescription-edit-print-button').click(function(e){
+            var id = e.target.value;
+            print_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/prescriptions/' + id + '/print';
+            window.open(print_url);
+        })
+    });
+</script>
 @endpush

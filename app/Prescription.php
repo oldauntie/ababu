@@ -13,6 +13,7 @@ class Prescription extends Model
         'user_id',
         'quantity',
         'dosage',
+        'duration',
         'in_evidence',
         'notes',
         'print_notes',

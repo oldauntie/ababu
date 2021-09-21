@@ -94,6 +94,8 @@ Route::get('clinics/{clinic}/pets/{pet}/prescriptions/list/{problem_id?}/{return
 
 Route::get('clinics/{clinic}/pets/{pet}/prescriptions/create/{medicine}/{problem?}', 'PrescriptionController@createPrescriptionByMedicine')->name('clinics.create.prescription.by.medicine')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::get('clinics/{clinic}/pets/{pet}/prescriptions/edit/{prescription}', 'PrescriptionController@editPrescriptionById')->name('clinics.edit.prescription.by.id')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}/print', 'PrescriptionController@print')->name('clinics.prescription.print')->middleware('clinic_access')->middleware('can:cure,pet');
+
 Route::put('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}', 'PrescriptionController@update')->name('clinics.prescriptions.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/prescriptions', 'PrescriptionController@store')->name('clinics.prescriptions.store')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::delete('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}', 'PrescriptionController@destroy')->name('clinics.prescriptions.destroy')->middleware('clinic_access')->middleware('can:cure,pet');

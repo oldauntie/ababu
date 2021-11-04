@@ -1,0 +1,154 @@
+body {
+    font: 12px courier, sans-serif;
+    line-height: 1.6;
+}
+
+blockquote,
+dl,
+figure,
+form,
+ol,
+p,
+pre,
+table,
+ul {
+    margin-bottom: 2.5rem;
+}
+
+/* table readable */
+table .readable {
+    border-spacing: 0;
+    display: block;
+    overflow-x: auto;
+    text-align: left;
+    width: 100%;
+    background-color: darkorange;
+}
+
+table.readable td,
+table.readable th {
+    border-bottom: 0.1rem solid #e1e1e1;
+    padding: 1.2rem 1.5rem;
+}
+
+table .readable td:first-child,
+table .readable th:first-child {
+    padding-left: 0;
+}
+
+table .readable td:last-child,
+table .readable th:last-child {
+    padding-right: 0;
+}
+
+@media (min-width: 40rem) {
+    table {
+        display: table;
+        overflow-x: initial;
+    }
+}
+
+/** CLASSES **/
+/* borders */
+.border {
+    border: 1pt solid black;
+}
+
+.border-bottom {
+    border-bottom: 1pt solid black;
+}
+
+.border-top {
+    border-top: 1pt solid black;
+}
+
+.border-left {
+    border-left: 1pt solid black;
+}
+
+.border-right {
+    border-right: 1pt solid black;
+}
+
+.bw0,
+.bw-none {
+    border-width: 1px;
+}
+
+.bw1 {
+    border-width: 1px;
+}
+.bw2 {
+    border-width: 2px;
+}
+.bw3 {
+    border-width: 3px;
+}
+.bw5 {
+    border-width: 0px;
+}
+.bw7 {
+    border-width: 7px;
+}
+
+/* text transform */
+.tolower,
+.lowercase {
+    text-transform: lowercase;
+}
+
+.toupper,
+.uppercase {
+    text-transform: uppercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* float */
+.float-none {
+    float: none;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.row{
+    clear: both;
+    padding-top: 10px;
+}
+/* width */
+.w10 {
+    width: 10%;
+}
+
+.w25 {
+    width: 25%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.w75 {
+    width: 75%;
+}
+
+.w100 {
+    width: 100%;
+}
+

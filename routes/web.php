@@ -22,10 +22,17 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/credits', function () {
+    return view('credits');
+})->name('credits');
+
+Route::get('/links', function () {
+    return view('links');
+})->name('links');
+
 Route::get('/noauth', function () {
     return view('noauth');
 })->name('noauth');
-
 
 Route::get('/terms', function () {
     return view('terms');

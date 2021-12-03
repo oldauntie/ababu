@@ -70,11 +70,15 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.lastname') . ", " . __('translate.firstname') }}</td>
-                <td>{{ $prescription->created_at }}</td>
+                <td>{{ $pet->owner->lastname . ", " . $pet->owner->firstname }}</td>
+            </tr>
+            <tr>
+                <td class="capitalize bold">{{ __('translate.address') . ", " . __('translate.firstname') }}</td>
+                <td>{{ $pet->owner->address . ", " . $pet->owner->postcode . ", " . $pet->owner->city }}</td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.ssn') }}</td>
-                <td>{{ $prescription->notes }}</td>
+                <td>{{ $pet->owner->ssn }}</td>
             </tr>
         </table>
 
@@ -85,26 +89,59 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.name') }}</td>
-                <td class="uppercase">{{ Auth::user()->name . ", " . Auth::user()->name }}</td>
+                <td class="uppercase">{{ $pet->clinic->name }}</td>
             </tr>
             <tr>
-                <td class="capitalize bold">{{ __('translate.ssn') }}</td>
-                <td class="uppercase">{{ Auth::user()->ssn }}</td>
-            </tr>
-            <tr>
-                <td class="capitalize bold">{{ __('translate.registration') }}</td>
-                <td class="uppercase">{{ Auth::user()->registration }}</td>
+                <td class="capitalize bold">{{ __('translate.manager') }}</td>
+                <td class="uppercase">{{ $pet->clinic->manager }}</td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.phone') }}</td>
-                <td class="uppercase">{{ Auth::user()->phone }}</td>
+                <td class="uppercase">{{ $pet->clinic->phone }}</td>
+            </tr>
+            <tr>
+                <td class="capitalize bold">{{ __('translate.code') }}</td>
+                <td class="uppercase">{{ $pet->clinic->code }}</td>
+            </tr>
+            <tr>
+                <td class="capitalize bold">{{ __('translate.address') }}</td>
+                <td class="uppercase">{{ $pet->clinic->address }}</td>
+            </tr>
+            <tr>
+                <td class="capitalize bold">{{ __('translate.city') }}</td>
+                <td class="uppercase">{{ $pet->clinic->city }}</td>
             </tr>
         </table>
     </div>
-    
 
-
-
+    <div class="row">
+        <table class="w100 float-left border">
+            <tr>
+                <td colspan="7" class="border-bottom uppercase bold">{{ __('translate.medicine') }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="border-bottom">id: {{ $prescription->medicine->id }} {!! $generator->getBarcode($prescription->medicine->id, $generator::TYPE_CODE_128) !!}</td>
+                <td colspan="4" class="border-bottom">external id: {{ $prescription->medicine->external_id }} {!! $generator->getBarcode($prescription->medicine->external_id, $generator::TYPE_CODE_128) !!}</td>
+            </tr>
+            <tr>
+                <td class="border bold">{{ __('translate.medicine_external_id') }}</td>
+                <td class="border bold">{{ __('translate.name') }}</td>
+                <td class="border bold">{{ __('translate.medicine_pharmaceutical_form') }}</td>
+                <td class="border bold">{{ __('translate.quantity') }}</td>
+                <td class="border bold">{{ __('translate.dosage') }}</td>
+                <td class="border bold">{{ __('translate.duration') }}</td>
+                <td class="border bold">{{ __('translate.target_species') }}</td>
+            </tr>
+            <tr>
+                <td class="border">{{ $prescription->medicine->external_id }}</td>
+                <td class="border">{{ $prescription->medicine->name }}</td>
+                <td class="border">{{ $prescription->medicine->pharmaceutical_form }}</td>
+                <td class="border">{{ $prescription->quantity }}</td>
+                <td class="border">{{ $prescription->dosage }}</td>
+                <td class="border">{{ $prescription->duration }}</td>
+                <td class="border">{{ $prescription->medicine->target_species }}</td>
+            </tr>
+        </table>
+    </div>
 </body>
-
 </html>

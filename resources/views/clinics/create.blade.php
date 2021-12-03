@@ -76,19 +76,19 @@
 
 
                         <div class="form-group row">
-                            <label for="director"
-                                class="col-md-4 col-form-label text-md-right">{{__('translate.director')}}</label>
+                            <label for="manager"
+                                class="col-md-4 col-form-label text-md-right">{{__('translate.manager')}}</label>
                         
                             <div class="col-md-6">
-                                <input id="director" type="text"
-                                    class="form-control @error('director') is-invalid @enderror" name="director"
-                                    value="{{ old('director', Auth::user()->name) }}" autocomplete="director" autofocus
+                                <input id="manager" type="text"
+                                    class="form-control @error('manager') is-invalid @enderror" name="manager"
+                                    value="{{ old('manager', Auth::user()->name) }}" autocomplete="manager" autofocus
                                     maxlength="100">
-                                <small id="help_clinic_director"
-                                    class="form-text text-muted">{{__('help.clinic_director')}}</small>
+                                <small id="help_clinic_manager"
+                                    class="form-text text-muted">{{__('help.clinic_manager')}}</small>
                         
                         
-                                @error('director')
+                                @error('manager')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

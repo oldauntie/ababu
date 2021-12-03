@@ -55,7 +55,7 @@ class ClinicController extends Controller
             'serial' => Str::random(8),
             'key' => Str::random(8),
             'description' => $request->get('description'),
-            'director' => $request->get('director'),
+            'manager' => $request->get('manager'),
             'code' => $request->get('code'),
             'address' => $request->get('address'),
             'postcode' => $request->get('postcode'),
@@ -126,7 +126,7 @@ class ClinicController extends Controller
 
         $clinic->name = $request->name;
         $clinic->description = $request->description;
-        $clinic->director = $request->director;
+        $clinic->manager = $request->manager;
         $clinic->code = $request->code;
         $clinic->address = $request->address;
         $clinic->postcode = $request->postcode;

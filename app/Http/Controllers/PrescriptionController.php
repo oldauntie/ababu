@@ -248,7 +248,7 @@ class PrescriptionController extends Controller
 
         // dump($qrcode);
 
-        // dd( sys_get_temp_dir() );
+        // dd( $pet->owner );
    
         $data = [
             'title' => 'nanna !!',

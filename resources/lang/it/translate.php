@@ -58,6 +58,7 @@ return [
     'executed_at' => 'eseguito',
     'expires_at' => 'scade',
     'familiar_name' => 'nome comune',
+    'feedback' => 'feedback',
     'firstname' => 'nome',
     'gender' => 'sesso',
     'in_evidence' => 'in evidenza',

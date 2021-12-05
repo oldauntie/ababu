@@ -70,7 +70,7 @@
     </div>
 </div>
 
-@include('problems.modal.edit')
+@include('problems.partials.edit')
 
 @push('scripts')
 

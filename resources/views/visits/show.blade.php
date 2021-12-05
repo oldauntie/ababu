@@ -97,12 +97,6 @@
                         </div>
                         <div class="col-lg-6">
 
-
-
-
-
-
-
                             <!-- Tab Headers -->
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -130,17 +124,11 @@
                                     aria-labelledby="nav-contact-tab">certificates</div>
                             </div>
 
-
-
-
-
-
                         </div>
                     </div>
 
                 </div>
             </div>
-
 
         </div>
     </div>
@@ -389,12 +377,6 @@
         $('#prescription-edit-problem').on('change', function(){
             $('#prescription-edit-problem_id').val($(this).val());
         });
-
-        
-
-
-
-
     });
 
     // retrieve an empty prescription and pass it to 
@@ -470,10 +452,6 @@
     }
 
 
-
-
-
-
     /* *********************************************** *
     Examinations
     * ************************************************ */
@@ -526,7 +504,6 @@
             add = add || '...';
             return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
         };
-
 
         /* Formatting function for row details - modify as you need */
         function format ( d ) {

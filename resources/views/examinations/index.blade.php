@@ -28,8 +28,8 @@
     </div>
 </div>
 
-@include('examinations.partial.delete')
-@include('examinations.modal.edit')
+@include('examinations.partials.delete')
+@include('examinations.partials.edit')
 
 @push('scripts')
 @endpush

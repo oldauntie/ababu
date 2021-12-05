@@ -27,8 +27,8 @@
     </div>
 </div>
 
-@include('treatments.partial.delete')
-@include('treatments.modal.edit')
+@include('treatments.partials.delete')
+@include('treatments.partials.edit')
 
 @push('scripts')
 @endpush

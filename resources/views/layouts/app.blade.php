@@ -25,10 +25,11 @@
 </head>
 <body>
     <div id="app">
-        @include('partials.header')
+        @include('layouts.partials.header')
 
         <main class="py-4">
-            @include('partials.alerts')
+            @include('layouts.partials.feedback')
+            @include('layouts.partials.alerts')
             @yield('content')
         </main>
     </div>

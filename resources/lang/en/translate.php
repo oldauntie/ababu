@@ -59,6 +59,7 @@ return [
     'executed_at' => 'executed',
     'expires_at' => 'expires',
     'familiar_name' => 'familiar name',
+    'feedback' => 'feedback',
     'firstname' => 'first name',
     'gender' => 'gender',
     'in_evidence' => 'in evidence',

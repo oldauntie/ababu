@@ -49,9 +49,9 @@
 </div>
 
 @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-@include('clinics.modal.edit')
-@include('clinics.modal.invite')
-@include('clinics.modal.confirm-delete')
+@include('clinics.partials.edit')
+@include('clinics.partials.invite')
+@include('clinics.partials.confirm-delete')
 @endif
 
 @endsection

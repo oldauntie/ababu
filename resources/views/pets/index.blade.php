@@ -95,9 +95,9 @@
 </div>
 
 @include('pets.partial.delete')
-@include('pets.modal.edit')
-@include('pets.modal.create')
-@include('pets.modal.confirm-delete')
+@include('pets.partials.edit')
+@include('pets.partials.create')
+@include('pets.partials.confirm-delete')
 
 @endsection
 

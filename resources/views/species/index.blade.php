@@ -90,7 +90,7 @@
                         @if ($specie->pets->count() == 0)
                             <button class="btn btn-sm btn-danger open_modal_delete" data-id="{{ $specie->id }}">{{__('translate.delete')}}</button>
 
-                            @include('species.modal.confirm-delete', ['specie' => $specie])
+                            @include('species.partials.confirm-delete', ['specie' => $specie])
                         @endif
                         </td>
                     </tr>
@@ -104,7 +104,7 @@
     </div>
 </div>
 
-@include('species.modal.edit')
+@include('species.partials.edit')
 
 
 

@@ -29,8 +29,8 @@
     </div>
 </div>
 
-@include('prescriptions.partial.delete')
-@include('prescriptions.modal.edit')
+@include('prescriptions.partials.delete')
+@include('prescriptions.partials.edit')
 
 @push('scripts')
 @endpush

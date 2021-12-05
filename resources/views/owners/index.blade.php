@@ -125,10 +125,10 @@
 </div>
 
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
-@include('owners.modal.create')
-@include('owners.modal.edit')
-@include('owners.modal.confirm-delete')
-@include('owners.modal.overlay')
+@include('owners.partials.create')
+@include('owners.partials.edit')
+@include('owners.partials.confirm-delete')
+@include('owners.partials.overlay')
 @endif
 
 @endsection

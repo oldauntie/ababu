@@ -27,6 +27,7 @@ return [
     'clinic_postcode' => 'CAP della clinica',
     'clinic_token_example' => 'es: 6240b71-rugby310',
     'clinic_website' => 'Indirizzo sito internet',
+    'contact_description' => 'riportate un errore, un miglioramento o la richiesta per una nuova funzionalità',
     'examination_delete' => 'Si è sicuri di voler eliminare l\'accentertamento selezionato e tutte le informazioni ad esso collegato?',
     'note_delete' => 'Si è sicuri di voler eliminare la nota selezionata e tutte le informazioni ad esso collegato?',
     'owner_address' => '',

@@ -94,7 +94,7 @@
     </div>
 </div>
 
-@include('pets.partial.delete')
+@include('pets.partials.delete')
 @include('pets.partials.edit')
 @include('pets.partials.create')
 @include('pets.partials.confirm-delete')

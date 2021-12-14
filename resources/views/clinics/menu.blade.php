@@ -40,7 +40,7 @@
     </div>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#feedback-modal">{{__('translate.feedback')}}</a>
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#contact-modal">{{__('translate.contact')}}</a>
 </li>
 @endif
 

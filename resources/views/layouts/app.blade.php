@@ -28,7 +28,7 @@
         @include('layouts.partials.header')
 
         <main class="py-4">
-            @include('layouts.partials.feedback')
+            @include('layouts.partials.contact')
             @include('layouts.partials.alerts')
             @yield('content')
         </main>

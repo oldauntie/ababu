@@ -135,7 +135,7 @@
 </div>
 
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
-@include('owners.modal.overlay')
+@include('owners.partials.overlay')
 @endif
 
 @endsection

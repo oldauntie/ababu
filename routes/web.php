@@ -38,10 +38,11 @@ Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
 
-
+// contacts
+Route::post('contacts/store', 'ContactController@store')->name('contacts.store')->middleware('auth');
 
 // clinics
-Route::get('clinics/join', 'ClinicController@join')->name('clinic.join')->middleware('auth');
+Route::get('clinics/join', 'ClinicController@join')->name('clinics.join')->middleware('auth');
 Route::get('clinics/create', 'ClinicController@create')->name('clinics.create')->middleware('auth');
 Route::delete('clinics/{clinic}', 'ClinicController@destroy')->name('clinics.destroy')->middleware('clinic_roles:root|admin');
 Route::post('clinics/{clinic}/send', 'ClinicController@send')->name('clinics.send')->middleware('clinic_roles:root|admin');
@@ -59,7 +60,6 @@ Route::post('profile', 'UserController@updateProfile')->name('update.profile');
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');
 Route::get('clinics/{clinic}/users/{user}', 'UserController@edit')->name('clinics.users.edit')->middleware('clinic_roles:root|admin');
 Route::put('clinics/{clinic}/users/{user}', 'UserController@update')->name('clinics.users.update')->middleware('clinic_roles:root|admin');
-
 
 // owners
 Route::get('clinics/{clinic}/owners/search', 'OwnerController@search')->name('clinics.owners.search')->middleware('clinic_access');

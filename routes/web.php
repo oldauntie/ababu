@@ -38,6 +38,10 @@ Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
 
+// calendar
+Route::get('/show-event-calendar', 'CalendarEventController@index')->name('calendars.index');
+Route::post('/manage-events', 'CalendarEventController@manageEvents');
+
 // contacts
 Route::post('contacts/store', 'ContactController@store')->name('contacts.store')->middleware('auth');
 

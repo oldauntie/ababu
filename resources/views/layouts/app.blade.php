@@ -28,7 +28,10 @@
         @include('layouts.partials.header')
 
         <main class="py-4">
-            @include('layouts.partials.contact')
+            @if  (Auth::check())
+                @include('layouts.partials.contact')
+            @endif
+
             @include('layouts.partials.alerts')
             @yield('content')
         </main>

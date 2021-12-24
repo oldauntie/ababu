@@ -1,4 +1,4 @@
-<form method="GET" action="{{route('clinic.join')}}">
+<form method="GET" action="{{route('clinics.join')}}">
     @csrf
     <div class="form-group">
         <button type="submit"

@@ -81,38 +81,65 @@
                     });
                 }
             },
-            eventDrop: function (event, delta) {
-                var event_start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
-                var event_end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
-
+            eventDrop: function (arg) {
                 $.ajax({
-                    url: endpoint + '/manage-events',
+                    url: '{{ route('clinics.calendars.manage', $clinic) }}',
                     data: {
-                        title: event.event_title,
-                        start: event_start,
-                        end: event_end,
-                        id: event.id,
+                        id: arg.event.id,
+                        start: moment(arg.event.start).format('YYYY-MM-DD HH:mm:ss'),
+                        end: moment(arg.event.end).format('YYYY-MM-DD HH:mm:ss'),
                         type: 'edit'
                     },
                     type: "POST",
-                    success: function (response) {
-                        displayMessage("Event updated");
+                    error: function (data) {
+                        console.error("edit " +  data );
+                        displayErrorMessage("Cannot edit Event.");
+                    },
+                    success: function (data) {
+                        // @todo: translate
+                        displaySuccessMessage("Event saved.");
+                        //refresh calendar
+                        calendar.refetchEvents();
                     }
                 });
             },
-            eventClick: function (event) {
-                alert(event);
-                var removeEvent = confirm("Really?");
-                if (removeEvent) {
+            eventResize: function (arg) {
+                $.ajax({
+                    url: '{{ route('clinics.calendars.manage', $clinic) }}',
+                    data: {
+                        id: arg.event.id,
+                        start: moment(arg.event.start).format('YYYY-MM-DD HH:mm:ss'),
+                        end: moment(arg.event.end).format('YYYY-MM-DD HH:mm:ss'),
+                        type: 'edit'
+                    },
+                    type: "POST",
+                    error: function (data) {
+                        console.error("edit " +  data );
+                        displayErrorMessage("Cannot edit Event.");
+                    },
+                    success: function (data) {
+                        // @todo: translate
+                        displaySuccessMessage("Event saved.");
+                        //refresh calendar
+                        calendar.refetchEvents();
+                    }
+                });
+            },
+            eventClick: function (arg) {
+                var confirmDelete = confirm("Do you Really want to delete event " + arg.event.title + "?");
+                
+                if (confirmDelete) {
                     $.ajax({
                         type: "POST",
-                        url: endpoint + '/manage-events',
+                        url: '{{ route('clinics.calendars.manage', $clinic) }}',
                         data: {
-                            id: event.id,
+                            id: arg.event.id,
                             type: 'delete'
                         },success: function (response) {
-                            calendar.fullCalendar('removeEvents', event.id);
-                            displayMessage("Event deleted");
+                            // @todo: translate
+                            displaySuccessMessage("Event saved.");
+                            //refresh calendar
+                            calendar.refetchEvents();
                         }
                     });
                 }

@@ -68,9 +68,9 @@ class CalendarEventController extends Controller
 
             case 'edit':
                 $calendarEvent = CalendarEvent::find($request->id)->update([
-                    'title' => $request->event_title,
-                    'start' => $request->event_start,
-                    'end' => $request->event_end,
+                    // 'title' => $request->title,
+                    'start' => $request->start,
+                    'end' => $request->end,
                 ]);
 
                 return response()->json($calendarEvent);

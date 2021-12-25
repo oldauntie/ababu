@@ -29,7 +29,7 @@
                         <li><a href="{{route('clinics.pets.index', $clinic)}}">{{__('translate.pets')}}</a></li>
                         <li><a href="#">{{__('translate.visits')}}</a></li>
                         <li><a href="{{route('clinics.owners.index', $clinic)}}">{{__('translate.owners')}}</a></li>
-                        <li><a href="{{route('calendars.index')}}">{{__('translate.calendar')}}</a></li>
+                        <li><a href="{{route('clinics.calendars.show', $clinic)}}">{{__('translate.calendar')}}</a></li>
                     </ul>
                     
                     @canany(['root', 'admin'], $clinic)

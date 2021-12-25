@@ -39,8 +39,9 @@ Route::get('/terms', function () {
 })->name('terms');
 
 // calendar
-Route::get('/show-event-calendar', 'CalendarEventController@index')->name('calendars.index');
-Route::post('/manage-events', 'CalendarEventController@manageEvents');
+Route::get('clinics/{clinic}/calendars/events', 'CalendarEventController@events')->name('clinics.calendars.events');
+Route::get('clinics/{clinic}/calendars/show', 'CalendarEventController@show')->name('clinics.calendars.show');
+Route::post('clinics/{clinic}/calendars/manage', 'CalendarEventController@manage')->name('clinics.calendars.manage');
 
 // contacts
 Route::post('contacts/store', 'ContactController@store')->name('contacts.store')->middleware('auth');

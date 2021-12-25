@@ -15,11 +15,20 @@ class CreateCalendarEventsTable extends Migration
     {
         Schema::create('calendar_events', function (Blueprint $table) {
             $table->id();
-            $table->string('event_title');
-            $table->date('event_start');
-            $table->date('event_end');             
+            $table->bigInteger('clinic_id')->unsigned();
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');             
             $table->timestamps();
+
+            $table->foreign('clinic_id')
+                ->references('id')
+                ->on('clinics')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
         });
+
+        
     }
 
     /**

@@ -15,17 +15,13 @@
 
 <!-- bootbox -->
 <script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
-
 <!-- moment -->
 <script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
 
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
-
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -42,8 +38,15 @@
         var calendarEl = document.getElementById("fullCalendar");
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            eventSources: [
+                {
+                    url: '{{ route('clinics.calendars.events', $clinic) }}',
+                    color: 'yellow',
+                    textColor: 'black'
+                }
+            ],
             initialView: "dayGridMonth",
-            initialDate: "2021-11-07",
+            // initialDate: "2021-11-07",
             editable: true,
             selectable: true,
             headerToolbar: {
@@ -52,50 +55,28 @@
                 right: "dayGridMonth,timeGridWeek,timeGridDay"
             },
             select: function (selectionInfo ) {
-                // console.log(selectionInfo);
+                console.log('select');
 
                 var event_title = prompt('Event Name:');
-                if (event_title) {
-                    // var event_start = $.calendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
-                    // var event_end = $.calendar.formatDate(event_end, "Y-MM-DD HH:mm:ss");
-                
-                    console.log(selectionInfo.start);
-                    var event_start = FullCalendar.formatDate(selectionInfo.start, 
-                        { // will produce something like "Tuesday, September 18, 2018"
-                            month: '2-digit',
-                            year: 'numeric',
-                            day: '2-digit',
-                        }
-                    );
-                    
-                    console.log(event_start);
-                    
-                    
+                if (event_title) {                    
                     $.ajax({
-                        url: endpoint + "/manage-events",
+                        url: '{{ route('clinics.calendars.manage', $clinic) }}',
                         data: {
-                            event_title: event_title,
-                            event_start: selectionInfo.startStr,
-                            event_end: selectionInfo.endStr,
+                            title: event_title,
+                            start: moment(selectionInfo.start).format('YYYY-MM-DD HH:mm:ss'),
+                            end: moment(selectionInfo.end).format('YYYY-MM-DD HH:mm:ss'),
                             type: 'create'
                         },
                         type: "POST",
                         error: function (data) {
                             console.error("create " +  data );
+                            displayErrorMessage("Cannot create Event.");
                         },
                         success: function (data) {
-                            displayMessage("Event created.");
-
-                            /*
-                            calendar.fullCalendar('renderEvent', {
-                                id: data.id,
-                                title: event_title,
-                                start: event_start,
-                                end: event_end,
-                                allDay: allDay
-                            }, true);
-                            calendar.fullCalendar('unselect');
-                            */
+                            // @todo: translate
+                            displaySuccessMessage("Event created.");
+                            //refresh calendar
+                            calendar.refetchEvents();
                         }
                     });
                 }
@@ -135,67 +116,19 @@
                         }
                     });
                 }
-            },/*
-            events: [
-                {
-                    title: "All Day Event",
-                    start: "2021-11-01"
-                },
-                {
-                    title: "Long Event",
-                    start: "2021-11-07",
-                    end: "2021-11-10"
-                },
-                {
-                    groupId: "999",
-                    title: "Repeating Event",
-                    start: "2021-11-09T16:00:00"
-                },
-                {
-                    groupId: "999",
-                    title: "Repeating Event",
-                    start: "2021-11-16T16:00:00"
-                },
-                {
-                    title: "Conference",
-                    start: "2021-11-11",
-                    end: "2021-11-13"
-                },
-                {
-                    title: "Meeting",
-                    start: "2021-11-12T10:30:00",
-                    end: "2021-11-12T12:30:00"
-                },
-                {
-                    title: "Lunch",
-                    start: "2021-11-12T12:00:00"
-                },
-                {
-                    title: "Meeting",
-                    start: "2021-11-12T14:30:00"
-                },
-                {
-                    title: "Birthday Party",
-                    start: "2021-11-13T07:00:00"
-                },
-                {
-                    title: "Click for Google",
-                    url: "http://google.com/",
-                    start: "2021-11-28"
-                }
-            ]
-            */
+            },
         });
 
         calendar.render();
-
-
     });
 
-    function displayMessage(message) {
-        toastr.success(message, 'Event');            
+    function displaySuccessMessage(message) {
+        toastr.success(message, 'Event');
     }
 
+    function displayErrorMessage(message) {
+        toastr.error(message, 'Event');   
+    }
 
 </script>
 @endpush

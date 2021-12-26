@@ -58,7 +58,7 @@
             eventSources: [
                 {
                     url: '{{ route('clinics.calendars.events', $clinic) }}',
-                    color: 'yellow',
+                    color: '',
                     textColor: 'black'
                 }
             ],
@@ -71,9 +71,7 @@
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay"
             },
-            select: function (arg ) {
-                console.log('select');
-
+            select: function (arg) {
                 var event_title = prompt('Event Name:');
                 if (event_title) {                    
                     $.ajax({
@@ -136,7 +134,7 @@
                     },
                     success: function (data) {
                         // @todo: translate
-                        displaySuccessMessage("Event saved.");
+                        displaySuccessMessage("Event updated.");
                         //refresh calendar
                         calendar.refetchEvents();
                     }
@@ -154,7 +152,7 @@
                             type: 'delete'
                         },success: function (response) {
                             // @todo: translate
-                            displaySuccessMessage("Event saved.");
+                            displaySuccessMessage("Event deleted.");
                             //refresh calendar
                             calendar.refetchEvents();
                         }

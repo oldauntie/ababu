@@ -136,8 +136,8 @@
 @push('scripts')
 @if( Auth::user()->hasAnyRolesByClinicId(['admin', 'veterinarian'], $clinic->id) )
 
-<link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
-<script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url('/lib/datatables/1.10.21/css/jquery.dataTables.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/datatables/1.10.21/js/jquery.dataTables.min.js')}}"></script>
 
 <script type="text/javascript">
     $(function() {

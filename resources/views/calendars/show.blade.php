@@ -1,29 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    {{__('translate.calendar')}}
+                </div>
 
-<div class="container mt-4">
-    <h2 class="mb-5">Laravel Calendar CRUD Events Example</h2>
-    <div id='fullCalendar'></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <div id='fullCalendar'></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>
-
-
-
+</div>
 @endsection
+
+
 
 @push('scripts')
 
 <!-- bootbox -->
-<script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
+<script type="text/javascript" src="{{url('/lib/bootbox/5.4.0/bootbox.min.js')}}"></script>
 <!-- moment -->
-<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
+<script type="text/javascript" src="{{url('/lib/moment/2.27.0/moment-with-locales.js')}}"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+<!-- fullcalendar -->
+<link rel="stylesheet" href="{{ url('lib/fullcalendar/5.10.1/lib/main.min.css') }}">
+<script src="{{ url('lib/fullcalendar/5.10.1/lib/main.min.js') }}"></script>
+<script src="{{ url('lib/fullcalendar/5.10.1/lib/locales-all.min.js') }}"></script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- toastr -->
+<link href="{{ url('lib/toastr.js/2.1.4/toastr.min.css') }}" rel="stylesheet"/>
+<script src="{{ url('lib/toastr.js/2.1.4/toastr.min.js') }}"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -54,7 +71,7 @@
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay"
             },
-            select: function (selectionInfo ) {
+            select: function (arg ) {
                 console.log('select');
 
                 var event_title = prompt('Event Name:');
@@ -63,8 +80,8 @@
                         url: '{{ route('clinics.calendars.manage', $clinic) }}',
                         data: {
                             title: event_title,
-                            start: moment(selectionInfo.start).format('YYYY-MM-DD HH:mm:ss'),
-                            end: moment(selectionInfo.end).format('YYYY-MM-DD HH:mm:ss'),
+                            start: moment(arg.start).format('YYYY-MM-DD HH:mm:ss'),
+                            end: moment(arg.end).format('YYYY-MM-DD HH:mm:ss'),
                             type: 'create'
                         },
                         type: "POST",

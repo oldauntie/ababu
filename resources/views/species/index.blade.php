@@ -113,8 +113,8 @@
 
 @push('scripts')
 
-<link rel="stylesheet" type="text/css" href="{{url('/lib/select2-4.1.0-beta.1/dist/css/select2.min.css')}}" />
-<script type="text/javascript" src="{{url('/lib/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url('/lib/select2/4.1.0-beta.1/dist/css/select2.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/select2/4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
 
 
 

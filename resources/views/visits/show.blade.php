@@ -142,29 +142,29 @@
 
 @push('scripts')
 <!-- Select2 -->
-<script type="text/javascript" src="{{url('/lib/select2-4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
-<link rel="stylesheet" type="text/css" href="{{url('/lib/select2-4.1.0-beta.1/dist/css/select2.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/select2/4.1.0-beta.1/dist/js/select2.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url('/lib/select2/4.1.0-beta.1/dist/css/select2.min.css')}}" />
 
 <!-- DataTable -->
-<link rel="stylesheet" type="text/css" href="{{url('/lib/DataTables-1.10.21/css/jquery.dataTables.min.css')}}" />
-<script type="text/javascript" src="{{url('/lib/DataTables-1.10.21/js/jquery.dataTables.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url('/lib/datatables/1.10.21/css/jquery.dataTables.min.css')}}" />
+<script type="text/javascript" src="{{url('/lib/datatables/1.10.21/js/jquery.dataTables.min.js')}}"></script>
 
 <!-- DatePicker -->
-<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/js/bootstrap-datepicker.min.js')}}"
+<script type="text/javascript" src="{{url('/lib/bootstrap-datepicker/1.9.0/dist/js/bootstrap-datepicker.min.js')}}"
     charset="UTF-8"></script>
 @if(auth()->user()->locale->id != 'en-US')
 <script type="text/javascript"
-    src="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}"
+    src="{{url('/lib/bootstrap-datepicker/1.9.0/dist/locales/bootstrap-datepicker.' . auth()->user()->locale->short_code . '.min.js')}}"
     charset="UTF-8"></script>
 @endif
 <link rel="stylesheet" type="text/css"
-    href="{{url('/lib/bootstrap-datepicker-v1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
+    href="{{url('/lib/bootstrap-datepicker/1.9.0/dist/css/bootstrap-datepicker.min.css')}}" />
 
 <!-- bootbox -->
-<script type="text/javascript" src="{{url('/lib/bootbox-v5.4.0/bootbox.min.js')}}"></script>
+<script type="text/javascript" src="{{url('/lib/bootbox/5.4.0/bootbox.min.js')}}"></script>
 
 <!-- moment -->
-<script type="text/javascript" src="{{url('/lib/moment-v2.27.0/moment-with-locales.js')}}"></script>
+<script type="text/javascript" src="{{url('/lib/moment/2.27.0/moment-with-locales.js')}}"></script>
 
 <!-- animate.css -->
 <link rel="stylesheet" type="text/css" href="{{url('/lib/animate.css/4.1.0/animate.compat.css')}}" />

@@ -26,7 +26,6 @@
                     <!-- row -->
                     <div class="row">
                         <div class="col col-md-6">
-                            <h5>{{ __('translate.calendar') }}</h5>
                             <div id='fullCalendar'></div>
                         </div>
 

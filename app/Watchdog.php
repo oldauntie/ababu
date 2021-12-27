@@ -27,11 +27,11 @@ class Watchdog extends Model
     ];
 
     protected $casts = [
-        'variables' => 'object',
+        'variables' => 'array',
     ];
 
     
-    public static function write(Clinic $clinic, String $type, Int $severity = 0, String $message = NULL, String $variables = NULL)
+    public static function write(Clinic $clinic, String $type, Int $severity = 0, String $message = NULL, Array $variables = NULL)
     {
         return self::create([
             'clinic_id' => $clinic->id,

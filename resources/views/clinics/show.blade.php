@@ -31,14 +31,15 @@
 
                         <div class="col col-md-6">
                             <h5>{{ __('translate.visit') }}</h5>
-                            <table border="1" width="100%">
+                            <table border="0" width="100%">
                                 @foreach ($lastVisitByUser as $item)
                                 <tr>
                                     <td>{{$item->first()->id}}</td>
                                     <td>{{$item->first()->type}}</td>
-                                    <td>{{collect(json_decode($item->first()->variables))->get('name') }}</td>
-                                    <td>{{$item->first()->request_uri}}</td>
+                                    <td>{{ collect($item->first()->variables["pet"])->get('name')  }}</td>
+                                    <td>{{ collect($item->first()->variables["owner"])->get('lastname') . ', ' . collect($item->first()->variables["owner"])->get('firstname')  }}</td>
                                     <td>{{$item->first()->created_at}}</td>
+                                    <td><a href="{{ $item->first()->request_uri }}"><button type="button" class="btn btn-sm btn-dark float-left">visit</button></a></td>
                                 </tr>
                                 @endforeach
 

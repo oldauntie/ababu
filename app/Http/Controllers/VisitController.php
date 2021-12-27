@@ -8,7 +8,7 @@ use App\Note;
 use App\Pet;
 use App\Prescription;
 use App\Problem;
-
+use App\Watchdog;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -64,7 +64,10 @@ class VisitController extends Controller
         $notes = Note::where('pet_id', '=', $pet->id)
                         ->orderBy('created_at', 'desc')
                         ->get();
-        // dd($problems);
+        
+        Watchdog::write($clinic, 'visit');
+
+
         return view('visits.show')
                 ->with('clinic', $clinic)
                 ->with('problems', $problems)

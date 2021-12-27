@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
 use App\Country;
+use App\Watchdog;
 
 class ClinicController extends Controller
 {
@@ -96,7 +97,20 @@ class ClinicController extends Controller
      */
     public function show(Clinic $clinic)
     {
-        return view('clinics.show')->with('clinic', $clinic);
+        $watchdog = new Watchdog();
+
+        // SELECT * FROM `watchdogs` where clinic_id=1 and user_id=1 GROUP by request_uri
+        $lastVisitByUser = $watchdog->all()
+                                    ->sortByDesc('created_at')
+                                    ->where('clinic_id', '=', $clinic->id)
+                                    ->where('user_id', '=', auth()->user()->id)
+                                    ->where('severity', '=', 0)
+                                    ->groupBy('request_uri')
+                                    ->take(5)
+                                    ;
+
+                                    // dd($lastVisitByUser);
+        return view('clinics.show')->with('clinic', $clinic)->with('lastVisitByUser', $lastVisitByUser);
     }
 
     /**

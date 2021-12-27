@@ -31,7 +31,20 @@
 
                         <div class="col col-md-6">
                             <h5>{{ __('translate.visit') }}</h5>
-                            here goes last visited pets
+                            <table border="1" width="100%">
+                                @foreach ($lastVisitByUser as $item)
+                                <tr>
+                                    <td>{{$item->first()->id}}</td>
+                                    <td>{{$item->first()->type}}</td>
+                                    <td>{{collect(json_decode($item->first()->variables))->get('name') }}</td>
+                                    <td>{{$item->first()->request_uri}}</td>
+                                    <td>{{$item->first()->created_at}}</td>
+                                </tr>
+                                @endforeach
+
+                                
+                            </table>
+
                         </div>
                     </div>
 

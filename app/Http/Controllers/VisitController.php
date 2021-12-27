@@ -65,7 +65,7 @@ class VisitController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->get();
         
-        Watchdog::write($clinic, 'visit');
+        Watchdog::write($clinic, 'visit', Watchdog::WATCHDOG_INFO, NULL, $pet);
 
 
         return view('visits.show')

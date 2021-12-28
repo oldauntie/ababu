@@ -104,13 +104,23 @@ class ClinicController extends Controller
                                     ->sortByDesc('created_at')
                                     ->where('clinic_id', '=', $clinic->id)
                                     ->where('user_id', '=', auth()->user()->id)
+                                    ->where('type', '=', 'visit')
+                                    ->where('severity', '=', 0)
+                                    ->groupBy('request_uri')
+                                    ->take(5)
+                                    ;
+                                    
+        $lastVisitByClinic = $watchdog->all()
+                                    ->sortByDesc('created_at')
+                                    ->where('clinic_id', '=', $clinic->id)
+                                    ->where('type', '=', 'visit')
                                     ->where('severity', '=', 0)
                                     ->groupBy('request_uri')
                                     ->take(5)
                                     ;
 
                                     // dd($lastVisitByUser);
-        return view('clinics.show')->with('clinic', $clinic)->with('lastVisitByUser', $lastVisitByUser);
+        return view('clinics.show')->with('clinic', $clinic)->with(compact('lastVisitByUser', 'lastVisitByClinic'));
     }
 
     /**

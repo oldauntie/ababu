@@ -121,6 +121,8 @@ return [
     'qty' => 'q.ty',
     'quantity' => 'quantity',
     'recall_at' => 'recall',
+    'recent_visit_by_clinic' => 'Recent visits (your clinic)',
+    'recent_visit_by_user' => 'Recent visits (you)',
     'register' => 'register',
     'registration' => 'registration',
     'role' => 'role',

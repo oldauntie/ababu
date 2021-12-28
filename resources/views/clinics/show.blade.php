@@ -30,24 +30,62 @@
                         </div>
 
                         <div class="col col-md-6">
-                            <h5>{{ __('translate.visit') }}</h5>
-                            <table border="0" width="100%">
+                            <h5>{{ __('translate.recent_visit_by_user') }}</h5>
+                            <table class="table" border="0" width="100%">
+                                <tr>
+                                    <th>{{ __('translate.pet') }}</th>
+                                    <th>{{ __('translate.owner') }}</th>
+                                    <th>{{ __('translate.date') }}</th>
+                                    <th></th>
+                                </tr>
                                 @foreach ($lastVisitByUser as $item)
                                 <tr>
-                                    <td>{{$item->first()->id}}</td>
-                                    <td>{{$item->first()->type}}</td>
-                                    <td>{{ collect($item->first()->variables["pet"])->get('name')  }}</td>
-                                    <td>{{ collect($item->first()->variables["owner"])->get('lastname') . ', ' . collect($item->first()->variables["owner"])->get('firstname')  }}</td>
+                                    <td>{{ collect($item->first()->variables["pet"])->get('name') }}</td>
+                                    <td>{{ collect($item->first()->variables["owner"])->get('lastname') . ', ' .
+                                        collect($item->first()->variables["owner"])->get('firstname') }}</td>
                                     <td>{{$item->first()->created_at}}</td>
-                                    <td><a href="{{ $item->first()->request_uri }}"><button type="button" class="btn btn-sm btn-dark float-left">visit</button></a></td>
+                                    <td><a href="{{ $item->first()->request_uri }}"><button type="button"
+                                                class="btn btn-sm btn-dark float-left">visit</button></a></td>
                                 </tr>
                                 @endforeach
-
-                                
                             </table>
 
                         </div>
                     </div>
+
+
+
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col col-md-6">
+                            <div id=''></div>
+                        </div>
+
+                        <div class="col col-md-6">
+                            <h5>{{ __('translate.recent_visit_by_clinic') }}</h5>
+                            <table class="table" border="0" width="100%">
+                                <tr>
+                                    <th>{{ __('translate.pet') }}</th>
+                                    <th>{{ __('translate.owner') }}</th>
+                                    <th>{{ __('translate.date') }}</th>
+                                    <th></th>
+                                </tr>
+                                @foreach ($lastVisitByClinic as $item)
+                                <tr>
+                                    <td>{{ collect($item->first()->variables["pet"])->get('name') }}</td>
+                                    <td>{{ collect($item->first()->variables["owner"])->get('lastname') . ', ' .
+                                        collect($item->first()->variables["owner"])->get('firstname') }}</td>
+                                    <td>{{$item->first()->created_at}}</td>
+                                    <td><a href="{{ $item->first()->request_uri }}"><button type="button"
+                                                class="btn btn-sm btn-dark float-left">visit</button></a></td>
+                                </tr>
+                                @endforeach
+                            </table>
+
+                        </div>
+                    </div>
+
+                    
 
                     <!-- row -->
                     <div class="row">
@@ -141,12 +179,12 @@
                     textColor: 'black'
                 }
             ],
-            initialView: "listWeek",
+            initialView: "dayGridWeek",
             // initialDate: "2021-11-07",
             editable: false,
             selectable: false,
             headerToolbar: {
-                left: "",
+                left: "prev,next",
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay"
             },
@@ -155,13 +193,6 @@
         calendar.render();
     });
 
-    function displaySuccessMessage(message) {
-        toastr.success(message, 'Event');
-    }
-
-    function displayErrorMessage(message) {
-        toastr.error(message, 'Event');   
-    }
 
 </script>
 @endpush

@@ -120,6 +120,8 @@ return [
     'qty' => 'q.tà',
     'quantity' => 'quantità',
     'recall_at' => 'richiama',
+    'recent_visit_by_clinic' => 'Visite recenti (la tua clinica)',
+    'recent_visit_by_user' => 'Visite recenti (tu)',
     'register' => 'regitrati',
     'registration' => 'n. iscrizione albo',
     'role' => 'ruolo',

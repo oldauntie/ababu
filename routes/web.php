@@ -80,6 +80,7 @@ Route::resource('clinics.pets', 'PetController')->middleware('clinic_access');
 
 // visit
 Route::get('clinics/{clinic}/visits/{pet}', 'VisitController@show')->name('clinics.visits.show')->middleware('clinic_access');
+// @todo: controllare
 Route::get('clinics/{clinic}/visits/{pet}/print','VisitController@print')->name('clinics.visits.print')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::get('clinics/{clinic}/pets/{pet}/problems/{problem}/get', 'ProblemController@get')->name('clinics.problems.get')->middleware('clinic_access');
 
@@ -93,20 +94,21 @@ Route::get('/diagnoses/search', 'DiagnosisController@search')->name('diagnoses.s
 // examinations
 Route::get('clinics/{clinic}/diagnostic_tests/search', 'DiagnosticTestController@search')->name('clinics.diagnostic_tests.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 Route::get('clinics/{clinic}/pets/{pet}/examinations/list/{problem_id?}/{return?}', 'ExaminationController@list')->name('clinics.examinations.list')->middleware('clinic_access')->middleware('can:cure,pet');
-
-Route::get('clinics/{clinic}/pets/{pet}/examinations/create/{diagnostic_test}/{problem?}', 'ExaminationController@createExaminationByDiagnosticTest')->name('clinics.create.examination.by.diagnostic_test')->middleware('clinic_access')->middleware('can:cure,pet');
-Route::get('clinics/{clinic}/pets/{pet}/examinations/edit/{examination}', 'ExaminationController@editExaminationById')->name('clinics.edit.examination.by.id')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/examinations/create/{diagnostic_test}/{problem?}', 'ExaminationController@createExaminationByDiagnosticTest')->name('clinics.examinations.create_by_diagnostic_test')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/examinations/edit/{examination}', 'ExaminationController@editExaminationById')->name('clinics.examinations.edit_by_id')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::put('clinics/{clinic}/pets/{pet}/examinations/{examination}', 'ExaminationController@update')->name('clinics.examinations.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/examinations', 'ExaminationController@store')->name('clinics.examinations.store')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::delete('clinics/{clinic}/pets/{pet}/examinations/{examination}', 'ExaminationController@destroy')->name('clinics.examinations.destroy')->middleware('clinic_access')->middleware('can:cure,pet');
+// @yah
+Route::get('clinics/{clinic}/pets/{pet}/examinations/{examination}/print', 'ExaminationController@print')->name('clinics.examinations.print')->middleware('clinic_access')->middleware('can:cure,pet');
 
 // medicines & prescriptions
 Route::get('clinics/{clinic}/medicines/search', 'MedicineController@search')->name('clinics.medicines.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 Route::get('clinics/{clinic}/pets/{pet}/prescriptions/list/{problem_id?}/{return?}', 'PrescriptionController@list')->name('clinics.prescriptions.list')->middleware('clinic_access')->middleware('can:cure,pet');
 
-Route::get('clinics/{clinic}/pets/{pet}/prescriptions/create/{medicine}/{problem?}', 'PrescriptionController@createPrescriptionByMedicine')->name('clinics.create.prescription.by.medicine')->middleware('clinic_access')->middleware('can:cure,pet');
-Route::get('clinics/{clinic}/pets/{pet}/prescriptions/edit/{prescription}', 'PrescriptionController@editPrescriptionById')->name('clinics.edit.prescription.by.id')->middleware('clinic_access')->middleware('can:cure,pet');
-Route::get('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}/print', 'PrescriptionController@print')->name('clinics.prescription.print')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/create/{medicine}/{problem?}', 'PrescriptionController@createPrescriptionByMedicine')->name('clinics.prescriptions.create_by_medicine')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/edit/{prescription}', 'PrescriptionController@editPrescriptionById')->name('clinics.prescriptions.edit_by_id')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}/print', 'PrescriptionController@print')->name('clinics.prescriptions.print')->middleware('clinic_access')->middleware('can:cure,pet');
 
 Route::put('clinics/{clinic}/pets/{pet}/prescriptions/{prescription}', 'PrescriptionController@update')->name('clinics.prescriptions.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/prescriptions', 'PrescriptionController@store')->name('clinics.prescriptions.store')->middleware('clinic_access')->middleware('can:cure,pet');
@@ -131,8 +133,8 @@ Route::get('/animalia/search', 'AnimaliaController@search')->name('animalia.sear
 Route::get('clinics/{clinic}/procedures/search', 'ProcedureController@search')->name('clinics.procedures.search')->middleware('auth')->middleware('roles:root|admin|veterinarian');
 Route::get('clinics/{clinic}/pets/{pet}/treatments/list/{problem_id?}/{return?}', 'TreatmentController@list')->name('clinics.treatments.list')->middleware('clinic_access')->middleware('can:cure,pet');
 
-Route::get('clinics/{clinic}/pets/{pet}/treatments/{procedure}/create', 'TreatmentController@createTreatmentByProcedure')->name('clinics.create.treatment.by.procedure')->middleware('clinic_access')->middleware('can:cure,pet');
-Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/edit', 'TreatmentController@editTreatmentById')->name('clinics.edit.treatment.by.id')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/treatments/{procedure}/create', 'TreatmentController@createTreatmentByProcedure')->name('clinics.treatments.create_by_procedure')->middleware('clinic_access')->middleware('can:cure,pet');
+Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/edit', 'TreatmentController@editTreatmentById')->name('clinics.treatments.edit_by_id')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::get('clinics/{clinic}/pets/{pet}/treatments/{treatment}/print', 'TreatmentController@print')->name('clinics.treatments.print')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::put('clinics/{clinic}/pets/{pet}/treatments/{treatment}', 'TreatmentController@update')->name('clinics.treatments.update')->middleware('clinic_access')->middleware('can:cure,pet');
 Route::post('clinics/{clinic}/pets/{pet}/treatments', 'TreatmentController@store')->name('clinics.treatments.store')->middleware('clinic_access')->middleware('can:cure,pet');

@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Carbon;
 
+use PDF;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 class ExaminationController extends Controller
 {
     /**
@@ -234,5 +237,27 @@ class ExaminationController extends Controller
             return Datatables::of($examinations)
                 ->make(true);
         }
+    }
+
+
+    public function print(Clinic $clinic, Pet $pet, Examination $examination = null)
+    {
+        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate(url()->previous()));
+        // return $qrcode;
+
+        // dump($qrcode);
+
+        // dd( $pet->owner );
+
+        $data = [
+            'clinic' => $clinic,
+            'pet' => $pet,
+            'examination' => $examination,
+            'qrCurrentUrl' => $qrCurrentUrl,
+        ];
+
+        $pdf = PDF::loadView('examinations.print', $data);
+
+        return $pdf->stream();
     }
 }

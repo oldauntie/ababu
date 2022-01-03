@@ -210,7 +210,7 @@
         });
 
         // print button
-        $(document).on('click', '#treatment-edit-print-button', function(e){
+        $(document).on('click', '#treatment-edit-print-button', function(e){            
             var id = e.target.value;
             
             print_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/treatments/' + id + '/print';

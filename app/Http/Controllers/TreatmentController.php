@@ -55,7 +55,7 @@ class TreatmentController extends Controller
             return redirect()->route('clinics.visits.show', [$clinic, $pet->pet_id])
                 ->withErrors($validator);
         }
-        
+
 
         $treatment = new Treatment([
             'procedure_id' => $request->procedure_id,
@@ -111,19 +111,19 @@ class TreatmentController extends Controller
      */
     public function update(Request $request, Clinic $clinic, Pet $pet, Treatment $treatment)
     {
-        
+
         $treatment->procedure_id = $request->procedure_id;
         $treatment->pet_id = $pet->id;
         $treatment->user_id = auth()->user()->id;
-        
+
         $treatment->executed_at = $request->executed_at == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->executed_at);
         $treatment->recall_at = $request->recall_at == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->recall_at);
         $treatment->drug_batch = $request->drug_batch;
         $treatment->drug_batch_expires_at = $request->drug_batch_expires_at == null ? null : Carbon::createFromFormat(auth()->user()->locale->date_short_format, $request->drug_batch_expires_at);
         $treatment->notes = $request->notes;
         $treatment->print_notes = $request->print_notes == null ? false : true;
-        
-        
+
+
         if ($treatment->save())
         {
             $request->session()->flash('success', __('message.treatment_update_success'));
@@ -144,7 +144,7 @@ class TreatmentController extends Controller
      */
     public function destroy(Clinic $clinic, Pet $pet, Treatment $treatment)
     {
-        if($treatment->delete())
+        if ($treatment->delete())
         {
             Session::flash('success', __('message.treatment_destroy_success'));
         }
@@ -189,7 +189,7 @@ class TreatmentController extends Controller
         // change date format
         $result['created_at'] = null;
         $result['updated_at'] = null;
-        
+
         // add diagnosis to results
         $result += ['procedure' => $treatment->procedure->toArray()];
 
@@ -217,35 +217,23 @@ class TreatmentController extends Controller
 
     public function print(Clinic $clinic, Pet $pet, Treatment $treatment = null)
     {
-        // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
-        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
+        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate(url()->previous()));
         // return $qrcode;
 
         // dump($qrcode);
 
-        // dd( sys_get_temp_dir() );
-   
+        // dd( $pet->owner );
+
         $data = [
             'title' => 'nanna !!',
             'clinic' => $clinic,
             'pet' => $pet,
             'treatment' => $treatment,
             'qrCurrentUrl' => $qrCurrentUrl,
-            ];
-            
+        ];
+
         $pdf = PDF::loadView('treatments.print', $data);
-        
-        // @todo: set TMP for development PHP
 
-
-        // $pdf->setOptions(['tempDir' => '/var/tmp']);
-        // $pdf->setOptions(['tempDir' => '/tmp']);
-        
-        /*
-        $pdf->setOptions(['isRemoteEnabled' => true]);
-        $pdf->setOptions(['logOutputFile' => '/tmp/log.htm']);
-        $pdf->setOptions(['isHtml5ParserEnabled' => true]);
-        */
         return $pdf->stream();
     }
 }

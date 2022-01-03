@@ -13,7 +13,7 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
 
     <table border="0" width="100%">
         <tr class="border-bottom">
-            <td>{!! $generator->getBarcode($prescription->id, $generator::TYPE_CODE_128) !!}</td>
+            <td>{!! $generator->getBarcode($examination->id, $generator::TYPE_CODE_128) !!}</td>
             <td>{{ route('clinics.visits.show', ['clinic' => $clinic->id, 'pet' => $pet->id]) }}</td>
             <td>
                 <img class="backdrop" src="data:image/svg+xml;base64,{{ $qrCurrentUrl }}" width="71px">
@@ -26,16 +26,16 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
     <div class="row">
         <table class="w50 float-left">
             <tr>
-                <td class="border-bottom uppercase bold">{{ __('translate.prescription') }}</td>
-                <td class="border-bottom bold">{{ $prescription->id }} </td>
+                <td class="border-bottom uppercase bold">{{ __('translate.examination') }}</td>
+                <td class="border-bottom bold">{{ $examination->id }} </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.date') }}</td>
-                <td>{{ $prescription->created_at }}</td>
+                <td>{{ $examination->created_at }}</td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.note') }}</td>
-                <td>{{ $prescription->print_notes?$prescription->notes:"" }}</td>
+                <td>{{ $examination->print_notes?$examination->notes:"" }}</td>
             </tr>
         </table>
 
@@ -114,34 +114,33 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
         </table>
     </div>
 
+
     <div class="row">
         <table class="w100 float-left border">
             <tr>
-                <td colspan="7" class="border-bottom uppercase bold">{{ __('translate.medicine') }}</td>
+                <td colspan="7" class="border-bottom uppercase bold">{{ __('translate.examination') }}</td>
             </tr>
             <tr>
-                <td colspan="3" class="border-bottom">id: {{ $prescription->medicine->id }} {!! $generator->getBarcode($prescription->medicine->id, $generator::TYPE_CODE_128) !!}</td>
-                <td colspan="4" class="border-bottom">external id: {{ $prescription->medicine->external_id }} {!! $generator->getBarcode($prescription->medicine->external_id, $generator::TYPE_CODE_128) !!}</td>
+                <td colspan="7" class="border-bottom">id: {{ $examination->id }} {!! $generator->getBarcode($examination->id, $generator::TYPE_CODE_128) !!}</td>
             </tr>
             <tr>
-                <td class="border bold">{{ __('translate.medicine_external_id') }}</td>
-                <td class="border bold">{{ __('translate.name') }}</td>
-                <td class="border bold">{{ __('translate.medicine_pharmaceutical_form') }}</td>
-                <td class="border bold">{{ __('translate.quantity') }}</td>
-                <td class="border bold">{{ __('translate.dosage') }}</td>
-                <td class="border bold">{{ __('translate.duration') }}</td>
-                <td class="border bold">{{ __('translate.target_species') }}</td>
+                <td class="border bold">{{ __('translate.procedure') }}</td>
+                <td class="border bold">{{ __('translate.executed_at') }}</td>
+                <td class="border bold">{{ __('translate.recall_at') }}</td>
+                <td class="border bold">{{ __('translate.drug_batch') }}</td>
+                <td class="border bold">{{ __('translate.expires_at') }}</td>
+                <td class="border bold">{{ __('translate.notes') }}</td>
             </tr>
             <tr>
-                <td class="border">{{ $prescription->medicine->external_id }}</td>
-                <td class="border">{{ $prescription->medicine->name }}</td>
-                <td class="border">{{ $prescription->medicine->pharmaceutical_form }}</td>
-                <td class="border">{{ $prescription->quantity }}</td>
-                <td class="border">{{ $prescription->dosage }}</td>
-                <td class="border">{{ $prescription->duration }}</td>
-                <td class="border">{{ $prescription->medicine->target_species }}</td>
+                <td class="border">{{ $examination->procedure->term_name }}</td>
+                <td class="border">{{ $examination->executed_at }}</td>
+                <td class="border">{{ $examination->recall_at }}</td>
+                <td class="border">{{ $examination->drug_batch }}</td>
+                <td class="border">{{ $examination->drug_batch_expires_at }}</td>
+                <td class="border">{{ $examination->notes }}</td>
             </tr>
         </table>
     </div>
+
 </body>
 </html>

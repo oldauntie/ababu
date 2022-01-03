@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    {{__('translate.clinic')}} {{ $clinic->name }}
+                    {{ $clinic->name }}
                     @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
                     <button class="btn btn-sm btn-primary open_modal_edit">{{__('translate.edit')}}</button>
                     <button class="btn btn-sm btn-secondary open_modal_invite">{{__('translate.invite')}}</button>

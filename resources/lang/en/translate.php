@@ -90,6 +90,7 @@ return [
     'number_of_pets_per_species' => 'no. of pets per species',
     'new' => 'new',
     'note' => 'note',
+    'no' => 'no',
     'notes' => 'notes',
     'objective_analysis' => 'objective analysis',
     'or' => 'or',
@@ -159,5 +160,6 @@ return [
     'visits' => 'visits',
     'website' => 'web site',
     'years' => 'years',
+    'yes' => 'yes',
     
 ];

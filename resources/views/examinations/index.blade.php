@@ -30,6 +30,7 @@
 
 @include('examinations.partials.delete')
 @include('examinations.partials.edit')
+@include('examinations.partials.js')
 
 @push('scripts')
 @endpush

@@ -224,18 +224,4 @@
 <!-- /Attachment Modal -->
 
 @push('scripts')
-<script type="text/javascript">
-
-$(document).ready(function(){
-    // print action
-    $('#examination-edit-print-button').click(function(e){
-        console.log(e.target.value);
-
-        var id = e.target.value;
-        print_url = '/clinics/{{$clinic->id}}/pets/{{$pet->id}}/examinations/' + id + '/print';
-        window.open(print_url);
-    })
-});
-</script>
-
 @endpush

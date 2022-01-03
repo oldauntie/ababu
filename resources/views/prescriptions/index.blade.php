@@ -31,6 +31,7 @@
 
 @include('prescriptions.partials.delete')
 @include('prescriptions.partials.edit')
+@include('prescriptions.partials.js')
 
 @push('scripts')
 @endpush

@@ -29,6 +29,7 @@
 
 @include('treatments.partials.delete')
 @include('treatments.partials.edit')
+@include('treatments.partials.js')
 
 @push('scripts')
 @endpush

@@ -118,29 +118,39 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
     <div class="row">
         <table class="w100 float-left border">
             <tr>
-                <td colspan="7" class="border-bottom uppercase bold">{{ __('translate.examination') }}</td>
+                <td colspan="5" class="border-bottom uppercase bold">{{ __('translate.examination') }}</td>
             </tr>
             <tr>
-                <td colspan="7" class="border-bottom">id: {{ $examination->id }} {!! $generator->getBarcode($examination->id, $generator::TYPE_CODE_128) !!}</td>
+                <td colspan="5" class="border-bottom">id: {{ $examination->id }} {!! $generator->getBarcode($examination->id, $generator::TYPE_CODE_128) !!}</td>
             </tr>
             <tr>
-                <td class="border bold">{{ __('translate.procedure') }}</td>
-                <td class="border bold">{{ __('translate.executed_at') }}</td>
-                <td class="border bold">{{ __('translate.recall_at') }}</td>
-                <td class="border bold">{{ __('translate.drug_batch') }}</td>
-                <td class="border bold">{{ __('translate.expires_at') }}</td>
-                <td class="border bold">{{ __('translate.notes') }}</td>
+                <td class="border bold">{{ __('translate.examination') }}</td>
+                <td class="border bold">{{ __('translate.result') }}</td>
+                <td class="border bold">{{ __('translate.medical_report') }}</td>
+                <td class="border bold">{{ __('translate.is_pathologic') }}</td>
+                <td class="border bold">{{ __('translate.in_evidence') }}</td>
             </tr>
             <tr>
-                <td class="border">{{ $examination->procedure->term_name }}</td>
-                <td class="border">{{ $examination->executed_at }}</td>
-                <td class="border">{{ $examination->recall_at }}</td>
-                <td class="border">{{ $examination->drug_batch }}</td>
-                <td class="border">{{ $examination->drug_batch_expires_at }}</td>
-                <td class="border">{{ $examination->notes }}</td>
+                <td class="border">{{ $examination->diagnosticTest->term_name }}</td>
+                <td class="border">{{ $examination->result }}</td>
+                <td class="border">{{ $examination->medical_report }}</td>
+                <td class="border">{{ $examination->is_pathologic==true ? __('translate.yes') : __('translate.no') }}</td>
+                <td class="border">{{ $examination->in_evidence==true ? __('translate.yes') : __('translate.no')  }}</td>
             </tr>
         </table>
     </div>
 
+    <div class="row">
+        @if ($examination->print_notes == true)
+        <table class="w100 float-left border">
+            <tr>
+                <td class="border bold">{{ __('translate.notes') }}</td>
+            </tr>
+            <tr>
+                <td class="border">{{ $examination->notes }}</td>
+            </tr>
+        </table>
+        @endif
+    </div>
 </body>
 </html>

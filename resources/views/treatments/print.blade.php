@@ -21,8 +21,6 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
         </tr>
     </table>
 
-
-
     <div class="row">
         <table class="w50 float-left">
             <tr>
@@ -113,7 +111,6 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
             </tr>
         </table>
     </div>
-
 
     <div class="row">
         <table class="w100 float-left border">

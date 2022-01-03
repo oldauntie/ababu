@@ -87,6 +87,7 @@ return [
     'months' => 'mesi',
     'name' => 'nome',
     'new' => 'nuovo',
+    'no' => 'no',
     'note' => 'nota',
     'notes' => 'note',
     'number_of_pets_per_species' => 'no. di animali per specie',
@@ -158,6 +159,8 @@ return [
     'visits' => 'visite',
     'website' => 'sito internet',
     'years' => 'anni',
+    'yes' => 'si',
+
 
 
 ];

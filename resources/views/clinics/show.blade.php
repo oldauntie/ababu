@@ -33,16 +33,16 @@
                             <h5>{{ __('translate.recent_visit_by_user') }}</h5>
                             <table class="table" border="0" width="100%">
                                 <tr>
-                                    <th>{{ __('translate.pet') }}</th>
                                     <th>{{ __('translate.owner') }}</th>
+                                    <th>{{ __('translate.pet') }}</th>
                                     <th>{{ __('translate.date') }}</th>
                                     <th></th>
                                 </tr>
                                 @foreach ($lastVisitByUser as $item)
                                 <tr>
-                                    <td>{{ collect($item->first()->variables["pet"])->get('name') }}</td>
                                     <td>{{ collect($item->first()->variables["owner"])->get('lastname') . ', ' .
                                         collect($item->first()->variables["owner"])->get('firstname') }}</td>
+                                    <td>{{ collect($item->first()->variables["pet"])->get('name') }}</td>
                                     <td>{{$item->first()->created_at}}</td>
                                     <td><a href="{{ $item->first()->request_uri }}"><button type="button"
                                                 class="btn btn-sm btn-dark float-left">visit</button></a></td>
@@ -50,31 +50,19 @@
                                 @endforeach
                             </table>
 
-                        </div>
-                    </div>
-
-
-
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col col-md-6">
-                            <div id=''></div>
-                        </div>
-
-                        <div class="col col-md-6">
                             <h5>{{ __('translate.recent_visit_by_clinic') }}</h5>
                             <table class="table" border="0" width="100%">
                                 <tr>
-                                    <th>{{ __('translate.pet') }}</th>
                                     <th>{{ __('translate.owner') }}</th>
+                                    <th>{{ __('translate.pet') }}</th>
                                     <th>{{ __('translate.date') }}</th>
                                     <th></th>
                                 </tr>
                                 @foreach ($lastVisitByClinic as $item)
                                 <tr>
-                                    <td>{{ collect($item->first()->variables["pet"])->get('name') }}</td>
                                     <td>{{ collect($item->first()->variables["owner"])->get('lastname') . ', ' .
                                         collect($item->first()->variables["owner"])->get('firstname') }}</td>
+                                    <td>{{ collect($item->first()->variables["pet"])->get('name') }}</td>
                                     <td>{{$item->first()->created_at}}</td>
                                     <td><a href="{{ $item->first()->request_uri }}"><button type="button"
                                                 class="btn btn-sm btn-dark float-left">visit</button></a></td>
@@ -85,7 +73,7 @@
                         </div>
                     </div>
 
-                    
+
 
                     <!-- row -->
                     <div class="row">
@@ -179,14 +167,13 @@
                     textColor: 'black'
                 }
             ],
-            initialView: "dayGridWeek",
-            // initialDate: "2021-11-07",
+            initialView: "listWeek",
             editable: false,
             selectable: false,
             headerToolbar: {
-                left: "prev,next",
-                center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay"
+                // left: "prev,next",
+                // center: "title",
+                right: "listWeek,timeGridDay"
             },
         });
 

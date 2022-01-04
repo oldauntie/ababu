@@ -62,30 +62,7 @@
                             </table>
                         </div>
                     </div>
-                    <!-- first row detail -->
-                    <div class="row">
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                    </div>
-                    <!-- second row detail -->
-                    <div class="row">
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                        <div class="col col-md-4">
-                            <h5>placeholder</h5>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 

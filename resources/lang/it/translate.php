@@ -64,6 +64,7 @@ return [
     'feature' => 'nuova funzionalità',
     'firstname' => 'nome',
     'gender' => 'sesso',
+    'go' => 'vai',
     'in_evidence' => 'in evidenza',
     'insert' => 'inserimento',
     'invite' => 'invita',

@@ -2,11 +2,11 @@
     <div class="container">
         @auth
         <a class="navbar-brand" href="{{ url('/home') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{ config('app.name', 'Ababu') }}
         </a>
         @else
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{ config('app.name', 'Ababu') }}
         </a>
         @endauth
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,10 +47,10 @@
                             {{ __('translate.clinics') }}
                         </a>
                         <a class="dropdown-item" href="#">
-                            {{ __('translate.pets') }}
+                            {{ __('translate.owners') }}
                         </a>
                         <a class="dropdown-item" href="#">
-                            {{ __('translate.owners') }}
+                            {{ __('translate.pets') }}
                         </a>
                         <a class="dropdown-item" href="#">
                             {{ __('translate.users') }}

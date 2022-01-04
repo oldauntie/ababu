@@ -20,6 +20,28 @@
                     <div class="form-group row">
                         <div class="col-md-7">
 
+                            <!-- owner -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="pet-edit-owner_id">{{__('translate.owner')}}*</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex">
+                                        <select id="pet-edit-owner_id" name="owner_id" required></select>
+                                        <a href="/clinics/{{$clinic->id}}/owners") }}" id="owner-new-button"
+                                            class="btn btn-sm btn-primary">{{__('translate.go')}}</a>
+                                    </div>
+                                    <small class="form-text text-muted">{{__('help.owner_select')}}</small>
+                                    @error('owner_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <!-- name -->
                             <label for="pet-edit-name" class="text-md-right">{{__('translate.name')}}*</label>
                             <input id="pet-edit-name" type="text"
@@ -63,24 +85,7 @@
                             </span>
                             @enderror
 
-                            <!-- owner -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="pet-edit-owner_id">{{__('translate.owner')}}*</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <select id="pet-edit-owner_id" name="owner_id"></select>
-                                    <small class="form-text text-muted">{{__('help.owner_select')}}</small>
-                                    @error('owner_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
+                            
                             <!-- sex and color -->
                             <div class="row">
                                 <div class="col-md-6">

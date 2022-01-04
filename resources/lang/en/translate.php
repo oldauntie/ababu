@@ -65,6 +65,7 @@ return [
     'feature' => 'feature',
     'firstname' => 'first name',
     'gender' => 'gender',
+    'go' => 'go',
     'in_evidence' => 'in evidence',
     'insert' => 'insert',
     'invite' => 'invite',

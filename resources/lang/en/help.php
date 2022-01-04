@@ -40,7 +40,7 @@ return [
     'owner_mobile' => '',
     'owner_phone' => '',
     'owner_postcode' => '',
-    'owner_select' => '',
+    'owner_select' => 'Please, as first, select an owner from the list above, or add a new one if is not present.',
     'owner_ssn' => '',
     'password_update' => 'Update your password by filling the form below',
     'pet_breed' => 'Specify, if needed, animal breed',

@@ -41,7 +41,7 @@ return [
     'owner_phone' => '',
     'owner_postcode' => '',
     'owner_ssn' => '',
-    'owner_select' => '',
+    'owner_select' => 'Selezionare un proprietario dalla lista o aggiungerne uno nel caso non sia presente.',
     'password_update' => 'Aggiorna la password di accesso completanto il form sottostante',
     'pet_breed' => 'Specificare la razza (opzionale)',
     'pet_color' => '',

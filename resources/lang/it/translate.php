@@ -101,6 +101,8 @@ return [
     'pet' => 'animale',
     'pets' => 'animali',
     'phone' => 'telefono',
+    'phone_primary' => 'telefono principale',
+    'phone_secondary' => 'telefono secondario',
     'postcode' => 'codice postale',
     'preferences' => 'preferenze',
     'prescription' => 'prescrizione',

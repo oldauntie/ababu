@@ -30,8 +30,8 @@
                                         <th>{{__('translate.address')}}</th>
                                         <th>{{__('translate.postcode')}}</th>
                                         <th>{{__('translate.city')}}</th>
-                                        <th>{{__('translate.phone')}}</th>
-                                        <th>{{__('translate.mobile')}}</th>
+                                        <th>{{__('translate.phone_primary')}}</th>
+                                        <th>{{__('translate.phone_secondary')}}</th>
                                         <th>{{__('translate.email')}}</th>
                                         <th>{{__('translate.actions')}}</th>
                                     </tr>
@@ -98,12 +98,12 @@
                                     <div class="row">
 
                                         <div class="col-2">
-                                            <a href="#" id="owner-details-phone" data-toggle="modal"
+                                            <a href="#" id="owner-details-phone_primary" data-toggle="modal"
                                                 data-target="#owner-overlay-modal">
                                             </a>
                                         </div>
                                         <div class="col-2">
-                                            <a href="#" id="owner-details-mobile" data-toggle="modal"
+                                            <a href="#" id="owner-details-phone_secondary" data-toggle="modal"
                                                 data-target="#owner-overlay-modal">
                                             </a>
                                         </div>
@@ -156,8 +156,8 @@
                 {data: "address", name: "address", width: "150px"},
                 {data: "postcode", name: "postcode"},
                 {data: "city", name: "city" },
-                {data: "phone", name: "phone"},
-                {data: "mobile", name: "mobile"},
+                {data: "phone_primary", name: "phone_primary"},
+                {data: "phone_secondary", name: "phone_secondary"},
                 {data: "email", name: "email", 
                 render: function(data, type, row, meta){
                         if(type === "display"){
@@ -220,8 +220,8 @@
                     $('#owner-details-address').html(owner.address);
                     $('#owner-details-postcode').html(owner.postcode);
                     $('#owner-details-city').html(owner.city);
-                    $('#owner-details-phone').html(owner.phone);
-                    $('#owner-details-mobile').html(owner.mobile);
+                    $('#owner-details-phone_primary').html(owner.phone_primary);
+                    $('#owner-details-phone_secondary').html(owner.phone_secondary);
                     $('#owner-details-email').html('<a href="mailto:' + owner.email + '"">' + owner.email + '</a>');
                 }
             });
@@ -267,8 +267,8 @@
                     $('#owner-edit-city').val(owner.city)
                     $('#owner-edit-country_id').val(owner.country_id)
                     $('#owner-edit-ssn').val(owner.ssn)
-                    $('#owner-edit-phone').val(owner.phone)
-                    $('#owner-edit-mobile').val(owner.mobile)
+                    $('#owner-edit-phone_primary').val(owner.phone_primary)
+                    $('#owner-edit-phone_secondary').val(owner.phone_secondary)
                     $('#owner-edit-email').val(owner.email)
 
                     // Display Modal

@@ -45,7 +45,7 @@
                             <label for="pet-create-name" class="text-md-right">{{__('translate.name')}}*</label>
                             <input id="pet-create-name" type="text"
                                 class="form-control  form-control-sm @error('name') is-invalid @enderror" name="name"
-                                value="{{old('name')}}" autocomplete="name" required autofocus maxlength="255">
+                                value="{{old('name')}}" autocomplete="name" required maxlength="255">
                             <small class="form-text text-muted">{{__('help.pet_name')}}</small>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -76,7 +76,7 @@
                             <label for="pet-create-breed" class="text-md-right">{{__('translate.breed')}}</label>
                             <input id="pet-create-breed" type="text"
                                 class="form-control  form-control-sm @error('breed') is-invalid @enderror" name="breed"
-                                value="{{old('breed')}}" autocomplete="breed" autofocus maxlength="255">
+                                value="{{old('breed')}}" autocomplete="breed" maxlength="255">
                             <small class="form-text text-muted">{{__('help.pet_name')}}</small>
                             @error('breed')
                             <span class="invalid-feedback" role="alert">
@@ -102,7 +102,7 @@
                                     <label for="pet-create-color" class="text-md-right">{{__('translate.color')}}*</label>
                                     <input id="pet-create-color" type="text"
                                         class="form-control  form-control-sm @error('color') is-invalid @enderror"
-                                        name="color" value="" autocomplete="color" autofocus maxlength="255">
+                                        name="color" value="" autocomplete="color" maxlength="255">
                                     <small class="form-text text-muted">{{__('help.pet_color')}}</small>
 
                                     @error('color')
@@ -141,7 +141,7 @@
                                         class="text-md-right">{{__('translate.date_of_birth')}}*</label>
                                     <input id="pet-create-date_of_birth" type="text"
                                         class="form-control form-control-sm datepicker @error('date_of_birth') is-invalid @enderror"
-                                        name="date_of_birth" value="" autocomplete="date_of_birth" required autofocus
+                                        name="date_of_birth" value="" autocomplete="date_of_birth" required
                                         maxlength="64">
                                     <small class="form-text text-muted">{{__('help.pet_date_of_birth')}}</small>
                                     @error('date_of_birth')
@@ -157,7 +157,7 @@
                                         class="text-md-right">{{__('translate.date_of_death')}}</label>
                                     <input id="pet-create-date_of_death" type="text"
                                         class="form-control form-control-sm input-sm datepicker @error('date_of_death') is-invalid @enderror"
-                                        name="date_of_death" value="{{old('date_of_death')}}" autocomplete="date_of_death" autofocus
+                                        name="date_of_death" value="{{old('date_of_death')}}" autocomplete="date_of_death"
                                         maxlength="64">
                                     <small class="form-text text-muted">{{__('help.pet_date_of_death')}}</small>
                                     @error('date_of_death')
@@ -204,7 +204,7 @@
                                     class="text-md-right">{{__('translate.microchip')}}</label>
                                 <input id="pet-create-microchip" type="text"
                                     class="form-control form-control-sm @error('microchip') is-invalid @enderror"
-                                    name="microchip" value="{{old('microchip')}}" autocomplete="microchip" autofocus maxlength="64">
+                                    name="microchip" value="{{old('microchip')}}" autocomplete="microchip" maxlength="64">
                                 <small class="form-text text-muted">{{__('help.pet_microchip')}}</small>
                                 @error('microchip')
                                 <span class="invalid-feedback" role="alert">
@@ -217,7 +217,7 @@
                                     class="text-md-right">{{__('translate.microchip_location')}}</label>
                                 <input id="pet-create-microchip_location" type="text"
                                     class="form-control form-control-sm @error('microchip_location') is-invalid @enderror"
-                                    name="microchip_location" value="{{old('microchip_location')}}" autocomplete="microchip_location" autofocus
+                                    name="microchip_location" value="{{old('microchip_location')}}" autocomplete="microchip_location"
                                     maxlength="100">
                                 <small class="form-text text-muted">{{__('help.pet_microchip_location')}}</small>
                                 @error('microchip_location')
@@ -237,7 +237,7 @@
                                     class="text-md-right">{{__('translate.tatuatge')}}*</label>
                                 <input id="pet-create-tatuatge" type="text"
                                     class="form-control form-control-sm @error('tatuatge') is-invalid @enderror"
-                                    name="tatuatge" value="{{old('tatuatge')}}" autocomplete="tatuatge" autofocus maxlength="64">
+                                    name="tatuatge" value="{{old('tatuatge')}}" autocomplete="tatuatge" maxlength="64">
                                 <small class="form-text text-muted">{{__('help.pet_tatuatge')}}</small>
                                 @error('tatuatge')
                                 <span class="invalid-feedback" role="alert">
@@ -250,7 +250,7 @@
                                     class="text-md-right">{{__('translate.tatuatge_location')}}</label>
                                 <input id="pet-create-tatuatge_location" type="text"
                                     class="form-control form-control-sm @error('tatuatge_location') is-invalid @enderror"
-                                    name="tatuatge_location" value="{{old('tatuatge_location')}}" autocomplete="tatuatge_location" autofocus
+                                    name="tatuatge_location" value="{{old('tatuatge_location')}}" autocomplete="tatuatge_location"
                                     maxlength="100">
                                 <small class="form-text text-muted">{{__('help.pet_tatuatge_location')}}</small>
                                 @error('tatuatge_location')

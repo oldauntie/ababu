@@ -102,6 +102,8 @@ return [
     'pet' => 'pet',
     'pets' => 'pets',
     'phone' => 'phone',
+    'phone_primary' => 'primary phone',
+    'phone_secondary' => 'secondary phone',
     'postcode' => 'post code',
     'preferences' => 'preferences',
     'prescription' => 'prescription',

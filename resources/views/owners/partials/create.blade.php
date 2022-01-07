@@ -14,10 +14,8 @@
 
             <div class="modal-body">
 
-
                 <form method="POST" id="owner-create-modal-form" action="{{ route('clinics.owners.store', $clinic) }}" enctype="multipart/form-data">
                     @csrf
-
 
                     <div class="form-group row">
                         <label for="owner-create-firstname"
@@ -26,7 +24,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-firstname" type="text"
                                 class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}"
-                                autocomplete="firstname" required autofocus maxlength="255">
+                                autocomplete="firstname" required maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_firstname')}}</small>
 
                             @error('firstname')
@@ -45,10 +43,71 @@
                         <div class="col-md-6">
                             <input id="owner-create-lastname" type="text"
                                 class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}"
-                                autocomplete="lastname" required autofocus maxlength="255">
+                                autocomplete="lastname" required maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_lastname')}}</small>
 
                             @error('lastname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="owner-create-email"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.email')}}*</label>
+
+                        <div class="col-md-6">
+                            <input id="owner-create-email" type="email"
+                                class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
+                                autocomplete="email" required maxlength="255">
+                            <small class="form-text text-muted">{{__('help.owner_email')}}</small>
+
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="owner-create-phone_primary"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.phone_primary')}}
+                            * </label>
+
+                        <div class="col-md-6">
+                            <input id="owner-create-phone_primary" type="text"
+                                class="form-control @error('phone_primary') is-invalid @enderror" name="phone_primary" value="{{ old('phone_primary') }}"
+                                autocomplete="phone_primary" required maxlength="64">
+                            <small class="form-text text-muted">{{__('help.owner_phone_primary')}}</small>
+
+
+                            @error('phone_primary')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="owner-create-phone_secondary"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.phone_secondary')}}*</label>
+
+                        <div class="col-md-6">
+                            <input id="owner-create-phone_secondary" type="text"
+                                class="form-control @error('phone_secondary') is-invalid @enderror" name="phone_secondary" value="{{ old('phone_secondary') }}"
+                                autocomplete="phone_secondary" maxlength="64">
+                            <small class="form-text text-muted">{{__('help.owner_phone_secondary')}}</small>
+
+
+                            @error('phone_secondary')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -64,7 +123,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-address" type="text"
                                 class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"
-                                autocomplete="address" autofocus maxlength="255">
+                                autocomplete="address" maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_address')}}</small>
 
                             @error('address')
@@ -83,7 +142,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-postcode" type="text"
                                 class="form-control @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}"
-                                autocomplete="postcode" autofocus maxlength="10">
+                                autocomplete="postcode" maxlength="10">
                             <small class="form-text text-muted">{{__('help.owner_postcode')}}</small>
 
 
@@ -103,7 +162,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-city" type="text"
                                 class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}"
-                                autocomplete="city" autofocus maxlength="255">
+                                autocomplete="city" maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_city')}}</small>
 
 
@@ -145,7 +204,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-ssn" type="text"
                                 class="form-control @error('ssn') is-invalid @enderror" name="ssn" value="{{ old('ssn') }}"
-                                autocomplete="ssn" autofocus maxlength="255">
+                                autocomplete="ssn" maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_ssn')}}</small>
 
 
@@ -158,68 +217,7 @@
                     </div>
 
 
-                    <div class="form-group row">
-                        <label for="owner-create-phone"
-                            class="col-md-4 col-form-label text-md-right">{{__('translate.phone')}}
-                            * </label>
-
-                        <div class="col-md-6">
-                            <input id="owner-create-phone" type="text"
-                                class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"
-                                autocomplete="phone" required autofocus maxlength="64">
-                            <small class="form-text text-muted">{{__('help.owner_phone')}}</small>
-
-
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="owner-create-mobile"
-                            class="col-md-4 col-form-label text-md-right">{{__('translate.mobile')}}*</label>
-
-                        <div class="col-md-6">
-                            <input id="owner-create-mobile" type="text"
-                                class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}"
-                                autocomplete="mobile" required autofocus maxlength="64">
-                            <small class="form-text text-muted">{{__('help.owner_mobile')}}</small>
-
-
-                            @error('mobile')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="owner-create-email"
-                            class="col-md-4 col-form-label text-md-right">{{__('translate.email')}}*</label>
-
-                        <div class="col-md-6">
-                            <input id="owner-create-email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
-                                autocomplete="email" required autofocus maxlength="255">
-                            <small class="form-text text-muted">{{__('help.owner_email')}}</small>
-
-
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-
+                    
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-secondary btn-lg">{{__('translate.save')}}</button>

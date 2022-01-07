@@ -19,13 +19,13 @@ class CreateOwnersTable extends Migration
             $table->string('country_id', 2);
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('email');
+            $table->string('phone_primary', 64);
+            $table->string('phone_secondary', 64)->nullable();
             $table->string('address')->nullable();
             $table->string('postcode', 10)->nullable();
             $table->string('city')->nullable();
             $table->string('ssn')->nullable();
-            $table->string('phone', 64);
-            $table->string('mobile', 64);
-            $table->string('email');
 
             $table->timestamps();
             $table->softDeletes();

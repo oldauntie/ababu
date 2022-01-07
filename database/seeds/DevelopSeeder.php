@@ -109,13 +109,13 @@ class DevelopSeeder extends Seeder
             'country_id' => 'ie',
             'firstname' => 'Phil',
             'lastname' => 'Lynott',
+            'email' => 'phil.lynott@ababu.cloud',
+            'phone_primary' => '+41 000 0 0000',
+            'phone_secondary' => '+41 348 0 0000',
             'address' => 'Front Sea Rd.',
             'postcode' => 'D03 1X2Y',
             'city' => 'Dublin',
             'ssn' => 'DVN-PHY',
-            'phone' => '+41 000 0 0000',
-            'mobile' => '+41 348 0 0000',
-            'email' => 'phil.lynott@ababu.cloud',
         ]);
 
         Owner::create([
@@ -124,13 +124,13 @@ class DevelopSeeder extends Seeder
             'country_id' => 'ie',
             'firstname' => 'Rory',
             'lastname' => 'Gallagher',
+            'email' => 'rory.gallagher@ababu.cloud',
+            'phone_primary' => '+41 000 1 1000',
+            'phone_secondary' => '+41 348 1 1000',
             'address' => 'Abbot Rd.',
             'postcode' => 'K03 1X2Y',
             'city' => 'Cork',
             'ssn' => 'DVN-ROR',
-            'phone' => '+41 000 1 1000',
-            'mobile' => '+41 348 1 1000',
-            'email' => 'rory.gallagher@ababu.cloud',
         ]);
 
         Owner::create([
@@ -139,13 +139,13 @@ class DevelopSeeder extends Seeder
             'country_id' => 'gb',
             'firstname' => 'Paul',
             'lastname' => 'Mcartney',
+            'email' => 'paul.mccartney@ababu.cloud',
+            'phone_primary' => '+44 000 2 2000',
+            'phone_secondary' => '+44 348 2 2000',
             'address' => 'Abbey Rd.',
             'postcode' => 'LND 1X2Y',
             'city' => 'London',
             'ssn' => 'DVN-PAU',
-            'phone' => '+44 000 2 2000',
-            'mobile' => '+44 348 2 2000',
-            'email' => 'paul.mccartney@ababu.cloud',
         ]);
 
         /**

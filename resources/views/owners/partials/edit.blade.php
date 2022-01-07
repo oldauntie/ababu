@@ -19,7 +19,6 @@
                     @csrf
                     {{ method_field('PUT') }}
 
-
                     <div class="form-group row">
                         <label for="owner-edit-firstname"
                             class="col-md-4 col-form-label text-md-right">{{__('translate.firstname')}}*</label>
@@ -27,7 +26,7 @@
                         <div class="col-md-6">
                             <input id="owner-edit-firstname" type="text"
                                 class="form-control @error('firstname') is-invalid @enderror" name="firstname" value=""
-                                autocomplete="firstname" required autofocus maxlength="255">
+                                autocomplete="firstname" required maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_firstname')}}</small>
 
                             @error('firstname')
@@ -46,10 +45,71 @@
                         <div class="col-md-6">
                             <input id="owner-edit-lastname" type="text"
                                 class="form-control @error('lastname') is-invalid @enderror" name="lastname" value=""
-                                autocomplete="lastname" required autofocus maxlength="255">
+                                autocomplete="lastname" required maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_lastname')}}</small>
 
                             @error('lastname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="owner-edit-email"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.email')}}*</label>
+
+                        <div class="col-md-6">
+                            <input id="owner-edit-email" type="email"
+                                class="form-control @error('email') is-invalid @enderror" name="email" value=""
+                                autocomplete="email" required maxlength="255">
+                            <small class="form-text text-muted">{{__('help.owner_email')}}</small>
+
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="owner-edit-phone_primary"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.phone_primary')}}
+                            * </label>
+
+                        <div class="col-md-6">
+                            <input id="owner-edit-phone_primary" type="text"
+                                class="form-control @error('phone_primary') is-invalid @enderror" name="phone_primary" value=""
+                                autocomplete="phone_primary" required maxlength="64">
+                            <small class="form-text text-muted">{{__('help.owner_phone_primary')}}</small>
+
+
+                            @error('phone_primary')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="owner-edit-phone_secondary"
+                            class="col-md-4 col-form-label text-md-right">{{__('translate.phone_secondary')}}*</label>
+
+                        <div class="col-md-6">
+                            <input id="owner-edit-phone_secondary" type="text"
+                                class="form-control @error('phone_secondary') is-invalid @enderror" name="phone_secondary" value=""
+                                autocomplete="phone_secondary" maxlength="64">
+                            <small class="form-text text-muted">{{__('help.owner_phone_secondary')}}</small>
+
+
+                            @error('phone_secondary')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -65,7 +125,7 @@
                         <div class="col-md-6">
                             <input id="owner-edit-address" type="text"
                                 class="form-control @error('address') is-invalid @enderror" name="address" value=""
-                                autocomplete="address" autofocus maxlength="255">
+                                autocomplete="address" maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_address')}}</small>
 
                             @error('address')
@@ -84,7 +144,7 @@
                         <div class="col-md-6">
                             <input id="owner-edit-postcode" type="text"
                                 class="form-control @error('postcode') is-invalid @enderror" name="postcode" value=""
-                                autocomplete="postcode" autofocus maxlength="10">
+                                autocomplete="postcode" maxlength="10">
                             <small class="form-text text-muted">{{__('help.owner_postcode')}}</small>
 
 
@@ -104,7 +164,7 @@
                         <div class="col-md-6">
                             <input id="owner-edit-city" type="text"
                                 class="form-control @error('city') is-invalid @enderror" name="city" value=""
-                                autocomplete="city" autofocus maxlength="255">
+                                autocomplete="city" maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_city')}}</small>
 
 
@@ -146,7 +206,7 @@
                         <div class="col-md-6">
                             <input id="owner-edit-ssn" type="text"
                                 class="form-control @error('ssn') is-invalid @enderror" name="ssn" value=""
-                                autocomplete="ssn" autofocus maxlength="255">
+                                autocomplete="ssn" maxlength="255">
                             <small class="form-text text-muted">{{__('help.owner_ssn')}}</small>
 
 
@@ -158,66 +218,6 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group row">
-                        <label for="owner-edit-phone"
-                            class="col-md-4 col-form-label text-md-right">{{__('translate.phone')}}
-                            * </label>
-
-                        <div class="col-md-6">
-                            <input id="owner-edit-phone" type="text"
-                                class="form-control @error('phone') is-invalid @enderror" name="phone" value=""
-                                autocomplete="phone" required autofocus maxlength="64">
-                            <small class="form-text text-muted">{{__('help.owner_phone')}}</small>
-
-
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="owner-edit-mobile"
-                            class="col-md-4 col-form-label text-md-right">{{__('translate.mobile')}}*</label>
-
-                        <div class="col-md-6">
-                            <input id="owner-edit-mobile" type="text"
-                                class="form-control @error('mobile') is-invalid @enderror" name="mobile" value=""
-                                autocomplete="mobile" required autofocus maxlength="64">
-                            <small class="form-text text-muted">{{__('help.owner_mobile')}}</small>
-
-
-                            @error('mobile')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="owner-edit-email"
-                            class="col-md-4 col-form-label text-md-right">{{__('translate.email')}}*</label>
-
-                        <div class="col-md-6">
-                            <input id="owner-edit-email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email" value=""
-                                autocomplete="email" required autofocus maxlength="255">
-                            <small class="form-text text-muted">{{__('help.owner_email')}}</small>
-
-
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
 
 
 

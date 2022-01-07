@@ -46,27 +46,26 @@ class OwnerController extends Controller
         $request->validate([
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
+            'email' => 'email|required|max:255',
+            'phone_primary' => 'required|max:64',
             'address' => 'max:255',
             'postcode' => 'max:10',
             'city' => 'max:255',
             'ssn' => 'max:255',
-            'phone' => 'required|max:255',
-            'mobile' => 'required|max:255',
-            'email' => 'email|required|max:255',
         ]);
 
         $owner = new Owner([
             'clinic_id' => $clinic->id,
             'country_id' => $request->get('country_id'),
             'firstname' => $request->get('firstname'),
+            'email' => $request->get('email'),
+            'phone_primary' => $request->get('phone_primary'),
+            'phone_secondary' => $request->get('phone_secondary'),
             'lastname' => $request->get('lastname'),
             'address' => $request->get('address'),
             'postcode' => $request->get('postcode'),
             'city' => $request->get('city'),
             'ssn' => $request->get('ssn'),
-            'phone' => $request->get('phone'),
-            'mobile' => $request->get('mobile'),
-            'email' => $request->get('email'),
         ]);
         $owner->save();
 
@@ -108,25 +107,24 @@ class OwnerController extends Controller
         $request->validate([
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
+            'email' => 'email|required|max:255',
+            'phone_primary' => 'required|max:64',
             'address' => 'max:255',
             'postcode' => 'max:10',
             'city' => 'max:255',
             'ssn' => 'max:255',
-            'phone' => 'required|max:255',
-            'mobile' => 'required|max:255',
-            'email' => 'email|required|max:255',
         ]);
 
         $owner->country_id = $request->country_id;
         $owner->firstname = $request->firstname;
         $owner->lastname = $request->lastname;
+        $owner->email = $request->email;
+        $owner->phone_primary = $request->phone_primary;
+        $owner->phone_secondary = $request->phone_secondary;
         $owner->address = $request->address;
         $owner->postcode = $request->postcode;
         $owner->city = $request->city;
         $owner->ssn = $request->ssn;
-        $owner->phone = $request->phone;
-        $owner->mobile = $request->mobile;
-        $owner->email = $request->email;
 
         if ($owner->save()) {
             $request->session()->flash('success', __('message.owner_update_success'));

@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-firstname" type="text"
                                 class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}"
-                                autocomplete="firstname" required maxlength="255">
+                                autocomplete="firstname" required maxlength="100">
                             <small class="form-text text-muted">{{__('help.owner_firstname')}}</small>
 
                             @error('firstname')
@@ -43,7 +43,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-lastname" type="text"
                                 class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}"
-                                autocomplete="lastname" required maxlength="255">
+                                autocomplete="lastname" required maxlength="100">
                             <small class="form-text text-muted">{{__('help.owner_lastname')}}</small>
 
                             @error('lastname')
@@ -83,7 +83,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-phone_primary" type="text"
                                 class="form-control @error('phone_primary') is-invalid @enderror" name="phone_primary" value="{{ old('phone_primary') }}"
-                                autocomplete="phone_primary" required maxlength="64">
+                                autocomplete="phone_primary" required maxlength="32">
                             <small class="form-text text-muted">{{__('help.owner_phone_primary')}}</small>
 
 
@@ -103,7 +103,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-phone_secondary" type="text"
                                 class="form-control @error('phone_secondary') is-invalid @enderror" name="phone_secondary" value="{{ old('phone_secondary') }}"
-                                autocomplete="phone_secondary" maxlength="64">
+                                autocomplete="phone_secondary" maxlength="32">
                             <small class="form-text text-muted">{{__('help.owner_phone_secondary')}}</small>
 
 
@@ -123,7 +123,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-address" type="text"
                                 class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"
-                                autocomplete="address" maxlength="255">
+                                autocomplete="address" maxlength="100">
                             <small class="form-text text-muted">{{__('help.owner_address')}}</small>
 
                             @error('address')
@@ -162,7 +162,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-city" type="text"
                                 class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}"
-                                autocomplete="city" maxlength="255">
+                                autocomplete="city" maxlength="64">
                             <small class="form-text text-muted">{{__('help.owner_city')}}</small>
 
 
@@ -204,7 +204,7 @@
                         <div class="col-md-6">
                             <input id="owner-create-ssn" type="text"
                                 class="form-control @error('ssn') is-invalid @enderror" name="ssn" value="{{ old('ssn') }}"
-                                autocomplete="ssn" maxlength="255">
+                                autocomplete="ssn" maxlength="64">
                             <small class="form-text text-muted">{{__('help.owner_ssn')}}</small>
 
 

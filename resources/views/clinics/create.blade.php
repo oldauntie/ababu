@@ -17,7 +17,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" autocomplete="name" required autofocus
+                                    name="name" value="{{ old('name') }}" autocomplete="name" autofocus required
                                     maxlength="255">
                                 <small id="help_clinic_name"
                                     class="form-text text-muted">{{__('help.clinic_name')}}</small>
@@ -60,7 +60,7 @@
                             <div class="col-md-6">
                                 <input id="description" type="text"
                                     class="form-control @error('description') is-invalid @enderror" name="description"
-                                    value="{{ old('description') }}" autocomplete="description" autofocus
+                                    value="{{ old('description') }}" autocomplete="description"
                                     maxlength="255">
                                 <small id="help_clinic_description"
                                     class="form-text text-muted">{{__('help.clinic_description')}}</small>
@@ -82,7 +82,7 @@
                             <div class="col-md-6">
                                 <input id="manager" type="text"
                                     class="form-control @error('manager') is-invalid @enderror" name="manager"
-                                    value="{{ old('manager', Auth::user()->name) }}" autocomplete="manager" autofocus
+                                    value="{{ old('manager', Auth::user()->name) }}" autocomplete="manager"
                                     maxlength="100">
                                 <small id="help_clinic_manager"
                                     class="form-text text-muted">{{__('help.clinic_manager')}}</small>
@@ -104,7 +104,7 @@
                             <div class="col-md-6">
                                 <input id="code" type="text"
                                     class="form-control @error('code') is-invalid @enderror" name="code"
-                                    value="{{ old('code') }}" autocomplete="code" autofocus
+                                    value="{{ old('code') }}" autocomplete="code"
                                     maxlength="100">
                                 <small id="help_clinic_code"
                                     class="form-text text-muted">{{__('help.clinic_code')}}</small>
@@ -126,8 +126,8 @@
                             <div class="col-md-6">
                                 <input id="address" type="text"
                                     class="form-control @error('address') is-invalid @enderror" name="address"
-                                    value="{{ old('address') }}" autocomplete="address" autofocus
-                                    maxlength="255">
+                                    value="{{ old('address') }}" autocomplete="address"
+                                    maxlength="100">
                                 <small id="help_clinic_address"
                                     class="form-text text-muted">{{__('help.clinic_address')}}</small>
 
@@ -148,7 +148,7 @@
                             <div class="col-md-6">
                                 <input id="postcode" type="text"
                                     class="form-control @error('postcode') is-invalid @enderror" name="postcode"
-                                    value="{{ old('postcode') }}" autocomplete="postcode" autofocus
+                                    value="{{ old('postcode') }}" autocomplete="postcode"
                                     maxlength="10">
                                 <small id="help_clinic_postcode"
                                     class="form-text text-muted">{{__('help.clinic_postcode')}}</small>
@@ -170,8 +170,8 @@
                             <div class="col-md-6">
                                 <input id="city" type="text"
                                     class="form-control @error('city') is-invalid @enderror" name="city"
-                                    value="{{ old('city') }}" autocomplete="city" autofocus
-                                    maxlength="255">
+                                    value="{{ old('city') }}" autocomplete="city"
+                                    maxlength="64">
                                 <small id="help_clinic_city"
                                     class="form-text text-muted">{{__('help.clinic_city')}}</small>
 
@@ -193,8 +193,8 @@
                             <div class="col-md-6">
                                 <input id="phone" type="text"
                                     class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                    value="{{ old('phone') }}" autocomplete="phone" autofocus
-                                    maxlength="64">
+                                    value="{{ old('phone') }}" autocomplete="phone"
+                                    maxlength="32">
                                 <small id="help_clinic_phone"
                                     class="form-text text-muted">{{__('help.clinic_phone')}}</small>
 
@@ -215,7 +215,7 @@
                             <div class="col-md-6">
                                 <input id="website" type="text"
                                     class="form-control @error('website') is-invalid @enderror" name="website"
-                                    value="{{ old('website') }}" autocomplete="website" autofocus
+                                    value="{{ old('website') }}" autocomplete="website"
                                     maxlength="255">
                                 <small id="help_clinic_website"
                                     class="form-text text-muted">{{__('help.clinic_website')}}</small>
@@ -237,7 +237,7 @@
                             <div class="col-md-6">
                                 <input id="email" type="text"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" autocomplete="email" autofocus
+                                    value="{{ old('email') }}" autocomplete="email"
                                     maxlength="255">
                                 <small id="help_clinic_email"
                                     class="form-text text-muted">{{__('help.clinic_email')}}</small>

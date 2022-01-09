@@ -17,15 +17,15 @@ class CreateOwnersTable extends Migration
             $table->id();
             $table->bigInteger('clinic_id')->unsigned();
             $table->string('country_id', 2);
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('firstname', 100);
+            $table->string('lastname', 100);
             $table->string('email');
-            $table->string('phone_primary', 64);
-            $table->string('phone_secondary', 64)->nullable();
-            $table->string('address')->nullable();
+            $table->string('phone_primary', 32);
+            $table->string('phone_secondary', 32)->nullable();
+            $table->string('address', 100)->nullable();
             $table->string('postcode', 10)->nullable();
-            $table->string('city')->nullable();
-            $table->string('ssn')->nullable();
+            $table->string('city', 64)->nullable();
+            $table->string('ssn', 64)->nullable();
 
             $table->timestamps();
             $table->softDeletes();

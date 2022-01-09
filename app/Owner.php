@@ -14,13 +14,13 @@ class Owner extends Model
         'country_id',
         'firstname',
         'lastname',
+        'email',
+        'phone_primary',
+        'phone_secondary',
         'address',
         'postcode',
         'city',
         'ssn',
-        'phone',
-        'mobile',
-        'email'
     ];
 
     protected $appends = ['fullname'];

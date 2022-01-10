@@ -69,6 +69,7 @@ return [
     'insert' => 'inserimento',
     'invite' => 'invita',
     'is_pathologic' => 'patologico',
+    'join' => 'aderisci',
     'language' => 'lingua',
     'lastname' => 'cognome',
     'links' => 'links',

@@ -48,6 +48,7 @@ Route::post('contacts/store', 'ContactController@store')->name('contacts.store')
 
 // clinics
 Route::get('clinics/join', 'ClinicController@join')->name('clinics.join')->middleware('auth');
+Route::get('clinics/enroll', 'ClinicController@enroll')->name('clinics.enroll')->middleware('auth');
 Route::get('clinics/create', 'ClinicController@create')->name('clinics.create')->middleware('auth');
 Route::delete('clinics/{clinic}', 'ClinicController@destroy')->name('clinics.destroy')->middleware('clinic_roles:root|admin');
 Route::post('clinics/{clinic}/send', 'ClinicController@send')->name('clinics.send')->middleware('clinic_roles:root|admin');

@@ -68,7 +68,8 @@ class ClinicController extends Controller
         $clinic->save();
 
         $imageName = null;
-        if ($request->file('logo')) {
+        if ($request->file('logo'))
+        {
             $imagePath = $request->file('logo');
             $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
@@ -80,7 +81,8 @@ class ClinicController extends Controller
         $adminRole = Role::where('name', 'admin')->first();
         $clinic->roles()->attach($adminRole, ['user_id' => Auth::user()->id]);
 
-        if ($request->has('species_add_common')) {
+        if ($request->has('species_add_common'))
+        {
             Species::create(['tsn' => '726821', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_dog')]);
             Species::create(['tsn' => '183798', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_cat')]);
             Species::create(['tsn' => '180691', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_horse')]);
@@ -101,25 +103,23 @@ class ClinicController extends Controller
 
         // SELECT * FROM `watchdogs` where clinic_id=1 and user_id=1 GROUP by request_uri
         $lastVisitByUser = $watchdog->all()
-                                    ->sortByDesc('created_at')
-                                    ->where('clinic_id', '=', $clinic->id)
-                                    ->where('user_id', '=', auth()->user()->id)
-                                    ->where('type', '=', 'visit')
-                                    ->where('severity', '=', 0)
-                                    ->groupBy('request_uri')
-                                    ->take(5)
-                                    ;
-                                    
-        $lastVisitByClinic = $watchdog->all()
-                                    ->sortByDesc('created_at')
-                                    ->where('clinic_id', '=', $clinic->id)
-                                    ->where('type', '=', 'visit')
-                                    ->where('severity', '=', 0)
-                                    ->groupBy('request_uri')
-                                    ->take(5)
-                                    ;
+            ->sortByDesc('created_at')
+            ->where('clinic_id', '=', $clinic->id)
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('type', '=', 'visit')
+            ->where('severity', '=', 0)
+            ->groupBy('request_uri')
+            ->take(5);
 
-                                    // dd($lastVisitByUser);
+        $lastVisitByClinic = $watchdog->all()
+            ->sortByDesc('created_at')
+            ->where('clinic_id', '=', $clinic->id)
+            ->where('type', '=', 'visit')
+            ->where('severity', '=', 0)
+            ->groupBy('request_uri')
+            ->take(5);
+
+        // dd($lastVisitByUser);
         return view('clinics.show')->with('clinic', $clinic)->with(compact('lastVisitByUser', 'lastVisitByClinic'));
     }
 
@@ -160,22 +160,27 @@ class ClinicController extends Controller
         $clinic->email = $request->email;
 
         $imageName = null;
-        if ($request->file('logo')) {
+        if ($request->file('logo'))
+        {
             $imagePath = $request->file('logo');
             $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
             $request->logo->move(public_path('images'), $imageName);
 
             // delete previous file if exists
-            if ($clinic->logo != null && file_exists(public_path('images') . '/' . $clinic->logo)) {
+            if ($clinic->logo != null && file_exists(public_path('images') . '/' . $clinic->logo))
+            {
                 unlink(public_path('images') . '/' . $clinic->logo);
             }
             $clinic->logo = $imageName;
         }
 
-        if ($clinic->save()) {
+        if ($clinic->save())
+        {
             $request->session()->flash('success', __('message.clinic_update_success'));
-        } else {
+        }
+        else
+        {
             $request->session()->flash('error', 'message.clinic_update_error');
         }
 
@@ -194,6 +199,7 @@ class ClinicController extends Controller
         return redirect()->route('home')->with('success', __('message.clinic_destroy_success'));
     }
 
+
     /**
      *
      * @param  \Illuminate\Http\Request  $request
@@ -201,34 +207,64 @@ class ClinicController extends Controller
      */
     public function join(Request $request)
     {
-        // split the token and compose serial / key attributes 
+        return view('clinics.join');
+    }
+
+
+    /**
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function enroll(Request $request)
+    {
+        // split the token and compose serial / key attributes
         $aToken = explode('-', $request->token);
+
+        if ($aToken == false || count($aToken) != 2)
+        {
+            $request->session()->flash('error', __('message.clinic_join_error'));
+            return redirect()->route('home');
+        }
+
         $serial = $aToken[0];
         $handshakeRequest = $aToken[1];
 
         // load a clinic object
         $clinic = Clinic::where('serial', $serial)->first();
 
-        if ($clinic == null) {
+        if ($clinic == null)
+        {
             $request->session()->flash('error', __('message.clinic_join_not_found'));
-        } else {
-            if ($clinic->users->where('id', Auth::user()->id)->count() > 0) {
+        }
+        else
+        {
+            if ($clinic->users->where('id', Auth::user()->id)->count() > 0)
+            {
                 $request->session()->flash('error', __('message.clinic_join_user_exists'));
-            } else {
+            }
+            else
+            {
                 // user doen not exists. check the hanshake
                 $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key), 0, 8);
-                if ($handshakeRequest === $handshakeResponse) {
+                if ($handshakeRequest === $handshakeResponse)
+                {
                     $veterinarianRole = Role::where('name', 'veterinarian')->first();
                     $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
 
                     $request->session()->flash('success', __('message.clinic_join_success'));
-                } else {
+                }
+                else
+                {
                     $request->session()->flash('error', __('message.clinic_join_error'));
                 }
             }
         }
         return redirect()->route('home');
     }
+
+
+
 
 
 
@@ -247,7 +283,8 @@ class ClinicController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
-        Mail::to($request->email)->send(new ClinicJoinMail($clinic));
+        $token = $clinic->serial . '-' . substr(md5($request->email . $clinic->key), 0, 8);
+        Mail::to($request->email)->send(new ClinicJoinMail($clinic, $token));
 
         return redirect()->route('clinics.show', $clinic)->with('success', __('message.clinic_invitation_success'));
     }

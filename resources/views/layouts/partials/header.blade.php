@@ -2,11 +2,11 @@
     <div class="container">
         @auth
         <a class="navbar-brand" href="{{ url('/home') }}">
-            {{ config('app.name', 'Ababu') }}
+            🐾 {{ config('app.name', 'Ababu') }} 🌻
         </a>
         @else
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Ababu') }}
+            🐾 {{ config('app.name', 'Ababu') }} 🌻
         </a>
         @endauth
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -18,7 +18,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @if ( Request::is('clinics/*') )
-                @include('clinics.menu')
+                @include('clinics.partials.menu')
                 @endif
             </ul>
 

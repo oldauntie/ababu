@@ -27,8 +27,7 @@
 
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="contact-type"
-                                        class="text-md-right">{{__('translate.type')}}</label>
+                                    <label for="contact-type" class="text-md-right">{{__('translate.type')}}</label>
                                     <div class="input-group">
                                         <select name="contact-type" id="contact-type" class="form-control">
                                             <option value="bug">{{ __('translate.bug') }}</option>
@@ -44,8 +43,9 @@
                                     <label for="contact-description"
                                         class="text-md-right">{{__('translate.contact')}}</label>
                                     <div class="input-group">
-                                        <textarea name="contact-description" id="contact-description" rows="2" style="min-width: 100%"
-                                            class="form-control form-control-sml" required>{{ old('contact-description') }}</textarea>
+                                        <textarea name="contact-description" id="contact-description" rows="2"
+                                            style="min-width: 100%" class="form-control form-control-sml"
+                                            required>{{ old('contact-description') }}</textarea>
                                         <small class="form-text text-muted">{{__('help.contact_description')}}</small>
                                     </div>
                                 </div>

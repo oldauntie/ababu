@@ -70,6 +70,7 @@ return [
     'insert' => 'insert',
     'invite' => 'invite',
     'is_pathologic' => 'is pathologic',
+    'join' => 'join',
     'language' => 'language',
     'links' => 'links',
     'lastname' => 'last name',

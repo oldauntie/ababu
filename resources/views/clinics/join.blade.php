@@ -1,13 +1,19 @@
-<form method="GET" action="{{route('clinics.join')}}">
-    @csrf
-    <div class="form-group">
-        <button type="submit"
-            class="btn btn-secondary btn-lg">{{__('translate.clinic_join')}}</button>
-        <input type="text" name="token" id="token" value="{{old('token')}}"
-            class="form-control form-control-lg"
-            placeholder="{{__('help.clinic_token_example')}}" required maxlength="17"
-            minlength="17" />
-        <small id="help_clinic_join"
-            class="form-text text-muted">{{__('help.clinic_join')}}</small>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('translate.clinic_join') }}</div>
+
+                <div class="card-body">
+                    <div class="col-7 offset-md-2">
+                        @include('clinics.partials.join')
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+</div>
+@endsection

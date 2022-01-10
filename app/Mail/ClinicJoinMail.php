@@ -12,15 +12,17 @@ class ClinicJoinMail extends Mailable
     use Queueable, SerializesModels;
 
     private $clinic;
+    private $token;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($clinic)
+    public function __construct($clinic, $token)
     {
         $this->clinic = $clinic;
+        $this->token = $token;
     }
 
     /**
@@ -30,6 +32,8 @@ class ClinicJoinMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.clinic-join')->with('clinic', $this->clinic);
+        return $this->markdown('emails.clinic-join')
+            ->with('clinic', $this->clinic)
+            ->with('token', $this->token);
     }
 }

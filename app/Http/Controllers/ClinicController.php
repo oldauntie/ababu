@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 use App\Country;
 use App\Watchdog;
@@ -207,6 +208,8 @@ class ClinicController extends Controller
      */
     public function join(Request $request)
     {
+        // @YAH
+        // dd( Carbon::today()->format('Ymd') );
         return view('clinics.join');
     }
 
@@ -245,8 +248,8 @@ class ClinicController extends Controller
             }
             else
             {
-                // user doen not exists. check the hanshake
-                $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key), 0, 8);
+                // user does not exists. check the handshake
+                $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key . Carbon::today()->format('Ymd')), 0, 8);
                 if ($handshakeRequest === $handshakeResponse)
                 {
                     $veterinarianRole = Role::where('name', 'veterinarian')->first();
@@ -265,9 +268,6 @@ class ClinicController extends Controller
 
 
 
-
-
-
     /**
      * Send invitation to user.
      *
@@ -283,7 +283,7 @@ class ClinicController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
-        $token = $clinic->serial . '-' . substr(md5($request->email . $clinic->key), 0, 8);
+        $token = $clinic->serial . '-' . substr(md5($request->email . $clinic->key . Carbon::today()->format('Ymd')), 0, 8);
         Mail::to($request->email)->send(new ClinicJoinMail($clinic, $token));
 
         return redirect()->route('clinics.show', $clinic)->with('success', __('message.clinic_invitation_success'));

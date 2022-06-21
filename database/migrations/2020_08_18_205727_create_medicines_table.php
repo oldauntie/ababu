@@ -32,6 +32,7 @@ class CreateMedicinesTable extends Migration
             $table->text('additional_info')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
             $table->unique(['external_id','country_id']);
         });
     }

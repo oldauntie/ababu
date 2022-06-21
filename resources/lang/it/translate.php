@@ -69,7 +69,7 @@ return [
     'insert' => 'inserimento',
     'invite' => 'invita',
     'is_pathologic' => 'patologico',
-    'join' => 'aderisci',
+    'join' => 'unisciti ad una clinica esistente',
     'language' => 'lingua',
     'lastname' => 'cognome',
     'links' => 'links',

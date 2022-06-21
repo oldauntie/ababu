@@ -70,7 +70,7 @@ return [
     'insert' => 'insert',
     'invite' => 'invite',
     'is_pathologic' => 'is pathologic',
-    'join' => 'join',
+    'join' => 'join an existing clinic',
     'language' => 'language',
     'links' => 'links',
     'lastname' => 'last name',

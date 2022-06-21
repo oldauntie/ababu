@@ -241,7 +241,7 @@ INSERT INTO `countries` VALUES('tz', 'Tanzania, United Republic of', 'tza', 0);
 INSERT INTO `countries` VALUES('ua', 'Ukraine', 'ukr', 0);
 INSERT INTO `countries` VALUES('ug', 'Uganda', 'uga', 0);
 INSERT INTO `countries` VALUES('um', 'United States Minor Outlying Islands', '', 0);
-INSERT INTO `countries` VALUES('us', 'United States', 'usa', 0);
+INSERT INTO `countries` VALUES('us', 'United States', 'usa', 1);
 INSERT INTO `countries` VALUES('uy', 'Uruguay', 'ury', 0);
 INSERT INTO `countries` VALUES('uz', 'Uzbekistan', 'uzb', 0);
 INSERT INTO `countries` VALUES('va', 'Holy See (Vatican City State)', 'vat', 0);

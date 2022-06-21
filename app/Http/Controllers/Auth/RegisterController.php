@@ -44,13 +44,13 @@ class RegisterController extends Controller
     }
 
     public function showregistrationform()
-{
-    $locales = Locale::all();
+    {
+        $locales = Locale::all();
 
-    return view('auth.register', [
-        'locales' => $locales
-   ]);
-}
+        return view('auth.register', [
+            'locales' => $locales
+        ]);
+    }
 
     /**
      * Get a validator for an incoming registration request.

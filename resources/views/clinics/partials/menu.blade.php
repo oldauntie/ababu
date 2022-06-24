@@ -27,7 +27,10 @@
         @if(Auth::user()->hasAnyRoles(['admin']) )
         <a class="dropdown-item" href="{{route('clinics.users.list', $clinic)}}">{{__('translate.users')}}</a>
         <a class="dropdown-item" href="{{route('clinics.species.index', $clinic)}}">{{__('translate.species')}}</a>
-        <a class="dropdown-item" href="#">{{__('translate.preferences')}}</a>
+        <!--
+        @todo
+            <a class="dropdown-item" href="#">{{__('translate.preferences')}}</a>
+        -->
         <div class="dropdown-divider"></div>
         @endif
 

@@ -56,6 +56,7 @@ return [
     'pet_tatuatge' => 'Tatuatge number or serial',
     'pet_tatuatge_location' => 'Tatuatge location (e.g. left leg)',
     'prescription_delete' => 'Do you really want to delete selected prescription and all related information?',
+    'profile_update' => 'Profile update',
     'species_add_common' => 'Add most common Species to your clinic (suggested). Once your clinic has been created, you can later add, edit or remove Species from Clinic -> Species manu.',
     'species_admin' => 'Select the species your are going to use in your clinic (e.g. dog, cat, owl). You can choose as many species as you want even if we suggest you to choose those you really suppose to visit. You can add a specie whenever you want.',
     'species_delete' => 'Do you really want to delete selected species?',

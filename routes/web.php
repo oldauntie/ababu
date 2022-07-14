@@ -57,10 +57,10 @@ Route::get('clinics/{clinic}', 'ClinicController@show')->name('clinics.show')->m
 Route::put('clinics/{clinic}', 'ClinicController@update')->name('clinics.update')->middleware('clinic_roles:root|admin');
 
 // change password
-Route::get('password', 'UserController@editPassword')->name('password');
-Route::post('password', 'UserController@updatePassword')->name('update.password');
-Route::get('profile', 'UserController@editProfile')->name('profile');
-Route::post('profile', 'UserController@updateProfile')->name('update.profile');
+Route::get('password', 'UserController@passwordEdit')->name('password');
+Route::post('password', 'UserController@passwordUpdate')->name('password.update');
+Route::get('profile', 'UserController@profileEdit')->name('profile');
+Route::post('profile', 'UserController@profileUpdate')->name('profile.update');
 
 // users
 Route::get('clinics/{clinic}/users', 'UserController@list')->name('clinics.users.list')->middleware('clinic_roles:root|admin');

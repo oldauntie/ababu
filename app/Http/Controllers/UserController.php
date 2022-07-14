@@ -108,7 +108,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function editPassword()
+    public function passwordEdit()
     {
         return view('users.password');
     }
@@ -119,17 +119,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function updatePassword(Request $request)
+    public function passwordUpdate(Request $request)
     {
         $request->validate([
-            'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
+            'password_current' => ['required', new MatchOldPassword],
+            'password_new' => ['required'],
+            'password_new_confirm' => ['same:new_password'],
         ]);
 
         try
         {
-            User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+            User::find(auth()->user()->id)->update(['password' => Hash::make($request->password_new)]);
             $request->session()->flash('success', __('message.password_update_success'));
         }
         catch (\Illuminate\Database\QueryException $e)
@@ -145,7 +145,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function editProfile()
+    public function profileEdit()
     {
         return view('users.profile');
     }
@@ -156,7 +156,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function updateProfile(Request $request)
+    public function profileUpdate(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

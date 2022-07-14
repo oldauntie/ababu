@@ -14,7 +14,7 @@ input:required {
                 <div class="card-header">{{ __('help.profile_update') }}</div>
    
                 <div class="card-body">
-                    <form method="POST" action="{{ route('update.profile') }}">
+                    <form method="POST" action="{{ route('profile.update') }}">
                         @csrf 
    
                          @foreach ($errors->all() as $error)

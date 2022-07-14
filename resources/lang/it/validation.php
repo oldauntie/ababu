@@ -146,6 +146,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        "current_password" => "password attuale",
+        "new_password" => "nuova password"
+    ],
 
 ];

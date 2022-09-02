@@ -70,7 +70,7 @@
                             {{ __('translate.profile') }}
                         </a>
                         
-                        <a class="dropdown-item" href="{{ route('password') }}">
+                        <a class="dropdown-item" href="{{ route('password.edit') }}">
                             {{ __('translate.password') }}
                         </a>
                         

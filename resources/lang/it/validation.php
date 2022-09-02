@@ -96,14 +96,14 @@ return [
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => 'Il campo :attribute è obbligatorio.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same' => 'The :attribute and :other must match.',
+    'same' => 'Il campo :attribute e :other devono coincidere.',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
         'file' => 'The :attribute must be :size kilobytes.',
@@ -147,8 +147,9 @@ return [
     */
 
     'attributes' => [
-        "current_password" => "password attuale",
-        "new_password" => "nuova password"
+        "password_current" => "password attuale",
+        "password_new" => "nuova password",
+        "password_old" => "vecchia password",
     ],
 
 ];

@@ -115,11 +115,11 @@ class UserController extends Controller
 
 
     /**
-     * update User Password.
+     * change User Password.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function passwordUpdate(Request $request)
+    public function passwordChange(Request $request)
     {
         $request->validate([
             'password_current' => ['required', new MatchOldPassword],

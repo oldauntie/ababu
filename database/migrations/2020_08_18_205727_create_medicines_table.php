@@ -17,15 +17,19 @@ class CreateMedicinesTable extends Migration
             $table->id();
             $table->string('external_id');
             $table->string('country_id', 2);
+            $table->string('atc')->nullable();
+            $table->string('gtin')->nullable();
             $table->string('name');
             $table->string('company');
+            $table->text('manufacturer')->nullable();
+            $table->string('local_representative')->nullable();
             $table->dateTime('date_of_issue')->nullable();
             $table->dateTime('date_of_suspension')->nullable();
             $table->text('active_substances')->nullable();
-            $table->string('gtin')->nullable();
-            $table->string('atc')->nullable();
+            $table->text('strength_of_drug')->nullable();
             $table->text('prescription_method')->nullable();
-            $table->string('pharmaceutical_form')->nullable();
+            $table->string('dosage_form')->nullable();
+            $table->text('pharmaceutical_form')->nullable();
             $table->text('target_species')->nullable();
             $table->string('therapeutic_group')->nullable();
             $table->string('spc_link')->nullable(); // Summary of Product Characteristics

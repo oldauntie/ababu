@@ -16,7 +16,7 @@ select + .select2-container {
 }
 
 input:required {
-    border: 1px dashed red;
+    border-left: 1px solid orangered;
 }
 
 

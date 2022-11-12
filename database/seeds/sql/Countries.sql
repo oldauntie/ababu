@@ -239,7 +239,7 @@ INSERT INTO `countries` VALUES('tv', 'Tuvalu', 'tuv', 0);
 INSERT INTO `countries` VALUES('tw', 'Taiwan, Province of China', '', 0);
 INSERT INTO `countries` VALUES('tz', 'Tanzania, United Republic of', 'tza', 0);
 INSERT INTO `countries` VALUES('ua', 'Ukraine', 'ukr', 0);
-INSERT INTO `countries` VALUES('ug', 'Uganda', 'uga', 0);
+INSERT INTO `countries` VALUES('ug', 'Uganda', 'uga', 1);
 INSERT INTO `countries` VALUES('um', 'United States Minor Outlying Islands', '', 0);
 INSERT INTO `countries` VALUES('us', 'United States', 'usa', 1);
 INSERT INTO `countries` VALUES('uy', 'Uruguay', 'ury', 0);

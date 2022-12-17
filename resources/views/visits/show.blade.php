@@ -47,10 +47,10 @@
                     {{ __('translate.days') }}
                     <br />
                     <small>{{ __('translate.owner') }}: {{ $pet->owner->fullname }}:
-                        <a href="#" id="owner-details-phone" data-toggle="modal"
-                            data-target="#owner-overlay-modal">{{ $pet->owner->phone }}</a>
-                        <a href="#" id="owner-details-phone" data-toggle="modal"
-                            data-target="#owner-overlay-modal">{{ $pet->owner->mobile }}</a>
+                        <a href="#" id="owner-details-phone" data-toggle="modal" data-target="#owner-overlay-modal">{{
+                            $pet->owner->phone }}</a>
+                        <a href="#" id="owner-details-phone" data-toggle="modal" data-target="#owner-overlay-modal">{{
+                            $pet->owner->mobile }}</a>
                         <a href="mailto:{{ $pet->owner->email }}">{{ $pet->owner->email }}</a>
                     </small>
                 </div>
@@ -100,12 +100,15 @@
                             <!-- Tab Headers -->
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
-                                        href="#nav-home" role="tab" aria-controls="nav-home"
+                                    <a class="nav-item nav-link active" id="nav-treatments-tab" data-toggle="tab"
+                                        href="#nav-treatments" role="tab" aria-controls="nav-treatments"
                                         aria-selected="true">{{__('translate.treatments')}} &
                                         {{__('translate.vaccinations')}}</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-                                        href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                    <a class="nav-item nav-link" id="nav-attachments-tab" data-toggle="tab"
+                                        href="#nav-attachments" role="tab" aria-controls="nav-attachments"
+                                        aria-selected="false">{{__('translate.attachments')}}</a>
+                                    <a class="nav-item nav-link" id="nav-materials-tab" data-toggle="tab"
+                                        href="#nav-materials" role="tab" aria-controls="nav-materials"
                                         aria-selected="false">{{__('translate.materials')}}</a>
                                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                         href="#nav-contact" role="tab" aria-controls="nav-contact"
@@ -114,12 +117,16 @@
                             </nav>
                             <!-- Tab Content -->
                             <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                    aria-labelledby="nav-home-tab">
+                                <div class="tab-pane fade show active" id="nav-treatments" role="tabpanel"
+                                    aria-labelledby="nav-treatments-tab">
                                     @include('treatments.index')
                                 </div>
-                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                    aria-labelledby="nav-profile-tab">materials</div>
+                                <div class="tab-pane fade" id="nav-attachments" role="tabpanel"
+                                    aria-labelledby="nav-attachments-tab">
+                                    @include('attachments.index')
+                                </div>
+                                <div class="tab-pane fade" id="nav-materials" role="tabpanel"
+                                    aria-labelledby="nav-materials-tab">materials</div>
                                 <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                     aria-labelledby="nav-contact-tab">certificates</div>
                             </div>

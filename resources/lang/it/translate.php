@@ -15,6 +15,7 @@ return [
     'admin' => 'admin',
     'age' => 'età',
     'at_age' => 'all\'età',
+    'attachments' => 'allegati',
     'breed' => 'razza',
     'bug' => 'bug',
     'calendar' => 'calendario',

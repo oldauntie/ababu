@@ -15,6 +15,7 @@ return [
     'admin' => 'admin',
     'age' => 'age',
     'at_age' => 'at age',
+    'attachments' => 'attachments',
     'breed' => 'breed',
     'bug' => 'bug',
     'calendar' => 'calendar',

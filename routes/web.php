@@ -38,6 +38,11 @@ Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
 
+// attachments
+Route::resource('attachments', AttachmentController::class);
+
+
+
 // calendar
 Route::get('clinics/{clinic}/calendars/events', 'CalendarEventController@events')->name('clinics.calendars.events');
 Route::get('clinics/{clinic}/calendars/show', 'CalendarEventController@show')->name('clinics.calendars.show');

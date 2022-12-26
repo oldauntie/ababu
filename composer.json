@@ -9,12 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "barryvdh/laravel-dompdf": "^0.9.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "picqer/php-barcode-generator": "^2.2",
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

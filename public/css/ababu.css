@@ -1,0 +1,38 @@
+fieldset {
+    border: thin solid black;
+    padding: 7px;
+}
+
+legend {
+    font-size: 1rem;
+    color: lightgray;
+    width: auto;
+    margin-bottom: 0rem;
+    padding: 7px;
+}
+
+select + .select2-container {
+    width: 100% !important;
+}
+
+input:required {
+    border-left: 1px solid orangered;
+}
+
+
+/*
+input {
+    background: #ddd;
+    width: 200px;
+    transition: width .3s ease-in-out;
+    -webkit-transition: width .3s ease-in-out;
+    -moz-transition: width .3s ease-in-out;
+    -ms-transition: width .3s ease-in-out;
+}
+
+input:focus {
+    background: #ddd;
+    width: 250px;
+    color: black;
+}
+*/

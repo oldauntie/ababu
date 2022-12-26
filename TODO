@@ -1,0 +1,4 @@
+- [*]   change enroll procedure to avoid banned users to get in again
+- []    the little saturday feedbacks
+- []    preferences for the clinic (see: menu.blade.php)
+- []    two different form and ways (I forgot / change password) to reset password. uniform!

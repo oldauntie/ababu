@@ -4,6 +4,10 @@
 /public/storage
 /storage/*.key
 /vendor
+/database/seeds/sql/VeNom/*
+/database/seeds/sql/animalia/*
+/database/seeds/sql/medicines/*
+/database/seeds/sql/develop/*
 .env
 .env.backup
 .phpunit.result.cache

@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 # debug and experiments route
 Route::resource('ozzy', OzzyController::class);
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes(['verify' => true]);

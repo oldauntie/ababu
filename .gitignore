@@ -16,3 +16,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# added by Ababu
+/database/seeders/sql/VeNom/*
+/database/seeders/sql/animalia/*
+/database/seeders/sql/medicines/*
+/database/seeders/sql/develop/*

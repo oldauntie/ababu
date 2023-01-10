@@ -34,12 +34,12 @@ class Clinic extends Model
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role', 'role_user');
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'role_user');
+        return $this->belongsToMany(User::class, 'role_user');
     }
 
     public function country()
@@ -49,11 +49,11 @@ class Clinic extends Model
 
     public function owners()
     {
-        return $this->hasMany('App\Owner');
+        return $this->hasMany(Owner::class);
     }
 
     public function pets()
     {
-        return $this->hasMany('App\Pet');
+        return $this->hasMany(Pet::class);
     }
 }

@@ -22,3 +22,4 @@ yarn-error.log
 /database/seeders/sql/animalia/*
 /database/seeders/sql/medicines/*
 /database/seeders/sql/develop/*
+/ababu.session.sql

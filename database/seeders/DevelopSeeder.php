@@ -63,7 +63,7 @@ class DevelopSeeder extends Seeder
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),
         ]);
-
+        
         $veterinarian = User::create([
             'locale_id' => 'it-IT',
             'registration' => 'IT-REG-3',
@@ -71,13 +71,15 @@ class DevelopSeeder extends Seeder
             'name' => 'Veterinarian',
             'email' => 'veterinarian@ababu.cloud',
             'password' => Hash::make('ababu'),
+            'email_verified_at' => Carbon::now(),
         ]);
-
+        
         $user = User::create([
             'locale_id' => 'en-US',
             'name' => 'Generic User',
             'email' => 'user@ababu.cloud',
             'password' => Hash::make('ababu'),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         $admin->roles()->attach($adminRole, ['clinic_id' => 1]);

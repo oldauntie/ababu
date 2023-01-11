@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 # debug and experiments route
-Route::resource('ozzy', OzzyController::class);
+Route::resource('ozzy', OzzyController::class)->middleware('roles:root|admin');
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

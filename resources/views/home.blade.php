@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    {{ __('translate.user')}}
                 </div>
             </div>
         </div>

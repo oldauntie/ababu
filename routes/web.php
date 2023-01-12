@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\OzzyController;
+use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +27,9 @@ Route::resource('ozzy', OzzyController::class)->middleware('roles:root|admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes(['verify' => true]);
+
+// change password
+Route::get('password/edit', 'UserController@passwordEdit')->name('password.edit');
+Route::post('password/change', 'UserController@passwordChange')->name('password.change');
+Route::get('profile', [UserController::class, 'profileEdit'])->name('profile');
+Route::post('profile', 'UserController@profileUpdate')->name('profile.update');

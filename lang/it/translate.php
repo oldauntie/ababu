@@ -127,7 +127,7 @@ return [
     'problem_suspect' => 'sospetto',
     'procedure' => 'procedura',
     'procedures' => 'procedure',
-    'profilo' => 'profilo',
+    'profile' => 'profilo',
     'qty' => 'q.tà',
     'quantity' => 'quantità',
     'recall_at' => 'richiama',

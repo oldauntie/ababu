@@ -15,9 +15,16 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- toastr -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link href="{{ asset('/css/toastr.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ asset('/js/toastr.min.js') }}"></script>
+
 </head>
 <body>
     <div id="app">
+        @include('layouts.partials.alert')
         @include('layouts.partials.header')
 
         <main class="py-4">

@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes(['verify' => true]);
 
 // change password
-Route::get('password/edit', 'UserController@passwordEdit')->name('password.edit');
-Route::post('password/change', 'UserController@passwordChange')->name('password.change');
+Route::get('password/edit', [UserController::class. 'passwordEdit'])->name('password.edit');
+Route::post('password/change', [UserController::class, 'passwordChange'])->name('password.change');
 Route::get('profile', [UserController::class, 'profileEdit'])->name('profile');
-Route::post('profile', 'UserController@profileUpdate')->name('profile.update');
+Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.update');

@@ -42,12 +42,12 @@
             <tbody>
                 <tr class="selected">
                     <td>0</td>
-                    <td><img title="{{ __('translate.problem_indipendent') }}"
+                    <td><img title="{{ __('translate.problem_independent') }}"
                         src="{{url('/images/icons/link_break.png')}}"></td>
                     <td>0</td>
-                    <td>{{ __('translate.problem_indipendent') }}</td>
-                    <td><img title="{{ __('translate.problem_indipendent') }}"
-                        src="{{url('/images/icons/problem_indipendent.png')}}"></td>
+                    <td>{{ __('translate.problem_independent') }}</td>
+                    <td><img title="{{ __('translate.problem_independent') }}"
+                        src="{{url('/images/icons/problem_independent.png')}}"></td>
                 </tr>
 
                 @foreach ($problems as $problem)

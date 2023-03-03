@@ -122,7 +122,7 @@ return [
     'problem_key_problem' => 'problema chiave',
     'problem_status' => 'stato del problema',
     'prescription_in_evidence' => 'in evidenza',
-    'problem_indipendent' => 'indipendente dal problema',
+    'problem_independent' => 'indipendente dal problema',
     'problem_long_term_active' => 'attivo di lungo periodo',
     'problem_suspect' => 'sospetto',
     'procedure' => 'procedura',

@@ -123,7 +123,7 @@ return [
     'problem_key_problem' => 'key problem',
     'problem_status' => 'problem status',
     'prescription_in_evidence' => 'in evidence',
-    'problem_indipendent' => 'problem indipendent',
+    'problem_independent' => 'problem independent',
     'problem_long_term_active' => 'long term active',
     'problem_suspect' => 'suspect',
     'procedure' => 'procedure',

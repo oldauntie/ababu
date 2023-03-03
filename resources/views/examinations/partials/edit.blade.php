@@ -88,7 +88,7 @@
                                         <div class="input-group">
                                             <select name="problem" id="examination-edit-problem"
                                                 class="form-control form-control-sm" disabled>
-                                                <option value="">{{ __('translate.problem_indipendent') }}</option>
+                                                <option value="">{{ __('translate.problem_independent') }}</option>
                                                 @foreach ($problems as $problem)
                                                 <option value="{{ $problem->id }}">{{ $problem->diagnosis->term_name }}
                                                 </option>

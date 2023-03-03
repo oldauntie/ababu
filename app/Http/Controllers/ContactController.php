@@ -30,7 +30,7 @@ class ContactController extends Controller
             ), function ($message) use ($request)
             {
                 $message->from(Auth::user()->email);
-                $message->to('roberto.nannucci@gmail.com', 'Admin')->subject( $request->type . "(" . url()->previous() . ")" );
+                $message->to('ababu@oldauntie.org', 'Admin')->subject( $request->type . "(" . url()->previous() . ")" );
             });
         }
 

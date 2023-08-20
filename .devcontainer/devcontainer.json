@@ -1,0 +1,73 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
+{
+	"name": "PHP-8.2",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	// start the apache webserver
+	// "postStartCommand": "apache2ctl start",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	 "features": {
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+	 },
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+				// Set *default* container specific settings.json values on container create.
+				"settings": { 
+						"php.executablePath": "/usr/local/bin/php",
+						"phpfmt.php_bin": "/usr/local/bin/php",
+						"php.validate.enable": false,
+						"intelephense.environment.phpVersion": "8.2.7",
+						"intelephense.environment.includePaths": [
+							"./vendor/*"
+						],
+						"php.debug.executablePath": "/usr/local/bin/php",
+						"php.validate.executablePath": "/usr/local/bin/php",
+						"terminal.integrated.shell.linux": "/usr/bin/zsh"
+				},
+
+				// Add the IDs of extensions you want installed when the container is created.
+				"extensions": [
+					// "adam-bender.commit-message-editor",
+					// "DEVSENSE.composer-php-vscode",
+					// "IronGeek.vscode-env",
+					// "mhutchie.git-graph",
+					// "donjayamanne.githistory",
+					// "eamodio.gitlens",
+					// "VisualStudioExptTeam.vscodeintellicode",
+					// "VisualStudioExptTeam.intellicode-api-usage-examples",
+					// "Zignd.html-css-class-completion",
+					// "MS-CEINTL.vscode-language-pack-it",
+					// "PKief.material-icon-theme",
+					// "bmewburn.vscode-intelephense-client",
+					// "felixfbecker.php-intellisense",
+					// "kokororin.vscode-phpfmt",
+					"xdebug.php-debug",
+					// "GitHub.vscode-pull-request-github",
+					// "aaron-bond.better-comments",
+					// "xabikos.JavaScriptSnippets",
+					// "formulahendry.auto-rename-tag",
+					// "formulahendry.auto-close-tag"
+				]
+		}
+},
+
+	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
+	"forwardPorts": [8080, 3306],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sudo chmod a+x .devcontainer/dev_config/init_script_commands.sh && .devcontainer/dev_config/init_script_commands.sh",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"remoteUser": "vscode"
+}

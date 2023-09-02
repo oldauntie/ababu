@@ -74,5 +74,17 @@ class LocalesTableSeeder extends Seeder
             'time_short_format' => 'g:i a',
             'time_long_format' => 'H:i:s',
         ]);
+
+        Locale::create([
+            'id' => 'en-KE',
+            'short_code' => 'en-ke',
+            'language' => 'en',
+            'description' => 'English (Kenya)',
+            'date_short_format' => 'd/m/Y',
+            'date_medium_format' => 'd M Y',
+            'date_long_format' => 'd F Y',
+            'time_short_format' => 'g:i a',
+            'time_long_format' => 'H:i:s',
+        ]);
     }
 }

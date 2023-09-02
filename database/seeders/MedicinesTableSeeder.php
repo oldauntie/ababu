@@ -20,6 +20,7 @@ class MedicinesTableSeeder extends Seeder
         DB::unprepared(File::get(base_path() . '/database/seeders/sql/medicines/it.sql'));
         DB::unprepared(File::get(base_path() . '/database/seeders/sql/medicines/ug.sql'));
         DB::unprepared(File::get(base_path() . '/database/seeders/sql/medicines/us.sql'));
-        $this->command->info('Medicines table seeded! (GB, IT, UG, US)');
+        DB::unprepared(File::get(base_path() . '/database/seeders/sql/medicines/ke.sql'));
+        $this->command->info('Medicines table seeded! (GB, IT, UG, US, KE)');
     }
 }

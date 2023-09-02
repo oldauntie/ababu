@@ -21,8 +21,8 @@ services:
 
   db:
     container_name: mariadb-ababu
-    image: mariadb
-    restart: always
+    image: mariadb:11.0.3
+    restart: unless-stopped
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
@@ -32,7 +32,7 @@ services:
   adminer:
     container_name: admirer-ababu
     image: adminer
-    restart: always 
+    restart: unless-stopped 
     ports:
         - 8081:8080  
 volumes:

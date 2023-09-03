@@ -11,7 +11,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-
+                @if ( Request::is('clinics/*') )
+                @include('clinics.partials.menu')
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->

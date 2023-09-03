@@ -16,11 +16,10 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() != null)
-        {
+        if ($request->user() != null) {
             app()->setLocale($request->user()->locale->language);
         }
-        
+
         return $next($request);
     }
 }

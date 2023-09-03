@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\OzzyController;
 use App\Http\Controllers\UserController;
 
@@ -33,3 +35,10 @@ Route::get('password/edit', [UserController::class. 'passwordEdit'])->name('pass
 Route::post('password/change', [UserController::class, 'passwordChange'])->name('password.change');
 Route::get('profile', [UserController::class, 'profileEdit'])->name('profile');
 Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.update');
+
+# clinics
+Route::get('clinics/{clinic}', [ClinicController::class, 'show'])->name('clinics.show')->middleware('clinic_access');
+
+
+# owners
+Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');

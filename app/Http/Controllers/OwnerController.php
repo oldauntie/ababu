@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Models\Clinic;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class OwnerController extends Controller
@@ -12,9 +14,13 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Clinic $clinic)
     {
-        //
+        $countries = Country::orderBy('name')->get();
+
+        return view('owners.index')
+            ->with('clinic', $clinic)
+            ->with('countries', $countries);
     }
 
     /**

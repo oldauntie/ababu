@@ -32,7 +32,12 @@
                         @foreach (Auth::user()->clinics as $clinic)
                         <li>
                             <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }}
-                                ({{$clinic->country->name}} - {{Auth::user()->locale->language}})</a>
+                                ({{$clinic->country->name}} - {{Auth::user()->locale->language}})</a><br>
+                                {{ $clinic->description}}<br>
+                                {{ $clinic->address}}, {{ $clinic->city  }}, {{ $clinic->postcode }}<br>
+                                <b>{{ __('translate.phone') }}:  {{$clinic->phone}}</b><br>
+                                <b>{{ __('translate.email') }}:  {{$clinic->email}}</b><br>
+                                <b>{{ __('translate.website') }}:  {{$clinic->website}}</b>
                         </li>
                         @endforeach
                     </ul>

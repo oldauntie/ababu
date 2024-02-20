@@ -37,7 +37,11 @@ Route::get('profile', [UserController::class, 'profileEdit'])->name('profile');
 Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.update');
 
 # clinics
-Route::get('clinics/{clinic}', [ClinicController::class, 'show'])->name('clinics.show')->middleware('clinic_access');
+# Route::get('clinics/{clinic}', [ClinicController::class, 'show'])->name('clinics.show')->middleware('clinic_access');
+Route::resource('clinics', ClinicController::class)->middleware('clinic_access');
+
+# clinic specific action
+Route::post('clinics/{clinic}/send', 'ClinicController@send')->name('clinics.send')->middleware('clinic_roles:root|admin');
 
 
 # owners

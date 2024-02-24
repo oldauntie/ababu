@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\EsperimentoController;
 use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\OzzyController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 # debug and experiments route
-Route::resource('ozzy', OzzyController::class)->middleware('roles:root|admin');
+Route::resource('esperimento', EsperimentoController::class)->middleware('roles:root|admin');
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

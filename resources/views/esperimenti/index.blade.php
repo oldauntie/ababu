@@ -7,17 +7,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
-                        {{ $clinic->name }}
-
+                        Esperimenti
                         <br>
-                        <small>{{$clinic->description}}</small>
+                        <small>das ist untervallen</small>
                     </div>
                     <div class="float-end">
-                        @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-                        <a href="{{ route('clinics.edit', [$clinic->id]) }}" class="btn btn-sm btn-primary open_modal_edit">{{__('translate.edit')}}</a>
-                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#invite-modal">{{__('translate.invite')}}</button>
-                        <button class="btn btn-sm btn-danger open_modal_delete">{{__('translate.delete')}}</button>
-                        @endif
+                        <a href="{{ route('home') }}" class="btn btn-sm btn-primary">{{__('home')}}</a>
                     </div>
                 </div>
 
@@ -38,7 +33,7 @@
                     </div>
                     @endif
 
-                    here is the clinic [body]
+                    here are some experiments [body]
 
 
 
@@ -50,6 +45,3 @@
 </div>
 @endsection
 
-@if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-@include('clinics.partials.invite')
-@endif

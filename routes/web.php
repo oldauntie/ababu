@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 # debug and experiments route
-Route::resource('esperimento', EsperimentoController::class)->middleware('roles:root|admin');
+Route::resource('esperimenti', EsperimentoController::class)->middleware('roles:root|admin');
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -38,10 +38,13 @@ Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.
 
 # clinics
 # Route::get('clinics/{clinic}', [ClinicController::class, 'show'])->name('clinics.show')->middleware('clinic_access');
+# @todo: set access auth, 
+# @todo: what to do when a clinic is erased.
 Route::resource('clinics', ClinicController::class)->middleware('clinic_access');
 
 # clinic specific action
-Route::post('clinics/{clinic}/send', 'ClinicController@send')->name('clinics.send')->middleware('clinic_roles:root|admin');
+# Route::post('clinics/{clinic}/send', ClinicController::class, 'send')->name('clinics.send')->middleware('clinic_roles:root|admin');
+# Route::post('clinics/{clinic}/send', ClinicController::class, 'send')->name('clinics.send')->middleware('clinic_roles:root|admin');
 
 
 # owners

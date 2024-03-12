@@ -16,6 +16,7 @@ return [
     'age' => 'età',
     'at_age' => 'all\'età',
     'attachments' => 'allegati',
+    'back' => 'indietro',
     'breed' => 'razza',
     'bug' => 'bug',
     'calendar' => 'calendario',

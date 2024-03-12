@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Esperimento;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
+
 class EsperimentoController extends Controller
 {
     /**
@@ -12,7 +14,9 @@ class EsperimentoController extends Controller
      */
     public function index()
     {
-        echo "das ist untervallen";
+        $password = Hash::make('some_password_here');
+        echo $password;
+        # return view('esperimenti.index');
     }
 
     /**

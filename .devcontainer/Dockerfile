@@ -24,7 +24,8 @@ COPY vsmoddb.conf /etc/apache2/sites-available/
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY error_reporting.ini /usr/local/etc/php/conf.d/error_reporting.ini
 COPY policy.xml /etc/ImageMagick-6/policy.xml
-COPY 99-php.ini /home/ababu/git/docker-php/php/conf.d/99-custom.ini/99-php.ini
+# COPY 99-php.ini /home/ababu/git/docker-php/php/conf.d/99-custom.ini/99-php.ini
+COPY 99-php.ini /usr/local/etc/php/php.ini
 COPY custom.cnf /etc/mysql/conf.d/custom.cnf
 
 # Download and install Oh-My-Zsh

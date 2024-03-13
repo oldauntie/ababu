@@ -98,8 +98,7 @@
                             <div class="form-floating mb-3">
                                 <input id="code" type="text"
                                     class="form-control @error('code') is-invalid @enderror" name="code"
-                                    value="{{ $clinic->code }}" maxlength="100"
-                                    placeholder="{{ __('translate.code') }}">
+                                    value="{{ $clinic->code }}" maxlength="100" placeholder="{{ __('translate.code') }}">
                                 <label for="code">{{ __('translate.code') }}</label>
                             </div>
 
@@ -122,16 +121,14 @@
                             <div class="form-floating mb-3">
                                 <input id="city" type="text"
                                     class="form-control @error('city') is-invalid @enderror" name="city"
-                                    value="{{ $clinic->city }}" maxlength="64"
-                                    placeholder="{{ __('translate.city') }}">
+                                    value="{{ $clinic->city }}" maxlength="64" placeholder="{{ __('translate.city') }}">
                                 <label for="city">{{ __('translate.city') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <input id="phone" type="text"
                                     class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                    value="{{ $clinic->phone }}" maxlength="32"
-                                    placeholder="{{ __('translate.phone') }}">
+                                    value="{{ $clinic->phone }}" maxlength="32" placeholder="{{ __('translate.phone') }}">
                                 <label for="phone">{{ __('translate.phone') }}</label>
                             </div>
 
@@ -156,24 +153,22 @@
 
 
 
-
                             <div class="form-group row">
-                                <label for="logo"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('translate.logo') }}</label>
-
-                                @if ($clinic->logo != '')
-                                    <img src="{{ url('/images/' . $clinic->logo) }}" class="img-thumbnail">
-                                @else
-                                    <img src="{{ url('/images/no-image-available.svg') }}" class="img-thumbnail">
-                                @endif
-
                                 <div class="col-md-6">
+                                    <label for="logo"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('translate.logo') }}</label>
                                     <input id="logo" type="file"
-                                        class="form-control @error('logo') is-invalid @enderror" name="logo"
-                                        accept="image/png, image/jpeg">
+                                        class="form-control form-control-lg @error('logo') is-invalid @enderror"
+                                        name="logo" accept="image/png, image/jpeg">
                                     <small id="help_clinic_logo"
                                         class="form-text text-muted">{{ __('help.clinic_logo') }}</small>
-
+                                </div>
+                                <div class="col-md-6">
+                                    @if ($clinic->logo != '')
+                                        <img src="{{ url('/images/' . $clinic->logo) }}" class="img-thumbnail">
+                                    @else
+                                        <img src="{{ url('/images/no-image-available.svg') }}" class="img-thumbnail">
+                                    @endif
                                 </div>
                             </div>
 

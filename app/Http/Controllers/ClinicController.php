@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clinic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ClinicController extends Controller
 {
@@ -56,7 +57,7 @@ class ClinicController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
-            'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
+            # 'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $clinic->name = $request->name;

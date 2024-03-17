@@ -43,9 +43,7 @@ Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.
 Route::resource('clinics', ClinicController::class)->middleware('clinic_access');
 
 # clinic specific action
-# Route::post('clinics/{clinic}/send', ClinicController::class, 'send')->name('clinics.send')->middleware('clinic_roles:root|admin');
-# Route::post('clinics/{clinic}/send', ClinicController::class, 'send')->name('clinics.send')->middleware('clinic_roles:root|admin');
-
+Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('clinic_roles:root|admin');
 
 # owners
 Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');

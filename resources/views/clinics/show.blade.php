@@ -3,18 +3,17 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="float-start">
                         {{ $clinic->name }}
-
                         <br>
                         <small>{{$clinic->description}}</small>
                     </div>
                     <div class="float-end">
                         @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
-                        <a href="{{ route('clinics.edit', [$clinic->id]) }}" class="btn btn-sm btn-primary open_modal_edit">{{__('translate.edit')}}</a>
+                        <a href="{{ route('clinics.edit', [$clinic->id]) }}" class="btn btn-sm btn-primary">{{__('translate.edit')}}</a>
                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#invite-modal">{{__('translate.invite')}}</button>
                         <button class="btn btn-sm btn-danger open_modal_delete">{{__('translate.delete')}}</button>
                         @endif
@@ -38,8 +37,16 @@
                     </div>
                     @endif
 
-                    here is the clinic [body]
-
+                    <dif class="row">
+                        <div class="col-6">
+                            Messages [placeholder]
+                        </div>
+                    </dif>
+                    <dif class="row">
+                        <div class="col-6">
+                            Recent visits [placeholder]
+                        </div>
+                    </dif>
 
 
 
@@ -48,8 +55,9 @@
         </div>
     </div>
 </div>
-@endsection
 
 @if( Auth::user()->hasRoleByClinicId('admin', $clinic->id) )
 @include('clinics.partials.invite')
 @endif
+
+@endsection

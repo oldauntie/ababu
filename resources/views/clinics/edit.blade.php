@@ -198,8 +198,9 @@
             </div>
         </div>
     </div>
-@endsection
 
-@if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
-    @include('clinics.partials.invite')
-@endif
+    @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
+        @include('clinics.partials.invite')
+    @endif
+
+@endsection

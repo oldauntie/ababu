@@ -44,6 +44,7 @@ Route::resource('clinics', ClinicController::class)->middleware('clinic_access')
 
 # clinic specific action
 Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('clinic_roles:root|admin');
+Route::get('clinics/enroll/{token}', [ClinicController::class, 'enroll'])->name('clinics.enroll')->middleware('auth');
 
 # owners
 Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');

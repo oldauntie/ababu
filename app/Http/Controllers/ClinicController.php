@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Clinic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ClinicJoinMail;
+use App\Mail\ContactFormMail;
+
 
 class ClinicController extends Controller
 {
@@ -72,27 +78,22 @@ class ClinicController extends Controller
         $clinic->email = $request->email;
 
         $imageName = null;
-        if ($request->file('logo'))
-        {
+        if ($request->file('logo')) {
             $imagePath = $request->file('logo');
             $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
 
             $request->logo->move(public_path('images'), $imageName);
 
             // delete previous file if exists
-            if ($clinic->logo != null && file_exists(public_path('images') . '/' . $clinic->logo))
-            {
+            if ($clinic->logo != null && file_exists(public_path('images') . '/' . $clinic->logo)) {
                 unlink(public_path('images') . '/' . $clinic->logo);
             }
             $clinic->logo = $imageName;
         }
 
-        if ($clinic->save())
-        {
+        if ($clinic->save()) {
             $request->session()->flash('success', __('message.clinic_update_success'));
-        }
-        else
-        {
+        } else {
             $request->session()->flash('error', 'message.clinic_update_error');
         }
 
@@ -105,6 +106,48 @@ class ClinicController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function enroll(Request $request)
+    {
+        // split the token and compose serial / key attributes
+        $aToken = explode('-', $request->token);
+
+        if ($aToken == false || count($aToken) != 2) {
+            $request->session()->flash('error', __('message.clinic_join_error'));
+            return redirect()->route('home');
+        }
+
+        $serial = $aToken[0];
+        $handshakeRequest = $aToken[1];
+
+        // load a clinic object
+        $clinic = Clinic::where('serial', $serial)->first();
+
+        if ($clinic == null) {
+            $request->session()->flash('error', __('message.clinic_join_not_found'));
+        } else {
+            if ($clinic->users->where('id', Auth::user()->id)->count() > 0) {
+                $request->session()->flash('error', __('message.clinic_join_user_exists'));
+            } else {
+                // user does not exists. check the handshake
+                $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key . Carbon::today()->format('Ymd')), 0, 8);
+                if ($handshakeRequest === $handshakeResponse) {
+                    $veterinarianRole = Role::where('name', 'veterinarian')->first();
+                    $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
+
+                    $request->session()->flash('success', __('message.clinic_join_success'));
+                } else {
+                    $request->session()->flash('error', __('message.clinic_join_error'));
+                }
+            }
+        }
+        return redirect()->route('home');
     }
 
     /**
@@ -123,7 +166,11 @@ class ClinicController extends Controller
         ]);
 
         $token = $clinic->serial . '-' . substr(md5($request->email . $clinic->key . Carbon::today()->format('Ymd')), 0, 8);
+        # Mail::to($request->email)->send(new ClinicJoinMail($clinic, $token));
         Mail::to($request->email)->send(new ClinicJoinMail($clinic, $token));
+
+        $email = 'johndoe@example.com';
+        # Mail::to($email)->send(new ContactFormMail());
 
         return redirect()->route('clinics.show', $clinic)->with('success', __('message.clinic_invitation_success'));
     }

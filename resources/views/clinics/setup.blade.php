@@ -23,26 +23,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
-
-                        @if (Auth::user()->clinics->count() > 0)
-                            {{ Auth::user()->clinics->count() > 1 ? __('translate.clinic_your_clinics') : __('translate.clinic_your_clinic') }}
-
-                            <ul>
-                                @foreach (Auth::user()->clinics as $clinic)
-                                    <li>
-                                        <a href="{{ route('clinics.show', $clinic) }}">{{ $clinic->name }}
-                                            ({{ $clinic->country->name }} - {{ Auth::user()->locale->language }})
-                                        </a><br>
-                                        {{ $clinic->description }}<br>
-                                        {{ $clinic->address }}, {{ $clinic->city }}, {{ $clinic->postcode }}<br>
-                                        <b>{{ __('translate.phone') }}: {{ $clinic->phone }}</b><br>
-                                        <b>{{ __('translate.email') }}: {{ $clinic->email }}</b><br>
-                                        <b>{{ __('translate.website') }}: {{ $clinic->website }}</b>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
+                        @endif                        
                             <div class="container">
                                 <div class="row">
                                     <div class="col-5 center">
@@ -60,7 +41,6 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
 
                     </div>
                 </div>

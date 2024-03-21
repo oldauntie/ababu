@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
+
 # debug and experiments route
 Route::resource('esperimenti', EsperimentoController::class)->middleware('roles:root|admin');
 // Auth::routes();
@@ -44,7 +48,7 @@ Route::resource('clinics', ClinicController::class)->middleware('clinic_access')
 
 # clinic specific action
 Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('clinic_roles:root|admin');
-Route::get('clinics/enroll/{token}', [ClinicController::class, 'enroll'])->name('clinics.enroll')->middleware('auth');
+Route::get('clinics/enroll/{token?}', [ClinicController::class, 'enroll'])->name('clinics.enroll')->middleware('auth');
 
 # owners
 Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');

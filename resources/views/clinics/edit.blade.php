@@ -148,11 +148,6 @@
                                 <label for="email">{{ __('translate.email') }}</label>
                             </div>
 
-
-                            {{-- --}}
-
-
-
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="logo"

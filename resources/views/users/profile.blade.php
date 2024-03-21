@@ -2,7 +2,7 @@
     /* Selects any required <input> */
     /* @todo: da usare */
     input:required {
-        border: 1px dashed red;
+        border: 1px solid orange;
     }
 </style>
 @extends('layouts.app')

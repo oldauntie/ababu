@@ -9,8 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ClinicJoinMail;
-use App\Mail\ContactFormMail;
-
+use App\Models\Country;
 
 class ClinicController extends Controller
 {
@@ -27,7 +26,8 @@ class ClinicController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::where('enabled', '=', true)->get();
+        return view('clinics.create')->with('countries', $countries);
     }
 
     /**

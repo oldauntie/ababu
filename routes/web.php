@@ -44,7 +44,8 @@ Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.
 # Route::get('clinics/{clinic}', [ClinicController::class, 'show'])->name('clinics.show')->middleware('clinic_access');
 # @todo: set access auth, 
 # @todo: what to do when a clinic is erased.
-Route::resource('clinics', ClinicController::class)->middleware('clinic_access');
+Route::get('clinics/create', [ClinicController::class, 'create'])->name('clinics.create')->middleware('auth');
+Route::resource('clinics', ClinicController::class)->except(['create'])->middleware('clinic_access');
 
 # clinic specific action
 Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('clinic_roles:root|admin');

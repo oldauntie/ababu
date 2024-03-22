@@ -25,7 +25,7 @@ return [
     'clinic_not_configured' => 'There is no clinic configured for your account. Please... ',
     'clinic_phone' => 'Clinic phone number ',
     'clinic_postcode' => 'Clinic postcode ',
-    'clinic_token_example' => 'e.g. 6240b71-rugby310',
+    'clinic_token_example' => 'e.g. 03261972-rugby310',
     'clinic_website' => 'Internet address / website',
     'contact_description' => 'report a bug, write an improvement or request a new feature',
     'examination_delete' => 'Do you really want to delete selected examination and all related information?',

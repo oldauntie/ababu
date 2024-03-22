@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">Home</div>
+                    <div class="card-header">{{ __('translate.setup') }}</div>
 
                     <div class="card-body">
                         

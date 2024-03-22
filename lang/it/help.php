@@ -25,7 +25,7 @@ return [
     'clinic_not_configured' => 'Non c\'è nessuna clinica configurata con il tuo account. Per favore creane una o unisciti ad une esitente inserendo il codice di autenticazione fornito dall\'amministratore della clinica ',
     'clinic_phone' => 'Numero di telefono della clinica',
     'clinic_postcode' => 'CAP della clinica',
-    'clinic_token_example' => 'es: 6240b71-rugby310',
+    'clinic_token_example' => 'es: 03261972-rugby310',
     'clinic_website' => 'Indirizzo sito internet',
     'contact_description' => 'riportate un errore, un miglioramento o la richiesta per una nuova funzionalità',
     'examination_delete' => 'Si è sicuri di voler eliminare l\'accentertamento selezionato e tutte le informazioni ad esso collegato?',

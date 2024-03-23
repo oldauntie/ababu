@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clinic;
+use App\Mail\ClinicJoinMail;
+use App\Models\Country;
+use App\Models\Role;
+use App\Models\Species;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ClinicJoinMail;
-use App\Models\Country;
 
 class ClinicController extends Controller
 {
@@ -35,7 +38,49 @@ class ClinicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        # validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $clinic = new Clinic([
+            'country_id' => $request->get('country_id'),
+            'name' => $request->get('name'),
+            'serial' => Str::random(8),
+            'key' => Str::random(8),
+            'description' => $request->get('description'),
+            'manager' => $request->get('manager'),
+            'code' => $request->get('code'),
+            'address' => $request->get('address'),
+            'postcode' => $request->get('postcode'),
+            'city' => $request->get('city'),
+            'phone' => $request->get('phone'),
+            'website' => $request->get('website'),
+            'email' => $request->get('email'),
+        ]);
+        $clinic->save();
+
+        $imageName = null;
+        if ($request->file('logo')) {
+            $imagePath = $request->file('logo');
+            $imageName =  'veterinary-clinic-logo-' . $clinic->id . '-' . Str::random(8) . '.' . $imagePath->getClientOriginalExtension();
+
+            $request->logo->move(public_path('images'), $imageName);
+        }
+        $clinic->logo = $imageName;
+        $clinic->save();
+
+        $adminRole = Role::where('name', 'admin')->first();
+        $clinic->roles()->attach($adminRole, ['user_id' => Auth::user()->id]);
+
+        if ($request->has('species_add_common')) {
+            Species::create(['tsn' => '726821', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_dog')]);
+            Species::create(['tsn' => '183798', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_cat')]);
+            Species::create(['tsn' => '180691', 'clinic_id' => $clinic->id, 'familiar_name' => __('translate.species_horse')]);
+        }
+
+        return redirect()->route('home')->with('success', __('message.clinic_store_success'));
     }
 
     /**
@@ -63,7 +108,7 @@ class ClinicController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
-            # 'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'logo' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $clinic->name = $request->name;

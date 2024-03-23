@@ -35,13 +35,28 @@
                         <form method="POST" action="{{ route('clinics.store') }}" enctype="multipart/form-data">
                             @csrf
 
-
                             <div class="form-floating mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="name"
                                     value="{{ old('name') }}" maxlength="255" required
                                     placeholder="{{ __('translate.name') }}">
                                 <label for="name">{{ __('translate.name') }}</label>
+                            </div>
+
+
+
+
+                            <div class="form-floating">
+                                <select class="form-select" name="country_id" id="country_id"
+                                    aria-label="{{ __('translate.country') }}">
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" {{ old('country_id') ? 'selected' : '' }}>
+                                            {{ $country->name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="country_id">{{ __('translate.country') }}</label>
+                                <small id="help_clinic_country"
+                                        class="form-text text-muted">{{ __('help.clinic_country') }}</small>
                             </div>
 
                             <div class="form-floating mb-3">
@@ -93,7 +108,8 @@
                             <div class="form-floating mb-3">
                                 <input id="phone" type="text"
                                     class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                    value="{{ old('phone') }}" maxlength="32" placeholder="{{ __('translate.phone') }}">
+                                    value="{{ old('phone') }}" maxlength="32"
+                                    placeholder="{{ __('translate.phone') }}">
                                 <label for="phone">{{ __('translate.phone') }}</label>
                             </div>
 
@@ -124,18 +140,26 @@
                                         class="form-text text-muted">{{ __('help.clinic_logo') }}</small>
                                 </div>
                                 <div class="col-md-6">
-                                        <img src="{{ url('/images/no-image-available.svg') }}" class="img-thumbnail">
+                                    <img src="{{ url('/images/no-image-available.svg') }}" class="img-thumbnail">
                                 </div>
                             </div>
 
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <input id="species-add-common" type="checkbox" name="species_add_common" checked>
+                                    <small class="form-text text-muted">{{ __('help.species_add_common') }}</small>
+                                </div>
+                            </div>
 
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col text-center">
                                     <button type="submit"
-                                        class="btn btn-secondary btn-lg">{{ __('translate.save') }}</button>
+                                        class="btn btn-primary btn-lg">{{ __('translate.save') }}</button>
                                 </div>
                             </div>
+
                         </form>
 
 

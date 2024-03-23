@@ -2,6 +2,10 @@
 
 @if(Auth::user()->hasAnyRoles(['root', 'admin', 'veterinarian']) )
 <li class="nav-item">
+    <a class="nav-link" href="{{route('home')}}">{{__('translate.home')}}</a>
+</li>
+
+<li class="nav-item">
     <a class="nav-link" href="{{route('clinics.show', $clinic)}}">{{__('translate.dashboard')}}</a>
 </li>
 

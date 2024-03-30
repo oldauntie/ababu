@@ -1,39 +1,34 @@
-@if(session('success'))
 <script type="module">
     $(function() {
-        toastr.success('{{ session('success') }}')
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "timeOut": "10000",
+        };
     })
+    @if (session('success'))
+        $(function() {
+            toastr.success('{{ session('success') }}')
+        })
+    @endif
+
+    @if (session('info'))
+        $(function() {
+            toastr.info('{{ session('info') }}')
+        })
+    @endif
+
+    @if (session('warning'))
+        $(function() {
+            toastr.warning('{{ session('warning') }}')
+        })
+    @endif
+
+    @if (session('error'))
+        $(function() {
+            toastr.error('{{ session('error') }}');
+        })
+    @endif
 </script>
-@endif
-
-@if(session('info'))
-<script type="text/javascript">
-    $(function() {
-        toastr.info('{{ session('info') }}')
-    })
-</script>
-@endif
-
-@if(session('warning'))
-<script type="text/javascript">
-    $(function() {
-        toastr.warning('{{ session('warning') }}')
-    })
-</script>
-@endif
-
-@if(session('error'))
-<script type="module">
-    $(function() {
-        toastr.error('{{ session('error') }}')
-    })
-</script>
-@endif
-
-
-<script>
-    setTimeout(function() {
-       console.log($);
-       // $("#alertbox").alert("test");
-    }, 5000);
- </script>

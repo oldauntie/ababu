@@ -139,6 +139,7 @@ return [
     'role' => 'ruolo',
     'roles' => 'ruoli',
     'save' => 'salva',
+    'select' => 'selezione',
     'send' => 'invia',
     'sent' => 'inviato',
     'setup' => 'setup',

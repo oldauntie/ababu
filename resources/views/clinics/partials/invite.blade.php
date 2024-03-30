@@ -11,7 +11,7 @@
                     @csrf
                     <div class="form-floating mb-3">
                         <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ $clinic->email }}" maxlength="255"
+                            name="email" value="" maxlength="255"
                             placeholder="{{ __('translate.email') }}">
                         <label for="email">{{ __('translate.email') }}</label>
                         <small>{{ __('help.clinic_invite') }}</small>

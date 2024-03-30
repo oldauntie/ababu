@@ -140,6 +140,7 @@ return [
     'role' => 'role',
     'roles' => 'roles',
     'save' => 'save',
+    'select' => 'select',
     'send' => 'send',
     'sent' => 'sent',
     'setup' => 'setup',

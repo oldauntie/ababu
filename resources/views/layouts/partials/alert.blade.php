@@ -1,5 +1,5 @@
 @if(session('success'))
-<script type="text/javascript">
+<script type="module">
     $(function() {
         toastr.success('{{ session('success') }}')
     })
@@ -23,9 +23,17 @@
 @endif
 
 @if(session('error'))
-<script type="text/javascript">
+<script type="module">
     $(function() {
         toastr.error('{{ session('error') }}')
     })
 </script>
 @endif
+
+
+<script>
+    setTimeout(function() {
+       console.log($);
+       // $("#alertbox").alert("test");
+    }, 5000);
+ </script>

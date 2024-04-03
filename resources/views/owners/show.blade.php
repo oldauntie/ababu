@@ -7,19 +7,16 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            {{ $clinic->name }}
+                            {{ $owner->firstname }} {{ $owner->lastname }}
                             <br>
-                            <small>{{ $clinic->description }}</small>
+                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }} 
+                                {{ $owner->phone_primary }} {{ $owner->phone_secondary }} <a
+                                    href="mailto:{{ $owner->email }}">{{ $owner->email }}</a> </small>
                         </div>
                         <div class="float-end">
-                            @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
-                                <a href="{{ route('clinics.edit', [$clinic->id]) }}"
-                                    class="btn btn-sm btn-primary">{{ __('translate.edit') }}</a>
-                                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#invite-modal">{{ __('translate.invite') }}</button>
-                                <button
-                                    class="btn btn-sm btn-danger open_modal_delete">{{ __('translate.delete') }}</button>
-                            @endif
+                            <a href="{{ route('clinics.edit', [$owner->id]) }}"
+                                class="btn btn-sm btn-primary">{{ __('translate.edit') }}</a>
+                            <a href="#" class="btn btn-sm btn-danger">{{ __('translate.delete') }}</a>
                         </div>
                     </div>
 
@@ -40,47 +37,39 @@
                             </div>
                         @endif
 
-                        <div class="row">
-                            <div class="col-6">
-                                Messages [placeholder]
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                Recent visits [placeholder]
-                            </div>
-                        </div>
-                        <div class="row">
+
+
+                        <dif class="row">
                             <div class="col-6">
                                 <table class="table table-hover">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>{{ __('translate.firstname') }}</th>
-                                            <th>{{ __('translate.lastname') }}</th>
-                                            <th>{{ __('translate.email') }}</th>
+                                            <th>{{ __('translate.name') }}</th>
+                                            <th>{{ __('translate.sex') }}</th>
+                                            <th>{{ __('translate.breed') }}</th>
                                             <th>{{ __('translate.actions') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($clinic->owners as $owner)
+                                        @foreach ($owner->pets as $pet)
                                             <tr>
-                                                <td>{{ $owner->firstname }}</td>
-                                                <td>{{ $owner->lasttname }}</td>
-                                                <td>{{ $owner->email }}</td>
-                                                <td><a href="{{ route('clinics.owners.show', [$clinic->id, $owner->id])}}"
-                                                        class="btn btn-sm btn-primary">{{ __('translate.select') }}</a>
+                                                <td>{{ $pet->name }}</td>
+                                                <td>{{ $pet->sex }}</td>
+                                                <td>{{ $pet->breed }}</td>
+                                                <td><a href="#"
+                                                        class="btn btn-sm btn-outline-primary">{{ __('translate.select') }}</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-                        <div class="row">
+                        </dif>
+                        <dif class="row">
                             <div class="col-6">
                                 Calendar [placeholder]
                             </div>
-                        </div>
+                        </dif>
                     </div>
                 </div>
             </div>

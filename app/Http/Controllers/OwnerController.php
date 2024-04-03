@@ -50,9 +50,9 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function show(Owner $owner)
+    public function show(Clinic $clinic, Owner $owner)
     {
-        //
+        return view('owners.show')->with('clinic', $clinic)->with('owner', $owner);
     }
 
     /**

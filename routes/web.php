@@ -50,7 +50,6 @@ Route::resource('clinics', ClinicController::class)->except(['create', 'store'])
 
 # clinic specific action
 Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('clinic_roles:root|admin');
-
 Route::get('enroll/{token?}', [ClinicController::class, 'enroll'])->name('clinics.enroll')->middleware('auth');
 
 # owners

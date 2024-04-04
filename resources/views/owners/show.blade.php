@@ -9,14 +9,14 @@
                         <div class="float-start">
                             {{ $owner->firstname }} {{ $owner->lastname }}
                             <br>
-                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }} 
+                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }}
                                 {{ $owner->phone_primary }} {{ $owner->phone_secondary }} <a
                                     href="mailto:{{ $owner->email }}">{{ $owner->email }}</a> </small>
                         </div>
                         <div class="float-end">
                             <a href="{{ route('clinics.edit', [$owner->id]) }}"
-                                class="btn btn-sm btn-primary">{{ __('translate.edit') }}</a>
-                            <a href="#" class="btn btn-sm btn-danger">{{ __('translate.delete') }}</a>
+                                class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
+                            <a href="#" class="btn btn-sm btn-outline-danger">{{ __('translate.delete') }}</a>
                         </div>
                     </div>
 
@@ -40,13 +40,17 @@
 
 
                         <dif class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <table class="table table-hover">
                                     <thead class="table-light">
                                         <tr>
                                             <th>{{ __('translate.name') }}</th>
                                             <th>{{ __('translate.sex') }}</th>
+                                            <th>{{ __('translate.age') }}</th>
+                                            <th>{{ __('translate.species') }}</th>
                                             <th>{{ __('translate.breed') }}</th>
+                                            <th>{{ __('translate.microchip') }}</th>
+                                            <th>{{ __('translate.tatuatge') }}</th>
                                             <th>{{ __('translate.actions') }}</th>
                                         </tr>
                                     </thead>
@@ -55,19 +59,18 @@
                                             <tr>
                                                 <td>{{ $pet->name }}</td>
                                                 <td>{{ $pet->sex }}</td>
+                                                <td>{{ $pet->age->years }}Y {{ $pet->age->months }}m {{ $pet->age->days }}d</td>
+                                                <td>{{ $pet->species->familiar_name }}</td>
                                                 <td>{{ $pet->breed }}</td>
-                                                <td><a href="#"
-                                                        class="btn btn-sm btn-outline-primary">{{ __('translate.select') }}</a>
+                                                <td>{{ $pet->microchip }}</td>
+                                                <td>{{ $pet->tatuatge }}</td>
+                                                <td><a href="{{ route('clinics.visits.show', [$clinic->id, $pet->id])}}"
+                                                        class="btn btn-sm btn-outline-success">{{ __('translate.visit') }}</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-                        </dif>
-                        <dif class="row">
-                            <div class="col-6">
-                                Calendar [placeholder]
                             </div>
                         </dif>
                     </div>

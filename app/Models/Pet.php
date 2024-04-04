@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 class Pet extends Model
 {
     use HasFactory;
 
     use SoftDeletes;
 
-    protected $dates = [
-        'created_at', 
-        'updated_at', 
-        'deleted_at', 
-        'date_of_birth', 
-        'date_of_death'
+
+    protected $casts = [
+        'date_of_birth' => 'date', 
+        'date_of_death '=> 'date',
     ];
 
     protected $fillable = [
@@ -41,8 +40,37 @@ class Pet extends Model
 
     protected $appends = ['age'];
 
-    public function getAgeAttribute()
+
+    /**
+     * Get the user's first name.
+     */
+    protected function age(): Attribute
     {
+        return Attribute::make(
+            get: fn () => $this->getAge()
+        );
+    }
+
+    private function getAge()
+    {
+        $toDate = $this->date_of_death == null ? Carbon::now() : $this->date_of_death;
+        $formattedAge = $this->date_of_birth->diff($toDate)->format('%y,%m,%d');
+        $tempAge = explode(',', $formattedAge);
+
+        $age = new \stdClass();
+        $age->years = $tempAge[0];
+        $age->months = $tempAge[1];
+        $age->days = $tempAge[2];
+
+        return $age;
+    }
+
+    
+
+
+    public function getMineAttribute()
+    {
+        return 1;
         $toDate = $this->date_of_death == null ? Carbon::now() : $this->date_of_death;
         $formattedAge = $this->date_of_birth->diff($toDate)->format('%y,%m,%d');
         $tempAge = explode(',', $formattedAge);

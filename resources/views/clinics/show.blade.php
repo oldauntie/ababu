@@ -51,12 +51,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <table class="table table-hover">
                                     <thead class="table-light">
                                         <tr>
                                             <th>{{ __('translate.firstname') }}</th>
                                             <th>{{ __('translate.lastname') }}</th>
+                                            <th>{{ __('translate.phone') }} #1</th>
+                                            <th>{{ __('translate.phone') }} #2</th>
                                             <th>{{ __('translate.email') }}</th>
                                             <th>{{ __('translate.actions') }}</th>
                                         </tr>
@@ -65,10 +67,12 @@
                                         @foreach ($clinic->owners as $owner)
                                             <tr>
                                                 <td>{{ $owner->firstname }}</td>
-                                                <td>{{ $owner->lasttname }}</td>
+                                                <td>{{ $owner->lastname }}</td>
+                                                <td>{{ $owner->phone_primary }}</td>
+                                                <td>{{ $owner->phone_secondary }}</td>
                                                 <td>{{ $owner->email }}</td>
                                                 <td><a href="{{ route('clinics.owners.show', [$clinic->id, $owner->id])}}"
-                                                        class="btn btn-sm btn-primary">{{ __('translate.select') }}</a>
+                                                        class="btn btn-sm btn-outline-primary">{{ __('translate.select') }}</a>
                                                 </td>
                                             </tr>
                                         @endforeach

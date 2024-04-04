@@ -4,6 +4,7 @@ use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\EsperimentoController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,6 @@ Route::get('enroll/{token?}', [ClinicController::class, 'enroll'])->name('clinic
 
 # owners
 Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');
+
+# visit
+Route::get('clinics/{clinic}/visits/{pet}', [VisitController::class, 'show'])->name('clinics.visits.show')->middleware('clinic_access');

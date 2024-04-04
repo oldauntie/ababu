@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="float-end">
                                     <a href="{{ route('clinics.show', $clinic) }}"
-                                        class="btn btn-sm btn-primary">{{ __('translate.select') }}</a>
+                                        class="btn btn-sm btn-outline-primary">{{ __('translate.select') }}</a>
                                 </div>
                             </div>
 

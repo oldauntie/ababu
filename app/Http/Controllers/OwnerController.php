@@ -50,10 +50,10 @@ class OwnerController extends Controller
             'lastname' => 'required|max:255',
             'email' => 'email|required|max:255',
             'phone_primary' => 'required|max:64',
-            'address' => 'max:255',
+            'address' => 'max:100',
             'postcode' => 'max:10',
-            'city' => 'max:255',
-            'ssn' => 'max:255',
+            'city' => 'max:64',
+            'ssn' => 'max:64',
         ]);
 
         $owner = new Owner([
@@ -71,7 +71,7 @@ class OwnerController extends Controller
         ]);
         $owner->save();
 
-        return redirect()->route('clinics.owners.index', $clinic)->with('success', __('message.owner_create_success'));
+        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.owner_create_success'));
     }
 
     /**
@@ -91,9 +91,14 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Owner $owner)
+    public function edit(Clinic $clinic, Owner $owner)
     {
-        //
+        $countries = Country::orderBy('name')->get();
+
+        return view('owners.edit')
+            ->with('countries', $countries)
+            ->with('clinic', $clinic)
+            ->with('owner', $owner);
     }
 
     /**
@@ -103,9 +108,37 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner)
+    public function update(Request $request, Clinic $clinic, Owner $owner)
     {
-        //
+        $request->validate([
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'email|required|max:255',
+            'phone_primary' => 'required|max:64',
+            'address' => 'max:255',
+            'postcode' => 'max:10',
+            'city' => 'max:255',
+            'ssn' => 'max:255',
+        ]);
+
+        $owner->country_id = $request->country_id;
+        $owner->firstname = $request->firstname;
+        $owner->lastname = $request->lastname;
+        $owner->email = $request->email;
+        $owner->phone_primary = $request->phone_primary;
+        $owner->phone_secondary = $request->phone_secondary;
+        $owner->address = $request->address;
+        $owner->postcode = $request->postcode;
+        $owner->city = $request->city;
+        $owner->ssn = $request->ssn;
+
+        if ($owner->save()) {
+            $request->session()->flash('success', __('message.owner_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.owner_update_error');
+        }
+
+        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.owner_create_success'));
     }
 
     /**

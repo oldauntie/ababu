@@ -75,7 +75,7 @@
 
                     <div class="card-footer">
                         <div class="float-end">
-                            <a href="#" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
+                            <a href="{{ route('clinics.owners.create', [$clinic->id]) }}" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
                         </div>
                     </div>
 

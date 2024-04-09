@@ -14,7 +14,7 @@
                                     href="mailto:{{ $owner->email }}">{{ $owner->email }}</a> </small>
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('clinics.edit', [$owner->id]) }}"
+                            <a href="{{ route('clinics.owners.edit', [$clinic->id, $owner->id]) }}"
                                 class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
                             <a href="#" class="btn btn-sm btn-outline-danger">{{ __('translate.delete') }}</a>
                         </div>

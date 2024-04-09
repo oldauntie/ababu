@@ -13,8 +13,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "sass": "^1.56.1",
-        "vite": "^4.4.9",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "vite": "^4.4.9"
     },
     "dependencies": {
         "toastr": "^2.1.4"

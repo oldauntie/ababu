@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            {{ $owner->firstname }} {{ $owner->lastname }}
+                            <b>{{ strtoupper(__('translate.owner')) }}: </b> {{ $owner->firstname }} {{ $owner->lastname }}
                             <br>
                             <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }}
                                 {{ $owner->phone_primary }} {{ $owner->phone_secondary }} <a
@@ -42,6 +42,7 @@
                         <dif class="row">
                             <div class="col-12">
                                 <table class="table table-hover">
+                                    <caption>{{ __('translate.pets_list') }}</caption>
                                     <thead class="table-light">
                                         <tr>
                                             <th>{{ __('translate.name') }}</th>
@@ -74,6 +75,13 @@
                             </div>
                         </dif>
                     </div>
+
+                    <div class="card-footer">
+                        <div class="float-end">
+                            <a href="{{ route('clinics.owners.create', [$clinic->id]) }}" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

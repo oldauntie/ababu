@@ -7,18 +7,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            {{ $clinic->name }}
+                            <b>{{ strtoupper(__('translate.clinic')) }}: </b>{{ $clinic->name }}
                             <br>
                             <small>{{ $clinic->description }}</small>
                         </div>
                         <div class="float-end">
                             @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
                                 <a href="{{ route('clinics.edit', [$clinic->id]) }}"
-                                    class="btn btn-sm btn-primary">{{ __('translate.edit') }}</a>
-                                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
+                                    class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
                                     data-bs-target="#invite-modal">{{ __('translate.invite') }}</button>
                                 <button
-                                    class="btn btn-sm btn-danger open_modal_delete">{{ __('translate.delete') }}</button>
+                                    class="btn btn-sm btn-outline-danger open_modal_delete">{{ __('translate.delete') }}</button>
                             @endif
                         </div>
                     </div>
@@ -41,18 +41,9 @@
                         @endif
 
                         <div class="row">
-                            <div class="col-6">
-                                Messages [placeholder]
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                Recent visits [placeholder]
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-12">
                                 <table class="table table-hover">
+                                    <caption>{{ __('translate.owners_list') }}</caption>
                                     <thead class="table-light">
                                         <tr>
                                             <th>{{ __('translate.firstname') }}</th>
@@ -71,7 +62,7 @@
                                                 <td>{{ $owner->phone_primary }}</td>
                                                 <td>{{ $owner->phone_secondary }}</td>
                                                 <td>{{ $owner->email }}</td>
-                                                <td><a href="{{ route('clinics.owners.show', [$clinic->id, $owner->id])}}"
+                                                <td><a href="{{ route('clinics.owners.show', [$clinic->id, $owner->id]) }}"
                                                         class="btn btn-sm btn-outline-primary">{{ __('translate.select') }}</a>
                                                 </td>
                                             </tr>
@@ -80,12 +71,14 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                Calendar [placeholder]
-                            </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="float-end">
+                            <a href="#" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

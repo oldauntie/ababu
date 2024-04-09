@@ -28,9 +28,13 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Clinic $clinic)
     {
-        //
+        $countries = Country::orderBy('name')->get();
+
+        return view('owners.create')
+            ->with('countries', $countries)
+            ->with('clinic', $clinic);
     }
 
     /**
@@ -39,9 +43,35 @@ class OwnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic)
     {
-        //
+        $request->validate([
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'email|required|max:255',
+            'phone_primary' => 'required|max:64',
+            'address' => 'max:255',
+            'postcode' => 'max:10',
+            'city' => 'max:255',
+            'ssn' => 'max:255',
+        ]);
+
+        $owner = new Owner([
+            'clinic_id' => $clinic->id,
+            'country_id' => $request->get('country_id'),
+            'firstname' => $request->get('firstname'),
+            'email' => $request->get('email'),
+            'phone_primary' => $request->get('phone_primary'),
+            'phone_secondary' => $request->get('phone_secondary'),
+            'lastname' => $request->get('lastname'),
+            'address' => $request->get('address'),
+            'postcode' => $request->get('postcode'),
+            'city' => $request->get('city'),
+            'ssn' => $request->get('ssn'),
+        ]);
+        $owner->save();
+
+        return redirect()->route('clinics.owners.index', $clinic)->with('success', __('message.owner_create_success'));
     }
 
     /**

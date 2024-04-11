@@ -89,7 +89,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Ababu <inf class="subtitle m-b-md">v.2</inf><sup class="subtitle m-b-md">beta</sup>
+                Ababu <inf class="subtitle m-b-md">v.3</inf><sup class="subtitle m-b-md">beta</sup>
             </div>
 
             <div class="row">

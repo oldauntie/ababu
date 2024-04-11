@@ -109,6 +109,7 @@ return [
     'password_new' => 'new password',
     'password_update' => 'update password',
     'pet' => 'pet',
+    'pet_create' => 'add a new pet',
     'pets' => 'pets',
     'pets_list' => 'list of pets',
     'phone' => 'phone',

@@ -38,6 +38,11 @@ class Owner extends Model
         return $this->belongsTo(Clinic::class);
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function pets()
     {
         return $this->hasMany(Pet::class);

@@ -14,8 +14,7 @@
                             <small> small </small>
                         </div>
                         <div class="float-end">
-                            <a href="#" class="btn btn-sm btn-outline-success">{{ __('translate.create') }}</a>
-                            <a href="#" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
+                            <a href="{{ route('clinics.pets.edit', [$clinic->id, $pet->id]) }}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
                             <a href="#" class="btn btn-sm btn-outline-danger">{{ __('translate.delete') }}</a>
                         </div>
                     </div>

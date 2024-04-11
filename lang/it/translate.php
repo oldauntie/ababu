@@ -108,6 +108,7 @@ return [
     'password_new' => 'nuova password',
     'password_update' => 'aggiorna password',
     'pet' => 'animale',
+    'pet_create' => 'aggiungi un nuovo animale',
     'pets' => 'animali',
     'pets_list' => 'elenco degli animali',
     'phone' => 'telefono',

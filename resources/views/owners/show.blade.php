@@ -9,7 +9,7 @@
                         <div class="float-start">
                             <b>{{ strtoupper(__('translate.owner')) }}: </b> {{ $owner->firstname }} {{ $owner->lastname }}
                             <br>
-                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }}
+                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }} ({{ $owner->country->name }})
                                 {{ $owner->phone_primary }} {{ $owner->phone_secondary }} <a
                                     href="mailto:{{ $owner->email }}">{{ $owner->email }}</a> </small>
                         </div>
@@ -78,7 +78,7 @@
 
                     <div class="card-footer">
                         <div class="float-end">
-                            <a href="{{ route('clinics.owners.create', [$clinic->id]) }}" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
+                            <a href="{{ route('clinics.owners.pets.create', [$clinic->id, $owner->id]) }}" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
                         </div>
                     </div>
 

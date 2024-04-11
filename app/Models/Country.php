@@ -12,8 +12,13 @@ class Country extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    public function countries()
+    public function clinics()
     {
         return $this->hasMany(Clinic::class);
+    }
+
+    public function owners()
+    {
+        return $this->hasMany(Owner::class);
     }
 }

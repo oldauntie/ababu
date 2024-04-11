@@ -107,7 +107,7 @@
                                 <select class="form-select" name="country_id" id="country_id"
                                     aria-label="{{ __('translate.country') }}">
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{ $owner->country_id ? 'selected' : '' }}> {{ $country->name }}</option>
+                                        <option value="{{ $country->id }}" {{ $country->id == $owner->country_id ? 'selected' : '' }}> {{ $country->name }}</option>
                                     @endforeach
                                 </select>
                                 <label for="country_id">{{ __('translate.country') }}</label>

@@ -71,7 +71,7 @@ class OwnerController extends Controller
         ]);
         $owner->save();
 
-        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.owner_create_success'));
+        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.owner_store_success'));
     }
 
     /**
@@ -121,6 +121,8 @@ class OwnerController extends Controller
             'ssn' => 'max:255',
         ]);
 
+        # dd($request->all());
+
         $owner->country_id = $request->country_id;
         $owner->firstname = $request->firstname;
         $owner->lastname = $request->lastname;
@@ -138,7 +140,7 @@ class OwnerController extends Controller
             $request->session()->flash('error', 'message.owner_update_error');
         }
 
-        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.owner_create_success'));
+        return redirect()->route('clinics.owners.show', [$clinic, $owner]);
     }
 
     /**

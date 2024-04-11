@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
+use App\Models\Owner;
 use App\Models\Pet;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 class PetController extends Controller
 {
     /**
@@ -22,9 +25,9 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Clinic $clinic, Owner $owner)
     {
-        //
+        return view('pets.create')->with('clinic', $clinic)->with('owner', $owner);
     }
 
     /**
@@ -33,9 +36,39 @@ class PetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic, Owner $owner)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'species_id' => 'required',
+        ]);
+
+        $pet = new Pet([
+            'clinic_id' => $clinic->id,
+            'species_id' => $request->get('species_id'),
+            'owner_id' => $owner->id,
+            'breed' => $request->get('breed'),
+            'name' => $request->get('name'),
+            'sex' => $request->get('sex'),
+            'date_of_birth' => $request->get('date_of_birth'),
+            'date_of_death' => $request->get('date_of_death'),
+            'description' => $request->get('description'),
+            'color' => $request->get('color'),
+            'microchip' => $request->get('microchip'),
+            'microchip_location' => $request->get('microchip_location'),
+            'tatuatge' => $request->get('tatuatge'),
+            'tatuatge_location' => $request->get('tatuatge_location'),
+        ]);
+
+        $pet->save();
+
+        if ($pet->save()) {
+            $request->session()->flash('success', __('message.pet_store_success'));
+        } else {
+            $request->session()->flash('error', 'message.pet_store_error');
+        }
+
+        return redirect()->route('clinics.owners.show', [$clinic, $owner]);
     }
 
     /**
@@ -55,9 +88,9 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pet $pet)
+    public function edit(Clinic $clinic, Pet $pet)
     {
-        //
+        return view('pets.edit')->with('pet', $pet);
     }
 
     /**

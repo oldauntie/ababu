@@ -56,4 +56,9 @@ class Clinic extends Model
     {
         return $this->hasMany(Pet::class);
     }
+
+    public function species()
+    {
+        return $this->hasMany(Species::class);
+    }
 }

@@ -15,7 +15,11 @@
                         </div>
                         <div class="float-end">
                             <a href="{{ route('clinics.owners.pets.edit', [$clinic, $owner, $pet]) }}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
-                            <a href="#" class="btn btn-sm btn-outline-danger">{{ __('translate.delete') }}</a>
+                            <form method="POST" action="{{ route('clinics.owners.pets.destroy', [$clinic, $owner, $pet])}}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type="submit" class="btn btn-sm btn-outline-danger" value="{{ __('translate.delete') }}">
+                            </form>
                         </div>
                     </div>
 

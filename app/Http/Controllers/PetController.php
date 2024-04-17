@@ -151,8 +151,10 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy(Clinic $clinic, Owner $owner, Pet $pet)
     {
-        //
+        $pet->delete();
+        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.pet_destroy_success'));
+
     }
 }

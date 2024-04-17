@@ -8,6 +8,7 @@ use App\Models\Pet;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+
 class PetController extends Controller
 {
     /**
@@ -41,6 +42,9 @@ class PetController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'species_id' => 'required',
+            'sex' => 'required|max:1',
+            'date_of_birth' => 'required|before:tomorrow',
+            'date_of_death' => 'nullable|after_or_equal:date_of_birth|before:tomorrow',
         ]);
 
         $pet = new Pet([
@@ -77,9 +81,12 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function show(Pet $pet)
+    public function show(Clinic $clinic, Owner $owner, Pet $pet)
     {
-        //
+        return view('pets.show')
+            ->with('clinic', $clinic)
+            ->with('owner', $owner)
+            ->with('pet', $pet);
     }
 
     /**
@@ -88,9 +95,12 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clinic $clinic, Pet $pet)
+    public function edit(Clinic $clinic, Owner $owner, Pet $pet)
     {
-        return view('pets.edit')->with('pet', $pet);
+        return view('pets.edit')
+            ->with('clinic', $clinic)
+            ->with('owner', $owner)
+            ->with('pet', $pet);
     }
 
     /**
@@ -100,9 +110,39 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pet $pet)
+    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'species_id' => 'required',
+            'sex' => 'required|max:1',
+            'date_of_birth' => 'required|before:tomorrow',
+            'date_of_death' => 'nullable|after_or_equal:date_of_birth|before:tomorrow',
+        ]);
+
+        $pet->clinic_id = $clinic->id;
+        $pet->species_id = $request->species_id;
+        $pet->owner_id = $owner->id;
+        $pet->breed = $request->breed;
+        $pet->name = $request->name;
+        $pet->sex = $request->sex;
+        $pet->date_of_birth = $request->date_of_birth;
+        $pet->date_of_death = $request->date_of_death;
+        $pet->description = $request->description;
+        $pet->color = $request->color;
+        $pet->microchip = $request->microchip;
+        $pet->microchip_location = $request->microchip_location;
+        $pet->tatuatge = $request->tatuatge;
+        $pet->tatuatge_location = $request->tatuatge_location;
+
+        if ($pet->save()) {
+            $request->session()->flash('success', __('message.pet_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.pet_update_error');
+        }
+
+
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
     }
 
     /**

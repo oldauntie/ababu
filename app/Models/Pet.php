@@ -14,10 +14,16 @@ class Pet extends Model
 
     use SoftDeletes;
 
+    const SEXES = [
+        'F',
+        'M',
+        '0',
+    ];
+
 
     protected $casts = [
         'date_of_birth' => 'date', 
-        'date_of_death '=> 'date',
+        'date_of_death'=> 'date',
     ];
 
     protected $fillable = [
@@ -65,23 +71,6 @@ class Pet extends Model
         return $age;
     }
 
-    
-
-
-    public function getMineAttribute()
-    {
-        return 1;
-        $toDate = $this->date_of_death == null ? Carbon::now() : $this->date_of_death;
-        $formattedAge = $this->date_of_birth->diff($toDate)->format('%y,%m,%d');
-        $tempAge = explode(',', $formattedAge);
-
-        $age = new \stdClass();
-        $age->years = $tempAge[0];
-        $age->months = $tempAge[1];
-        $age->days = $tempAge[2];
-
-        return $age;
-    }
 
     
     public function clinic()

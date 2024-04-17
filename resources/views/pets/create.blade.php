@@ -59,7 +59,7 @@
                             <div class="form-floating mb-3">
                                 <input id="breed" type="text"
                                     class="form-control @error('breed') is-invalid @enderror" name="breed"
-                                    value="{{ old('breed') }}" maxlength="255" required
+                                    value="{{ old('breed') }}" maxlength="255"
                                     placeholder="{{ __('translate.breed') }}">
                                 <label for="breed">{{ __('translate.breed') }}</label>
                             </div>
@@ -67,8 +67,10 @@
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="sex" id="sex"
                                     aria-label="{{ __('translate.sex') }}">
-                                    <option value="F">F</option>
-                                    <option value="M">M</option>
+                                    @foreach (\App\Models\Pet::SEXES as $sex)
+                                        <option value="{{ $sex }}" {{ $sex == old('sex') ? 'selected' : null }}>
+                                            {{ $sex }}</option>
+                                    @endforeach                                 
                                 </select>
                                 <label for="sex">{{ __('translate.sex') }}</label>
                             </div>
@@ -76,7 +78,7 @@
                             <div class="form-floating mb-3">
                                 <input id="date_of_birth" type="date"
                                     class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth"
-                                    value="{{ old('date_of_birth') }}" placeholder="{{ __('translate.date_of_birth') }}">
+                                    value="{{ old('date_of_birth') }}" placeholder="{{ __('translate.date_of_birth') }}" required>
                                 <label for="date_of_birth">{{ __('translate.date_of_birth') }}</label>
                             </div>
 
@@ -91,13 +93,6 @@
                                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description"
                                     placeholder="{{ __('translate.description') }}">{{ old('description') }}</textarea>
                                 <label for="description">{{ __('translate.description') }}</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input id="color" type="text"
-                                    class="form-control @error('color') is-invalid @enderror" name="color"
-                                    value="{{ old('color') }}" maxlength="255" placeholder="{{ __('translate.color') }}">
-                                <label for="color">{{ __('translate.color') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">

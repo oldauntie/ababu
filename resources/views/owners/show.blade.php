@@ -65,7 +65,7 @@
                                                 <td>{{ $pet->breed }}</td>
                                                 <td>{{ $pet->microchip }}</td>
                                                 <td>{{ $pet->tatuatge }}</td>
-                                                <td><a href="{{ route('clinics.visits.show', [$clinic->id, $pet->id])}}"
+                                                <td><a href="{{ route('clinics.owners.pets.show', [$clinic, $owner, $pet])}}"
                                                         class="btn btn-sm btn-outline-success">{{ __('translate.visit') }}</a>
                                                 </td>
                                             </tr>

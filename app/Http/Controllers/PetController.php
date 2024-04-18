@@ -67,9 +67,9 @@ class PetController extends Controller
         $pet->save();
 
         if ($pet->save()) {
-            $request->session()->flash('success', __('message.pet_store_success'));
+            $request->session()->flash('success', __('message.record_store_success'));
         } else {
-            $request->session()->flash('error', 'message.pet_store_error');
+            $request->session()->flash('error', 'message.record_store_error');
         }
 
         return redirect()->route('clinics.owners.show', [$clinic, $owner]);
@@ -136,9 +136,9 @@ class PetController extends Controller
         $pet->tatuatge_location = $request->tatuatge_location;
 
         if ($pet->save()) {
-            $request->session()->flash('success', __('message.pet_update_success'));
+            $request->session()->flash('success', __('message.record_update_success'));
         } else {
-            $request->session()->flash('error', 'message.pet_update_error');
+            $request->session()->flash('error', 'message.record_update_error');
         }
 
 
@@ -154,7 +154,6 @@ class PetController extends Controller
     public function destroy(Clinic $clinic, Owner $owner, Pet $pet)
     {
         $pet->delete();
-        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.pet_destroy_success'));
-
+        return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.record_destroy_success'));
     }
 }

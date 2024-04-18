@@ -9,17 +9,14 @@
                         <div class="float-start">
                             {{ $pet->name }} -
                             {{ $pet->species->familiar_name }}{{ empty($pet->breed) ? '' : ' (' . $pet->breed . ')' }}
-                            {{ __('translate.age') }} {{ $pet->age->years }}Y {{ $pet->age->months }}m {{ $pet->age->days }}d
+                            {{ __('translate.age') }} {{ $pet->age->years }}Y {{ $pet->age->months }}m
+                            {{ $pet->age->days }}d
                             <br>
                             <small> small </small>
                         </div>
                         <div class="float-end">
                             <a href="{{ route('clinics.owners.pets.edit', [$clinic, $owner, $pet]) }}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
-                            <form method="POST" action="{{ route('clinics.owners.pets.destroy', [$clinic, $owner, $pet])}}">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <input type="submit" class="btn btn-sm btn-outline-danger" value="{{ __('translate.delete') }}">
-                            </form>
+                            <a class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#pet_delete_confirmation">{{ __('translate.delete') }}</a>
                         </div>
                     </div>
 
@@ -44,7 +41,14 @@
 
                         <dif class="row">
                             <div class="col-12">
-                                card body
+
+
+
+                                ... 
+
+
+
+
                             </div>
                         </dif>
                     </div>
@@ -52,7 +56,9 @@
             </div>
         </div>
     </div>
-
+    
+    @include('layouts.partials.delete', ['id' => 'pet_delete_confirmation', 'action' => route('clinics.owners.pets.destroy', [$clinic, $owner, $pet]), 'title' => __('message.are_you_sure'), 'body' => __('message.confirm_record_deletion') . " {$pet->name} ({$pet->species->familiar_name})" ])
+    
     @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
         @include('clinics.partials.invite')
     @endif

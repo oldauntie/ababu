@@ -146,11 +146,13 @@ class OwnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Models\Clinic  $clinic
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Owner $owner)
+    public function destroy(Clinic $clinic, Owner $owner)
     {
-        //
+        $owner->delete();
+        return redirect()->route('clinics.show', [$clinic, $owner])->with('success', __('message.record_destroy_success') . " {$owner->lastname}, {$owner->firstname}");
     }
 }

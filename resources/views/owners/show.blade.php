@@ -14,9 +14,8 @@
                                     href="mailto:{{ $owner->email }}">{{ $owner->email }}</a> </small>
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('clinics.owners.edit', [$clinic->id, $owner->id]) }}"
-                                class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
-                            <a href="#" class="btn btn-sm btn-outline-danger">{{ __('translate.delete') }}</a>
+                            <a href="{{ route('clinics.owners.edit', [$clinic->id, $owner->id]) }}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
+                            <a class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#owner_delete_confirmation">{{ __('translate.delete') }}</a>
                         </div>
                     </div>
 
@@ -86,6 +85,8 @@
             </div>
         </div>
     </div>
+
+    @include('layouts.partials.delete', ['id' => 'owner_delete_confirmation', 'action' => route('clinics.owners.destroy', [$clinic, $owner, $pet]), 'title' => __('message.are_you_sure'), 'body' => __('message.confirm_record_deletion') . " {$owner->lastname}, {$owner->firstname}" ])
 
     @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
         @include('clinics.partials.invite')

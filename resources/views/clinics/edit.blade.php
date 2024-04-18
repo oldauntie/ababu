@@ -17,7 +17,7 @@
                         <div class="float-end">
                             @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
                                 <a href="{{ route('clinics.show', $clinic->id) }}"
-                                    class="btn btn-sm btn-secondary">{{ __('translate.back') }}</a>
+                                    class="btn btn-sm btn-outline-secondary">{{ __('translate.back') }}</a>
                             @endif
                         </div>
                     </div>

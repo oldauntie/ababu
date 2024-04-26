@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('diagnostic_test_id');
             $table->bigInteger('problem_id')->unsigned()->nullable();
             $table->bigInteger('pet_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->char('user_id', 36)->nullable();
             $table->text('result')->nullable();
             $table->text('medical_report')->nullable();
             $table->boolean('is_pathologic');

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('medicine_id');
             $table->bigInteger('problem_id')->unsigned()->nullable();
             $table->bigInteger('pet_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->char('user_id', 36)->nullable();
             $table->bigInteger('quantity')->unsigned();
             $table->string('dosage');
             $table->bigInteger('duration')->unsigned()->nullable();

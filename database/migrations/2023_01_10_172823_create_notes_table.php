@@ -17,7 +17,7 @@ return new class extends Migration
         {
             $table->id();
             $table->bigInteger('pet_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->char('user_id', 36)->nullable();
             $table->text('note_text');
             $table->timestamps();
 

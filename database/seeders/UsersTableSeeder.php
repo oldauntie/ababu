@@ -26,19 +26,13 @@ class UsersTableSeeder extends Seeder
         $password = Str::random(8);
 
         $root = User::create([
+            'id' => Str::uuid(),
             'locale_id' => 'en-US',
             'name' => 'root',
             'email' => 'root@ababu.cloud',
             'password' => Hash::make($password),
             'email_verified_at' => Carbon::now(),
         ]);
-
-        # force id to 0
-        $root->id = 0;
-        $root->save();
-        
-        # reset the auto-increment value
-        DB::statement('ALTER TABLE users AUTO_INCREMENT = 1');
 
         
         $root->roles()->attach($rootRole);

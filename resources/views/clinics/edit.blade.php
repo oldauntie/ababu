@@ -47,7 +47,7 @@
                             <div class="form-floating mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ $clinic->name }}" maxlength="255" required
+                                    value="{{ $clinic->name }}" maxlength="100" required
                                     placeholder="{{ __('translate.name') }}">
                                 <label for="name">{{ __('translate.name') }}</label>
                             </div>

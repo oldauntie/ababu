@@ -8,16 +8,12 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('clinics', function (Blueprint $table) {
+        Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('country_id', 2);
-            $table->string('serial', 100)->unique();
-            $table->string('key', 100);
+            $table->bigInteger('clinic_id')->unsigned();
             $table->string('name', 100);
             $table->string('description')->nullable();
             $table->string('manager', 100)->nullable();
@@ -26,27 +22,24 @@ return new class extends Migration
             $table->string('postcode', 10)->nullable();
             $table->string('city', 64)->nullable();
             $table->string('phone', 32)->nullable();
-            $table->string('website')->nullable();
             $table->string('email')->nullable();
-            $table->string('logo', 100)->nullable();
             $table->timestamps();
+
             $table->softDeletes();
 
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('clinic_id')
+                ->references('id')
+                ->on('clinics')
+                ->onDelete('cascade')
+                ->onUpdate('no action');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('clinics', function (Blueprint $table) {
-            $table->dropForeign('clinics_country_id_foreign');
-        });
-
-        Schema::dropIfExists('clinics');
+        Schema::dropIfExists('facilities');
     }
 };

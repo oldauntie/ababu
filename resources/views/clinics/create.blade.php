@@ -38,13 +38,10 @@
                             <div class="form-floating mb-3">
                                 <input id="name" type="text"
                                     class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" maxlength="255" required
+                                    value="{{ old('name') }}" maxlength="100" required
                                     placeholder="{{ __('translate.name') }}">
                                 <label for="name">{{ __('translate.name') }}</label>
                             </div>
-
-
-
 
                             <div class="form-floating">
                                 <select class="form-select" name="country_id" id="country_id"

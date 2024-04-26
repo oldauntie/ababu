@@ -157,7 +157,7 @@ class DevelopSeeder extends Seeder
          */
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 1,
+            // 'clinic_id' => 1,
             'owner_id' => 1,
             'name' => 'Ozzy',
             'sex' => 'M',
@@ -166,7 +166,7 @@ class DevelopSeeder extends Seeder
 
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 1,
+            // 'clinic_id' => 1,
             'owner_id' => 1,
             'name' => 'Martha',
             'sex' => 'M',
@@ -175,7 +175,7 @@ class DevelopSeeder extends Seeder
 
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 1,
+            // 'clinic_id' => 1,
             'owner_id' => 2,
             'name' => 'Muddy',
             'sex' => 'M',
@@ -184,7 +184,7 @@ class DevelopSeeder extends Seeder
 
         Pet::create([
             'species_id' => '1',
-            'clinic_id' => 1,
+            // 'clinic_id' => 1,
             'owner_id' => 3,
             'name' => 'Martha',
             'sex' => 'F',

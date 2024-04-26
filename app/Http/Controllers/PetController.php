@@ -41,6 +41,8 @@ class PetController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'color' => 'max:100',
+            'distinguishing_mark' => 'max:100',
             'species_id' => 'required',
             'sex' => 'required|max:1',
             'date_of_birth' => 'required|before:tomorrow',
@@ -48,7 +50,7 @@ class PetController extends Controller
         ]);
 
         $pet = new Pet([
-            'clinic_id' => $clinic->id,
+            // 'clinic_id' => $clinic->id,
             'species_id' => $request->get('species_id'),
             'owner_id' => $owner->id,
             'breed' => $request->get('breed'),
@@ -58,6 +60,9 @@ class PetController extends Controller
             'date_of_death' => $request->get('date_of_death'),
             'description' => $request->get('description'),
             'color' => $request->get('color'),
+            'distinguishing_mark' => $request->get('distinguishing_mark'),
+            'reproductive_status' => $request->get('reproductive_status'),
+            'life_style' => $request->get('life_style'),
             'microchip' => $request->get('microchip'),
             'microchip_location' => $request->get('microchip_location'),
             'tatuatge' => $request->get('tatuatge'),
@@ -114,13 +119,15 @@ class PetController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'color' => 'max:100',
+            'distinguishing_mark' => 'max:100',
             'species_id' => 'required',
             'sex' => 'required|max:1',
             'date_of_birth' => 'required|before:tomorrow',
             'date_of_death' => 'nullable|after_or_equal:date_of_birth|before:tomorrow',
         ]);
 
-        $pet->clinic_id = $clinic->id;
+        // $pet->clinic_id = $clinic->id;
         $pet->species_id = $request->species_id;
         $pet->owner_id = $owner->id;
         $pet->breed = $request->breed;
@@ -130,6 +137,9 @@ class PetController extends Controller
         $pet->date_of_death = $request->date_of_death;
         $pet->description = $request->description;
         $pet->color = $request->color;
+        $pet->distinguishing_mark = $request->distinguishing_mark;
+        $pet->reproductive_status = $request->reproductive_status;
+        $pet->life_style = $request->life_style;
         $pet->microchip = $request->microchip;
         $pet->microchip_location = $request->microchip_location;
         $pet->tatuatge = $request->tatuatge;

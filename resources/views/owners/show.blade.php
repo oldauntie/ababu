@@ -86,7 +86,7 @@
         </div>
     </div>
 
-    @include('layouts.partials.delete', ['id' => 'owner_delete_confirmation', 'action' => route('clinics.owners.destroy', [$clinic, $owner, $pet]), 'title' => __('message.are_you_sure'), 'body' => __('message.confirm_record_deletion') . " {$owner->lastname}, {$owner->firstname}" ])
+    @include('layouts.partials.delete', ['id' => 'owner_delete_confirmation', 'action' => route('clinics.owners.destroy', [$clinic, $owner]), 'title' => __('message.are_you_sure'), 'body' => __('message.confirm_record_deletion') . " {$owner->lastname}, {$owner->firstname}" ])
 
     @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
         @include('clinics.partials.invite')

@@ -16,16 +16,19 @@ return new class extends Migration
         Schema::create('pets', function (Blueprint $table)
         {
             $table->id();
-            $table->bigInteger('clinic_id')->unsigned();
+            // $table->bigInteger('clinic_id')->unsigned();
             $table->bigInteger('species_id')->unsigned();
             $table->bigInteger('owner_id')->unsigned();
             $table->string('breed')->nullable();
-            $table->string('name');
+            $table->string('name', 100);
             $table->char('sex', 1);
             $table->dateTime('date_of_birth');
             $table->dateTime('date_of_death')->nullable();
             $table->text('description')->nullable();
-            $table->string('color')->nullable();
+            $table->string('color', 100)->nullable();
+            $table->string('distinguishing_mark', 100)->nullable();
+            $table->string('reproductive_status', 64)->nullable();
+            $table->string('life_style', 64)->nullable();
             $table->string('microchip', 64)->nullable();
             $table->string('microchip_location', 100)->nullable();
             $table->string('tatuatge', 64)->nullable();
@@ -33,11 +36,14 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            // @delete me
+            /*
             $table->foreign('clinic_id')
                 ->references('id')
                 ->on('clinics')
                 ->onDelete('cascade')
                 ->onUpdate('no action');
+            */
             $table->foreign('species_id')
                 ->references('id')
                 ->on('species')

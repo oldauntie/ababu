@@ -32,19 +32,14 @@ class Clinic extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'role_user');
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'role_user');
-    }
-
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function facilities()
+    {
+        return $this->hasMany(Facility::class);
     }
 
     public function owners()
@@ -52,13 +47,28 @@ class Clinic extends Model
         return $this->hasMany(Owner::class);
     }
 
-    public function pets()
+    public function roles()
     {
-        return $this->hasMany(Pet::class);
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 
     public function species()
     {
         return $this->hasMany(Species::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'role_user');
+    }
+
+    // @delete
+    /*
+    public function pets()
+    {
+        return $this->hasMany(Pet::class);
+    }
+    */
+
+    
 }

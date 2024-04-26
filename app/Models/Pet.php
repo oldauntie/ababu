@@ -20,6 +20,17 @@ class Pet extends Model
         '0',
     ];
 
+    const LIFE_STYLES = [
+        'Domestic only',
+        'Domestic but free to move',
+        'Free / Wild'
+    ];
+
+    const REPRODUCTIVE_STATUSES = [
+        'Intact',
+        'Spayed / Neutered'
+    ];
+
 
     protected $casts = [
         'date_of_birth' => 'date', 
@@ -28,7 +39,7 @@ class Pet extends Model
 
     protected $fillable = [
         'species_id',
-        'clinic_id',
+        // 'clinic_id',
         'owner_id',
         'breed',
         'name',
@@ -37,6 +48,9 @@ class Pet extends Model
         'date_of_death',
         'description',
         'color',
+        'distinguishing_mark',
+        'reproductive_status',
+        'life_style',
         'microchip',
         'microchip_location',
         'tatuatge',
@@ -72,11 +86,13 @@ class Pet extends Model
     }
 
 
-    
+    // @delete me
+    /*
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
     }
+    */
 
     public function owner()
     {

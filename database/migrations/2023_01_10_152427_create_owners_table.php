@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('owners', function (Blueprint $table)
         {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->char('clinic_id', 36);
             $table->string('country_id', 2);
             $table->string('firstname', 100);

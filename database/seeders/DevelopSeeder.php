@@ -109,7 +109,6 @@ class DevelopSeeder extends Seeder
          * Owners
          */
         $phil = Owner::create([
-            'id' => 1,
             'clinic_id' => $clinic->id,
             'country_id' => 'ie',
             'firstname' => 'Phil',
@@ -124,7 +123,6 @@ class DevelopSeeder extends Seeder
         ]);
 
         $rory = Owner::create([
-            'id' => 2,
             'clinic_id' => $clinic->id,
             'country_id' => 'ie',
             'firstname' => 'Rory',
@@ -139,7 +137,6 @@ class DevelopSeeder extends Seeder
         ]);
 
         $paul = Owner::create([
-            'id' => 3,
             'clinic_id' => $clinic->id,
             'country_id' => 'gb',
             'firstname' => 'Paul',
@@ -158,7 +155,7 @@ class DevelopSeeder extends Seeder
          */
         $ozzy = Pet::create([
             'species_id' => '1',
-            'owner_id' => 1,
+            'owner_id' => $phil->id,
             'name' => 'Ozzy',
             'sex' => 'M',
             'date_of_birth' => '2012-03-13 23:15:00',
@@ -167,7 +164,7 @@ class DevelopSeeder extends Seeder
 
         $muddy = Pet::create([
             'species_id' => '1',
-            'owner_id' => 2,
+            'owner_id' => $rory->id,
             'name' => 'Muddy',
             'sex' => 'M',
             'date_of_birth' => '2001-03-21 23:15:00',
@@ -175,7 +172,7 @@ class DevelopSeeder extends Seeder
 
         $martha = Pet::create([
             'species_id' => '1',
-            'owner_id' => 3,
+            'owner_id' => $paul->id,
             'name' => 'Martha',
             'sex' => 'F',
             'date_of_birth' => '2001-03-21 23:15:00',

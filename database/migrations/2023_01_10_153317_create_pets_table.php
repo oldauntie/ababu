@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             // $table->bigInteger('clinic_id')->unsigned();
             $table->bigInteger('species_id')->unsigned();
-            $table->bigInteger('owner_id')->unsigned();
+            $table->char('owner_id', 36);
             $table->string('breed')->nullable();
             $table->string('name', 100);
             $table->char('sex', 1);

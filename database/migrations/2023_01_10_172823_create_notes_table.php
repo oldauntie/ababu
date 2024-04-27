@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table)
         {
             $table->id();
-            $table->bigInteger('pet_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->char('pet_id', 36);
+            $table->char('user_id', 36)->nullable();
             $table->text('note_text');
             $table->timestamps();
 

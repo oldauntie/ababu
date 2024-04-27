@@ -20,6 +20,7 @@ class ClinicsTableSeeder extends Seeder
     public function run()
     {
         $clinic = Clinic::create([
+            'id' => '00000000-0000-0000-0000-000000000000',
             'country_id' => 'gb',
             'name' => 'No Clinic',
             'serial' => Str::random(8),
@@ -27,11 +28,5 @@ class ClinicsTableSeeder extends Seeder
             'description' => 'Ghost Clinic',
         ]);
 
-        // force id to 0
-        $clinic->id = 0;
-        $clinic->save();
-
-        // reset the auto-increment value
-        DB::statement('ALTER TABLE clinics AUTO_INCREMENT = 1');
     }
 }

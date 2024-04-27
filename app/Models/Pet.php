@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class Pet extends Model
 {
-    use HasFactory;
-
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     const SEXES = [
         'F',
@@ -33,8 +33,8 @@ class Pet extends Model
 
 
     protected $casts = [
-        'date_of_birth' => 'date', 
-        'date_of_death'=> 'date',
+        'date_of_birth' => 'date',
+        'date_of_death' => 'date',
     ];
 
     protected $fillable = [
@@ -57,9 +57,11 @@ class Pet extends Model
         'tatuatge_location',
     ];
 
+    protected $keyType = 'string';
 
+    public $incrementing = false;
+    
     protected $appends = ['age'];
-
 
     /**
      * Get the user's first name.
@@ -104,19 +106,25 @@ class Pet extends Model
         return $this->hasMany(Problem::class);
     }
 
-    // Note: renamed
     public function species()
     {
         return $this->belongsTo(Species::class);
     }
 
-    protected static function boot() {
+    # use UUID and soft delete cascade;
+    protected static function boot()
+    {
         parent::boot();
 
-        self::deleting(function (Pet $pet) {
+        # create and assign an UUID as PK
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = Str::uuid()->toString();
+            }
+        });
 
-            foreach ($pet->problems as $problem)
-            {
+        self::deleting(function (Pet $pet) {
+            foreach ($pet->problems as $problem) {
                 $problem->delete();
             }
         });

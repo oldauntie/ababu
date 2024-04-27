@@ -8,9 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Traits\UUID;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use UUID;
+
+
+    protected $keyType = 'string';
+    # public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

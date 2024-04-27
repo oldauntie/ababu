@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('clinic_id')->unsigned();
+            $table->char('clinic_id', 36);
             $table->string('name', 100);
             $table->string('description')->nullable();
             $table->string('manager', 100)->nullable();

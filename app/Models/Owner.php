@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,8 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Owner extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'clinic_id',
@@ -26,8 +26,15 @@ class Owner extends Model
         'ssn',
     ];
 
+    // @todo: is in use?
     protected $appends = ['fullname'];
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
+
+    // @todo: is in use?
     public function getFullnameAttribute()
     {
         return $this->firstname . ' ' . $this->lastname;
@@ -48,15 +55,21 @@ class Owner extends Model
         return $this->hasMany(Pet::class);
     }
 
+    # use UUID and soft delete cascade;
     protected static function boot()
     {
         parent::boot();
 
-        self::deleting(function (Owner $owner)
-        {
+        # create and assign an UUID
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = Str::uuid()->toString();
+            }
+        });
 
-            foreach ($owner->pets as $pet)
-            {
+        # soft delete cascade
+        self::deleting(function (Owner $owner) {
+            foreach ($owner->pets as $pet) {
                 $pet->delete();
             }
         });

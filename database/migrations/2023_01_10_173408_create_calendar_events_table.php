@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('calendar_events', function (Blueprint $table)
         {
             $table->id();
-            $table->bigInteger('clinic_id')->unsigned();
+            $table->char('clinic_id', 36);
             $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');

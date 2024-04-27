@@ -17,8 +17,8 @@ return new class extends Migration
         {
             $table->id();
             $table->bigInteger('diagnosis_id')->unsigned();
-            $table->bigInteger('pet_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->char('pet_id', 36);
+            $table->char('user_id', 36)->nullable();
             $table->integer('status_id');
             $table->dateTime('active_from');
             $table->boolean('key_problem');

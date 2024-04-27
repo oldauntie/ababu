@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('diagnostic_test_id');
             $table->bigInteger('problem_id')->unsigned()->nullable();
-            $table->bigInteger('pet_id')->unsigned();
+            $table->char('pet_id', 36);
             $table->char('user_id', 36)->nullable();
             $table->text('result')->nullable();
             $table->text('medical_report')->nullable();

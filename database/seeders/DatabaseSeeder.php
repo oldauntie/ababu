@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DiagnosesTableSeeder::class);
         $this->call(DiagnosticTestsTableSeeder::class);
         $this->call(ReasonsTableSeeder::class);
-        // @todo
-        # $this->call(MedicinesTableSeeder::class);
+        
+        $this->call(MedicinesTableSeeder::class);
         $this->call(ProceduresTableSeeder::class);
     }
 }

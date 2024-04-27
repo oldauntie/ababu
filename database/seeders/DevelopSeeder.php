@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Clinic;
+use App\Models\Examination;
+use App\Models\Note;
 use App\Models\Owner;
 use App\Models\Pet;
+use App\Models\Prescription;
 use App\Models\Problem;
 use App\Models\Role;
 use App\Models\Species;
@@ -186,11 +189,11 @@ class DevelopSeeder extends Seeder
          DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Problems.sql'));
         $this->command->info('Problems table seeded!');
         */
-        Problem::create([
+        $problem = Problem::create([
             'diagnosis_id' => '326',
             'pet_id' => $ozzy->id,
             'user_id' => $admin->id,
-            'active_from' => '2019-03-20 13:28:31',
+            'active_from' => '2019-03-21 17:28:31',
             'status_id' => 0,
             'key_problem' => 1
         ]);
@@ -204,6 +207,18 @@ class DevelopSeeder extends Seeder
         DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Prescriptions.sql'));
         $this->command->info('Prescriptions table seeded!');
         */
+        Prescription::create([
+            'medicine_id' => 1,
+            'problem_id' => $problem->id,
+            'pet_id' => $ozzy->id,
+            'user_id' => $admin->id,
+            'quantity' => 1,
+            'dosage' => 'one a day',
+            'in_evidence' => 0,
+            'notes' => 'these are simple notes',
+            'print_notes' => 1,
+            'created_at' => '2020-08-02 22:00:00'
+        ]);
 
 
         /**
@@ -213,6 +228,20 @@ class DevelopSeeder extends Seeder
         DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Examinations.sql'));
         $this->command->info('Examinations table seeded!');
         */
+        Examination::create([
+            'diagnostic_test_id' => '13379',
+            'problem_id' => $problem->id,
+            'pet_id' => $ozzy->id,
+            'user_id' => $admin->id,
+            'result' => 'A small problem',
+            'medical_report' => 'a Medical report',
+            'is_pathologic' => 1,
+            'in_evidence' => 1,
+            'notes' => 'Some notes to be printed',
+            'print_notes' => 1,
+            'created_at' => '2020-09-24 02:40:17',
+            'updated_at' => '2020-09-24 02:40:17',
+        ]);
 
 
         /**
@@ -222,6 +251,13 @@ class DevelopSeeder extends Seeder
         DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Notes.sql'));
         $this->command->info('Notes table seeded!');
         */
+        Note::create([
+            'pet_id' => $ozzy->id,
+            'user_id' => $admin->id,
+            'note_text' => 'just another test... to prove nothing',
+            'created_at' => '2020-09-24 11:01:14',
+            'updated_at' => '2020-09-24 11:01:14',
+        ]);
 
 
         $this->command->info('*** WARNING! YOU ARE SEEDING DEVELOPMENT DATA ***');

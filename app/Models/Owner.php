@@ -33,25 +33,6 @@ class Owner extends Model
 
     public $incrementing = false;
 
-    # use UUID and soft delete cascade;
-    protected static function boot()
-    {
-        parent::boot();
-
-        # create and assign an UUID
-        static::creating(function ($model) {
-            if (empty($model->{$model->getKeyName()})) {
-                $model->{$model->getKeyName()} = Str::uuid()->toString();
-            }
-        });
-
-        # soft delete cascade
-        self::deleting(function (Owner $owner) {
-            foreach ($owner->pets as $pet) {
-                $pet->delete();
-            }
-        });
-    }
 
     // @todo: is in use?
     public function getFullnameAttribute()
@@ -74,4 +55,23 @@ class Owner extends Model
         return $this->hasMany(Pet::class);
     }
 
+    # use UUID and soft delete cascade;
+    protected static function boot()
+    {
+        parent::boot();
+
+        # create and assign an UUID
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = Str::uuid()->toString();
+            }
+        });
+
+        # soft delete cascade
+        self::deleting(function (Owner $owner) {
+            foreach ($owner->pets as $pet) {
+                $pet->delete();
+            }
+        });
+    }
 }

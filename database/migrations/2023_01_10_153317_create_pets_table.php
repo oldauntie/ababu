@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pets', function (Blueprint $table)
         {
-            $table->id();
+            $table->uuid('id')->primary();
             // $table->bigInteger('clinic_id')->unsigned();
             $table->bigInteger('species_id')->unsigned();
             $table->char('owner_id', 36);
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            // @delete me
+            // @todo @delete me ???
             /*
             $table->foreign('clinic_id')
                 ->references('id')
@@ -68,7 +68,7 @@ return new class extends Migration
         {
             $table->dropForeign('pets_owner_id_foreign');
             $table->dropForeign('pets_species_id_foreign');
-            $table->dropForeign('pets_clinic_id_foreign');
+            // $table->dropForeign('pets_clinic_id_foreign');
         });
 
         Schema::dropIfExists('pets');

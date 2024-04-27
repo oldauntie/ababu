@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         $password = Str::random(8);
 
         $root = User::create([
-            'id' => Str::uuid(),
+            'id' => '00000000-0000-0000-0000-000000000000',
             'locale_id' => 'en-US',
             'name' => 'root',
             'email' => 'root@ababu.cloud',
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         
-        $root->roles()->attach($rootRole);
+        $root->roles()->attach($rootRole, ['clinic_id' => '00000000-0000-0000-0000-000000000000']);
 
         $this->command->info('**********************************');
         $this->command->info('*** root@ababu.cloud password ***');

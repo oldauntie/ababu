@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\Traits\UUID;
 
 class Clinic extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+    use UUID;
 
-    use SoftDeletes;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'country_id',

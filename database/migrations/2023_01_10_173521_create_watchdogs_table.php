@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('watchdogs', function (Blueprint $table)
         {
             $table->id();
-            $table->bigInteger('clinic_id')->unsigned();
+            $table->char('clinic_id', 36);
             $table->char('user_id', 36)->nullable();
             $table->string('type', 16);
 

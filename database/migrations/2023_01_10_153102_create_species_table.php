@@ -17,7 +17,7 @@ return new class extends Migration
         {
             $table->id();
             $table->bigInteger('tsn')->unsigned();
-            $table->bigInteger('clinic_id')->unsigned();
+            $table->char('clinic_id', 36);
             $table->string('familiar_name');
             $table->timestamps();
 

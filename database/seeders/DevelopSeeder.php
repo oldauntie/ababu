@@ -30,7 +30,7 @@ class DevelopSeeder extends Seeder
         /**
          * Black Clinic
          */
-        Clinic::create([
+        $clinic = Clinic::create([
             'country_id' => 'gb',
             'name' => 'Develop Clinic',
             'description' => 'A clinic description goes here',
@@ -83,8 +83,8 @@ class DevelopSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
         ]);
 
-        $admin->roles()->attach($adminRole, ['clinic_id' => 1]);
-        $veterinarian->roles()->attach($veterinarianRole, ['clinic_id' => 1]);
+        $admin->roles()->attach($adminRole, ['clinic_id' => $clinic->id]);
+        $veterinarian->roles()->attach($veterinarianRole, ['clinic_id' => $clinic->id]);
 
 
 
@@ -94,13 +94,13 @@ class DevelopSeeder extends Seeder
          */
         Species::create([
             'tsn' => '726821',
-            'clinic_id' => 1,
+            'clinic_id' => $clinic->id,
             'familiar_name' => 'Dog',
         ]);
 
         Species::create([
             'tsn' => '183798',
-            'clinic_id' => 1,
+            'clinic_id' => $clinic->id,
             'familiar_name' => 'Cat',
         ]);
 
@@ -108,9 +108,9 @@ class DevelopSeeder extends Seeder
         /**
          * Owners
          */
-        Owner::create([
+        $phil = Owner::create([
             'id' => 1,
-            'clinic_id' => 1,
+            'clinic_id' => $clinic->id,
             'country_id' => 'ie',
             'firstname' => 'Phil',
             'lastname' => 'Lynott',
@@ -123,9 +123,9 @@ class DevelopSeeder extends Seeder
             'ssn' => 'DVN-PHY',
         ]);
 
-        Owner::create([
+        $rory = Owner::create([
             'id' => 2,
-            'clinic_id' => 1,
+            'clinic_id' => $clinic->id,
             'country_id' => 'ie',
             'firstname' => 'Rory',
             'lastname' => 'Gallagher',
@@ -138,9 +138,9 @@ class DevelopSeeder extends Seeder
             'ssn' => 'DVN-ROR',
         ]);
 
-        Owner::create([
+        $paul = Owner::create([
             'id' => 3,
-            'clinic_id' => 1,
+            'clinic_id' => $clinic->id,
             'country_id' => 'gb',
             'firstname' => 'Paul',
             'lastname' => 'Mcartney',

@@ -82,7 +82,7 @@
                                     <div class="tab-pane fade" id="nav-medical-history" role="tabpanel"
                                         aria-labelledby="nav-medical-history-tab" tabindex="0">
 
-                                        @include('visits.history')
+                                        @include('visits.medical_history')
 
                                     </div>
 

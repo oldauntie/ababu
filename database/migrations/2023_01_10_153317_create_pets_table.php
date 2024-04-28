@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string('microchip_location', 100)->nullable();
             $table->string('tatuatge', 64)->nullable();
             $table->string('tatuatge_location', 100)->nullable();
+            $table->text('previous_diseases')->nullable();
+            $table->text('surgery')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

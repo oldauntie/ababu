@@ -119,15 +119,16 @@ class PetController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'color' => 'max:100',
-            'distinguishing_mark' => 'max:100',
-            'species_id' => 'required',
-            'sex' => 'required|max:1',
-            'date_of_birth' => 'required|before:tomorrow',
-            'date_of_death' => 'nullable|after_or_equal:date_of_birth|before:tomorrow',
+            'color' => 'sometimes|max:100',
+            'distinguishing_mark' => 'sometimes|max:100',
+            'species_id' => 'sometimes|required',
+            'sex' => 'sometimes|required|max:1',
+            'date_of_birth' => 'sometimes|required|before:tomorrow',
+            'date_of_death' => 'sometimes|nullable|after_or_equal:date_of_birth|before:tomorrow',
         ]);
 
-        // $pet->clinic_id = $clinic->id;
+
+        /*
         $pet->species_id = $request->species_id;
         $pet->owner_id = $owner->id;
         $pet->breed = $request->breed;
@@ -144,6 +145,38 @@ class PetController extends Controller
         $pet->microchip_location = $request->microchip_location;
         $pet->tatuatge = $request->tatuatge;
         $pet->tatuatge_location = $request->tatuatge_location;
+        */
+
+        $pet->owner_id = $owner->id;
+
+        $pet->update(request()->only(
+            'species_id',
+            'breed',
+            'name',
+            'sex',
+            'date_of_birth',
+            'date_of_death',
+            'description',
+            'color',
+            'distinguishing_mark',
+            'reproductive_status',
+            'life_style',
+            'microchip',
+            'microchip_location',
+            'tatuatge',
+            'tatuatge_location'
+        ));
+
+
+
+
+        # medical history
+        if ($request->has(['name', 'previous_diseases'])) {
+            // ...
+            $pet->previous_diseases = $request->previous_diseases;
+            $pet->surgery = $request->surgery;
+        }
+
 
         if ($pet->save()) {
             $request->session()->flash('success', __('message.record_update_success'));

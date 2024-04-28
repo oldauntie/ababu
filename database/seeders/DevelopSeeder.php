@@ -13,13 +13,10 @@ use App\Models\Role;
 use App\Models\Species;
 use App\Models\User;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
 class DevelopSeeder extends Seeder
 {
@@ -88,8 +85,6 @@ class DevelopSeeder extends Seeder
 
         $admin->roles()->attach($adminRole, ['clinic_id' => $clinic->id]);
         $veterinarian->roles()->attach($veterinarianRole, ['clinic_id' => $clinic->id]);
-
-
 
 
         /**
@@ -185,10 +180,6 @@ class DevelopSeeder extends Seeder
         /**
          * Problems
          */
-        /*
-         DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Problems.sql'));
-        $this->command->info('Problems table seeded!');
-        */
         $problem = Problem::create([
             'diagnosis_id' => '326',
             'pet_id' => $ozzy->id,
@@ -203,10 +194,6 @@ class DevelopSeeder extends Seeder
         /**
          * Presriptions
          */
-        /*
-        DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Prescriptions.sql'));
-        $this->command->info('Prescriptions table seeded!');
-        */
         Prescription::create([
             'medicine_id' => 1,
             'problem_id' => $problem->id,
@@ -224,10 +211,6 @@ class DevelopSeeder extends Seeder
         /**
          * Exmaination
          */
-        /*
-        DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Examinations.sql'));
-        $this->command->info('Examinations table seeded!');
-        */
         Examination::create([
             'diagnostic_test_id' => '13379',
             'problem_id' => $problem->id,
@@ -247,10 +230,6 @@ class DevelopSeeder extends Seeder
         /**
          * Notes
          */
-        /*
-        DB::unprepared(File::get(base_path() . '/database/seeders/sql/develop/Notes.sql'));
-        $this->command->info('Notes table seeded!');
-        */
         Note::create([
             'pet_id' => $ozzy->id,
             'user_id' => $admin->id,

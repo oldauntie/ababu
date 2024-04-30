@@ -110,6 +110,8 @@ return [
     'pet' => 'animale',
     'pet_create' => 'aggiungi un nuovo animale',
     'pets' => 'animali',
+    'pet_hx_children_in_house' => 'Ci sono bambini in casa?',
+    'pet_hx_pets_in_house' => 'Ci sono altri animali in casa?',
     'pets_list' => 'elenco degli animali',
     'phone' => 'telefono',
     'phone_primary' => 'telefono principale',

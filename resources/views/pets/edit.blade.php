@@ -115,28 +115,6 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="reproductive_status" id="reproductive_status"
-                                    aria-label="{{ __('translate.reproductive_status') }}">
-                                    @foreach (\App\Models\Pet::REPRODUCTIVE_STATUSES as $reproductive_status)
-                                        <option value="{{ $reproductive_status }}" {{ $reproductive_status == $pet->reproductive_status ? 'selected' : null }}>
-                                            {{ $reproductive_status }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="reproductive_status">{{ __('translate.reproductive_status') }}</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <select class="form-select" name="life_style" id="life_style"
-                                    aria-label="{{ __('translate.life_style') }}">
-                                    @foreach (\App\Models\Pet::LIFE_STYLES as $life_style)
-                                        <option value="{{ $life_style }}" {{ $life_style == $pet->life_style ? 'selected' : null }}>
-                                            {{ $life_style }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="life_style">{{ __('translate.life_style') }}</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
                                 <input id="microchip" type="text"
                                     class="form-control @error('microchip') is-invalid @enderror" name="microchip"
                                     value="{{ $pet->microchip }}" maxlength="64"

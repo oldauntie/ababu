@@ -118,7 +118,7 @@ class PetController extends Controller
     public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'sometimes|required|max:255',
             'color' => 'sometimes|max:100',
             'distinguishing_mark' => 'sometimes|max:100',
             'species_id' => 'sometimes|required',
@@ -159,8 +159,6 @@ class PetController extends Controller
             'description',
             'color',
             'distinguishing_mark',
-            'reproductive_status',
-            'life_style',
             'microchip',
             'microchip_location',
             'tatuatge',
@@ -171,10 +169,14 @@ class PetController extends Controller
 
 
         # medical history
-        if ($request->has(['name', 'previous_diseases'])) {
-            // ...
+        if ($request->has(['reproductive_status', 'life_style', 'food', 'previous_diseases', 'surgery'])) {
+            $pet->reproductive_status = $request->reproductive_status;
+            $pet->life_style = $request->life_style;
+            $pet->food = $request->food;
             $pet->previous_diseases = $request->previous_diseases;
             $pet->surgery = $request->surgery;
+            $pet->pets_in_house = $request->has('pets_in_house');
+            $pet->children_in_house = $request->has('children_in_house');
         }
 
 

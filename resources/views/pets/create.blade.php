@@ -109,6 +109,7 @@
                                 <label for="distinguishing_mark">{{ __('translate.distinguishing_mark') }}</label>
                             </div>
 
+                            {{-- 
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="reproductive_status" id="reproductive_status"
                                     aria-label="{{ __('translate.reproductive_status') }}">
@@ -130,6 +131,8 @@
                                 </select>
                                 <label for="life_style">{{ __('translate.life_style') }}</label>
                             </div>
+                            --}}
+
 
                             <div class="form-floating mb-3">
                                 <input id="microchip" type="text"

@@ -14,17 +14,27 @@ class Pet extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const LIFE_STYLES = [
+        'Exclusively indoor',
+        'Exclusively outdoor',
+        'Both indoor & outdoor'
+    ];
+
+    const FOODS = [
+        'dry food',
+        'wet/canned food',
+        'human food',
+        'autonomous / wild food',
+        'combination'
+    ];
+
     const SEXES = [
         'F',
         'M',
         '0',
     ];
 
-    const LIFE_STYLES = [
-        'Domestic only',
-        'Domestic but free to move',
-        'Free / Wild'
-    ];
+
 
     const REPRODUCTIVE_STATUSES = [
         'Intact',
@@ -49,8 +59,6 @@ class Pet extends Model
         'description',
         'color',
         'distinguishing_mark',
-        'reproductive_status',
-        'life_style',
         'microchip',
         'microchip_location',
         'tatuatge',

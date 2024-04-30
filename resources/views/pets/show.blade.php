@@ -48,11 +48,11 @@
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <button class="nav-link active" id="nav-main-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-main" type="button" role="tab"
-                                            aria-controls="nav-main" aria-selected="true">Main (Problem approach)</button>
+                                            aria-controls="nav-main" aria-selected="true">{{__('translate.problem')}}</button>
 
                                         <button class="nav-link" id="nav-medical-history-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-medical-history" type="button" role="tab"
-                                            aria-controls="nav-medical-history" aria-selected="true">Medical History</button>
+                                            aria-controls="nav-medical-history" aria-selected="true">{{ __('translate.medical_history') }}</button>
                                         <button class="nav-link" id="nav-visit-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-visit" type="button" role="tab"
                                             aria-controls="nav-visit" aria-selected="false">Visit</button>

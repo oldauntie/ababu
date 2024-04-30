@@ -27,14 +27,18 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('color', 100)->nullable();
             $table->string('distinguishing_mark', 100)->nullable();
-            $table->string('reproductive_status', 64)->nullable();
-            $table->string('life_style', 64)->nullable();
             $table->string('microchip', 64)->nullable();
             $table->string('microchip_location', 100)->nullable();
             $table->string('tatuatge', 64)->nullable();
             $table->string('tatuatge_location', 100)->nullable();
+            $table->string('reproductive_status', 64)->nullable();
+            $table->string('life_style', 64)->nullable();
+            $table->boolean('pets_in_house')->nullable();
+            $table->boolean('children_in_house')->nullable();
+            $table->string('food', 64)->nullable();
             $table->text('previous_diseases')->nullable();
             $table->text('surgery')->nullable();
+            // @todo: $table->string('previous_veterinary', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

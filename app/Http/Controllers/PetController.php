@@ -169,14 +169,19 @@ class PetController extends Controller
 
 
         # medical history
-        if ($request->has(['reproductive_status', 'life_style', 'food', 'previous_diseases', 'surgery'])) {
+        if ($request->has(['reproductive_status'])) {
             $pet->reproductive_status = $request->reproductive_status;
             $pet->life_style = $request->life_style;
+            $pet->has_pets_in_house = $request->has('has_pets_in_house');
+            $pet->has_children_in_house = $request->has('has_children_in_house');
             $pet->food = $request->food;
+            $pet->food_consumption = $request->food_consumption;
+            $pet->water_consumption = $request->water_consumption;
             $pet->previous_diseases = $request->previous_diseases;
-            $pet->surgery = $request->surgery;
-            $pet->pets_in_house = $request->has('pets_in_house');
-            $pet->children_in_house = $request->has('children_in_house');
+            $pet->previous_surgery = $request->revious_surgery;
+            $pet->flea_preventive = $request->flea_preventive;
+            $pet->tick_preventive = $request->tick_preventive;
+            $pet->heartworm_preventive = $request->heartworm_preventive;
         }
 
 

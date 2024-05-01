@@ -14,12 +14,20 @@ class Pet extends Model
 {
     use HasFactory, SoftDeletes;
 
+
+
     const LIFE_STYLES = [
         'Exclusively indoor',
         'Exclusively outdoor',
         'Both indoor & outdoor'
     ];
 
+    const FOOD_CONSUMPTIONS = [
+        'Decreased',
+        'Increased',
+        'Stayed the same',
+    ];
+    
     const FOODS = [
         'dry food',
         'wet/canned food',
@@ -28,18 +36,23 @@ class Pet extends Model
         'combination'
     ];
 
+    const REPRODUCTIVE_STATUSES = [
+        'Intact',
+        'Spayed / Neutered'
+    ];
+
     const SEXES = [
         'F',
         'M',
         '0',
     ];
 
-
-
-    const REPRODUCTIVE_STATUSES = [
-        'Intact',
-        'Spayed / Neutered'
+    const WATER_CONSUMPTIONS = [
+        'Decreased',
+        'Increased',
+        'Stayed the same',
     ];
+
 
 
     protected $casts = [

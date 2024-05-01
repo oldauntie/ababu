@@ -46,16 +46,19 @@
 
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <button class="nav-link active" id="nav-main-tab" data-bs-toggle="tab"
+                                        {{--
+                                            <button class="nav-link active" id="nav-main-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-main" type="button" role="tab"
                                             aria-controls="nav-main" aria-selected="true">{{__('translate.problem')}}</button>
+                                        --}}
 
-                                        <button class="nav-link" id="nav-medical-history-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-medical-history" type="button" role="tab"
-                                            aria-controls="nav-medical-history" aria-selected="true">{{ __('translate.medical_history') }}</button>
+                                        <button class="nav-link active" id="nav-medical-history-tab"
+                                            data-bs-toggle="tab" data-bs-target="#nav-medical-history" type="button"
+                                            role="tab" aria-controls="nav-medical-history"
+                                            aria-selected="true">{{ __('translate.medical_history') }}</button>
                                         <button class="nav-link" id="nav-visit-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-visit" type="button" role="tab"
-                                            aria-controls="nav-visit" aria-selected="false">Visit</button>
+                                            aria-controls="nav-visit" aria-selected="false">SOAP</button>
                                         <button class="nav-link" id="nav-biometrics-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-biometrics" type="button" role="tab"
                                             aria-controls="nav-biometrics" aria-selected="false">Biometrics</button>
@@ -72,14 +75,16 @@
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-main" role="tabpanel"
+                                    {{--
+                                        <div class="tab-pane fade show active" id="nav-main" role="tabpanel"
                                         aria-labelledby="nav-main-tab" tabindex="0">
-
+                                        
                                         @include('visits.main')
-
+                                        
                                     </div>
-                                    
-                                    <div class="tab-pane fade" id="nav-medical-history" role="tabpanel"
+                                    --}}
+
+                                    <div class="tab-pane fade active show" id="nav-medical-history" role="tabpanel"
                                         aria-labelledby="nav-medical-history-tab" tabindex="0">
 
                                         @include('visits.medical_history')
@@ -118,6 +123,7 @@
 
                                     </div>
                                 </div>
+
 
                             </div>
                         </div>

@@ -69,7 +69,12 @@ class PetController extends Controller
             'tatuatge_location' => $request->get('tatuatge_location'),
         ]);
 
+        # save pet record
         $pet->save();
+
+        # create a medical history record
+        $pet->medical_history()->create();
+
 
         if ($pet->save()) {
             $request->session()->flash('success', __('message.record_store_success'));
@@ -128,7 +133,7 @@ class PetController extends Controller
         ]);
 
 
-        /*
+        # save pet information
         $pet->species_id = $request->species_id;
         $pet->owner_id = $owner->id;
         $pet->breed = $request->breed;
@@ -139,51 +144,15 @@ class PetController extends Controller
         $pet->description = $request->description;
         $pet->color = $request->color;
         $pet->distinguishing_mark = $request->distinguishing_mark;
-        $pet->reproductive_status = $request->reproductive_status;
-        $pet->life_style = $request->life_style;
         $pet->microchip = $request->microchip;
         $pet->microchip_location = $request->microchip_location;
         $pet->tatuatge = $request->tatuatge;
         $pet->tatuatge_location = $request->tatuatge_location;
-        */
-
+        
         $pet->owner_id = $owner->id;
 
-        $pet->update(request()->only(
-            'species_id',
-            'breed',
-            'name',
-            'sex',
-            'date_of_birth',
-            'date_of_death',
-            'description',
-            'color',
-            'distinguishing_mark',
-            'microchip',
-            'microchip_location',
-            'tatuatge',
-            'tatuatge_location'
-        ));
-
-
-
-
-        # medical history
-        if ($request->has(['reproductive_status'])) {
-            $pet->reproductive_status = $request->reproductive_status;
-            $pet->life_style = $request->life_style;
-            $pet->has_pets_in_house = $request->has('has_pets_in_house');
-            $pet->has_children_in_house = $request->has('has_children_in_house');
-            $pet->food = $request->food;
-            $pet->food_consumption = $request->food_consumption;
-            $pet->water_consumption = $request->water_consumption;
-            $pet->previous_diseases = $request->previous_diseases;
-            $pet->previous_surgery = $request->revious_surgery;
-            $pet->flea_preventive = $request->flea_preventive;
-            $pet->tick_preventive = $request->tick_preventive;
-            $pet->heartworm_preventive = $request->heartworm_preventive;
-        }
-
+        # update pet info
+        $pet->update();
 
         if ($pet->save()) {
             $request->session()->flash('success', __('message.record_update_success'));

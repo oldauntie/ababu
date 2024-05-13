@@ -158,6 +158,7 @@ class DevelopSeeder extends Seeder
             'sex' => 'M',
             'date_of_birth' => '2012-03-13 23:15:00',
         ]);
+        $ozzy->medical_history()->create();
 
 
         $muddy = Pet::create([
@@ -167,6 +168,8 @@ class DevelopSeeder extends Seeder
             'sex' => 'M',
             'date_of_birth' => '2001-03-21 23:15:00',
         ]);
+        $muddy->medical_history()->create();
+
 
         $martha = Pet::create([
             'species_id' => '1',
@@ -175,6 +178,8 @@ class DevelopSeeder extends Seeder
             'sex' => 'F',
             'date_of_birth' => '2001-03-21 23:15:00',
         ]);
+        $martha->medical_history()->create();
+
 
 
         /**

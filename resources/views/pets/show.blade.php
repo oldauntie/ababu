@@ -87,39 +87,39 @@
                                     <div class="tab-pane fade active show" id="nav-medical-history" role="tabpanel"
                                         aria-labelledby="nav-medical-history-tab" tabindex="0">
 
-                                        @include('visits.medical_history')
+                                        @include('pets.visits.medical_history')
 
                                     </div>
 
                                     <div class="tab-pane fade" id="nav-visit" role="tabpanel"
                                         aria-labelledby="nav-visit-tab" tabindex="0">
 
-                                        @include('visits.visit')
+                                        @include('pets.visits.visit')
 
                                     </div>
                                     <div class="tab-pane fade" id="nav-biometrics" role="tabpanel"
                                         aria-labelledby="nav-biometrics-tab" tabindex="0">
 
-                                        @include('visits.biometrics')
+                                        @include('pets.visits.biometrics')
 
                                     </div>
                                     <div class="tab-pane fade" id="nav-vaccinations" role="tabpanel"
                                         aria-labelledby="nav-vaccinations-tab" tabindex="0">
 
-                                        @include('visits.vaccinations')
+                                        @include('pets.visits.vaccinations')
 
                                     </div>
                                     <div class="tab-pane fade" id="nav-attachments" role="tabpanel"
                                         aria-labelledby="nav-attachments-tab" tabindex="0">
 
-                                        @include('visits.attachments')
+                                        @include('pets.visits.attachments')
 
                                     </div>
 
                                     <div class="tab-pane fade" id="nav-materials" role="tabpanel"
                                         aria-labelledby="nav-materials-tab" tabindex="0">
 
-                                        @include('visits.materials')
+                                        @include('pets.visits.materials')
 
                                     </div>
                                 </div>

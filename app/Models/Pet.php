@@ -14,46 +14,11 @@ class Pet extends Model
 {
     use HasFactory, SoftDeletes;
 
-
-
-    const LIFE_STYLES = [
-        'Exclusively indoor',
-        'Exclusively outdoor',
-        'Both indoor & outdoor'
-    ];
-
-    const FOOD_CONSUMPTIONS = [
-        'Decreased',
-        'Increased',
-        'Stayed the same',
-    ];
-    
-    const FOODS = [
-        'dry food',
-        'wet/canned food',
-        'human food',
-        'autonomous / wild food',
-        'combination'
-    ];
-
-    const REPRODUCTIVE_STATUSES = [
-        'Intact',
-        'Spayed / Neutered'
-    ];
-
     const SEXES = [
         'F',
         'M',
         '0',
     ];
-
-    const WATER_CONSUMPTIONS = [
-        'Decreased',
-        'Increased',
-        'Stayed the same',
-    ];
-
-
 
     protected $casts = [
         'date_of_birth' => 'date',
@@ -116,6 +81,10 @@ class Pet extends Model
         return $this->belongsTo(Clinic::class);
     }
     */
+    public function medical_history()
+    {
+        return $this->hasOne(MedicalHistory::class);
+    }
 
     public function owner()
     {

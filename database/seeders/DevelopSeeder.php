@@ -52,8 +52,8 @@ class DevelopSeeder extends Seeder
         /**
          * Creating Users
          */
-        $adminRole = Role::where('name', 'admin')->first();
-        $veterinarianRole = Role::where('name', 'veterinarian')->first();
+        $adminRole = Role::where('role', 'admin')->first();
+        $veterinarianRole = Role::where('role', 'veterinarian')->first();
 
         $admin = User::create([
             'locale_id' => 'en-GB',

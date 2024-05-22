@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $rootRole = Role::where('name', 'root')->first();
+        $rootRole = Role::where('role', 'root')->first();
 
         $password = Str::random(8);
 

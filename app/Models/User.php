@@ -15,7 +15,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
     use UUID;
 
-
     protected $keyType = 'string';
     # public $incrementing = false;
 
@@ -28,9 +27,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'locale_id', 
-        'registration', 
-        'phone', 
+        'locale_id',
+        'registration',
+        'phone',
         'mobile',
     ];
 
@@ -71,58 +70,27 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     /**
-     * Check if user can cure a certain Pet
-     *
-     * @param  \App\Pet $pet
-     */
-    public function canCure(Pet $pet)
-    {
-        if ($this->roles()->where('clinic_id', $pet->clinic_id)->first())
-        {
-            return true;
-        }
-        return false;
-    }
-
-
-    /**
-     * Check if user belongs to a clinic
-     *
-     * @param int $clinic_id
-     */
-    public function belongsToClinic($clinic_id)
-    {
-        if ($this->roles()->where('clinic_id', $clinic_id)->first())
-        {
-            return true;
-        }
-        return false;
-    }
-
-
-    /**
-     * Check if user has any of a role
-     *
-     * @param array $roles
-     */
-    public function hasAnyRoles($roles)
-    {
-        if ($this->roles()->whereIn('name', $roles)->first())
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Check if user has a role
+     * Check if user has an exact role
      *
      * @param string $role
      */
-    public function hasRole($role)
+    public function isRole($role, Clinic $clinic)
     {
-        if ($this->roles()->where('name', $role)->first())
-        {
+        if ($this->roles()->where('role', $role)->where('clinic_id', $clinic->id)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Check if user has a minimun role
+     *
+     * @param string $role
+     */
+    public function hasRole($role, Clinic $clinic)
+    {
+        if ($this->roles()->where('clinic_id', $clinic->id)->first() != null && Role::select('weight')->where('role', $role)->first() != null && $this->roles()->where('clinic_id', $clinic->id)->first()->weight >= Role::select('weight')->where('role', $role)->first()->weight) {
             return true;
         }
         return false;
@@ -132,8 +100,42 @@ class User extends Authenticatable implements MustVerifyEmail
      * Check if user has any of a role in a clinic
      *
      * @param array $roles
+     * @param Clicni $clinic
+     */
+    public function hasAnyRoles($roles, Clinic $clinic)
+    {
+        if ($this->roles()->whereIn('role', $roles)->where('clinic_id', $clinic->id)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+    /**
+     * Check if user can cure a certain Pet
+     *
+     * @param  \App\Pet $pet
+     */
+    /*
+     public function canCure(Pet $pet)
+    {
+        if ($this->roles()->where('clinic_id', $pet->clinic_id)->first()) {
+            return true;
+        }
+        return false;
+    }
+    */
+
+    /**
+     * Check if user has any of a role in a clinic
+     *
+     * @param array $roles
      * @param int $clinic_id
      */
+    /*
     public function hasAnyRolesByClinicId($roles, $clinic_id)
     {
         if ($this->roles()->whereIn('name', $roles)->where('clinic_id', $clinic_id)->first())
@@ -142,29 +144,33 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+    */
 
-
-    /**
-     * Check if user has a role in a clinic
-     *
-     * @param string $roles
-     * @param int $clinic_id
-     */
-    public function hasRoleByClinicId($role, $clinic_id)
-    {
-        if ($this->roles()->where('name', $role)->where('clinic_id', $clinic_id)->first())
-        {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * Check if user is root
      *
      */
-    public function isRoot()
+    /*
+     public function isRoot()
     {
-        return $this->hasRole('root');
+        return $this->isRole('root', Clinic::find('00000000-0000-0000-0000-000000000000'));
     }
+    */
+
+
+    /**
+     * Check if user belongs to a clinic
+     *
+     * @param int $clinic_id
+     */
+    /*
+    public function belongsToClinic($clinic_id)
+    {
+        if ($this->roles()->where('clinic_id', $clinic_id)->first()) {
+            return true;
+        }
+        return false;
+    }
+    */
 }

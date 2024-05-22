@@ -1,6 +1,6 @@
 @isset($clinic)
 
-@if(Auth::user()->hasAnyRoles(['root', 'admin', 'veterinarian']) )
+@if(Auth::user()->hasAnyRoles(['root', 'admin', 'veterinarian'], $clinic) )
 <li class="nav-item">
     <a class="nav-link" href="{{route('home')}}">{{__('translate.home')}}</a>
 </li>

@@ -30,8 +30,13 @@ Route::get('/terms', function () {
 })->name('terms');
 
 # debug and experiments route
-Route::resource('esperimenti', EsperimentoController::class)->middleware('roles:root|admin');
-// Auth::routes();
+
+# originale...
+# Route::resource('esperimenti', EsperimentoController::class);
+// Route::resource('esperimenti', EsperimentoController::class)->middleware('is:admin');
+// Route::resource('clinics/{clinic}/esperimenti', EsperimentoController::class)->middleware('has:root');
+Route::resource('clinics/{clinic}/esperimenti', EsperimentoController::class)->middleware('has:nurse');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -49,10 +54,10 @@ Route::post('profile', [UserController::class, 'profileUpdate'])->name('profile.
 # @todo: what to do when a clinic is erased.
 Route::get('clinics/create', [ClinicController::class, 'create'])->name('clinics.create')->middleware('auth');
 Route::post('clinics', [ClinicController::class, 'store'])->name('clinics.store')->middleware('auth');
-Route::resource('clinics', ClinicController::class)->except(['create', 'store'])->middleware('clinic_access');
+Route::resource('clinics', ClinicController::class)->except(['create', 'store'])->middleware('has:nurse');
 
 # clinic specific action
-Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('clinic_roles:root|admin');
+Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('clinics.send')->middleware('has:admin');
 Route::get('enroll/{token?}', [ClinicController::class, 'enroll'])->name('clinics.enroll')->middleware('auth');
 
 # owners

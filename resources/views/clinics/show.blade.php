@@ -12,7 +12,7 @@
                             <small>{{ $clinic->description }}</small>
                         </div>
                         <div class="float-end">
-                            @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
+                            @if (Auth::user()->hasRole('admin', $clinic))
                                 <a href="{{ route('clinics.edit', [$clinic->id]) }}"
                                     class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
                                 <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
+    @if (Auth::user()->hasRole('admin', $clinic))
         @include('clinics.partials.invite')
     @endif
 

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->bigInteger('role_id')->unsigned();
             $table->char('user_id', 36);
             $table->char('clinic_id', 36);
-            // $table->bigInteger('clinic_id')->unsigned()->default(0);
             $table->timestamps();
+
+            $table->unique(['user_id', 'clinic_id']);
         });
     }
 

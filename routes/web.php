@@ -10,6 +10,7 @@ use App\Http\Controllers\VisitController;
 use App\Models\MedicalHistory;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Owner;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +34,6 @@ Route::get('/terms', function () {
 
 # originale...
 # Route::resource('esperimenti', EsperimentoController::class);
-// Route::resource('esperimenti', EsperimentoController::class)->middleware('is:admin');
-// Route::resource('clinics/{clinic}/esperimenti', EsperimentoController::class)->middleware('has:root');
 Route::resource('clinics/{clinic}/esperimenti', EsperimentoController::class)->middleware('has:nurse');
 
 
@@ -61,12 +60,19 @@ Route::post('clinics/{clinic}/send', [ClinicController::class, 'send'])->name('c
 Route::get('enroll/{token?}', [ClinicController::class, 'enroll'])->name('clinics.enroll')->middleware('auth');
 
 # owners
-Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');
+# Route::resource('clinics.owners', OwnerController::class)->middleware('clinic_access');
+Route::resource('clinics.owners', OwnerController::class)->middleware('has:nurse');
+Route::bind('owner', function ($owner, $route) {
+    return Owner::where('clinic_id', $route->parameter('clinic'))->findOrFail($owner);
+});
+
+
 
 Route::put('hx', [MedicalHistoryController::class, 'update'])->name('medical-histories');
 # pets
-Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/medical-history/update', [MedicalHistoryController::class, 'update'])->name('clinics.owners.pets.medical-histories.update')->middleware('clinic_access');
-Route::resource('clinics.owners.pets', PetController::class)->middleware('clinic_access');
+Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/medical-history/update', [MedicalHistoryController::class, 'update'])->name('clinics.owners.pets.medical-histories.update')->middleware('has:nurse');
+# Route::resource('clinics.owners.pets', PetController::class)->middleware('clinic_access');
+Route::resource('clinics.owners.pets', PetController::class)->middleware('has:nurse');
 
 # Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/hx', [MedicalHistoryController::class, 'update'])->name('clinics.owners.pets.medical-histories.update')->middleware('clinic_access');
 # Route::put('clinics/{clinic}/pets/{pet}/notes/{note}', 'NoteController@update')->name('clinics.notes.update')->middleware('clinic_access')->middleware('can:cure,pet');

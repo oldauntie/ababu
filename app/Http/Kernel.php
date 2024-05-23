@@ -67,7 +67,5 @@ class Kernel extends HttpKernel
         'is' => \App\Http\Middleware\IsRole::class,
         'has' => \App\Http\Middleware\HasRole::class,
         'roles' => \App\Http\Middleware\Roles::class,
-        'clinic_access' => \App\Http\Middleware\ClinicAccess::class,
-        'clinic_roles' => \App\Http\Middleware\ClinicRoles::class,
     ];
 }

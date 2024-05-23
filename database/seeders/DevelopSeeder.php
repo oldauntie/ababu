@@ -44,8 +44,10 @@ class DevelopSeeder extends Seeder
             'website' => 'www.developclinic.ac.uk',
             'serial' => Str::random(8),
             'key' => Str::random(8),
-            'description' => 'Develop Clinic Description',
         ]);
+
+
+        
 
 
 
@@ -54,6 +56,7 @@ class DevelopSeeder extends Seeder
          */
         $adminRole = Role::where('role', 'admin')->first();
         $veterinarianRole = Role::where('role', 'veterinarian')->first();
+        $nurseRole = Role::where('role', 'nurse')->first();
 
         $admin = User::create([
             'locale_id' => 'en-GB',
@@ -75,16 +78,68 @@ class DevelopSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
         ]);
         
-        $user = User::create([
+        $nurse = User::create([
             'locale_id' => 'en-US',
-            'name' => 'Generic User',
-            'email' => 'user@ababu.cloud',
+            'name' => 'Nurse',
+            'email' => 'nurse@ababu.cloud',
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),
         ]);
 
         $admin->roles()->attach($adminRole, ['clinic_id' => $clinic->id]);
         $veterinarian->roles()->attach($veterinarianRole, ['clinic_id' => $clinic->id]);
+        $nurse->roles()->attach($nurseRole, ['clinic_id' => $clinic->id]);
+
+
+        # CLINIC #2
+        $clinic_2 = Clinic::create([
+            'country_id' => 'it',
+            'name' => 'Develop Clinic #2',
+            'description' => 'Qui va la descrizione',
+            'manager' => 'Leo Da Vinci',
+            'code' => 'ACDC-0001',
+            'address' => 'via Roma 30',
+            'postcode' => '50063',
+            'city' => 'Figline',
+            'phone' => '055959243',
+            'email' => 'info@developclinic.it',
+            'website' => 'www.developclinic.it',
+            'serial' => Str::random(8),
+            'key' => Str::random(8),
+        ]);
+
+        $admin_2 = User::create([
+            'locale_id' => 'en-GB',
+            'registration' => 'GB-REG-3',
+            'mobile' => '3481111111',
+            'name' => 'Admin User #2',
+            'email' => 'admin2@ababu.cloud',
+            'password' => Hash::make('ababu'),
+            'email_verified_at' => Carbon::now(),
+        ]);
+
+
+        $veterinarian_2 = User::create([
+            'locale_id' => 'it-IT',
+            'registration' => 'IT-REG-3',
+            'mobile' => '3471111111',
+            'name' => 'Veterinarian #2',
+            'email' => 'veterinarian2@ababu.cloud',
+            'password' => Hash::make('ababu'),
+            'email_verified_at' => Carbon::now(),
+        ]);
+
+        $nurse_2 = User::create([
+            'locale_id' => 'en-US',
+            'name' => 'Nurse #2',
+            'email' => 'nurse2@ababu.cloud',
+            'password' => Hash::make('ababu'),
+            'email_verified_at' => Carbon::now(),
+        ]);
+
+        $admin_2->roles()->attach($adminRole, ['clinic_id' => $clinic_2->id]);
+        $veterinarian_2->roles()->attach($veterinarianRole, ['clinic_id' => $clinic_2->id]);
+        $nurse_2->roles()->attach($nurseRole, ['clinic_id' => $clinic_2->id]);
 
 
         /**

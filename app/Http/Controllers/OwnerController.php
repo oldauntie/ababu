@@ -82,6 +82,9 @@ class OwnerController extends Controller
      */
     public function show(Clinic $clinic, Owner $owner)
     {
+        $id1 = $clinic->id;
+        $id2 = $owner->clinic->id;
+
         return view('owners.show')->with('clinic', $clinic)->with('owner', $owner);
     }
 

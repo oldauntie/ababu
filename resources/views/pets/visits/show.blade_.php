@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    @if (Auth::user()->hasRoleByClinicId('admin', $clinic->id))
+    @if (Auth::user()->hasRole('admin', $clinic))
         @include('clinics.partials.invite')
     @endif
 

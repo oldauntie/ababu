@@ -32,16 +32,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('admin', function ($user, $clinic)
         {
-            return $user->hasRoleByClinicId('admin', $clinic->id);
-        });
-
-        Gate::define('cure', function ($user, $pet)
-        {
-            if ($user->canCure($pet))
-            {
-                return true;
-            }
-            return false;
+            return $user->hasRole('admin', $clinic);
         });
     }
 }

@@ -73,12 +73,10 @@ Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/medical-history/update', 
 Route::resource('clinics.owners.pets', PetController::class)->middleware('has:nurse');
 Route::bind('pet', function ($pet, $route) {
     $owner = $route->parameter('owner');
-    # $tmp = $owner->pets()->where('id', $pet)->first();
     return $owner->pets()->where('id', $pet)->first();
 });
 
 # Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/hx', [MedicalHistoryController::class, 'update'])->name('clinics.owners.pets.medical-histories.update')->middleware('clinic_access');
-# Route::put('clinics/{clinic}/pets/{pet}/notes/{note}', 'NoteController@update')->name('clinics.notes.update')->middleware('clinic_access')->middleware('can:cure,pet');
 
 # visit
 #Route::get('clinics/{clinic}/visits/{pet}', [VisitController::class, 'show'])->name('clinics.visits.show')->middleware('clinic_access');

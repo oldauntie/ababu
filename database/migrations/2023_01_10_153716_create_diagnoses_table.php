@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table)
         {
-            $table->bigInteger('id')->unsigned();
+            $table->id('id');
+            $table->string('external_id', 32);
+            $table->string('coding', 32);
             $table->string('country_id', 2);
-            $table->string('status');
-            $table->string('label');
+            $table->string('subset', 32);
             $table->string('term_name');
-
-            $table->index('term_name');
+            $table->timestamp('expiter_at')->nullable();
+            
+            $table->timestamps();
+            $table->softDeletes();
+            
             $table->primary('id');
         });
     }

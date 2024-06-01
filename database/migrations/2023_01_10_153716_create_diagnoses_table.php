@@ -21,12 +21,13 @@ return new class extends Migration
             $table->string('country_id', 2);
             $table->string('subset', 32);
             $table->string('term_name');
-            $table->timestamp('expiter_at')->nullable();
+            $table->timestamp('expired_at')->nullable();
             
             $table->timestamps();
             $table->softDeletes();
             
             $table->primary('id');
+            $table->unique(['external_id', 'coding', 'country_id']);
         });
     }
 

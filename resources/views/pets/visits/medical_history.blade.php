@@ -60,51 +60,51 @@
 
     <div class="form-floating mb-3">
         <select class="form-select" name="food_consumption" id="food_consumption"
-            aria-label="{{ __('translate.pet_hx_food_consumption') }}">
+            aria-label="{{ __('translate.food_consumption') }}">
             @foreach (\App\Models\MedicalHistory::FOOD_CONSUMPTIONS as $food_consumption)
                 <option value="{{ $food_consumption }}"
                     {{ $food_consumption == $pet->medical_history->food_consumption ? 'selected' : null }}>
                     {{ $food_consumption }}</option>
             @endforeach
         </select>
-        <label for="food_consumption">{{ __('translate.pet_hx_food_consumption') }}</label>
+        <label for="food_consumption">{{ __('translate.food_consumption') }}</label>
     </div>
 
     <div class="form-floating mb-3">
         <select class="form-select" name="water_consumption" id="water_consumption"
-            aria-label="{{ __('translate.pet_hx_water_consumption') }}">
+            aria-label="{{ __('translate.water_consumption') }}">
             @foreach (\App\Models\MedicalHistory::WATER_CONSUMPTIONS as $water_consumption)
                 <option value="{{ $water_consumption }}"
                     {{ $water_consumption == $pet->medical_history->water_consumption ? 'selected' : null }}>
                     {{ $water_consumption }}</option>
             @endforeach
         </select>
-        <label for="water_consumption">{{ __('translate.pet_hx_water_consumption') }}</label>
+        <label for="water_consumption">{{ __('translate.water_consumption') }}</label>
     </div>
 
     <div class="form-floating mb-3">
         <textarea class="form-control @error('previous_diseases') is-invalid @enderror" name="previous_diseases"
-            placeholder="{{ __('translate.pet_hx_previous_diseases') }}" id="previous-diseases" style="height: 100px">{{ $pet->medical_history->previous_diseases }}</textarea>
-        <label for="previous-diseases">{{ __('translate.pet_hx_previous_diseases') }}</label>
+            placeholder="{{ __('translate.previous_diseases') }}" id="previous-diseases" style="height: 100px">{{ $pet->medical_history->previous_diseases }}</textarea>
+        <label for="previous-diseases">{{ __('translate.previous_diseases') }}</label>
     </div>
 
     <div class="form-floating mb-3">
         <textarea class="form-control @error('previous_surgery') is-invalid @enderror" name="previous_surgery"
-            placeholder="{{ __('translate.pet_hx_previous_surgery') }}" id="previous_surgery" style="height: 100px">{{ $pet->medical_history->previous_surgery }}</textarea>
-        <label for="previous_surgery">{{ __('translate.pet_hx_previous_surgery') }}</label>
+            placeholder="{{ __('translate.previous_surgery') }}" id="previous_surgery" style="height: 100px">{{ $pet->medical_history->previous_surgery }}</textarea>
+        <label for="previous_surgery">{{ __('translate.previous_surgery') }}</label>
     </div>
 
     <div class="form-floating mb-3">
         <input id="previous_veterinary" type="text"
             class="form-control @error('previous_veterinary') is-invalid @enderror" name="previous_veterinary"
             value="{{ $pet->medical_history->previous_veterinary }}" maxlength="255"
-            placeholder="{{ __('translate.pet_hx_previous_veterinary') }}">
-        <label for="previous_veterinary">{{ __('translate.pet_hx_previous_veterinary') }}</label>
+            placeholder="{{ __('translate.previous_veterinary') }}">
+        <label for="previous_veterinary">{{ __('translate.previous_veterinary') }}</label>
     </div>
 
 
     <div class="form-group m-3">
-        <div>{{ __('translate.pet_hx_flea_preventive') }}</div>
+        <div>{{ __('translate.flea_preventive') }}</div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="flea_preventive" id="flea-preventive-yes"
                 value="1"{{ $pet->medical_history->flea_preventive == 1 ? ' checked' : '' }}>
@@ -124,7 +124,7 @@
 
 
     <div class="form-group m-3">
-        <div>{{ __('translate.pet_hx_tick_preventive') }}</div>
+        <div>{{ __('translate.tick_preventive') }}</div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="tick_preventive" id="tick-preventive-yes"
                 value="1"{{ $pet->medical_history->tick_preventive == 1 ? ' checked' : '' }}>
@@ -144,7 +144,7 @@
 
 
     <div class="form-group m-3">
-        <div>{{ __('translate.pet_hx_heartworm_preventive') }}</div>
+        <div>{{ __('translate.heartworm_preventive') }}</div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="heartworm_preventive" id="heartworm-preventive-yes"
                 value="1"{{ $pet->medical_history->heartworm_preventive === 1 ? ' checked' : '' }}>

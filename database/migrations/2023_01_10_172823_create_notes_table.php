@@ -18,7 +18,10 @@ return new class extends Migration
             $table->id();
             $table->char('pet_id', 36);
             $table->char('user_id', 36)->nullable();
-            $table->text('note_text');
+            $table->text('subjective');
+            $table->text('objective');
+            $table->text('assessment');
+            $table->text('plan');
             $table->timestamps();
 
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');

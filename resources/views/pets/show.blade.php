@@ -94,7 +94,7 @@
                                     <div class="tab-pane fade" id="nav-visit" role="tabpanel"
                                         aria-labelledby="nav-visit-tab" tabindex="0">
 
-                                        @include('pets.visits.visit')
+                                        @include('pets.visits.notes.index')
 
                                     </div>
                                     <div class="tab-pane fade" id="nav-biometrics" role="tabpanel"

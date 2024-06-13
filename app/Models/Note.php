@@ -12,6 +12,14 @@ class Note extends Model
     protected $fillable = [
         'pet_id',
         'user_id',
-        'note_text',
+        'subjective',
+        'objective',
+        'assessment',
+        'plan',
     ];
+
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
+    }
 }

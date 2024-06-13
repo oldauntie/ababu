@@ -293,7 +293,10 @@ class DevelopSeeder extends Seeder
         Note::create([
             'pet_id' => $ozzy->id,
             'user_id' => $admin->id,
-            'note_text' => 'just another test... to prove nothing',
+            'subjective' => 'just another subjective test... to prove nothing',
+            'objective' => 'just another objective test... to prove nothing',
+            'assessment' => 'just another assessment test... to prove nothing',
+            'plan' => 'just another plan test... to prove nothing',
             'created_at' => '2020-09-24 11:01:14',
             'updated_at' => '2020-09-24 11:01:14',
         ]);

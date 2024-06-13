@@ -9,13 +9,16 @@
                         <div class="float-start">
                             <b>{{ strtoupper(__('translate.owner')) }}: </b> {{ $owner->firstname }} {{ $owner->lastname }}
                             <br>
-                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }} ({{ $owner->country->name }})
+                            <small>{{ $owner->address }}, {{ $owner->postcode }} {{ $owner->city }}
+                                ({{ $owner->country->name }})
                                 {{ $owner->phone_primary }} {{ $owner->phone_secondary }} <a
                                     href="mailto:{{ $owner->email }}">{{ $owner->email }}</a> </small>
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('clinics.owners.edit', [$clinic->id, $owner->id]) }}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
-                            <a class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#owner_delete_confirmation">{{ __('translate.delete') }}</a>
+                            <a href="{{ route('clinics.owners.edit', [$clinic->id, $owner->id]) }}"
+                                class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
+                            <a class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#owner_delete_confirmation">{{ __('translate.delete') }}</a>
                         </div>
                     </div>
 
@@ -59,12 +62,13 @@
                                             <tr>
                                                 <td>{{ $pet->name }}</td>
                                                 <td>{{ $pet->sex }}</td>
-                                                <td>{{ $pet->age->years }}Y {{ $pet->age->months }}m {{ $pet->age->days }}d</td>
+                                                <td>{{ $pet->age->years }}Y {{ $pet->age->months }}m
+                                                    {{ $pet->age->days }}d</td>
                                                 <td>{{ $pet->species->familiar_name }}</td>
                                                 <td>{{ $pet->breed }}</td>
                                                 <td>{{ $pet->microchip }}</td>
                                                 <td>{{ $pet->tatuatge }}</td>
-                                                <td><a href="{{ route('clinics.owners.pets.show', [$clinic, $owner, $pet])}}"
+                                                <td><a href="{{ route('clinics.owners.pets.show', [$clinic, $owner, $pet]) }}"
                                                         class="btn btn-sm btn-outline-success">{{ __('translate.visit') }}</a>
                                                 </td>
                                             </tr>
@@ -73,11 +77,13 @@
                                 </table>
                             </div>
                         </dif>
+                        
                     </div>
 
                     <div class="card-footer">
                         <div class="float-end">
-                            <a href="{{ route('clinics.owners.pets.create', [$clinic->id, $owner->id]) }}" class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
+                            <a href="{{ route('clinics.owners.pets.create', [$clinic->id, $owner->id]) }}"
+                                class="btn btn-sm btn-outline-success">{{ __('translate.add') }}</a>
                         </div>
                     </div>
 
@@ -86,7 +92,12 @@
         </div>
     </div>
 
-    @include('layouts.partials.delete', ['id' => 'owner_delete_confirmation', 'action' => route('clinics.owners.destroy', [$clinic, $owner]), 'title' => __('message.are_you_sure'), 'body' => __('message.confirm_record_deletion') . " {$owner->lastname}, {$owner->firstname}" ])
+    @include('layouts.partials.delete', [
+        'id' => 'owner_delete_confirmation',
+        'action' => route('clinics.owners.destroy', [$clinic, $owner]),
+        'title' => __('message.are_you_sure'),
+        'body' => __('message.confirm_record_deletion') . " {$owner->lastname}, {$owner->firstname}",
+    ])
 
     @if (Auth::user()->hasRole('admin', $clinic))
         @include('clinics.partials.invite')

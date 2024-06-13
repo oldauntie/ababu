@@ -163,27 +163,10 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="form-group row mb-0">
         <div class="col text-center">
             <button type="submit" class="btn btn-outline-success btn-lg">{{ __('translate.save') }}</button>
         </div>
     </div>
-
-
 
 </form>

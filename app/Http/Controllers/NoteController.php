@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use App\Models\Note;
+use App\Models\Pet;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -22,9 +25,9 @@ class NoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Clinic $clinic, Owner $owner, Pet $pet)
     {
-        //
+        return view('pets.visits.notes.create')->with('clinic', $clinic)->with('owner', $owner)->with('pet', $pet);
     }
 
     /**

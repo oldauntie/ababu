@@ -62,8 +62,7 @@ class NoteController extends Controller
             $request->session()->flash('error', 'message.record_store_error');
         }
 
-        $request->session()->flash('tab_soap_show', 'show');
-        $request->session()->flash('tab_soap_active', 'active');
+        $request->session()->flash('set_active_tab', 'notes');
         return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
     }
 

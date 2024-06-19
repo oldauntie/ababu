@@ -36,9 +36,35 @@ class NoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet)
     {
-        //
+        $request->validate([
+            'subjective' => 'required',
+            'objective' => 'required',
+            'assessment' => 'required',
+            'plan' => 'required',
+        ]);
+
+
+        $note = new Note([
+            'pet_id' => $pet->id,
+            'user_id' => auth()->user()->id,
+            'subjective' => $request->subjective,
+            'objective' => $request->objective,
+            'assessment' => $request->assessment,
+            'plan' => $request->plan,
+        ]);
+
+        # save note record
+        if ($note->save()) {
+            $request->session()->flash('success', __('message.record_store_success'));
+        } else {
+            $request->session()->flash('error', 'message.record_store_error');
+        }
+
+        $request->session()->flash('tab_soap_show', 'show');
+        $request->session()->flash('tab_soap_active', 'active');
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
     }
 
     /**

@@ -46,19 +46,15 @@
 
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        {{--
-                                            <button class="nav-link active" id="nav-main-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-main" type="button" role="tab"
-                                            aria-controls="nav-main" aria-selected="true">{{__('translate.problem')}}</button>
-                                        --}}
+                                        
 
                                         <button class="nav-link active" id="nav-medical-history-tab"
                                             data-bs-toggle="tab" data-bs-target="#nav-medical-history" type="button"
                                             role="tab" aria-controls="nav-medical-history"
                                             aria-selected="true">{{ __('translate.medical_history') }}</button>
-                                        <button class="nav-link" id="nav-visit-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-visit" type="button" role="tab"
-                                            aria-controls="nav-visit" aria-selected="false">SOAP</button>
+                                        <button class="nav-link" id="nav-notes-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-notes" type="button" role="tab"
+                                            aria-controls="nav-notes" aria-selected="false">SOAP</button>
                                         <button class="nav-link" id="nav-biometrics-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-biometrics" type="button" role="tab"
                                             aria-controls="nav-biometrics" aria-selected="false">Biometrics</button>
@@ -75,14 +71,7 @@
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                    {{--
-                                        <div class="tab-pane fade show active" id="nav-main" role="tabpanel"
-                                        aria-labelledby="nav-main-tab" tabindex="0">
-                                        
-                                        @include('visits.main')
-                                        
-                                    </div>
-                                    --}}
+                                    
 
                                     <div class="tab-pane fade active show" id="nav-medical-history" role="tabpanel"
                                         aria-labelledby="nav-medical-history-tab" tabindex="0">
@@ -91,7 +80,7 @@
 
                                     </div>
 
-                                    <div class="tab-pane fade" id="nav-visit" role="tabpanel"
+                                    <div class="tab-pane fade" id="nav-notes" role="tabpanel"
                                         aria-labelledby="nav-visit-tab" tabindex="0">
 
                                         @include('pets.visits.notes.index')
@@ -145,4 +134,11 @@
         @include('clinics.partials.invite')
     @endif
 
+    <script type="module"> //type="module" is the important part
+        $(function () {
+            alert('jquery ok');
+            // $('#nav-notes-tab').tab('show');
+            $('.nav-tabs a[href="#"]').tab('show');
+        })
+    </script>
 @endsection

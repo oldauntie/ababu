@@ -37,29 +37,25 @@
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('subjective') is-invalid @enderror" name="subjective"
-                                    placeholder="{{ __('translate.subjective_analysis') }}" id="subjective" style="height: 100px">
-                                </textarea>
+                                    placeholder="{{ __('translate.subjective_analysis') }}" id="subjective" style="height: 100px" required></textarea>
                                 <label for="subjective">{{ __('translate.subjective_analysis') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('objective') is-invalid @enderror" name="objective"
-                                    placeholder="{{ __('translate.objective') }}" id="objective" style="height: 100px">
-                                </textarea>
+                                    placeholder="{{ __('translate.objective') }}" id="objective" style="height: 100px" required></textarea>
                                 <label for="objective">{{ __('translate.objective_analysis') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('assessment') is-invalid @enderror" name="assessment"
-                                    placeholder="{{ __('translate.assessment') }}" id="assessment" style="height: 100px">
-                                </textarea>
+                                    placeholder="{{ __('translate.assessment') }}" id="assessment" style="height: 100px" required></textarea>
                                 <label for="assessment">{{ __('translate.assessment') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('plan') is-invalid @enderror" name="plan"
-                                    placeholder="{{ __('translate.plan') }}" id="plan" style="height: 100px">
-                                </textarea>
+                                    placeholder="{{ __('translate.plan') }}" id="plan" style="height: 100px" required></textarea>
                                 <label for="plan">{{ __('translate.plan') }}</label>
                             </div>
 

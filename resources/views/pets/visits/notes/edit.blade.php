@@ -32,30 +32,31 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('clinics.owners.pets.notes.store', [$clinic, $owner, $pet]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('clinics.owners.pets.notes.update', [$clinic, $owner, $pet, $note]) }}" enctype="multipart/form-data">
                             @csrf
+                            {{ method_field('PUT') }}
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('subjective') is-invalid @enderror" name="subjective"
-                                    placeholder="{{ __('translate.subjective_analysis') }}" id="subjective" style="height: 100px" required>{{ old('subjective') }}</textarea>
+                                    placeholder="{{ __('translate.subjective_analysis') }}" id="subjective" style="height: 100px" required>{{ $note->subjective }}</textarea>
                                 <label for="subjective">{{ __('translate.subjective_analysis') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('objective') is-invalid @enderror" name="objective"
-                                    placeholder="{{ __('translate.objective') }}" id="objective" style="height: 100px" required>{{ old('objective') }}</textarea>
+                                    placeholder="{{ __('translate.objective') }}" id="objective" style="height: 100px" required>{{ $note->objective }}</textarea>
                                 <label for="objective">{{ __('translate.objective_analysis') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('assessment') is-invalid @enderror" name="assessment"
-                                    placeholder="{{ __('translate.assessment') }}" id="assessment" style="height: 100px" required>{{ old('assessment') }}</textarea>
+                                    placeholder="{{ __('translate.assessment') }}" id="assessment" style="height: 100px" required>{{ $note->assessment }}</textarea>
                                 <label for="assessment">{{ __('translate.assessment') }}</label>
                             </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('plan') is-invalid @enderror" name="plan"
-                                    placeholder="{{ __('translate.plan') }}" id="plan" style="height: 100px" required>{{ old('plam') }}</textarea>
+                                    placeholder="{{ __('translate.plan') }}" id="plan" style="height: 100px" required>{{ $note->plan }}</textarea>
                                 <label for="plan">{{ __('translate.plan') }}</label>
                             </div>
 

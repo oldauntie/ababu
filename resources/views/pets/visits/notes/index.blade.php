@@ -24,7 +24,7 @@
                                 <td>{{ $note->plan }}</td>
                                 <td>{{ $note->created_at }}</td>
                                 <td>{{ $note->updated_at }}</td>
-                                <td><a href="#" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
+                                <td><a href="{{ route('clinics.owners.pets.notes.edit', [$clinic, $owner, $pet, $note])}}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
                                 <td><a href="#" class="btn btn-sm btn-outline-danger">{{ __('translate.delete') }}</a>
                                 </td>
                             </tr>

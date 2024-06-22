@@ -133,7 +133,7 @@ class PetController extends Controller
         ]);
 
 
-        # save pet information
+        # fill pet information
         $pet->species_id = $request->species_id;
         $pet->owner_id = $owner->id;
         $pet->breed = $request->breed;
@@ -152,9 +152,7 @@ class PetController extends Controller
         $pet->owner_id = $owner->id;
 
         # update pet info
-        $pet->update();
-
-        if ($pet->save()) {
+        if ($pet->update()) {
             $request->session()->flash('success', __('message.record_update_success'));
         } else {
             $request->session()->flash('error', 'message.record_update_error');

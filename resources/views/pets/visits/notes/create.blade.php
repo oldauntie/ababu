@@ -12,6 +12,8 @@
                             {{ __('translate.note_create') }}
                         </div>
                         <div class="float-end">
+                            {{ session()->flash('set_active_tab','notes')}}
+                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-outline-secondary">{{ __('translate.back') }}</a>
                         </div>
                     </div>
 
@@ -63,7 +65,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col text-center">
                                     <button type="submit"
-                                        class="btn btn-primary btn-lg">{{ __('translate.save') }}</button>
+                                        class="btn btn-outline-primary btn-sm">{{ __('translate.save') }}</button>
                                 </div>
                             </div>
 

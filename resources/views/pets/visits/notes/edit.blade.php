@@ -12,6 +12,9 @@
                             {{ __('translate.note_create') }}
                         </div>
                         <div class="float-end">
+                            {{ session()->flash('set_active_tab','notes')}}
+                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-outline-secondary">{{ __('translate.back') }}</a>
+                            <a class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#note_delete_confirmation">{{ __('translate.delete') }}</a>
                         </div>
                     </div>
 
@@ -32,7 +35,9 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('clinics.owners.pets.notes.update', [$clinic, $owner, $pet, $note]) }}" enctype="multipart/form-data">
+                        <form method="POST"
+                            action="{{ route('clinics.owners.pets.notes.update', [$clinic, $owner, $pet, $note]) }}"
+                            enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
 
@@ -64,7 +69,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col text-center">
                                     <button type="submit"
-                                        class="btn btn-primary btn-lg">{{ __('translate.save') }}</button>
+                                        class="btn btn-outline-primary btn-sm">{{ __('translate.save') }}</button>
                                 </div>
                             </div>
 
@@ -76,5 +81,13 @@
             </div>
         </div>
     </div>
+
+
+    @include('layouts.partials.delete', [
+        'id' => 'note_delete_confirmation',
+        'action' => route('clinics.owners.pets.notes.destroy', [$clinic, $owner, $pet, $note]),
+        'title' => __('message.are_you_sure'),
+        'body' => __('message.confirm_record_deletion'),
+    ])
 
 @endsection

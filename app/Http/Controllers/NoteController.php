@@ -65,8 +65,7 @@ class NoteController extends Controller
             $request->session()->flash('error', 'message.record_store_error');
         }
 
-        $request->session()->flash('set_active_tab', 'notes');
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
     }
 
     /**
@@ -75,9 +74,13 @@ class NoteController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Note $note)
+    public function show(Clinic $clinic, Owner $owner, Pet $pet, Note $note)
     {
-        //
+        return view('pets.visits.notes.show')
+            ->with('clinic', $clinic)
+            ->with('owner', $owner)
+            ->with('pet', $pet)
+            ->with('note', $note);
     }
 
     /**
@@ -127,18 +130,18 @@ class NoteController extends Controller
             $request->session()->flash('error', 'message.record_update_error');
         }
 
-        $request->session()->flash('set_active_tab', 'notes');
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Note $note)
+    public function destroy(Clinic $clinic, Owner $owner, Pet $pet, Note $note)
     {
-        //
+        $note->delete();
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'))->with('success', __('message.record_destroy_success'));
     }
 }

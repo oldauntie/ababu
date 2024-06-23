@@ -119,21 +119,6 @@
 
 
 
-
-
-
-
-
-
-
-                        <button class="btn btn-primary" id="btn_test">Test</button>
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -147,9 +132,6 @@
         'body' => __('message.confirm_record_deletion') . " {$pet->name} ({$pet->species->familiar_name})",
     ])
 
-    @if (Auth::user()->hasRole('admin', $clinic))
-        @include('clinics.partials.invite')
-    @endif
 
     <script type="module">
         $(function() {

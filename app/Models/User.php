@@ -58,6 +58,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Clinic::class, 'role_user');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+
+
+
+
+
+    
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);

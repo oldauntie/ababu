@@ -99,8 +99,5 @@
         'body' => __('message.confirm_record_deletion') . " {$owner->lastname}, {$owner->firstname}",
     ])
 
-    @if (Auth::user()->hasRole('admin', $clinic))
-        @include('clinics.partials.invite')
-    @endif
 
 @endsection

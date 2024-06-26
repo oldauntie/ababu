@@ -95,7 +95,7 @@ class PetController extends Controller
     public function show(Clinic $clinic, Owner $owner, Pet $pet)
     {
         // @todo: optimize and localise
-        $diagnoses = Diagnosis::all();
+        $diagnoses = Diagnosis::select(['id', 'term_name'])->orderBy('term_name', 'asc')->get();
         
         return view('pets.show')
             ->with('clinic', $clinic)

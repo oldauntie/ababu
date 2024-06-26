@@ -39,18 +39,16 @@
                             </div>
                         @endif
 
-                        {{--
                         <div class="row">
                             <div class="col-12">
                                 filter by:
-                                <select class="js-select2" id="problem-select2" name="problem">
+                                <select class="js-select2" id="problem-select21" name="problem">
                                     @foreach ($diagnoses as $problem)
                                     <option value="{{ $problem->id }}">{{ $problem->term_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        --}}
 
 
 

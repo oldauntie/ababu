@@ -8,6 +8,8 @@ import toastr from 'toastr';
 
 window.toastr = toastr;
 
+import select2 from 'select2';
+select2();
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

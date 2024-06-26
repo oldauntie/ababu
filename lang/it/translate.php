@@ -60,12 +60,14 @@ return [
     'edit' => 'modifica',
     'email' => 'email',
     'examination' => 'accertamento',
-    'examinations_result' => 'risultato',
+    'examination_result' => 'risultato',
+    'examinations' => 'accertamenti',
     'examinations_zero_records' => 'nessun esame per il problema selezionato',
     'executed_at' => 'eseguito',
     'expires_at' => 'scade',
     'familiar_name' => 'nome comune',
     'feature' => 'nuova funzionalità',
+    'filter_by' => 'filtra per',
     'firstname' => 'nome',
     'flea_preventive' => 'prevenzione pulci',
     'food' => 'alimentazione',
@@ -130,6 +132,7 @@ return [
     'postcode' => 'codice postale',
     'preferences' => 'preferenze',
     'prescription' => 'prescrizione',
+    'prescriptions' => 'prescrizioni',
     'prescriptions_zero_records' => 'nessuna prescrizione per il problema selezionato',
     'previous_diseases' => 'precedenti malattie',
     'previous_surgery' => 'precedenti chirurgici',
@@ -164,6 +167,7 @@ return [
     'sent' => 'inviato',
     'setup' => 'setup',
     'sex' => 'sesso',
+    'show' => 'mostra',
     'species' => 'specie',
     'species_add_common' => 'aggiungi specie comuni',
     'species_cat' => 'gatto',
@@ -195,7 +199,4 @@ return [
     'website' => 'sito internet',
     'years' => 'anni',
     'yes' => 'si',
-
-
-
 ];

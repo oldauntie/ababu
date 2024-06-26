@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clinic;
+use App\Models\Diagnosis;
 use App\Models\Owner;
 use App\Models\Pet;
 
@@ -93,8 +94,12 @@ class PetController extends Controller
      */
     public function show(Clinic $clinic, Owner $owner, Pet $pet)
     {
+        // @todo: optimize and localise
+        $diagnoses = Diagnosis::all();
+        
         return view('pets.show')
             ->with('clinic', $clinic)
+            ->with('diagnoses', $diagnoses)
             ->with('owner', $owner)
             ->with('pet', $pet);
     }
@@ -148,7 +153,7 @@ class PetController extends Controller
         $pet->microchip_location = $request->microchip_location;
         $pet->tatuatge = $request->tatuatge;
         $pet->tatuatge_location = $request->tatuatge_location;
-        
+
         $pet->owner_id = $owner->id;
 
         # update pet info

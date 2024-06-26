@@ -41,6 +41,6 @@ class MedicalHistoryController extends Controller
         }
 
 
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('medical-history'));
     }
 }

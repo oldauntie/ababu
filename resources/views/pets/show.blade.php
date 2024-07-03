@@ -39,40 +39,39 @@
                             </div>
                         @endif
 
-                        <div class="row">
-                            <div class="col-12">
-                                filter by:
-                                <select class="js-select2" id="problem-select21" name="problem">
-                                    @foreach ($diagnoses as $problem)
-                                    <option value="{{ $problem->id }}">{{ $problem->term_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
 
-
-
-
-                        <form class="row row-cols-lg-auto g-3 align-items-center">
-                            <div class="col-12">
-                                <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+                        <form class="row g-3 align-items-center">
+                            <div class="col-9">
                                 <div class="input-group">
                                     <div class="input-group-text">{{ __('translate.filter_by') }}</div>
+
+                                    {{-- 
                                     <select class="form-control" id="problem-select21" name="problem" aria-label="problem"
-                                        aria-describedby="basic-addon1">
-                                        @foreach ($diagnoses as $problem)
-                                            <option value="{{ $problem->id }}">{{ $problem->term_name }}
+                                    aria-describedby="basic-addon1">
+                                    @foreach ($diagnoses as $problem)
+                                    <option value="{{ $problem->id }}">{{ $problem->term_name }}
+                                    </option>
+                                    @endforeach
+                                    </select>
+                                    {{ dump($pet->problems) }}
+                                    --}}
+
+                                    <select class="form-control" id="problem-filter-by" name="problem" aria-label="problem"
+                                        aria-describedby="basic-addon">
+                                        @foreach ($pet->problems as $problem)
+                                            <option value="{{ $problem->id }}">{{ $problem->diagnosis->term_name }}
                                             </option>
                                         @endforeach
                                     </select>
+
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-3">
                                 <!-- button trigger show all problems collapsible -->
                                 <a class="btn btn-sm btn-outline-dark" data-bs-toggle="collapse" href="#collapseProblems"
                                     role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    {{ __('translate.show') }}
+                                    {{ __('translate.expand') }}
                                 </a>
                                 <!-- button trigger problem modal -->
                                 <a class="btn btn-sm btn-outline-success" href="#" role="button"
@@ -86,9 +85,40 @@
                             <!-- All Problems Collapsible -->
                             <div class="collapse" id="collapseProblems">
                                 <div class="card card-body">
-                                    Some placeholder content for the collapse component. This panel is hidden by
-                                    default
-                                    but revealed when the user activates the relevant trigger.
+                                    <ol class="list-group">
+                                        @foreach ($pet->problems as $problem)
+                                            <a href="#" class="list-group-item">
+
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <div class="d-inline-block">
+                                                        @if ($problem->key_problem == 1)
+                                                            <img title="{{ __('translate.problem_key_problem') }}"
+                                                                src="{{ url('/images/icons/problem_key_problem.png') }}">
+                                                        @else
+                                                            <img title="{{ __('translate.problem_key_problem_disabled') }}"
+                                                                src="{{ url('/images/icons/problem_key_problem_disabled.png') }}">
+                                                        @endif
+                                                        <img
+                                                            src="{{ url('/images/icons/problem_status_' . $problem->status_id . '.png') }}">
+                                                        {{ $problem->diagnosis->term_name }}
+                                                    </div>
+                                                    <small>{{ __('translate.active_from')}}: {{ $problem->created_at->format(auth()->user()->locale->date_short_format)}}</small>
+                                                </div>
+
+                                                <div>
+                                                    <small>
+                                                        {{ $problem->description }}
+                                                    </small>
+                                                </div>
+                                                <div>
+                                                    <small>
+                                                        {{ $problem->notes }}
+                                                    </small>
+                                                </div>
+
+                                            </a>
+                                        @endforeach
+                                    </ol>
                                 </div>
                             </div>
                             <!-- End Of All Problems Collapsible -->
@@ -107,7 +137,12 @@
                                     <div class="card-header">
                                         {{ __('translate.prescriptions') }}
                                     </div>
-                                    <div class="card-body"></div>
+                                    <div class="card-body">
+                                        @if ($pet->prescriptions != null)
+                                        @else
+                                            {{ __('translate.prescriptions_zero_records') }}
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
 
@@ -116,7 +151,12 @@
                                     <div class="card-header">
                                         {{ __('translate.examinations') }}
                                     </div>
-                                    <div class="card-body"></div>
+                                    <div class="card-body">
+                                        @if ($pet->examinations != null)
+                                        @else
+                                            {{ __('translate.prescriptions_zero_records') }}
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

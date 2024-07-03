@@ -22,8 +22,7 @@ return new class extends Migration
             $table->integer('status_id');
             $table->dateTime('active_from');
             $table->boolean('key_problem');
-            $table->text('subjective_analysis')->nullable();
-            $table->text('objective_analysis')->nullable();
+            $table->text('description')->nullable();
             $table->text('notes')->nullable();
 
             $table->timestamps();

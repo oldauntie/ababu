@@ -241,13 +241,38 @@ class DevelopSeeder extends Seeder
          * Problems
          */
         $problem = Problem::create([
-            'diagnosis_id' => '326',
+            'diagnosis_id' => '321',
             'pet_id' => $ozzy->id,
             'user_id' => $admin->id,
             'active_from' => '2019-03-21 17:28:31',
             'status_id' => 0,
-            'key_problem' => 1
+            'key_problem' => 1,
+            'description' => 'A test for problem description',
+            'notes' => 'Some notes for a problem'
         ]);
+
+        $problem = Problem::create([
+            'diagnosis_id' => '45',
+            'pet_id' => $ozzy->id,
+            'user_id' => $admin->id,
+            'active_from' => '2019-03-21 17:28:31',
+            'status_id' => 1,
+            'key_problem' => 1,
+            'description' => 'A second test for problem description',
+            'notes' => 'Some second note for a problem'
+        ]);
+
+        $problem = Problem::create([
+            'diagnosis_id' => '1',
+            'pet_id' => $ozzy->id,
+            'user_id' => $admin->id,
+            'active_from' => '2019-03-21 17:28:31',
+            'status_id' => 2,
+            'key_problem' => 0,
+            'description' => 'A third test for problem description',
+            'notes' => 'Some thied note for a problem'
+        ]);
+
 
 
 

@@ -20,8 +20,7 @@ class Problem extends Model
         'status_id',
         'active_from',
         'key_problem',
-        'subjective_analysis',
-        'objective_analysis',
+        'description',
         'notes',
     ];
 

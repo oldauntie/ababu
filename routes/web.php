@@ -33,8 +33,8 @@ Route::get('/terms', function () {
 # debug and experiments route
 
 # originale...
-# Route::resource('esperimenti', EsperimentoController::class);
-Route::resource('clinics/{clinic}/esperimenti', EsperimentoController::class)->middleware('has:nurse');
+Route::resource('esperimenti', EsperimentoController::class);
+#Route::resource('clinics/{clinic}/esperimenti', EsperimentoController::class)->middleware('has:nurse');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

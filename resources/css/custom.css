@@ -4,3 +4,28 @@ caption {
     padding-bottom: 10px;
     font-weight: bold;
 }
+
+/*
+fieldset {
+    border: thin solid black;
+    padding: 7px;
+}
+*/
+
+legend {
+    font-size: 1rem;
+    color: orange;
+    width: auto;
+    margin-bottom: 0rem;
+    padding: 0px;
+}
+
+select .select2-container {
+    width: 100% !important;
+}
+
+/*
+input:required {
+    border-left: 3px solid orangered;
+}
+*/

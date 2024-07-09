@@ -2,7 +2,7 @@ import $ from 'jquery';
 window.$ = $;
 
 import './bootstrap';
-window.boostrap = boostrap;
+// window.boostrap = boostrap;
 
 import '../css/custom.css';
 

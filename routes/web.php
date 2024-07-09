@@ -6,10 +6,12 @@ use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Owner;
+use App\Models\Problem;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,8 +75,16 @@ Route::bind('pet', function ($pet, $route) {
     return $owner->pets()->where('id', $pet)->first();
 });
 
+
+
 # SOAP notes
 Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware('has:nurse');
+
+# Problem
+# Route::resource('clinics.owners.pets.problems', ProblemController::class)->middleware('has:nurse');
+Route::resource('clinics.owners.pets.problems', ProblemController::class);
+
+
 
 # Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/hx', [MedicalHistoryController::class, 'update'])->name('clinics.owners.pets.medical-histories.update')->middleware('clinic_access');
 

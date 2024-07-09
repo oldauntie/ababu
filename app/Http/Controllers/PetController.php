@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clinic;
-use App\Models\Diagnosis;
 use App\Models\Owner;
 use App\Models\Pet;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
 

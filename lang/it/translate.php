@@ -144,6 +144,7 @@ return [
     'problem' => 'problema',
     'problem_active' => 'attivo',
     'problem_closed' => 'chiuso',
+    'problem_filter_by' => 'filtra per problema',
     'problem_key_problem' => 'problema chiave',
     'problem_status' => 'stato del problema',
     'prescription_in_evidence' => 'in evidenza',

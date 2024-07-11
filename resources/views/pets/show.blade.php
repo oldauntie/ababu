@@ -39,13 +39,13 @@
                             </div>
                         @endif
 
-
-                        <form class="row g-3 align-items-center">
+                        <form class="row g-3 align-items-center mb-3">
                             <div class="col-9">
                                 <div class="input-group">
-                                    <div class="input-group-text">{{ __('translate.filter_by') }}</div>
 
                                     {{-- 
+                                    <div class="input-group-text">{{ __('translate.filter_by') }}</div>
+                                    
                                     <select class="form-control" id="problem-select21" name="problem" aria-label="problem"
                                     aria-describedby="basic-addon1">
                                     @foreach ($diagnoses as $problem)
@@ -57,9 +57,10 @@
                                     --}}
 
                                     <select class="form-control" id="problem-filter-by" name="problem" aria-label="problem"
-                                        aria-describedby="basic-addon">
+                                        aria-describedby="basic-addon" multiple="multiple">
                                         @foreach ($pet->problems as $problem)
-                                            <option value="{{ $problem->id }}">{{ $problem->diagnosis->term_name }}
+                                            <option value="{{ $problem->id }}">
+                                                {{ $problem->diagnosis->term_name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -68,6 +69,13 @@
                             </div>
 
                             <div class="col-3">
+                                {{--
+                                    <!-- button trigger for problem filtering collapsible -->
+                                    <a class="btn btn-sm btn-outline-info" data-bs-toggle="collapse" href="#"
+                                    role="button">
+                                    {{ __('translate.filter_by') }}
+                                    </a>
+                                --}}
                                 <!-- button trigger show all problems collapsible -->
                                 <a class="btn btn-sm btn-outline-dark" data-bs-toggle="collapse" href="#collapseProblems"
                                     role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -87,7 +95,7 @@
                                 <div class="card card-body">
                                     <ol class="list-group">
                                         @foreach ($pet->problems as $problem)
-                                            <a href="#" class="list-group-item">
+                                            <div class="list-group-item">
 
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <div class="d-inline-block">
@@ -102,7 +110,18 @@
                                                             src="{{ url('/images/icons/problem_status_' . $problem->status_id . '.png') }}">
                                                         {{ $problem->diagnosis->term_name }}
                                                     </div>
-                                                    <small>{{ __('translate.active_from')}}: {{ $problem->created_at->format(auth()->user()->locale->date_short_format)}}</small>
+                                                    <div class="d-inline-block">
+                                                        <small>
+                                                            {{ __('translate.active_from') }}:
+                                                            {{ $problem->created_at->format(auth()->user()->locale->date_short_format) }}
+                                                        </small>
+                                                        <small>
+                                                            <a class="btn btn-sm btn-outline-secondary" href="{{ route('clinics.owners.pets.problems.edit', [$clinic, $owner, $pet, $problem]) }}"
+                                                                role="button">
+                                                                {{ __('translate.edit') }}
+                                                            </a>
+                                                        </small>
+                                                    </div>
                                                 </div>
 
                                                 <div>
@@ -116,7 +135,7 @@
                                                     </small>
                                                 </div>
 
-                                            </a>
+                                            </div>
                                         @endforeach
                                     </ol>
                                 </div>
@@ -125,7 +144,7 @@
                         </div>
 
                         <!-- Problem New Modal -->
-                        @include('pets.visits.problems')
+                        @include('pets.visits.problems.create')
                         <!-- End Of Problem New Modal -->
 
 
@@ -238,11 +257,17 @@
 
     <script type="module">
         $(function() {
+            // set the active tab baseed on session variable set server-side
             @if (session('set_active_tab'))
                 $('#nav-{{ session('set_active_tab') }}-tab').trigger('click');
             @endif
 
             // $('#problem-select2').select2();
+            $("#problem-filter-by").select2({
+                tags: true,
+                placeholder: "{{ __('translate.problem_filter_by') }}",
+                tokenSeparators: [',']
+            })
         });
     </script>
 @endsection

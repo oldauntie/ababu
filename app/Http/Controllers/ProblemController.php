@@ -84,19 +84,26 @@ class ProblemController extends Controller
      * @param  \App\Models\Problem  $problem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Problem $problem)
+    public function edit(Clinic $clinic, Owner $owner, Pet $pet, Problem $problem)
     {
-        //
+        return view('pets.visits.problems.edit')
+            ->with('clinic', $clinic)
+            ->with('owner', $owner)
+            ->with('pet', $pet)
+            ->with('problem', $problem);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Clinic  $clinic
+     * @param  \App\Models\Owner  $owner
+     * @param  \App\Models\Pet  $pet
      * @param  \App\Models\Problem  $problem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Problem $problem)
+    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Problem $problem)
     {
         //
     }

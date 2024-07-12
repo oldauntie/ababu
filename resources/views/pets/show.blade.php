@@ -113,13 +113,13 @@
                                                     <div class="d-inline-block">
                                                         <small>
                                                             {{ __('translate.active_from') }}:
-                                                            {{ $problem->created_at->format(auth()->user()->locale->date_short_format) }}
+                                                            {{ $problem->active_from->format(auth()->user()->locale->date_short_format) }}
                                                         </small>
                                                         <small>
-                                                            <a class="btn btn-sm btn-outline-secondary" href="{{ route('clinics.owners.pets.problems.edit', [$clinic, $owner, $pet, $problem]) }}"
-                                                                role="button">
-                                                                {{ __('translate.edit') }}
-                                                            </a>
+                                                            <a class="btn btn-sm btn-outline-secondary" href="#" role="button"
+                                                            data-bs-toggle="modal" data-bs-target="#editProblemModal-{{ $problem->id }}">
+                                                            {{ __('translate.edit') }}
+                                                        </a>
                                                         </small>
                                                     </div>
                                                 </div>
@@ -146,6 +146,10 @@
                         <!-- Problem New Modal -->
                         @include('pets.visits.problems.create')
                         <!-- End Of Problem New Modal -->
+                        
+                        @foreach ($pet->problems as $problem)
+                            @include('pets.visits.problems.edit', ['problem' => $problem])
+                        @endforeach
 
 
                         <div class="row">

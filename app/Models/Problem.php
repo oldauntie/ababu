@@ -37,11 +37,17 @@ class Problem extends Model
         return self::statuses[$id];
     }
 
+    /*
     protected $dates = [
         'active_from', 
         'created_at', 
         'updated_at', 
         'deleted_at'
+    ];
+    */
+
+    protected $casts = [
+        'active_from' => 'date',
     ];
 
     public function diagnosis()

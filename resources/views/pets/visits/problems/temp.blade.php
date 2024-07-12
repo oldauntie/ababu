@@ -1,4 +1,5 @@
-<div class="modal modal-xl	fade" id="editProblemModal-{{ $problem->id }}" tabindex="-1" aria-labelledby="editProblemModalLabeleditProblemModal-{{ $problem->id }}"
+
+<div class="modal modal-xl	fade" id="newProblemModal" tabindex="-1" aria-labelledby="newProblemModalLabel"
     aria-hidden="true">
 
     <div class="modal-dialog">
@@ -53,7 +54,7 @@
                                             <label for="problem-edit-status_id_{{ $status_id }}">
                                                 <input name="status_id" type="radio"
                                                     id="problem-edit-status_id_{{ $status_id }}"
-                                                    value="{{ $status_id }}" required{{ $status_id == $problem->status_id ? ' checked' : ''}}>
+                                                    value="{{ $status_id }}" required>
                                                 <img
                                                     src="{{ url('/images/icons/problem_status_' . $status_id . '.png') }}">
                                                 {{ __('translate.' . $status_name) }}
@@ -67,7 +68,7 @@
                                 <div>
                                     <div class="form-check">
                                         <input name="key_problem" type="checkbox" id="problem-edit-key_problem"
-                                            value="1"{{ $problem->key_problem ? ' checked' : ''}}>
+                                            value="1">
                                         <label for="problem-edit-key_problem"><img
                                                 title="{{ __('translate.problem_key_problem') }}"
                                                 src="{{ url('/images/icons/problem_key_problem.png') }}">
@@ -77,12 +78,11 @@
                             </fieldset>
                         </div>
 
-
                         <div class="col-9">
                             <div class="form-floating mb-3">
                                 <input id="active_from" type="date"
                                     class="form-control @error('active_from') is-invalid @enderror" name="active_from"
-                                    value="{{ $problem->active_from->format('Y-m-d') }}" placeholder="{{ __('translate.active_from') }}" required>
+                                    value="{{ old('active_from') }}" placeholder="{{ __('translate.active_from') }}" required>
                                 <label for="active_from">{{ __('translate.active_from') }}</label>
                             </div>
 
@@ -94,7 +94,7 @@
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('notes') is-invalid @enderror" name="notes"
-                                    placeholder="{{ __('translate.note') }}" id="notes" style="height: 100px">{{ $problem->notes }}</textarea>
+                                    placeholder="{{ __('translate.note') }}" id="notes" style="height: 100px">{{ old('notes') }}</textarea>
                                 <label for="notes">{{ __('translate.notes') }}</label>
                             </div>
                         </div>

@@ -137,7 +137,7 @@ class OwnerController extends Controller
         $owner->city = $request->city;
         $owner->ssn = $request->ssn;
 
-        if ($owner->save()) {
+        if ($owner->update()) {
             $request->session()->flash('success', __('message.owner_update_success'));
         } else {
             $request->session()->flash('error', 'message.owner_update_error');

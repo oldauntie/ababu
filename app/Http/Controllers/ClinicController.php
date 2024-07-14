@@ -136,7 +136,7 @@ class ClinicController extends Controller
             $clinic->logo = $imageName;
         }
 
-        if ($clinic->save()) {
+        if ($clinic->update()) {
             $request->session()->flash('success', __('message.clinic_update_success'));
         } else {
             $request->session()->flash('error', 'message.clinic_update_error');

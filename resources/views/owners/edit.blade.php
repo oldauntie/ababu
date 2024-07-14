@@ -37,7 +37,7 @@
                         <form method="POST" action="{{ route('clinics.owners.update', [$clinic->id, $owner->id]) }}"
                             enctype="multipart/form-data">
                             @csrf
-                            {{ method_field('PUT') }}
+                            @method('PUT')
 
 
                             <div class="form-floating mb-3">

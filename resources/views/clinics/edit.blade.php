@@ -41,7 +41,7 @@
 
                         <form method="POST" action="{{ route('clinics.update', $clinic) }}" enctype="multipart/form-data">
                             @csrf
-                            {{ method_field('PUT') }}
+                            @method('PUT')
 
 
                             <div class="form-floating mb-3">

@@ -55,10 +55,9 @@ class ProblemController extends Controller
             'key_problem' => $is_key_problem,
             'description' => $request->description,
             'notes' => $request->notes,
-
         ]);
 
-        if($problem->save()) {
+        if ($problem->save()) {
             $request->session()->flash('success', __('message.record_store_success'));
         } else {
             $request->session()->flash('error', 'message.record_store_error');
@@ -105,7 +104,27 @@ class ProblemController extends Controller
      */
     public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Problem $problem)
     {
-        //
+        $request->validate([
+            'description' => 'required',
+            'status_id' => 'required',
+            'active_from' => 'required',
+        ]);
+
+        $is_key_problem = $request->has('key_problem') ? true : false;
+
+        $problem->status_id = $request->status_id;
+        $problem->active_from = $request->active_from;
+        $problem->key_problem = $is_key_problem;
+        $problem->description = $request->description;
+        $problem->notes = $request->notes;
+
+        if ($problem->update()) {
+            $request->session()->flash('success', __('message.record_store_success'));
+        } else {
+            $request->session()->flash('error', 'message.record_store_error');
+        }
+
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
     }
 
     /**

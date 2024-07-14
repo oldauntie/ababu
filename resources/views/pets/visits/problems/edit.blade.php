@@ -6,6 +6,7 @@
         <div class="modal-content">
             <form method="POST" action="{{ route('clinics.owners.pets.problems.update', [$clinic, $owner, $pet, $problem]) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
 
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="newProblemModalLabel">{{ __('translate.problem') }}</h1>

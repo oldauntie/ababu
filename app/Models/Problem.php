@@ -11,8 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Problem extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
+
+    # to be used with UUIDs
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $fillable = [
         'diagnosis_id',
@@ -32,10 +35,6 @@ class Problem extends Model
         '2' => 'problem_long_term_active',
         '3' => 'in_evidence',
     ];
-
-    protected $keyType = 'string';
-
-    public $incrementing = false;
 
     public function getStatusDescription($id)
     {

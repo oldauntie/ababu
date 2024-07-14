@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table)
         {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->char('pet_id', 36);
             $table->char('user_id', 36)->nullable();
             $table->text('subjective');

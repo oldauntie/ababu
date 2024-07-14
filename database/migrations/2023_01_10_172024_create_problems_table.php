@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('problems', function (Blueprint $table)
         {
-            $table->id();
+            // $table->id();
+            $table->uuid('id')->primary();
             $table->bigInteger('diagnosis_id')->unsigned();
             $table->char('pet_id', 36);
             $table->char('user_id', 36)->nullable();

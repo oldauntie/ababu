@@ -9,7 +9,7 @@
                 @method('PUT')
 
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="newProblemModalLabel">{{ __('translate.problem') }}</h1>
+                    <h1 class="modal-title fs-5" id="newProblemModalLabel">{{ __('translate.problem') }}: {{ $problem->diagnosis->term_name }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

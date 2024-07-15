@@ -148,6 +148,7 @@ return [
     'problem_closed' => 'closed',
     'problem_filter_by' => 'filter by problem',
     'problem_key_problem' => 'key problem',
+    'problem_new' => 'new problem',
     'problem_status' => 'problem status',
     'prescription_in_evidence' => 'in evidence',
     'problem_indipendent' => 'problem indipendent',

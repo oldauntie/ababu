@@ -108,6 +108,7 @@
                                                         @endif
                                                         <img
                                                             src="{{ url('/images/icons/problem_status_' . $problem->status_id . '.png') }}">
+                                                        <span style="height: 12px; width: 12px; background-color: {{ $problem->color }}; border-radius: 50%; display: inline-block;"> </span>
                                                         {{ $problem->diagnosis->term_name }}
                                                     </div>
                                                     <div class="d-inline-block">
@@ -116,10 +117,11 @@
                                                             {{ $problem->active_from->format(auth()->user()->locale->date_short_format) }}
                                                         </small>
                                                         <small>
-                                                            <a class="btn btn-sm btn-outline-secondary" href="#" role="button"
-                                                            data-bs-toggle="modal" data-bs-target="#editProblemModal-{{ $problem->id }}">
-                                                            {{ __('translate.edit') }}
-                                                        </a>
+                                                            <a class="btn btn-sm btn-outline-secondary" href="#"
+                                                                role="button" data-bs-toggle="modal"
+                                                                data-bs-target="#editProblemModal-{{ $problem->id }}">
+                                                                {{ __('translate.edit') }}
+                                                            </a>
                                                         </small>
                                                     </div>
                                                 </div>
@@ -146,7 +148,7 @@
                         <!-- Problem New Modal -->
                         @include('pets.visits.problems.create')
                         <!-- End Of Problem New Modal -->
-                        
+
                         @foreach ($pet->problems as $problem)
                             @include('pets.visits.problems.edit', ['problem' => $problem])
                         @endforeach

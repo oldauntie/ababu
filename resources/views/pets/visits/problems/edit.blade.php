@@ -1,15 +1,22 @@
-<div class="modal modal-xl	fade" id="editProblemModal-{{ $problem->id }}" tabindex="-1" aria-labelledby="editProblemModalLabeleditProblemModal-{{ $problem->id }}"
-    aria-hidden="true">
+<div class="modal modal-xl	fade" id="editProblemModal-{{ $problem->id }}" tabindex="-1"
+    aria-labelledby="editProblemModalLabeleditProblemModal-{{ $problem->id }}" aria-hidden="true">
 
     <div class="modal-dialog">
 
         <div class="modal-content">
-            <form method="POST" action="{{ route('clinics.owners.pets.problems.update', [$clinic, $owner, $pet, $problem]) }}" enctype="multipart/form-data">
+            <form method="POST"
+                action="{{ route('clinics.owners.pets.problems.update', [$clinic, $owner, $pet, $problem]) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="newProblemModalLabel">{{ __('translate.problem') }}: {{ $problem->diagnosis->term_name }}</h1>
+                    <h1 class="modal-title fs-5" id="newProblemModalLabel">{{ __('translate.problem') }}:
+                        {{ $problem->diagnosis->term_name }}
+                    </h1>
+                    <input type="color" class="form-control form-control-color" id="color"
+                        value="{{ $problem->color }}" name="color" title="Choose your color">
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -54,7 +61,8 @@
                                             <label for="problem-edit-status_id_{{ $status_id }}">
                                                 <input name="status_id" type="radio"
                                                     id="problem-edit-status_id_{{ $status_id }}"
-                                                    value="{{ $status_id }}" required{{ $status_id == $problem->status_id ? ' checked' : ''}}>
+                                                    value="{{ $status_id }}"
+                                                    required{{ $status_id == $problem->status_id ? ' checked' : '' }}>
                                                 <img
                                                     src="{{ url('/images/icons/problem_status_' . $status_id . '.png') }}">
                                                 {{ __('translate.' . $status_name) }}
@@ -68,7 +76,7 @@
                                 <div>
                                     <div class="form-check">
                                         <input name="key_problem" type="checkbox" id="problem-edit-key_problem"
-                                            value="1"{{ $problem->key_problem ? ' checked' : ''}}>
+                                            value="1"{{ $problem->key_problem ? ' checked' : '' }}>
                                         <label for="problem-edit-key_problem"><img
                                                 title="{{ __('translate.problem_key_problem') }}"
                                                 src="{{ url('/images/icons/problem_key_problem.png') }}">
@@ -83,7 +91,8 @@
                             <div class="form-floating mb-3">
                                 <input id="active_from" type="date"
                                     class="form-control @error('active_from') is-invalid @enderror" name="active_from"
-                                    value="{{ $problem->active_from->format('Y-m-d') }}" placeholder="{{ __('translate.active_from') }}" required>
+                                    value="{{ $problem->active_from->format('Y-m-d') }}"
+                                    placeholder="{{ __('translate.active_from') }}" required>
                                 <label for="active_from">{{ __('translate.active_from') }}</label>
                             </div>
 

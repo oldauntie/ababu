@@ -4,11 +4,15 @@
     <div class="modal-dialog">
 
         <div class="modal-content">
-            <form method="POST" action="{{ route('clinics.owners.pets.problems.store', [$clinic, $owner, $pet]) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('clinics.owners.pets.problems.store', [$clinic, $owner, $pet]) }}"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="newProblemModalLabel">{{ __('translate.problem_new') }}</h1>
+                    <input class="form-control form-control-color" id="color" type="color" name="color"
+                        value="{{ '#' . str_pad(dechex(mt_rand(0, 0xffffff)), 6, '0', STR_PAD_LEFT) }}"
+                        title="Choose your color">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -79,7 +83,8 @@
                             <div class="form-floating mb-3">
                                 <input id="active_from" type="date"
                                     class="form-control @error('active_from') is-invalid @enderror" name="active_from"
-                                    value="{{ old('active_from') }}" placeholder="{{ __('translate.active_from') }}" required>
+                                    value="{{ old('active_from') }}" placeholder="{{ __('translate.active_from') }}"
+                                    required>
                                 <label for="active_from">{{ __('translate.active_from') }}</label>
                             </div>
 

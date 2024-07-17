@@ -26,6 +26,7 @@ class Problem extends Model
         'key_problem',
         'description',
         'notes',
+        'color',
     ];
 
     public const statuses = [

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('key_problem');
             $table->text('description')->nullable();
             $table->text('notes')->nullable();
+            $table->char('color', 7);
 
             $table->timestamps();
             $table->softDeletes();

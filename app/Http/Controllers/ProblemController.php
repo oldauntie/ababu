@@ -55,6 +55,7 @@ class ProblemController extends Controller
             'key_problem' => $is_key_problem,
             'description' => $request->description,
             'notes' => $request->notes,
+            'color' => $request->color,
         ]);
 
         if ($problem->save()) {
@@ -117,11 +118,12 @@ class ProblemController extends Controller
         $problem->key_problem = $is_key_problem;
         $problem->description = $request->description;
         $problem->notes = $request->notes;
+        $problem->color = $request->color;
 
         if ($problem->update()) {
-            $request->session()->flash('success', __('message.record_store_success'));
+            $request->session()->flash('success', __('message.record_update_success'));
         } else {
-            $request->session()->flash('error', 'message.record_store_error');
+            $request->session()->flash('error', 'message.record_update_error');
         }
 
         return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);

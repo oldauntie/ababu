@@ -15,7 +15,21 @@
                         {{ $problem->diagnosis->term_name }}
                     </h1>
                     <input type="color" class="form-control form-control-color" id="color"
-                        value="{{ $problem->color }}" name="color" title="Choose your color">
+                        value="{{ $problem->color }}" name="color" title="Choose your color" list="colors">
+                    <datalist id="colors">
+                        <option value="#000000">
+                        <option value="#e66465">
+                        <option value="#f6b73c">
+                        <option value="#563d7c">
+                        <option value="#c50000">
+                        <option value="#729901">
+                        <option value="#01995b">
+                        <option value="#015999">
+                        <option value="#012f99">
+                        <option value="#3d0566">
+                        <option value="#7b0199">
+                        <option value="#ffffff">
+                    </datalist>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

@@ -284,8 +284,8 @@ class DevelopSeeder extends Seeder
          */
         Prescription::create([
             'medicine_id' => 1,
-            'problem_id' => $problem->id,
             'pet_id' => $ozzy->id,
+            'problem_id' => $problem->id,
             'user_id' => $admin->id,
             'quantity' => 1,
             'dosage' => 'one a day',
@@ -301,8 +301,8 @@ class DevelopSeeder extends Seeder
          */
         Examination::create([
             'diagnostic_test_id' => '13379',
-            'problem_id' => $problem->id,
             'pet_id' => $ozzy->id,
+            'problem_id' => $problem->id,
             'user_id' => $admin->id,
             'result' => 'A small problem',
             'medical_report' => 'a Medical report',
@@ -320,6 +320,7 @@ class DevelopSeeder extends Seeder
          */
         Note::create([
             'pet_id' => $ozzy->id,
+            'problem_id' => $problem->id,
             'user_id' => $admin->id,
             'subjective' => 'just another subjective test... to prove nothing',
             'objective' => 'just another objective test... to prove nothing',

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('prescriptions', function (Blueprint $table)
         {
             $table->id();
-            $table->char('pet_id', 36);
             $table->string('medicine_id');
-            $table->char('user_id', 36)->nullable();
+            $table->char('pet_id', 36);
             $table->char('problem_id', 36)->nullable();
+            $table->char('user_id', 36)->nullable();
             $table->bigInteger('quantity')->unsigned();
             $table->string('dosage');
             $table->bigInteger('duration')->unsigned()->nullable();

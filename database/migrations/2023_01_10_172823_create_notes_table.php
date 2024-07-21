@@ -17,6 +17,7 @@ return new class extends Migration
         {
             $table->uuid('id')->primary();
             $table->char('pet_id', 36);
+            $table->char('problem_id', 36)->nullable();
             $table->char('user_id', 36)->nullable();
             $table->text('subjective');
             $table->text('objective');

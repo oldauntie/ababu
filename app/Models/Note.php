@@ -18,6 +18,7 @@ class Note extends Model
     protected $fillable = [
         'pet_id',
         'user_id',
+        'problem_id',
         'subjective',
         'objective',
         'assessment',

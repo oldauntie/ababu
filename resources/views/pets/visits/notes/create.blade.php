@@ -5,15 +5,15 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
                             {{ __('translate.note_create') }}
                         </div>
                         <div class="float-end">
-                            {{ session()->flash('set_active_tab','notes')}}
-                            <a href="{{ url()->previous() }}" class="btn btn-sm btn-outline-secondary">{{ __('translate.back') }}</a>
+                            {{ session()->flash('set_active_tab', 'notes') }}
+                            <a href="{{ url()->previous() }}"
+                                class="btn btn-sm btn-outline-secondary">{{ __('translate.back') }}</a>
                         </div>
                     </div>
 
@@ -34,8 +34,22 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('clinics.owners.pets.notes.store', [$clinic, $owner, $pet]) }}" enctype="multipart/form-data">
+                        <form method="POST"
+                            action="{{ route('clinics.owners.pets.notes.store', [$clinic, $owner, $pet]) }}"
+                            enctype="multipart/form-data">
                             @csrf
+
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="problem_id" name="problem_id" aria-label="problem_id"
+                                    aria-describedby="basic-addon">
+                                    <option selected value> -- {{ __('translate.problem_indipendent') }} -- </option>
+                                    @foreach ($pet->problems as $problem)
+                                        <option value="{{ $problem->id }}">
+                                            {{ $problem->diagnosis->term_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('subjective') is-invalid @enderror" name="subjective"

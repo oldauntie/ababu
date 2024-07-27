@@ -51,6 +51,7 @@ class NoteController extends Controller
 
         $note = new Note([
             'pet_id' => $pet->id,
+            'problem_id' => $request->problem_id,
             'user_id' => auth()->user()->id,
             'subjective' => $request->subjective,
             'objective' => $request->objective,
@@ -118,6 +119,7 @@ class NoteController extends Controller
         ]);
 
         # fill note information
+        $note->problem_id = $request->problem_id;
         $note->subjective = $request->subjective;
         $note->objective = $request->objective;
         $note->assessment = $request->assessment;

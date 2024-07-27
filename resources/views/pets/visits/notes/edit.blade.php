@@ -42,6 +42,17 @@
                             {{ method_field('PUT') }}
 
                             <div class="form-floating mb-3">
+                                <select class="form-control" id="problem_id" name="problem_id" aria-label="problem_id" aria-describedby="basic-addon">
+                                    <option {{ is_null($note->problem_id) ? 'selected' : '' }} value> -- {{ __('translate.problem_indipendent') }} -- </option>
+                                    @foreach ($pet->problems as $problem)
+                                        <option value="{{ $problem->id }}" {{ $note->problem_id == $problem->id ? 'selected' : '' }}>
+                                            {{ $problem->diagnosis->term_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-floating mb-3">
                                 <textarea class="form-control @error('subjective') is-invalid @enderror" name="subjective"
                                     placeholder="{{ __('translate.subjective_analysis') }}" id="subjective" style="height: 100px" required>{{ $note->subjective }}</textarea>
                                 <label for="subjective">{{ __('translate.subjective_analysis') }}</label>

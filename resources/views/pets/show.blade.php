@@ -57,7 +57,7 @@
                                     --}}
 
                                     <select class="form-control" id="problem-filter-by" name="problem" aria-label="problem"
-                                        aria-describedby="basic-addon" multiple="multiple">
+                                        aria-describedby="basic-addon">
                                         @foreach ($pet->problems as $problem)
                                             <option value="{{ $problem->id }}">
                                                 {{ $problem->diagnosis->term_name }}
@@ -268,7 +268,6 @@
                 $('#nav-{{ session('set_active_tab') }}-tab').trigger('click');
             @endif
 
-            // $('#problem-select2').select2();
             $("#problem-filter-by").select2({
                 tags: true,
                 placeholder: "{{ __('translate.problem_filter_by') }}",

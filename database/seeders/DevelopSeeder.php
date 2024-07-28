@@ -249,7 +249,7 @@ class DevelopSeeder extends Seeder
             'key_problem' => 1,
             'description' => 'A test for problem description',
             'notes' => 'Some notes for a problem',
-            'color' => '#e66465'
+            'color' => '#F2711C'
         ]);
 
         $problem = Problem::create([
@@ -261,7 +261,7 @@ class DevelopSeeder extends Seeder
             'key_problem' => 1,
             'description' => 'A second test for problem description',
             'notes' => 'Some second note for a problem',
-            'color' => '#f6b73c'
+            'color' => '#B5CC18'
         ]);
 
         $problem = Problem::create([
@@ -273,9 +273,8 @@ class DevelopSeeder extends Seeder
             'key_problem' => 0,
             'description' => 'A third test for problem description',
             'notes' => 'Some thied note for a problem',
-            'color' => '#563d7c'
+            'color' => '#00B5AD'
         ]);
-
 
 
 

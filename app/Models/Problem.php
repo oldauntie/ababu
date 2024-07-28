@@ -37,6 +37,19 @@ class Problem extends Model
         '3' => 'in_evidence',
     ];
 
+    public const colors = [
+        'red' => '#DB2828',
+        'orange' => '#F2711C',
+        'yellow' => '#FBBD08',
+        'olive' => '#B5CC18',
+        'green' => '#21BA45',
+        'teal' => '#00B5AD',
+        'blue' => '#2185D0',
+        'violet' => '#6435C9',
+        'purple' => '#A333C8',
+        'pink' => '#E03997'
+    ];
+
     public function getStatusDescription($id)
     {
         return self::statuses[$id];

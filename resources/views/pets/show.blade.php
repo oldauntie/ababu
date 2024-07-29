@@ -43,19 +43,6 @@
                             <div class="col-9">
                                 <div class="input-group">
 
-                                    {{-- 
-                                    <div class="input-group-text">{{ __('translate.filter_by') }}</div>
-                                    
-                                    <select class="form-control" id="problem-select21" name="problem" aria-label="problem"
-                                    aria-describedby="basic-addon1">
-                                    @foreach ($diagnoses as $problem)
-                                    <option value="{{ $problem->id }}">{{ $problem->term_name }}
-                                    </option>
-                                    @endforeach
-                                    </select>
-                                    {{ dump($pet->problems) }}
-                                    --}}
-
                                     <select class="form-control" id="problem-filter-by" name="problem" aria-label="problem"
                                         aria-describedby="basic-addon">
                                         @foreach ($pet->problems as $problem)
@@ -69,13 +56,6 @@
                             </div>
 
                             <div class="col-3">
-                                {{--
-                                    <!-- button trigger for problem filtering collapsible -->
-                                    <a class="btn btn-sm btn-outline-info" data-bs-toggle="collapse" href="#"
-                                    role="button">
-                                    {{ __('translate.filter_by') }}
-                                    </a>
-                                --}}
                                 <!-- button trigger show all problems collapsible -->
                                 <a class="btn btn-sm btn-outline-dark" data-bs-toggle="collapse" href="#collapseProblems"
                                     role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -108,7 +88,9 @@
                                                         @endif
                                                         <img
                                                             src="{{ url('/images/icons/problem_status_' . $problem->status_id . '.png') }}">
-                                                        <span style="height: 12px; width: 12px; background-color: {{ $problem->color }}; border-radius: 50%; display: inline-block;"> </span>
+                                                        <span
+                                                            style="height: 12px; width: 12px; background-color: {{ $problem->color }}; border-radius: 50%; display: inline-block;">
+                                                        </span>
                                                         {{ $problem->diagnosis->term_name }}
                                                     </div>
                                                     <div class="d-inline-block">
@@ -151,6 +133,15 @@
 
                         @foreach ($pet->problems as $problem)
                             @include('pets.visits.problems.edit', ['problem' => $problem])
+                        @endforeach
+
+
+                        <!-- Note New Modal -->
+                        @include('pets.visits.notes.create')
+                        <!-- End Of Note New Modal -->
+
+                        @foreach ($pet->notes as $note)
+                            @include('pets.visits.notes.edit', ['note' => $note])
                         @endforeach
 
 

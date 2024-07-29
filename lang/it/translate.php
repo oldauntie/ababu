@@ -106,6 +106,7 @@ return [
     'not_applicable' => 'non applicabile',
     'note' => 'nota',
     'note_create' => 'crea una nota',
+    'note_edit' => 'modifica nota',
     'note_details' => 'dettagli nota',
     'notes' => 'note',
     'number_of_pets_per_species' => 'no. di animali per specie',

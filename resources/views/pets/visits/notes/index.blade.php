@@ -2,7 +2,10 @@
     <div class="col">
         <dif class="row">
             <div class="col-12">
-                <a href="{{ route('clinics.owners.pets.notes.create', [$clinic, $owner, $pet]) }}" class="btn btn-sm btn-outline-success float-end">{{ __('translate.add') }}</a>
+                <a class="btn btn-sm btn-outline-success float-end" href="#" role="button" data-bs-toggle="modal"
+                    data-bs-target="#newNoteModal">
+                    {{ __('translate.new') }}
+                </a>
                 <table class="table table-hover">
                     <thead class="table-light">
                         <tr>
@@ -24,14 +27,19 @@
                                 <td>{{ $note->plan }}</td>
                                 <td>{{ $note->created_at }}</td>
                                 <td>{{ $note->updated_at }}</td>
-                                <td><a href="{{ route('clinics.owners.pets.notes.edit', [$clinic, $owner, $pet, $note])}}" class="btn btn-sm btn-outline-primary">{{ __('translate.edit') }}</a>
-                                <td><a href="{{ route('clinics.owners.pets.notes.show', [$clinic, $owner, $pet, $note])}}" class="btn btn-sm btn-outline-info">{{ __('translate.view') }}</a>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" href="#" role="button"
+                                        data-bs-toggle="modal" data-bs-target="#editNoteModal-{{ $note->id }}">
+                                        {{ __('translate.edit') }}
+                                    </a>
+                                    <a href="{{ route('clinics.owners.pets.notes.show', [$clinic, $owner, $pet, $note]) }}"
+                                        class="btn btn-sm btn-outline-info">{{ __('translate.view') }}</a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-        </dif>   
+        </dif>
     </div>
 </div>

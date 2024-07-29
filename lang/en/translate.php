@@ -109,6 +109,7 @@ return [
     'not_applicable' => 'not applicable',
     'note' => 'note',
     'note_create' => 'create a note',
+    'note_edit' => 'edit note',
     'note_details' => 'note details',
     'notes' => 'notes',
     'objective_analysis' => 'objective analysis',

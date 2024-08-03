@@ -135,6 +135,10 @@
                             @include('visits.problems.edit', ['problem' => $problem])
                         @endforeach
 
+                        <!-- Prescription New Modal -->
+                        @include('visits.prescriptions.create')
+                        <!-- End Of Prescription New Modal -->
+
 
                         <!-- Note New Modal -->
                         @include('visits.notes.create')
@@ -151,7 +155,16 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        {{ __('translate.prescriptions') }}
+                                        <div class="float-start">
+                                            {{ __('translate.prescriptions') }}
+                                        </div>
+                                        <div class="float-end">
+                                            <a class="btn btn-sm btn-outline-success" href="#" role="button"
+                                                data-bs-toggle="modal" data-bs-target="#newPrescriptionModal">
+                                                {{ __('translate.new') }}
+                                            </a>
+                                        </div>
+
                                     </div>
                                     <div class="card-body">
                                         @if ($pet->prescriptions != null)

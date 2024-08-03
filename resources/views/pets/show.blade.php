@@ -128,20 +128,20 @@
                         </div>
 
                         <!-- Problem New Modal -->
-                        @include('pets.visits.problems.create')
+                        @include('visits.problems.create')
                         <!-- End Of Problem New Modal -->
 
                         @foreach ($pet->problems as $problem)
-                            @include('pets.visits.problems.edit', ['problem' => $problem])
+                            @include('visits.problems.edit', ['problem' => $problem])
                         @endforeach
 
 
                         <!-- Note New Modal -->
-                        @include('pets.visits.notes.create')
+                        @include('visits.notes.create')
                         <!-- End Of Note New Modal -->
 
                         @foreach ($pet->notes as $note)
-                            @include('pets.visits.notes.edit', ['note' => $note])
+                            @include('visits.notes.edit', ['note' => $note])
                         @endforeach
 
 
@@ -209,29 +209,29 @@
                                 <div class="tab-content" id="visit-tabContent">
                                     <div class="tab-pane fade active show" id="nav-notes" role="tabpanel"
                                         aria-labelledby="nav-visit-tab" tabindex="0">
-                                        @include('pets.visits.notes.index')
+                                        @include('visits.notes.index')
                                     </div>
                                     <div class="tab-pane fade" id="nav-medical-history" role="tabpanel"
                                         aria-labelledby="nav-medical-history-tab" tabindex="0">
-                                        @include('pets.visits.medical_history')
+                                        @include('visits.medical_history')
                                     </div>
 
                                     <div class="tab-pane fade" id="nav-biometrics" role="tabpanel"
                                         aria-labelledby="nav-biometrics-tab" tabindex="0">
-                                        @include('pets.visits.biometrics')
+                                        @include('visits.biometrics')
                                     </div>
                                     <div class="tab-pane fade" id="nav-vaccinations" role="tabpanel"
                                         aria-labelledby="nav-vaccinations-tab" tabindex="0">
-                                        @include('pets.visits.vaccinations')
+                                        @include('visits.vaccinations')
                                     </div>
                                     <div class="tab-pane fade" id="nav-attachments" role="tabpanel"
                                         aria-labelledby="nav-attachments-tab" tabindex="0">
-                                        @include('pets.visits.attachments')
+                                        @include('visits.attachments')
                                     </div>
 
                                     <div class="tab-pane fade" id="nav-materials" role="tabpanel"
                                         aria-labelledby="nav-materials-tab" tabindex="0">
-                                        @include('pets.visits.materials')
+                                        @include('visits.materials')
                                     </div>
                                 </div>
 

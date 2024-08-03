@@ -77,7 +77,7 @@ class NoteController extends Controller
      */
     public function show(Clinic $clinic, Owner $owner, Pet $pet, Note $note)
     {
-        return view('pets.visits.notes.show')
+        return view('visits.notes.show')
             ->with('clinic', $clinic)
             ->with('owner', $owner)
             ->with('pet', $pet)

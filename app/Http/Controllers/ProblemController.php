@@ -86,7 +86,7 @@ class ProblemController extends Controller
      */
     public function edit(Clinic $clinic, Owner $owner, Pet $pet, Problem $problem)
     {
-        return view('pets.visits.problems.edit')
+        return view('visits.problems.edit')
             ->with('clinic', $clinic)
             ->with('owner', $owner)
             ->with('pet', $pet)

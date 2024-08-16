@@ -2,84 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use App\Models\Medicine;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of possible diagnoses (VeNom).
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function search(Request $request, Clinic $clinic)
     {
-        //
-    }
+        $search = $request->search;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        if ($search == '') {
+            $medicines = Medicine::where('country_id', '=', $clinic->country_id)->orderby('name', 'asc')->select('id', 'name')->limit(5)->get();
+        } else {
+            $medicines = Medicine::where('country_id', '=', $clinic->country_id)->orderby('name', 'asc')->select('id', 'name')->where('name', 'like', '%' . $search . '%')->limit(5)->get();
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $response = array();
+        foreach ($medicines as $medicine) {
+            $response[] = array(
+                "id" => $medicine->id,
+                "text" => $medicine->name
+            );
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Medicine $medicine)
-    {
-        //
-    }
+        echo json_encode($response);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Medicine $medicine)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Medicine $medicine)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Medicine $medicine)
-    {
-        //
+        /*
+        echo '{
+            "results": [
+              {
+                "id": 1,
+                "text": "Option 1"
+              },
+              {
+                "id": 2,
+                "text": "Option 2"
+              }
+            ],
+            "pagination": {
+              "more": true
+            }
+          }';
+          */
+        exit;
     }
 }

@@ -12,7 +12,7 @@
                             {{ __('translate.age') }} {{ $pet->age->years }}Y {{ $pet->age->months }}m
                             {{ $pet->age->days }}d
                             <br>
-                            <small> small </small>
+                            <small> small... smaller </small>
                         </div>
                         <div class="float-end">
                             <a href="{{ route('clinics.owners.pets.edit', [$clinic, $owner, $pet]) }}"

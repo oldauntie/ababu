@@ -19,22 +19,6 @@ class EsperimentoController extends Controller
         # $password = Hash::make('some_password_here');
         # echo $password;
 
-        $dia = Diagnosis::select(['diagnoses.id', 'diagnoses.term_name', DB::raw('count(problems.id) as active')])
-            ->leftJoin('problems', 'problems.diagnosis_id', '=', 'diagnoses.id')
-            ->groupBy('diagnoses.id')
-            ->toSql();
-
-
-        $dia = Diagnosis::select(['diagnoses.id', 'diagnoses.term_name', DB::raw('count(problems.id) as active')])
-            ->leftJoin('problems', 'problems.diagnosis_id', '=', DB::raw('diagnoses.id AND problems.pet_id = ' . $pet->id))
-            ->groupBy('diagnoses.id')
-            ->toSql();
-        // ->get();
-        
-        dump($dia);
-
-
-
         return view('esperimenti.index');
     }
 

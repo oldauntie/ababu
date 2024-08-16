@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\EsperimentoController;
 use App\Http\Controllers\MedicalHistoryController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\PetController;
@@ -85,8 +86,5 @@ Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware(
 Route::resource('clinics.owners.pets.problems', ProblemController::class);
 
 
-
-# Route::put('clinics/{clinic}/owners/{owner}/pets/{pet}/hx', [MedicalHistoryController::class, 'update'])->name('clinics.owners.pets.medical-histories.update')->middleware('clinic_access');
-
-# visit
-#Route::get('clinics/{clinic}/visits/{pet}', [VisitController::class, 'show'])->name('clinics.visits.show')->middleware('clinic_access');
+# Medicines
+Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');

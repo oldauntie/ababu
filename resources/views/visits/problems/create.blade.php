@@ -1,4 +1,4 @@
-<div class="modal modal-xl	fade" id="newProblemModal" tabindex="-1" aria-labelledby="newProblemModalLabel"
+<div class="modal modal-xl fade" id="newProblemModal" tabindex="-1" aria-labelledby="newProblemModalLabel"
     aria-hidden="true">
 
     <div class="modal-dialog">
@@ -16,7 +16,7 @@
                                 @foreach (App\Models\Problem::colors as $color_name => $color)
                                     <li>
                                         <label>
-                                            <input type="radio" name="color" value="{{ $color }}">
+                                            <input type="radio" name="color" value="{{ $color }}" {{ $color_name == 'red' ? 'checked' : '' }}>
                                             <span class="swatch" style="background-color:{{ $color }}"></span>
                                         </label>
                                     </li>
@@ -94,7 +94,7 @@
 
                         <div class="col-9">
                             <div class="form-floating mb-3">
-                                <input id="active_from" type="date"
+                                <input id="active_from" type="datetime-local"
                                     class="form-control @error('active_from') is-invalid @enderror" name="active_from"
                                     value="{{ old('active_from') }}" placeholder="{{ __('translate.active_from') }}"
                                     required>

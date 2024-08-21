@@ -31,25 +31,8 @@ class MedicineController extends Controller
             );
         }
 
-        echo json_encode($response);
+        echo json_encode(["results" => $response]);
 
-        /*
-        echo '{
-            "results": [
-              {
-                "id": 1,
-                "text": "Option 1"
-              },
-              {
-                "id": 2,
-                "text": "Option 2"
-              }
-            ],
-            "pagination": {
-              "more": true
-            }
-          }';
-          */
         exit;
     }
 }

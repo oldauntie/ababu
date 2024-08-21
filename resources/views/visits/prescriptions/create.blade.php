@@ -7,15 +7,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form method="POST" action="{{ route('clinics.owners.pets.notes.store', [$clinic, $owner, $pet]) }}"
+            <form method="POST" action="{{ route('clinics.owners.pets.prescriptions.store', [$clinic, $owner, $pet]) }}"
                 enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <select class="form-control" id="medicine_id" name="medicine_id" aria-label="medicine_id"
-                            aria-describedby="basic-addon">
-                            <option selected value> -- {{ __('translate.problem_indipendent') }} -- </option>
+                        <select class="form-control" id="problem" name="problem" aria-label="problem"
+                            aria-describedby="basic-addon" required>
+                            <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
                             @foreach ($pet->problems as $problem)
                                 <option value="{{ $problem->id }}">
                                     {{ $problem->diagnosis->term_name }}
@@ -25,35 +25,19 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select id="medicine_id2" class="js-data-example-ajax"></select>
-                    </div>
-
-
-                    {{-- 
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control @error('subjective') is-invalid @enderror" name="subjective"
-                            placeholder="{{ __('translate.subjective_analysis') }}" id="subjective" style="height: 100px" required>{{ old('subjective') }}</textarea>
-                        <label for="subjective">{{ __('translate.subjective_analysis') }}</label>
+                        <select id="medicine_id2" class="js-data-example-ajax" required></select>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <textarea class="form-control @error('objective') is-invalid @enderror" name="objective"
-                            placeholder="{{ __('translate.objective') }}" id="objective" style="height: 100px" required>{{ old('objective') }}</textarea>
-                        <label for="objective">{{ __('translate.objective_analysis') }}</label>
+                        <input id="prescription_date" type="date"
+                            class="form-control @error('prescription_date') is-invalid @enderror" name="prescription_date"
+                            value="{{ date('Y-m-d') }}" placeholder = '{{ __('translate.prescription_date') }}'
+                            required>
+                        <label for="prescription_date">{{ __('translate.prescription_date') }}</label>
                     </div>
 
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control @error('assessment') is-invalid @enderror" name="assessment"
-                            placeholder="{{ __('translate.assessment') }}" id="assessment" style="height: 100px" required>{{ old('assessment') }}</textarea>
-                        <label for="assessment">{{ __('translate.assessment') }}</label>
-                    </div>
 
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control @error('plan') is-invalid @enderror" name="plan"
-                            placeholder="{{ __('translate.plan') }}" id="plan" style="height: 100px" required>{{ old('plam') }}</textarea>
-                        <label for="plan">{{ __('translate.plan') }}</label>
-                    </div>
-                    --}}
+                    
 
 
                 </div>
@@ -71,10 +55,25 @@
 
 <script type="module">
     $(function() {
+
+
+        $("#problem").select2({
+            // dropDownParent: $('#newPrescriptionModal3')
+            dropdownParent: $('#newPrescriptionModal'),
+            width: '100%',
+            tags: true,
+            placeholder: "{{ __('translate.problem_filter_by') }}",
+            tokenSeparators: [','],
+            width: '100%',
+        });
+
+
         $('#medicine_id2').select2({
-            dropdownParent: $('#newProblemModal'),
+            dropdownParent: $('#newPrescriptionModal'),
+            width: '100%',
             ajax: {
-                url: '{{ route('clinics.medicines.search', ['clinic' => $clinic]) }}',
+                url: 'http://localhost/clinics/01ff0f8a-7b4a-4f30-b03c-e1fbce7bfdc1/medicines/search',
+                type: "GET",
                 dataType: 'json',
                 data: function(params) {
                     var query = {
@@ -84,18 +83,17 @@
 
                     // Query parameters will be ?search=[term]&type=public
                     return query;
+                },
+                /*
+                processResults: function(data) {
+                    // Transforms the top-level key of the response object from 'items' to 'results'
+                    console.log(data);
+                    return {
+                        results: data
+                    };
                 }
+                */
             }
-        });
-
-
-        $('#problem-select2').select2({
-            dropdownParent: $('#newProblemModal'),
-            width: '100%',
-            /*
-            templateSelection: formatOption,
-            templateResult: formatOption,
-            */
         });
     });
 </script>

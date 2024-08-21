@@ -39,9 +39,10 @@ class ProblemController extends Controller
     public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Problem $problem)
     {
         $request->validate([
+            'color' => 'required',
             'description' => 'required',
             'status_id' => 'required',
-            'active_from' => 'required',
+            'active_from' => 'required|before:tomorrow',
         ]);
 
         $is_key_problem = $request->has('key_problem') ? true : false;
@@ -138,5 +139,35 @@ class ProblemController extends Controller
     public function destroy(Problem $problem)
     {
         //
+    }
+
+
+
+    /**
+     * Display a listing of possible problems (VeNom).
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, Clinic $clinic)
+    {
+        $search = $request->search;
+
+        if ($search == '') {
+            $medicines = Medicine::where('country_id', '=', $clinic->country_id)->orderby('name', 'asc')->select('id', 'name')->limit(5)->get();
+        } else {
+            $medicines = Medicine::where('country_id', '=', $clinic->country_id)->orderby('name', 'asc')->select('id', 'name')->where('name', 'like', '%' . $search . '%')->limit(5)->get();
+        }
+
+        $response = array();
+        foreach ($medicines as $medicine) {
+            $response[] = array(
+                "id" => $medicine->id,
+                "text" => $medicine->name
+            );
+        }
+
+        echo json_encode(["results" => $response]);
+
+        exit;
     }
 }

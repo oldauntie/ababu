@@ -68,6 +68,7 @@
                         // Query parameters will be ?search=[term]&type=public
                         return query;
                     },
+                    /*
                     processResults: function(data) {
                         // Transforms the top-level key of the response object from 'items' to 'results'
                         console.log(data);
@@ -75,6 +76,7 @@
                             results: data
                         };
                     }
+                    */
                 }
             });
         });

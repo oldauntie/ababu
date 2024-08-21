@@ -22,6 +22,10 @@ class Prescription extends Model
         'print_notes',
     ];
 
+    protected $casts = [
+        'prescription_date' => 'date',
+    ];
+
     public function medicine()
     {
         return $this->belongsTo(Medicine::class);

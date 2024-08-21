@@ -45,10 +45,11 @@
 
                                     <select class="form-control" id="problem-filter-by" name="problem" aria-label="problem"
                                         aria-describedby="basic-addon">
+                                        <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
                                         @foreach ($pet->problems as $problem)
-                                            <option value="{{ $problem->id }}">
-                                                {{ $problem->diagnosis->term_name }}
-                                            </option>
+                                        <option value="{{ $problem->id }}">
+                                            {{ $problem->diagnosis->term_name }}
+                                        </option>
                                         @endforeach
                                     </select>
 
@@ -97,6 +98,7 @@
                                                         <small>
                                                             {{ __('translate.active_from') }}:
                                                             {{ $problem->active_from->format(auth()->user()->locale->date_short_format) }}
+                                                            {{ $problem->active_from->format(auth()->user()->locale->time_short_format) }}
                                                         </small>
                                                         <small>
                                                             <a class="btn btn-sm btn-outline-secondary" href="#"

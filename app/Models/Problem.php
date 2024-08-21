@@ -65,7 +65,7 @@ class Problem extends Model
     */
 
     protected $casts = [
-        'active_from' => 'date',
+        'active_from' => 'datetime',
     ];
 
     public function diagnosis()

@@ -33,9 +33,11 @@ class PrescriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
     {
-        //
+        $request->validate([
+            'description_date' => 'required|before:tomorrow',
+        ]);
     }
 
     /**

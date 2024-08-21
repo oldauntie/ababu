@@ -84,6 +84,7 @@ Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware(
 # Problem
 # Route::resource('clinics.owners.pets.problems', ProblemController::class)->middleware('has:nurse');
 Route::resource('clinics.owners.pets.problems', ProblemController::class);
+Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'search'])->name('clinics.problems.search');
 
 
 # Medicines

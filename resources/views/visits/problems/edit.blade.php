@@ -21,9 +21,8 @@
                                 @foreach (App\Models\Problem::colors as $color_name => $color)
                                     <li>
                                         <label>
-                                            <input type="radio" name="color" value="{{ $color }}"
-                                                {{ $problem->color == $color ? 'checked' : '' }}>
-                                            <span class="swatch" style="background-color:{{ $color }}"></span>
+                                            <input type="radio" name="color" value="{{ $color }}" {{ $problem->color == $color ? 'checked' : '' }}>
+                                            <span class="swatch" style="background-color:{{ $color }}" required></span>
                                         </label>
                                     </li>
                                 @endforeach
@@ -102,9 +101,9 @@
 
                         <div class="col-9">
                             <div class="form-floating mb-3">
-                                <input id="active_from" type="date"
+                                <input id="active_from" type="datetime-local"
                                     class="form-control @error('active_from') is-invalid @enderror" name="active_from"
-                                    value="{{ $problem->active_from->format('Y-m-d') }}"
+                                    value="{{ $problem->active_from->format('Y-m-d\Th:i:s') }}"
                                     placeholder="{{ __('translate.active_from') }}" required>
                                 <label for="active_from">{{ __('translate.active_from') }}</label>
                             </div>

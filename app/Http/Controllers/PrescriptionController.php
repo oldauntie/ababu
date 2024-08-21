@@ -39,7 +39,13 @@ class PrescriptionController extends Controller
     public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
     {
         $request->validate([
+            'medicine_id' => 'required',
             'prescription_date' => 'required|before:tomorrow',
+            'quantity' => 'required|numeric|min:1|max:65535',
+            'dosage' => 'required|max:255',
+            'duration' => 'numeric|min:1|max:65535',
+            'in_evidence' => 'required|boolean',
+            'print_notes' => 'required|boolean',
         ]);
     }
 

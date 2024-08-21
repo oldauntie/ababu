@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table)
         {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('medicine_id');
             $table->char('pet_id', 36);
             $table->char('problem_id', 36)->nullable();

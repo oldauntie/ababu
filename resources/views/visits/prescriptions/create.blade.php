@@ -55,8 +55,6 @@
 
 <script type="module">
     $(function() {
-
-
         $("#problem").select2({
             // dropDownParent: $('#newPrescriptionModal3')
             dropdownParent: $('#newPrescriptionModal'),
@@ -72,7 +70,7 @@
             dropdownParent: $('#newPrescriptionModal'),
             width: '100%',
             ajax: {
-                url: 'http://localhost/clinics/01ff0f8a-7b4a-4f30-b03c-e1fbce7bfdc1/medicines/search',
+                url: '{{ route('clinics.medicines.search', ['clinic' => $clinic]) }}',
                 type: "GET",
                 dataType: 'json',
                 data: function(params) {
@@ -84,15 +82,6 @@
                     // Query parameters will be ?search=[term]&type=public
                     return query;
                 },
-                /*
-                processResults: function(data) {
-                    // Transforms the top-level key of the response object from 'items' to 'results'
-                    console.log(data);
-                    return {
-                        results: data
-                    };
-                }
-                */
             }
         });
     });

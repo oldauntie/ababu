@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
+use App\Models\Owner;
+use App\Models\Pet;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 
@@ -36,7 +39,7 @@ class PrescriptionController extends Controller
     public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
     {
         $request->validate([
-            'description_date' => 'required|before:tomorrow',
+            'prescription_date' => 'required|before:tomorrow',
         ]);
     }
 

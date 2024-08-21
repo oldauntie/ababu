@@ -7,6 +7,7 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -88,4 +89,5 @@ Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'searc
 
 
 # Medicines
+Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::class);
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');

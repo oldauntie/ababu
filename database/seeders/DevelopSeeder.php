@@ -286,6 +286,7 @@ class DevelopSeeder extends Seeder
             'pet_id' => $ozzy->id,
             'problem_id' => $problem->id,
             'user_id' => $admin->id,
+            'prescription_date' => '2020-08-02 22:00:00',
             'quantity' => 1,
             'dosage' => 'one a day',
             'in_evidence' => 0,

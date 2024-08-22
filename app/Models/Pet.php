@@ -96,6 +96,11 @@ class Pet extends Model
         return $this->belongsTo(Owner::class);
     }
 
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescription::class);
+    }
+
     public function problems()
     {
         return $this->hasMany(Problem::class);

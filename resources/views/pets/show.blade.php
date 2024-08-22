@@ -169,7 +169,44 @@
 
                                     </div>
                                     <div class="card-body">
+
+                                        {{-- #table of prescriptions--}}
                                         @if ($pet->prescriptions != null)
+                                            
+                                            <table class="table table-hover">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>{{ __('translate.prescription_date') }}</th>
+                                                        <th>{{ __('translate.medicine') }}</th>
+                                                        <th>{{ __('translate.problem') }}</th>
+                                                        <th>{{ __('translate.user') }}</th>
+                                                        <th>{{ __('translate.quantity') }}</th>
+                                                        <th>{{ __('translate.dosage') }}</th>
+                                                        <th>{{ __('translate.duration') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($pet->prescriptions as $prescription)
+                                                        <tr>
+                                                            <td>{{ $prescription->prescription_date->format(auth()->user()->locale->date_short_format) }}</td>
+                                                            <td>{{ $prescription->medicine_id }}</td>
+                                                            <td>{{ $prescription->problem_id }}</td>
+                                                            <td>{{ $prescription->user_id }}</td>
+                                                            <td>{{ $prescription->quantity }}</td>
+                                                            <td>{{ $prescription->dosage }}</td>
+                                                            <td>{{ $prescription->duration }}</td>
+                                                            <td>
+                                                                <a class="btn btn-sm btn-outline-primary" href="#" role="button"
+                                                                    data-bs-toggle="modal" data-bs-target="#editPrescriptionModal-{{ $prescription->id }}">
+                                                                    {{ __('translate.edit') }}
+                                                                </a>
+                                                                <a href="{{ route('clinics.owners.pets.prescriptions.show', [$clinic, $owner, $pet, $prescription]) }}"
+                                                                    class="btn btn-sm btn-outline-info">{{ __('translate.view') }}</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         @else
                                             {{ __('translate.prescriptions_zero_records') }}
                                         @endif

@@ -36,7 +36,7 @@ class PrescriptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
+    public function store(Request $request, Clinic $clinic, Owner $owner, Pet $pet)
     {
         $request->validate([
             'medicine_id' => 'required',
@@ -45,6 +45,29 @@ class PrescriptionController extends Controller
             'dosage' => 'required|max:255',
             'duration' => 'max:255',
         ]);
+
+        $prescription = new Prescription([
+            'medicine_id' => $request->medicine_id,
+            'pet_id' => $pet->id,
+            'problem_id' => $request->problem_id,
+            'user_id' => auth()->user()->id,
+            'prescription_date' => $request->prescription_date,
+            'quantity' => $request->quantity,
+            'dosage' => $request->dosage,
+            'duration' => $request->duration,
+            'in_evidence' => $request->has('in_evidence'),
+            'notes' => $request->notes,
+            'print_notes' => $request->has('print_notes'),
+        ]);
+
+        # save note record
+        if ($prescription->save()) {
+            $request->session()->flash('success', __('message.record_store_success'));
+        } else {
+            $request->session()->flash('error', 'message.record_store_error');
+        }
+
+        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
     }
 
     /**

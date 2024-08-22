@@ -19,6 +19,7 @@ class Prescription extends Model
         'problem_id',
         'pet_id',
         'user_id',
+        'prescription_date',
         'quantity',
         'dosage',
         'duration',
@@ -34,6 +35,11 @@ class Prescription extends Model
     public function medicine()
     {
         return $this->belongsTo(Medicine::class);
+    }
+
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
     }
 
     # use UUID and soft delete cascade;

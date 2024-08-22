@@ -43,9 +43,7 @@ class PrescriptionController extends Controller
             'prescription_date' => 'required|before:tomorrow',
             'quantity' => 'required|numeric|min:1|max:65535',
             'dosage' => 'required|max:255',
-            'duration' => 'numeric|min:1|max:65535',
-            'in_evidence' => 'required|boolean',
-            'print_notes' => 'required|boolean',
+            'duration' => 'max:255',
         ]);
     }
 

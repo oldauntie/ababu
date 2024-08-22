@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('prescriptions', function (Blueprint $table)
         {
             $table->uuid('id')->primary();
-            $table->string('medicine_id');
+            $table->bigInteger('medicine_id');
             $table->char('pet_id', 36);
             $table->char('problem_id', 36)->nullable();
             $table->char('user_id', 36)->nullable();
             $table->date('prescription_date');
             $table->smallInteger('quantity')->unsigned();
             $table->string('dosage');
-            $table->smallInteger('duration')->unsigned()->nullable();
+            $table->string('duration')->unsigned()->nullable();
             $table->boolean('in_evidence');
             $table->text('notes')->nullable();
             $table->boolean('print_notes')->default(false);

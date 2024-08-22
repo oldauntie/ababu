@@ -7,13 +7,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form method="POST" action="{{ route('clinics.owners.pets.prescriptions.store', [$clinic, $owner, $pet]) }}"
+            <form method="POST"
+                action="{{ route('clinics.owners.pets.prescriptions.store', [$clinic, $owner, $pet]) }}"
                 enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <select class="form-control" id="problem" name="problem" aria-label="problem"
+                        <select id="problem" name="problem" class="form-control" aria-label="problem"
                             aria-describedby="basic-addon" required>
                             <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
                             @foreach ($pet->problems as $problem)
@@ -25,20 +26,53 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select id="medicine_id2" class="js-data-example-ajax" required></select>
+                        <select id="medicine_id" name="medicine_id" class="" required></select>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input id="prescription_date" type="date"
-                            class="form-control @error('prescription_date') is-invalid @enderror" name="prescription_date"
-                            value="{{ date('Y-m-d') }}" placeholder = '{{ __('translate.prescription_date') }}'
-                            required>
+                        <input id="prescription_date" type="date" name="prescription_date"
+                            value="{{ date('Y-m-d') }}"
+                            class="form-control @error('prescription_date') is-invalid @enderror"
+                            placeholder = '{{ __('translate.prescription_date') }}' required>
                         <label for="prescription_date">{{ __('translate.prescription_date') }}</label>
                     </div>
 
+                    <div class="form-floating mb-3">
+                        <input id="quantity" type="number" name="quantity" value="{{ old('quantity') }}"
+                            class="form-control @error('quantity') is-invalid @enderror"
+                            placeholder = '{{ __('translate.quantity') }}' required>
+                        <label for="quantity">{{ __('translate.quantity') }}</label>
+                    </div>
 
-                    
+                    <div class="form-floating mb-3">
+                        <input id="dosage" type="text" name="dosage" value="{{ old('dosage') }}"
+                            class="form-control @error('dosage') is-invalid @enderror"
+                            placeholder = '{{ __('translate.dosage') }}' maxlength="255" required>
+                        <label for="dosage">{{ __('translate.dosage') }}</label>
+                    </div>
 
+                    <div class="form-floating mb-3">
+                        <input id="duration" type="text" name="duration" value="{{ old('duration') }}"
+                            class="form-control @error('duration') is-invalid @enderror"
+                            placeholder = '{{ __('translate.duration') }}' maxlength="255" required>
+                        <label for="duration">{{ __('translate.duration') }}</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea id="notes" name="notes" class="form-control @error('notes') is-invalid @enderror"
+                            placeholder="{{ __('translate.notes') }}" style="height: 100px">{{ old('notes') }}</textarea>
+                        <label for="notes">{{ __('translate.notes') }}</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input id="print_notes" type="checkbox" name="print_notes" class="form-check-input" role="switch">
+                        <label class="form-check-label" for="print_notes">{{ __('translate.print_notes') }}</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input id="in_evidence" type="checkbox" name="in_evidence" class="form-check-input" role="switch">
+                        <label class="form-check-label" for="in_evidence">{{ __('translate.in_evidence') }}</label>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -66,7 +100,7 @@
         });
 
 
-        $('#medicine_id2').select2({
+        $('#medicine_id').select2({
             dropdownParent: $('#newPrescriptionModal'),
             width: '100%',
             ajax: {

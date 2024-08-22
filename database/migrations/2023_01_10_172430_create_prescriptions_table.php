@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('prescription_date');
             $table->smallInteger('quantity')->unsigned();
             $table->string('dosage');
-            $table->string('duration')->unsigned()->nullable();
+            $table->string('duration')->nullable();
             $table->boolean('in_evidence');
             $table->text('notes')->nullable();
             $table->boolean('print_notes')->default(false);

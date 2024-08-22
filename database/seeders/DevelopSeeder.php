@@ -289,6 +289,7 @@ class DevelopSeeder extends Seeder
             'prescription_date' => '2020-08-02 22:00:00',
             'quantity' => 1,
             'dosage' => 'one a day',
+            'duration' => '1 week',
             'in_evidence' => 0,
             'notes' => 'these are simple notes',
             'print_notes' => 1,

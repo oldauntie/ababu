@@ -65,7 +65,7 @@ class ProblemController extends Controller
             $request->session()->flash('error', 'message.record_store_error');
         }
 
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet]);
     }
 
     /**
@@ -127,7 +127,7 @@ class ProblemController extends Controller
             $request->session()->flash('error', 'message.record_update_error');
         }
 
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet]);
     }
 
     /**

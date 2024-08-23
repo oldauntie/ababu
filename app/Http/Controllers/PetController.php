@@ -94,33 +94,7 @@ class PetController extends Controller
      */
     public function show(Clinic $clinic, Owner $owner, Pet $pet)
     {
-        // @todo: optimize and localise
-
-        /*
-        $diagnoses = Diagnosis::select(['diagnoses.id', 'diagnoses.term_name', DB::raw('count(problems.id) as active')])
-            ->leftJoin('problems', 'problems.diagnosis_id', '=', DB::raw('diagnoses.id AND problems.pet_id = \'' . $pet->id . '\''))
-            //->leftJoin('problems', 'problems.diagnosis_id', '=', 'diagnoses.id')
-            ->groupBy('diagnoses.id')
-            ->get();
-        //->toSql();
-        */
-
-
-        $diagnoses = DB::table('diagnoses')
-        ->select(['diagnoses.id', 'diagnoses.term_name', DB::raw('count(problems.id) as already_used')])
-        ->leftJoin('problems', function (JoinClause $join) use($pet) {
-            $join->on('diagnoses.id', '=', 'problems.diagnosis_id')
-                 ->where('problems.pet_id', '=', $pet->id);
-        })
-        ->groupBy('diagnoses.id')
-        ->get();
-
-
-        return view('pets.show')
-            ->with('clinic', $clinic)
-            ->with('diagnoses', $diagnoses)
-            ->with('owner', $owner)
-            ->with('pet', $pet);
+        //
     }
 
     /**
@@ -183,7 +157,7 @@ class PetController extends Controller
         }
 
 
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet]);
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet]);
     }
 
     /**
@@ -196,5 +170,33 @@ class PetController extends Controller
     {
         $pet->delete();
         return redirect()->route('clinics.owners.show', [$clinic, $owner])->with('success', __('message.record_destroy_success'));
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Pet  $pet
+     * @return \Illuminate\Http\Response
+     */
+    public function visit(Clinic $clinic, Owner $owner, Pet $pet)
+    {
+        // @todo: change and use select2 ajax feature instead of inject
+        # get all diagnoses.
+        $diagnoses = DB::table('diagnoses')
+        ->select(['diagnoses.id', 'diagnoses.term_name', DB::raw('count(problems.id) as already_used')])
+        ->leftJoin('problems', function (JoinClause $join) use($pet) {
+            $join->on('diagnoses.id', '=', 'problems.diagnosis_id')
+                 ->where('problems.pet_id', '=', $pet->id);
+        })
+        ->groupBy('diagnoses.id')
+        ->get();
+
+
+        return view('visits.main')
+            ->with('clinic', $clinic)
+            ->with('diagnoses', $diagnoses)
+            ->with('owner', $owner)
+            ->with('pet', $pet);
     }
 }

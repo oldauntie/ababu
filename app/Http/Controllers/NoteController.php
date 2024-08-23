@@ -66,7 +66,7 @@ class NoteController extends Controller
             $request->session()->flash('error', 'message.record_store_error');
         }
 
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
     }
 
     /**
@@ -132,7 +132,7 @@ class NoteController extends Controller
             $request->session()->flash('error', 'message.record_update_error');
         }
 
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
     }
     
     /**
@@ -144,6 +144,6 @@ class NoteController extends Controller
     public function destroy(Clinic $clinic, Owner $owner, Pet $pet, Note $note)
     {
         $note->delete();
-        return redirect()->route('clinics.owners.pets.show', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'))->with('success', __('message.record_destroy_success'));
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'))->with('success', __('message.record_destroy_success'));
     }
 }

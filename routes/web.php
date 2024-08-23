@@ -44,7 +44,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes(['verify' => true]);
 
-// change password
+# change password
 Route::get('password/edit', [UserController::class . 'passwordEdit'])->name('password.edit');
 Route::post('password/change', [UserController::class, 'passwordChange'])->name('password.change');
 Route::get('profile', [UserController::class, 'profileEdit'])->name('profile');
@@ -77,7 +77,8 @@ Route::bind('pet', function ($pet, $route) {
     return $owner->pets()->where('id', $pet)->first();
 });
 
-
+# visit
+Route::get('clinics/{clinic}/owners/{owner}/pets/{pet}/visit', [PetController::class, 'visit'])->name('clinics.owners.pets.visit');
 
 # SOAP notes
 Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware('has:nurse');

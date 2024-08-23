@@ -42,6 +42,16 @@ class Prescription extends Model
         return $this->belongsTo(Pet::class);
     }
 
+    public function problem()
+    {
+        return $this->belongsTo(Problem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     # use UUID and soft delete cascade;
     protected static function boot()
     {

@@ -78,6 +78,11 @@ class Problem extends Model
         return $this->belongsTo(Pet::class);
     }
 
+    public function prescriptions()
+    {
+        return $this->hasMany(Prescription::class);
+    }
+
     # use UUID and soft delete cascade;
     protected static function boot()
     {

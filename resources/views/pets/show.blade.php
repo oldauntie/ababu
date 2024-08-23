@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="card-body">
 
-                                        {{-- #table of prescriptions --}}
+                                        <!-- Prescriptions Table -->
                                         @if ($pet->prescriptions != null)
                                             <table class="table table-hover">
                                                 <thead class="table-light">
@@ -190,24 +190,27 @@
                                                 <tbody>
                                                     @foreach ($pet->prescriptions as $prescription)
                                                         <tr>
-                                                            <td>{{ $prescription->prescription_date->format(auth()->user()->locale->date_short_format) }}
-                                                            </td>
-                                                            <td>{{ $prescription->medicine->name }}</td>
-                                                            <td>{{ $prescription->problem->diagnosis->term_name }}</td>
+                                                            <td>{{ $prescription->prescription_date->format(auth()->user()->locale->date_short_format) }}</td>
+                                                            <td>{{ Str::limit($prescription->medicine->name, 12, ' [...]') }}</td>
+                                                            <td>{{  Str::limit(($prescription->problem->diagnosis->term_name ?? ''), 15, ' [...]') }}</td>
                                                             {{--
                                                             <td>{{ $prescription->user->name }}</td>
                                                             <td>{{ $prescription->quantity }}</td>
                                                             <td>{{ $prescription->dosage }}</td>
                                                             <td>{{ $prescription->duration }}</td>
                                                             --}}
-                                                            <td>
+                                                            <td class="">
+                                                                <a href="{{ route('clinics.owners.pets.prescriptions.show', [$clinic, $owner, $pet, $prescription]) }}"
+                                                                    class="btn btn-sm btn-outline-dark"><i
+                                                                        class="bi-file"></i></a>
                                                                 <a class="btn btn-sm btn-outline-primary" href="#"
                                                                     role="button" data-bs-toggle="modal"
                                                                     data-bs-target="#editPrescriptionModal-{{ $prescription->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a href="{{ route('clinics.owners.pets.prescriptions.show', [$clinic, $owner, $pet, $prescription]) }}"
-                                                                    class="btn btn-sm btn-outline-danger"><i class="bi-trash"></i></a>
+                                                                    class="btn btn-sm btn-outline-danger"><i
+                                                                        class="bi-trash"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -216,6 +219,7 @@
                                         @else
                                             {{ __('translate.prescriptions_zero_records') }}
                                         @endif
+                                        <!-- End Of Prescriptions Table -->
                                     </div>
                                 </div>
                             </div>

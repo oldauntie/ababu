@@ -14,8 +14,7 @@
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <select id="problem" name="problem" class="form-control" aria-label="problem"
-                            aria-describedby="basic-addon" required>
+                        <select id="problem_id" name="problem_id" class="form-control" aria-label="" required>
                             <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
                             @foreach ($pet->problems as $problem)
                                 <option value="{{ $problem->id }}">
@@ -26,35 +25,35 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select id="medicine_id" name="medicine_id" class="" required></select>
+                        <select id="medicine_id" name="medicine_id" aria-label="" required></select>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input id="prescription_date" type="date" name="prescription_date"
                             value="{{ date('Y-m-d') }}"
                             class="form-control @error('prescription_date') is-invalid @enderror"
-                            placeholder = '{{ __('translate.prescription_date') }}' required>
+                            placeholder = "{{ __('translate.prescription_date') }}" aria-label="" required>
                         <label for="prescription_date">{{ __('translate.prescription_date') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input id="quantity" type="number" name="quantity" value="{{ old('quantity') }}"
                             class="form-control @error('quantity') is-invalid @enderror"
-                            placeholder = '{{ __('translate.quantity') }}' required>
+                            placeholder = "{{ __('translate.quantity') }}" aria-label="" required>
                         <label for="quantity">{{ __('translate.quantity') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input id="dosage" type="text" name="dosage" value="{{ old('dosage') }}"
                             class="form-control @error('dosage') is-invalid @enderror"
-                            placeholder = '{{ __('translate.dosage') }}' maxlength="50" required>
+                            placeholder = "{{ __('translate.dosage') }}" maxlength="50" aria-label="" required>
                         <label for="dosage">{{ __('translate.dosage') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input id="duration" type="text" name="duration" value="{{ old('duration') }}"
                             class="form-control @error('duration') is-invalid @enderror"
-                            placeholder = '{{ __('translate.duration') }}' maxlength="50" required>
+                            placeholder = "{{ __('translate.duration') }}" maxlength="50" aria-label="" required>
                         <label for="duration">{{ __('translate.duration') }}</label>
                     </div>
 

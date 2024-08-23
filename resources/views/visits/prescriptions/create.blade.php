@@ -47,14 +47,14 @@
                     <div class="form-floating mb-3">
                         <input id="dosage" type="text" name="dosage" value="{{ old('dosage') }}"
                             class="form-control @error('dosage') is-invalid @enderror"
-                            placeholder = '{{ __('translate.dosage') }}' maxlength="255" required>
+                            placeholder = '{{ __('translate.dosage') }}' maxlength="50" required>
                         <label for="dosage">{{ __('translate.dosage') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input id="duration" type="text" name="duration" value="{{ old('duration') }}"
                             class="form-control @error('duration') is-invalid @enderror"
-                            placeholder = '{{ __('translate.duration') }}' maxlength="255" required>
+                            placeholder = '{{ __('translate.duration') }}' maxlength="50" required>
                         <label for="duration">{{ __('translate.duration') }}</label>
                     </div>
 

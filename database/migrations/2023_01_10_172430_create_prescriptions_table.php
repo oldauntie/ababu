@@ -22,8 +22,8 @@ return new class extends Migration
             $table->char('user_id', 36)->nullable();
             $table->date('prescription_date');
             $table->smallInteger('quantity')->unsigned();
-            $table->string('dosage');
-            $table->string('duration')->nullable();
+            $table->string('dosage', 50);
+            $table->string('duration', 50)->nullable();
             $table->boolean('in_evidence');
             $table->text('notes')->nullable();
             $table->boolean('print_notes')->default(false);

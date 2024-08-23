@@ -42,8 +42,8 @@ class PrescriptionController extends Controller
             'medicine_id' => 'required',
             'prescription_date' => 'required|before:tomorrow',
             'quantity' => 'required|numeric|min:1|max:65535',
-            'dosage' => 'required|max:255',
-            'duration' => 'max:255',
+            'dosage' => 'required|max:50',
+            'duration' => 'max:50',
         ]);
 
         $prescription = new Prescription([

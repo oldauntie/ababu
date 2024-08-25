@@ -114,4 +114,15 @@ class PrescriptionController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Prescription  $prescription
+     * @return \Illuminate\Http\Response
+     */
+    public function get(Clinic $clinic, Prescription $prescription)
+    {
+        return $prescription->toJson();
+    }
 }

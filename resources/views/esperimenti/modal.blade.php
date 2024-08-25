@@ -16,3 +16,30 @@
             </div>
         </div>
     </div>
+
+
+    <script type="module">
+        function nanna($id) {
+            alert(id)
+        }
+
+        $(function() {
+
+
+
+            /*
+            $.ajax({
+                url: "http://localhost/clinics/68e8ffd5-7dc6-4c8a-a9b7-d7e78df8e3bb/prescriptions/f841c6a2-ecf9-4a96-aa5d-e8b46285c54f/get",
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(res) {
+                    console.log(res);
+                    alert(res);
+                }
+            });
+            */
+
+
+
+        })
+    </script>

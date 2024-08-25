@@ -89,6 +89,7 @@ Route::resource('clinics.owners.pets.problems', ProblemController::class);
 Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'search'])->name('clinics.problems.search');
 
 
-# Medicines
+# Medicines & Prescriptions
 Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::class);
+Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.medicines.get');
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');

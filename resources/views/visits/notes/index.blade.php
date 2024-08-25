@@ -3,7 +3,7 @@
         <dif class="row">
             <div class="col-12">
                 <a class="btn btn-sm btn-outline-success float-end" href="#" role="button" data-bs-toggle="modal"
-                    data-bs-target="#newNoteModal">
+                    data-bs-target="#createNoteModal">
                     {{ __('translate.new') }}
                 </a>
                 <table class="table table-hover">
@@ -29,7 +29,7 @@
                                 <td>{{ $note->updated_at }}</td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-primary" href="#" role="button"
-                                        data-bs-toggle="modal" data-bs-target="#editNoteModal-{{ $note->id }}">
+                                        data-bs-toggle="modal" data-bs-target="#edit-note-modal-{{ $note->id }}">
                                         {{ __('translate.edit') }}
                                     </a>
                                     <a href="{{ route('clinics.owners.pets.notes.show', [$clinic, $owner, $pet, $note]) }}"

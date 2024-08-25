@@ -1,5 +1,5 @@
-<div class="modal modal-xl	fade" id="editNoteModal-{{ $note->id }}" tabindex="-1"
-    aria-labelledby="editNoteModalLabel-{{ $note->id }}" aria-hidden="true">
+<div class="modal modal-xl	fade" id="edit-note-modal-{{ $note->id }}" tabindex="-1"
+    aria-labelledby="edit-note-modal-label-{{ $note->id }}" aria-hidden="true">
 
     <div class="modal-dialog">
 

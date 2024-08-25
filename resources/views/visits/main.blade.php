@@ -145,7 +145,7 @@
                                         </div>
                                         <div class="float-end">
                                             <a class="btn btn-sm btn-outline-success" href="#" role="button"
-                                                data-bs-toggle="modal" data-bs-target="#newPrescriptionModal">
+                                                data-bs-toggle="modal" data-bs-target="#create-prescription-modal">
                                                 {{ __('translate.new') }}
                                             </a>
                                         </div>
@@ -177,12 +177,11 @@
                                                                         class="bi-file"></i></a>
                                                                 <a class="btn btn-sm btn-outline-primary" href="#"
                                                                     role="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#editPrescriptionModal-{{ $prescription->id }}">
+                                                                    data-bs-target="#edit-prescription-modal" data-id="{{ $prescription->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-outline-secondary" href="#"
-                                                                    role="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#editPrescriptionModal-{{ $prescription->id }}">
+                                                                    role="button">
                                                                     <i class="bi-printer"></i>
                                                                 </a>
                                                             </td>
@@ -293,6 +292,10 @@
 
     <!-- Prescription New Modal -->
     @include('visits.prescriptions.create')
+    <!-- End Of Prescription New Modal -->
+
+    <!-- Prescription New Modal -->
+    @include('visits.prescriptions.edit')
     <!-- End Of Prescription New Modal -->
 
 

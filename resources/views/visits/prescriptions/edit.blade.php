@@ -9,9 +9,11 @@
             </div>
 
             <form method="POST"
-                action="{{ route('clinics.owners.pets.prescriptions.store', [$clinic, $owner, $pet]) }}"
+                id="edit-prescription-form"
+                action=""
                 enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
@@ -23,9 +25,10 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select id="edit-prescription-problem_id" name="problem_id" class="form-control" aria-label=""
-                            required>
-                            <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
+                        <select id="edit-prescription-problem_id" name="problem_id" class="form-control" aria-label="">
+                            {{--
+                            <option value=""> -- {{ __('translate.problem_indipendent') }} -- </option>
+                            --}}
                             @foreach ($pet->problems as $problem)
                                 <option value="{{ $problem->id }}">
                                     {{ $problem->diagnosis->term_name }}
@@ -112,7 +115,9 @@
                 success: function(prescription) {                    
                     console.log(prescription);
                     console.log(prescription.prescription_date.substring(0,10));
-                    
+                    let url = '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id}}/prescriptions/' + prescription.id;
+                    console.log(url);
+                    $('#edit-prescription-form').attr('action', url);
                     $('#edit-prescription-medicine_id').val(prescription.medicine.name); // this input is disabled
 
                     $('#edit-prescription-problem_id').val(prescription.problem_id); // Select the option with the problem_id value
@@ -135,7 +140,8 @@
             dropdownParent: $('#edit-prescription-modal'),
             width: '100%',
             tags: true,
-            placeholder: "{{ __('translate.problem') }}",
+            placeholder: "{{ __('translate.problem_indipendent') }}",
+            allowClear: true,
             tokenSeparators: [','],
             width: '100%',
         });

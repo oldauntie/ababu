@@ -17,7 +17,7 @@
                 action="{{ route('clinics.owners.pets.notes.update', [$clinic, $owner, $pet, $note]) }}"
                 enctype="multipart/form-data">
                 @csrf
-                {{ method_field('PUT') }}
+                @method('PUT')
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">

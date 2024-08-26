@@ -19,7 +19,7 @@
                     
                     <div class="form-floating mb-3">
                         <select id="create-prescription-problem_id" name="problem_id" class="form-control" aria-label="" required>
-                            <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
+                            <option value> -- {{ __('translate.problem_indipendent') }} -- </option>
                             @foreach ($pet->problems as $problem)
                                 <option value="{{ $problem->id }}">
                                     {{ $problem->diagnosis->term_name }}

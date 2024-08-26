@@ -96,12 +96,41 @@ class PrescriptionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Clinic  $clinic
+     * @param  \App\Models\Owner  $owner
+     * @param  \App\Models\Pet  $pet
      * @param  \App\Models\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prescription $prescription)
+    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
     {
-        //
+        $request->validate([
+            'prescription_date' => 'required|before:tomorrow',
+            'quantity' => 'required|numeric|min:1|max:65535',
+            'dosage' => 'required|max:50',
+            'duration' => 'max:50',
+        ]);
+
+        # fill prescription information
+        $prescription->problem_id = $request->problem_id;
+        $prescription->user_id = auth()->user()->id;
+
+        $prescription->prescription_date = $request->prescription_date;
+        $prescription->quantity = $request->quantity;
+        $prescription->dosage = $request->dosage;
+        $prescription->duration = $request->duration;
+        $prescription->in_evidence = $request->has('in_evidence');
+        $prescription->notes = $request->notes;
+        $prescription->print_notes = $request->has('print_notes');
+
+        # update note info
+        if ($prescription->update()) {
+            $request->session()->flash('success', __('message.record_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.record_update_error');
+        }
+
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
     }
 
     /**
@@ -123,7 +152,9 @@ class PrescriptionController extends Controller
      */
     public function get(Clinic $clinic, Prescription $prescription)
     {
-        $result = $prescription->with('problem')->with('medicine')->first();
+        $result = Prescription::where('id', '=', $prescription->id)
+                    ->with('problem')
+                    ->with('medicine')->first();
         return $result->toJson();
     }
 }

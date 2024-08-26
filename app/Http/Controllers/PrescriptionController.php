@@ -123,6 +123,7 @@ class PrescriptionController extends Controller
      */
     public function get(Clinic $clinic, Prescription $prescription)
     {
-        return $prescription->toJson();
+        $result = $prescription->with('problem')->with('medicine')->first();
+        return $result->toJson();
     }
 }

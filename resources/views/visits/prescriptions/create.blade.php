@@ -14,6 +14,10 @@
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
+                        <select id="create-prescription-medicine_id" name="medicine_id" aria-label="" required></select>
+                    </div>
+                    
+                    <div class="form-floating mb-3">
                         <select id="create-prescription-problem_id" name="problem_id" class="form-control" aria-label="" required>
                             <option value="0"> -- {{ __('translate.problem_indipendent') }} -- </option>
                             @foreach ($pet->problems as $problem)
@@ -22,10 +26,6 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <select id="create-prescription-medicine_id" name="medicine_id" aria-label="" required></select>
                     </div>
 
                     <div class="form-floating mb-3">

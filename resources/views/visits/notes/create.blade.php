@@ -37,13 +37,13 @@
 
                     <div class="form-floating mb-3">
                         <textarea class="form-control @error('assessment') is-invalid @enderror" name="assessment"
-                            placeholder="{{ __('translate.assessment') }}" id="assessment" style="height: 100px" required>{{ old('assessment') }}</textarea>
+                            placeholder="{{ __('translate.assessment') }}" id="create-note-assessment" style="height: 100px" required>{{ old('assessment') }}</textarea>
                         <label for="create-note-assessment">{{ __('translate.assessment') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
                         <textarea class="form-control @error('plan') is-invalid @enderror" name="plan"
-                            placeholder="{{ __('translate.plan') }}" id="plan" style="height: 100px" required>{{ old('plam') }}</textarea>
+                            placeholder="{{ __('translate.plan') }}" id="create-note-plan" style="height: 100px" required>{{ old('plam') }}</textarea>
                         <label for="create-note-plan">{{ __('translate.plan') }}</label>
                     </div>
 

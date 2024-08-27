@@ -1,15 +1,15 @@
-<div class="modal modal-xl fade" id="edit-prescription-modal" tabindex="-1" aria-labelledby="edit-prescription-modal-label"
+<div class="modal modal-xl fade" id="prescription-edit-modal" tabindex="-1" aria-labelledby="prescription-edit-modal-label"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="edit-prescription-modal-label">{{ __('translate.prescription_edit') }}
+                <h1 class="modal-title fs-5" id="prescription-edit-modal-label">{{ __('translate.prescription_edit') }}
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <form method="POST"
-                id="edit-prescription-form"
+                id="prescription-edit-form"
                 action=""
                 enctype="multipart/form-data">
                 @csrf
@@ -17,15 +17,15 @@
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="medicine_id" id="edit-prescription-medicine_id" name="medicine_id"
+                        <input type="medicine_id" id="prescription-edit-medicine_id" name="medicine_id"
                             value="{{ old('medicine_id') }}"
                             class="form-control @error('medicine_id') is-invalid @enderror"
                             placeholder = "{{ __('translate.medicine_id') }}" aria-label="" readonly disabled>
-                        <label for="edit-prescription-medicine_id">{{ __('translate.medicine') }}</label>
+                        <label for="prescription-edit-medicine_id">{{ __('translate.medicine') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select id="edit-prescription-problem_id" name="problem_id" class="form-control" aria-label="">
+                        <select id="prescription-edit-problem_id" name="problem_id" class="form-control" aria-label="">
                             {{--
                             <option value=""> -- {{ __('translate.problem_indipendent') }} -- </option>
                             --}}
@@ -38,52 +38,52 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="date" id="edit-prescription-prescription_date" name="prescription_date"
+                        <input type="date" id="prescription-edit-prescription_date" name="prescription_date"
                             value="{{ date('Y-m-d') }}"
                             class="form-control @error('prescription_date') is-invalid @enderror"
                             placeholder = "{{ __('translate.prescription_date') }}" aria-label="" required>
-                        <label for="edit-prescription-prescription_date">{{ __('translate.prescription_date') }}</label>
+                        <label for="prescription-edit-prescription_date">{{ __('translate.prescription_date') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="number" id="edit-prescription-quantity" name="quantity"
+                        <input type="number" id="prescription-edit-quantity" name="quantity"
                             value="{{ old('quantity') }}" class="form-control @error('quantity') is-invalid @enderror"
                             placeholder = "{{ __('translate.quantity') }}" aria-label="" required>
-                        <label for="edit-prescription-quantity">{{ __('translate.quantity') }}</label>
+                        <label for="prescription-edit-quantity">{{ __('translate.quantity') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" id="edit-prescription-dosage" name="dosage" value="{{ old('dosage') }}"
+                        <input type="text" id="prescription-edit-dosage" name="dosage" value="{{ old('dosage') }}"
                             class="form-control @error('dosage') is-invalid @enderror"
                             placeholder = "{{ __('translate.dosage') }}" maxlength="50" aria-label="" required>
-                        <label for="edit-prescription-dosage">{{ __('translate.dosage') }}</label>
+                        <label for="prescription-edit-dosage">{{ __('translate.dosage') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" id="edit-prescription-duration" name="duration"
+                        <input type="text" id="prescription-edit-duration" name="duration"
                             value="{{ old('duration') }}" class="form-control @error('duration') is-invalid @enderror"
                             placeholder = "{{ __('translate.duration') }}" maxlength="50" aria-label="" required>
-                        <label for="edit-prescription-duration">{{ __('translate.duration') }}</label>
+                        <label for="prescription-edit-duration">{{ __('translate.duration') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <textarea id="edit-prescription-notes" name="notes" class="form-control @error('notes') is-invalid @enderror"
+                        <textarea id="prescription-edit-notes" name="notes" class="form-control @error('notes') is-invalid @enderror"
                             placeholder="{{ __('translate.notes') }}" style="height: 100px">{{ old('notes') }}</textarea>
-                        <label for="edit-prescription-notes">{{ __('translate.notes') }}</label>
+                        <label for="prescription-edit-notes">{{ __('translate.notes') }}</label>
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="edit-prescription-print_notes" name="print_notes"
+                        <input type="checkbox" id="prescription-edit-print_notes" name="print_notes"
                             class="form-check-input" role="switch">
                         <label class="form-check-label"
-                            for="edit-prescription-print_notes">{{ __('translate.print_notes') }}</label>
+                            for="prescription-edit-print_notes">{{ __('translate.print_notes') }}</label>
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="edit-prescription-in_evidence" name="in_evidence"
+                        <input type="checkbox" id="prescription-edit-in_evidence" name="in_evidence"
                             class="form-check-input" role="switch">
                         <label class="form-check-label"
-                            for="edit-prescription-in_evidence">{{ __('translate.in_evidence') }}</label>
+                            for="prescription-edit-in_evidence">{{ __('translate.in_evidence') }}</label>
                     </div>
 
                 </div>
@@ -101,7 +101,7 @@
 
 <script type="module">
     $(function() {
-        $('#edit-prescription-modal').on('show.bs.modal', function(e) {
+        $('#prescription-edit-modal').on('show.bs.modal', function(e) {
             let btn = $(e
                 .relatedTarget
             ); // e.related here is the element that opened the modal, specifically the row button
@@ -117,27 +117,27 @@
                     console.log(prescription.prescription_date.substring(0,10));
                     let url = '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id}}/prescriptions/' + prescription.id;
                     console.log(url);
-                    $('#edit-prescription-form').attr('action', url);
-                    $('#edit-prescription-medicine_id').val(prescription.medicine.name); // this input is disabled
+                    $('#prescription-edit-form').attr('action', url);
+                    $('#prescription-edit-medicine_id').val(prescription.medicine.name); // this input is disabled
 
-                    $('#edit-prescription-problem_id').val(prescription.problem_id); // Select the option with the problem_id value
-                    $('#edit-prescription-problem_id').trigger('change'); // Notify any JS components that the value changed
+                    $('#prescription-edit-problem_id').val(prescription.problem_id); // Select the option with the problem_id value
+                    $('#prescription-edit-problem_id').trigger('change'); // Notify any JS components that the value changed
                     
-                    $('#edit-prescription-prescription_date').val(prescription.prescription_date.substring(0,10));
-                    $('#edit-prescription-quantity').val(prescription.quantity);
-                    $('#edit-prescription-dosage').val(prescription.dosage);
-                    $('#edit-prescription-duration').val(prescription.duration);
-                    $('#edit-prescription-notes').val(prescription.notes);
+                    $('#prescription-edit-prescription_date').val(prescription.prescription_date.substring(0,10));
+                    $('#prescription-edit-quantity').val(prescription.quantity);
+                    $('#prescription-edit-dosage').val(prescription.dosage);
+                    $('#prescription-edit-duration').val(prescription.duration);
+                    $('#prescription-edit-notes').val(prescription.notes);
                     
-                    $('#edit-prescription-print_notes').prop('checked', prescription.print_notes);
-                    $('#edit-prescription-in_evidence').prop('checked', prescription.in_evidence);
+                    $('#prescription-edit-print_notes').prop('checked', prescription.print_notes);
+                    $('#prescription-edit-in_evidence').prop('checked', prescription.in_evidence);
                 }
             });
         });
 
         // transform standard select input into select2
-        $("#edit-prescription-problem_id").select2({
-            dropdownParent: $('#edit-prescription-modal'),
+        $("#prescription-edit-problem_id").select2({
+            dropdownParent: $('#prescription-edit-modal'),
             width: '100%',
             tags: true,
             placeholder: "{{ __('translate.problem_indipendent') }}",

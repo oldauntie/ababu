@@ -145,7 +145,7 @@
                                         </div>
                                         <div class="float-end">
                                             <a class="btn btn-sm btn-outline-success" href="#" role="button"
-                                                data-bs-toggle="modal" data-bs-target="#create-prescription-modal">
+                                                data-bs-toggle="modal" data-bs-target="#prescription-create-modal">
                                                 {{ __('translate.new') }}
                                             </a>
                                         </div>
@@ -177,7 +177,7 @@
                                                                         class="bi-file"></i></a>
                                                                 <a class="btn btn-sm btn-outline-primary" href="#"
                                                                     role="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#edit-prescription-modal" data-id="{{ $prescription->id }}">
+                                                                    data-bs-target="#prescription-edit-modal" data-id="{{ $prescription->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-outline-secondary" href="#"

@@ -3,7 +3,7 @@
         <dif class="row">
             <div class="col-12">
                 <a class="btn btn-sm btn-outline-success float-end" href="#" role="button" data-bs-toggle="modal"
-                    data-bs-target="#createNoteModal">
+                    data-bs-target="#notes-create-modal">
                     {{ __('translate.new') }}
                 </a>
                 <table class="table table-hover">

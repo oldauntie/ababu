@@ -7,7 +7,7 @@
             </div>
 
             <form method="POST"
-                id="prescription-create-form" 
+                id="notes-create-form" 
                 action="{{ route('clinics.owners.pets.notes.store', [$clinic, $owner, $pet]) }}"
                 enctype="multipart/form-data">
                 @csrf

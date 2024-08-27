@@ -301,10 +301,11 @@ class DevelopSeeder extends Seeder
          * Exmaination
          */
         Examination::create([
-            'diagnostic_test_id' => '13379',
+            'diagnostic_test_id' => '5',
             'pet_id' => $ozzy->id,
             'problem_id' => $problem->id,
             'user_id' => $admin->id,
+            'examination_date' => '2020-08-02 23:00:00',
             'result' => 'A small problem',
             'medical_report' => 'a Medical report',
             'is_pathologic' => 1,

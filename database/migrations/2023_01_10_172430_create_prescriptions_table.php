@@ -20,7 +20,7 @@ return new class extends Migration
             $table->char('pet_id', 36);
             $table->char('problem_id', 36)->nullable();
             $table->char('user_id', 36)->nullable();
-            $table->date('prescription_date');
+            $table->datetime('prescription_date');
             $table->smallInteger('quantity')->unsigned();
             $table->string('dosage', 50);
             $table->string('duration', 50)->nullable();

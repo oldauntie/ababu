@@ -145,11 +145,10 @@
                                         </div>
                                         <div class="float-end">
                                             <a class="btn btn-sm btn-outline-success" href="#" role="button"
-                                                data-bs-toggle="modal" data-bs-target="#prescription-create-modal">
+                                                data-bs-toggle="modal" data-bs-target="#prescriptions-create-modal">
                                                 {{ __('translate.new') }}
                                             </a>
                                         </div>
-
                                     </div>
                                     <div class="card-body overflow-y-auto">
                                         @if ($pet->prescriptions != null)
@@ -163,7 +162,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($pet->prescriptions as $prescription)
+                                                    @foreach ($pet->prescriptions->sortBy([['prescription_date', 'desc']]) as $prescription)
                                                         <tr>
                                                             <td>{{ $prescription->prescription_date->format(auth()->user()->locale->date_short_format) }}
                                                             </td>
@@ -177,7 +176,8 @@
                                                                         class="bi-file"></i></a>
                                                                 <a class="btn btn-sm btn-outline-primary" href="#"
                                                                     role="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#prescription-edit-modal" data-id="{{ $prescription->id }}">
+                                                                    data-bs-target="#prescriptions-edit-modal"
+                                                                    data-id="{{ $prescription->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-outline-secondary" href="#"
@@ -201,12 +201,56 @@
                             <div class="col-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        {{ __('translate.examinations') }}
+                                        <div class="float-start">
+                                            {{ __('translate.examinations') }}
+                                        </div>
+                                        <div class="float-end">
+                                            <a class="btn btn-sm btn-outline-success" href="#" role="button"
+                                                data-bs-toggle="modal" data-bs-target="#examinations-create-modal">
+                                                {{ __('translate.new') }}
+                                            </a>
+                                        </div>
                                     </div>
                                     <div class="card-body">
                                         @if ($pet->examinations != null)
+                                            <table class="table table-hover">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>{{ __('translate.date') }}</th>
+                                                        <th>{{ __('translate.examination') }}</th>
+                                                        <th>{{ __('translate.problem') }}</th>
+                                                        <th>{{ __('translate.actions') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($pet->examinations->sortBy([['examination_date', 'desc']]) as $examination)
+                                                        <tr>
+                                                            <td>{{ $examination->examination_date->format(auth()->user()->locale->date_short_format) }}
+                                                            </td>
+                                                            <td>{{ Str::limit($examination->diagnostic_test->term_name, 12, ' [...]') }}</td>
+                                                            <td>{{ Str::limit($examination->problem->diagnosis->term_name ?? '', 12, ' [...]') }}
+                                                            </td>
+                                                            <td class="">
+                                                                <a href="{{ route('clinics.owners.pets.prescriptions.show', [$clinic, $owner, $pet, $examination]) }}"
+                                                                    class="btn btn-sm btn-outline-dark"><i
+                                                                        class="bi-file"></i></a>
+                                                                <a class="btn btn-sm btn-outline-primary" href="#"
+                                                                    role="button" data-bs-toggle="modal"
+                                                                    data-bs-target="#prescriptions-edit-modal"
+                                                                    data-id="{{ $prescription->id }}">
+                                                                    <i class="bi-pencil"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-outline-secondary" href="#"
+                                                                    role="button">
+                                                                    <i class="bi-printer"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         @else
-                                            {{ __('translate.prescriptions_zero_records') }}
+                                            {{ __('translate.examinations_zero_records') }}
                                         @endif
                                     </div>
                                 </div>
@@ -290,14 +334,17 @@
     @endforeach
     <!-- End Of Problem Edit Modal -->
 
-    <!-- Prescription New Modal -->
+    <!-- Prescriptions New Modal -->
     @include('visits.prescriptions.create')
     <!-- End Of Prescription New Modal -->
 
-    <!-- Prescription New Modal -->
+    <!-- Prescriptions Edit Modal -->
     @include('visits.prescriptions.edit')
-    <!-- End Of Prescription New Modal -->
+    <!-- End Of Prescription Edit Modal -->
 
+    <!-- Examinations New Modal -->
+    @include('visits.examinations.create')
+    <!-- End Of Prescription New Modal -->
 
     <!-- Note Create Modal -->
     @include('visits.notes.create')

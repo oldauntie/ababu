@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('examinations', function (Blueprint $table)
         {
             $table->id();
-            $table->string('diagnostic_test_id');
+            $table->bigInteger('diagnostic_test_id')->unsigned();
             $table->char('pet_id', 36);
-            $table->char('user_id', 36)->nullable();
             $table->char('problem_id', 36)->nullable();
+            $table->char('user_id', 36)->nullable();
+            $table->datetime('examination_date');
             $table->text('result')->nullable();
             $table->text('medical_report')->nullable();
             $table->boolean('is_pathologic');

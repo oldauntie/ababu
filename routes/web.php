@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\DiagnosticTestController;
 use App\Http\Controllers\EsperimentoController;
+use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\NoteController;
@@ -93,3 +95,7 @@ Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'searc
 Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::class);
 Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.medicines.get');
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');
+
+# Diagnostic Tests & Examinations
+Route::resource('clinics.owners.pets.examinations', ExaminationController::class);
+Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search');

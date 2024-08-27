@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class MedicineController extends Controller
 {
     /**
-     * Display a listing of possible diagnoses (VeNom).
+     * Display a listing of medicines available based on the country.
      *
      * @return \Illuminate\Http\Response
      */

@@ -2,84 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use App\Models\DiagnosticTest;
 use Illuminate\Http\Request;
 
 class DiagnosticTestController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of diagnostic test available (VeNom).
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function search(Request $request, Clinic $clinic)
     {
-        //
-    }
+        $search = $request->search;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        if ($search == '') {
+            $diagnostic_tests = DiagnosticTest::where('country_id', '=', $clinic->country_id)->orderby('term_name', 'asc')->select('id', 'term_name')->limit(5)->get();
+        } else {
+            $diagnostic_tests = DiagnosticTest::where('country_id', '=', $clinic->country_id)->orderby('term_name', 'asc')->select('id', 'term_name')->where('term_name', 'like', '%' . $search . '%')->limit(5)->get();
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $response = array();
+        foreach ($diagnostic_tests as $diagnostic_test) {
+            $response[] = array(
+                "id" => $diagnostic_test->id,
+                "text" => $diagnostic_test->term_name
+            );
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DiagnosticTest  $diagnosticTest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DiagnosticTest $diagnosticTest)
-    {
-        //
-    }
+        echo json_encode(["results" => $response]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DiagnosticTest  $diagnosticTest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DiagnosticTest $diagnosticTest)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DiagnosticTest  $diagnosticTest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DiagnosticTest $diagnosticTest)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DiagnosticTest  $diagnosticTest
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DiagnosticTest $diagnosticTest)
-    {
-        //
+        exit;
     }
 }

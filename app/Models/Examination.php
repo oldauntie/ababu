@@ -14,6 +14,7 @@ class Examination extends Model
         'problem_id',
         'pet_id',
         'user_id',
+        'examination_date',
         'result',
         'medical_report',
         'is_pathologic',
@@ -22,8 +23,17 @@ class Examination extends Model
         'print_notes',
     ];
 
-    public function diagnosticTest()
+    protected $casts = [
+        'examination_date' => 'date',
+    ];
+
+    public function diagnostic_test()
     {
         return $this->belongsTo(DiagnosticTest::class);
+    }
+
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
     }
 }

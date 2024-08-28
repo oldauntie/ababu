@@ -102,24 +102,32 @@
                 dataType: 'json', // added data type
                 success: function(examination) {                    
                     console.log(examination);
-                    console.log(examination.examination_date.substring(0,10));
+                    
                     let url = '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id}}/examinations/' + examination.id;
-                    console.log(url);
-                    // $('#examinations-edit-form').attr('action', url);
+                    $('#examinations-edit-form').attr('action', url);
                     $('#examinations-edit-diagnostic_test').val(examination.diagnostic_test.term_name); // this input is disabled
 
-                    /*
-                    $('#examinations-edit-problem_id').val(prescription.problem_id); // Select the option with the problem_id value
+                    $('#examinations-edit-problem_id').val(examination.problem_id); // Select the option with the problem_id value
                     $('#examinations-edit-problem_id').trigger('change'); // Notify any JS components that the value changed
                     
-                    $('#examinations-edit-prescription_date').val(prescription.prescription_date.substring(0,10));
+                    $('#examinations-edit-is_pathologic').prop('checked', examination.is_pathologic);
+                    $('#examinations-edit-examination_date').val(examination.examination_date.substring(0,16));
+                    $('#examinations-edit-result').val(examination.result);
+                    $('#examinations-edit-medical_report').val(examination.medical_report);
+                    $('#examinations-edit-notes').val(examination.notes);
+                    $('#examinations-edit-print_notes').prop('checked', examination.print_notes);
+                    $('#examinations-edit-in_evidence').prop('checked', examination.in_evidence);
+                    
+                    
+                    
+                    /*
+                    
+                    $('#examinations-edit-quantity').val(prescription.quantity);
+                    $('#examinations-edit-quantity').val(prescription.quantity);
                     $('#examinations-edit-quantity').val(prescription.quantity);
                     $('#examinations-edit-dosage').val(prescription.dosage);
                     $('#examinations-edit-duration').val(prescription.duration);
-                    $('#examinations-edit-notes').val(prescription.notes);
                     
-                    $('#examinations-edit-print_notes').prop('checked', prescription.print_notes);
-                    $('#examinations-edit-in_evidence').prop('checked', prescription.in_evidence);
                     */
                 }
             });

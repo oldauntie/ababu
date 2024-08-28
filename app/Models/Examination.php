@@ -24,7 +24,7 @@ class Examination extends Model
     ];
 
     protected $casts = [
-        'examination_date' => 'date',
+        'examination_date' => 'datetime',
     ];
 
     public function diagnostic_test()

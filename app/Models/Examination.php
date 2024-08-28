@@ -36,4 +36,9 @@ class Examination extends Model
     {
         return $this->belongsTo(Pet::class);
     }
+
+    public function problem()
+    {
+        return $this->belongsTo(Problem::class);
+    }
 }

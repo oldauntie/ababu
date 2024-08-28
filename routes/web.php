@@ -12,6 +12,7 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\UserController;
+use App\Models\Examination;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Owner;
@@ -93,9 +94,10 @@ Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'searc
 
 # Medicines & Prescriptions
 Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::class);
-Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.medicines.get');
+Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.prescriptions.get');
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');
 
 # Diagnostic Tests & Examinations
 Route::resource('clinics.owners.pets.examinations', ExaminationController::class);
+Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get');
 Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search');

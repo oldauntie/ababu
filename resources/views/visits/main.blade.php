@@ -227,17 +227,18 @@
                                                         <tr>
                                                             <td>{{ $examination->examination_date->format(auth()->user()->locale->date_short_format) }}
                                                             </td>
-                                                            <td>{{ Str::limit($examination->diagnostic_test->term_name, 12, ' [...]') }}</td>
+                                                            <td>{{ Str::limit($examination->diagnostic_test->term_name, 12, ' [...]') }}
+                                                            </td>
                                                             <td>{{ Str::limit($examination->problem->diagnosis->term_name ?? '', 12, ' [...]') }}
                                                             </td>
                                                             <td class="">
-                                                                <a href="{{ route('clinics.owners.pets.prescriptions.show', [$clinic, $owner, $pet, $examination]) }}"
+                                                                <a href="{{ route('clinics.owners.pets.examinations.show', [$clinic, $owner, $pet, $examination]) }}"
                                                                     class="btn btn-sm btn-outline-dark"><i
                                                                         class="bi-file"></i></a>
                                                                 <a class="btn btn-sm btn-outline-primary" href="#"
                                                                     role="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#prescriptions-edit-modal"
-                                                                    data-id="{{ $prescription->id }}">
+                                                                    data-bs-target="#examinations-edit-modal"
+                                                                    data-id="{{ $examination->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-outline-secondary" href="#"
@@ -345,6 +346,10 @@
     <!-- Examinations New Modal -->
     @include('visits.examinations.create')
     <!-- End Of Prescription New Modal -->
+
+    <!-- Prescriptions Edit Modal -->
+    @include('visits.examinations.edit')
+    <!-- End Of Prescription Edit Modal -->
 
     <!-- Note Create Modal -->
     @include('visits.notes.create')

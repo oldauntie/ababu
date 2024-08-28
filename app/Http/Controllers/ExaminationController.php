@@ -111,4 +111,18 @@ class ExaminationController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Examination  $examination
+     * @return \Illuminate\Http\Response
+     */
+    public function get(Clinic $clinic, Examination $examination)
+    {
+        $result = Examination::where('id', '=', $examination->id)
+                    ->with('problem')
+                    ->with('diagnostic_test')->first();
+        return $result->toJson();
+    }
 }

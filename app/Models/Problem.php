@@ -73,6 +73,11 @@ class Problem extends Model
         return $this->belongsTo(Diagnosis::class);
     }
 
+    public function examinations()
+    {
+        return $this->hasMany(Examination::class);
+    }
+
     public function pet()
     {
         return $this->belongsTo(Pet::class);

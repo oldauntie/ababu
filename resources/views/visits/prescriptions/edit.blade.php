@@ -17,11 +17,11 @@
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="medicine_id" id="prescriptions-edit-medicine_id" name="medicine_id"
-                            value="{{ old('medicine_id') }}"
-                            class="form-control @error('medicine_id') is-invalid @enderror"
-                            placeholder = "{{ __('translate.medicine_id') }}" aria-label="" readonly disabled>
-                        <label for="prescriptions-edit-medicine_id">{{ __('translate.medicine') }}</label>
+                        <input type="text" id="prescriptions-edit-medicine" name=""
+                            value="{{ old('medicine') }}"
+                            class="form-control"
+                            placeholder = "{{ __('translate.medicine') }}" aria-label="" readonly disabled>
+                        <label for="prescriptions-edit-medicine">{{ __('translate.medicine') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -118,7 +118,7 @@
                     let url = '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id}}/prescriptions/' + prescription.id;
                     console.log(url);
                     $('#prescriptions-edit-form').attr('action', url);
-                    $('#prescriptions-edit-medicine_id').val(prescription.medicine.name); // this input is disabled
+                    $('#prescriptions-edit-medicine').val(prescription.medicine.name); // this input is disabled
 
                     $('#prescriptions-edit-problem_id').val(prescription.problem_id); // Select the option with the problem_id value
                     $('#prescriptions-edit-problem_id').trigger('change'); // Notify any JS components that the value changed
@@ -145,8 +145,5 @@
             tokenSeparators: [','],
             width: '100%',
         });
-
-
-
     });
 </script>

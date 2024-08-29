@@ -3,26 +3,26 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="examinations-edit-modal-label">{{ __('translate.examination_edit') }}</h1>
+                <h1 class="modal-title fs-5" id="examinations-edit-modal-label">{{ __('translate.examination_edit') }}
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <form method="POST"
-                if="examinations-edit-form"
-                action=""
+                id="examinations-edit-form" 
+                action="" 
                 enctype="multipart/form-data">
-                @method('PUT')
                 @csrf
+                @method('PUT')
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="text" id="examinations-edit-diagnostic_test" name=""
-                            value=""
-                            class="form-control"
-                            placeholder = "{{ __('translate.diagnostic_test') }}" aria-label="" readonly disabled>
+                        <input type="text" id="examinations-edit-diagnostic_test" name="" value=""
+                            class="form-control" placeholder = "{{ __('translate.diagnostic_test') }}" aria-label=""
+                            readonly disabled>
                         <label for="examinations-edit-diagnostic_test">{{ __('translate.diagnostic_test') }}</label>
                     </div>
-                    
+
                     <div class="form-floating mb-3">
                         <select id="examinations-edit-problem_id" name="problem_id" class="form-control" aria-label="">
                             <option value>{{ __('translate.problem_indipendent') }}</option>
@@ -35,8 +35,10 @@
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="examinations-edit-is_pathologic" name="is_pathologic" class="form-check-input" role="switch">
-                        <label class="form-check-label" for="examinations-edit-is_pathologic">{{ __('translate.is_pathologic') }}</label>
+                        <input type="checkbox" id="examinations-edit-is_pathologic" name="is_pathologic"
+                            class="form-check-input" role="switch">
+                        <label class="form-check-label"
+                            for="examinations-edit-is_pathologic">{{ __('translate.is_pathologic') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -55,7 +57,8 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <textarea id="examinations-edit-medical_report" name="medical_report" class="form-control @error('medical_report') is-invalid @enderror"
+                        <textarea id="examinations-edit-medical_report" name="medical_report"
+                            class="form-control @error('medical_report') is-invalid @enderror"
                             placeholder="{{ __('translate.medical_report') }}" style="height: 100px">{{ old('medical_report') }}</textarea>
                         <label for="examinations-edit-medical_report">{{ __('translate.medical_report') }}</label>
                     </div>
@@ -67,13 +70,17 @@
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="examinations-edit-print_notes" name="print_notes" class="form-check-input" role="switch">
-                        <label class="form-check-label" for="examinations-edit-print_notes">{{ __('translate.print_notes') }}</label>
+                        <input type="checkbox" id="examinations-edit-print_notes" name="print_notes"
+                            class="form-check-input" role="switch">
+                        <label class="form-check-label"
+                            for="examinations-edit-print_notes">{{ __('translate.print_notes') }}</label>
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="examinations-edit-in_evidence" name="in_evidence" class="form-check-input" role="switch">
-                        <label class="form-check-label" for="examinations-edit-in_evidence">{{ __('translate.in_evidence') }}</label>
+                        <input type="checkbox" id="examinations-edit-in_evidence" name="in_evidence"
+                            class="form-check-input" role="switch">
+                        <label class="form-check-label"
+                            for="examinations-edit-in_evidence">{{ __('translate.in_evidence') }}</label>
                     </div>
 
                 </div>
@@ -92,7 +99,8 @@
 <script type="module">
     $(function() {
         $('#examinations-edit-modal').on('show.bs.modal', function(e) {
-            let btn = $(e.relatedTarget); // e.related here is the element that opened the modal, specifically the row button
+            let btn = $(e
+            .relatedTarget); // e.related here is the element that opened the modal, specifically the row button
             let id = btn.data('id'); // this is how you get the of any `data` attribute of an element
             console.log('raised show.bs.modal event from button with data-id=' + id);
 
@@ -100,35 +108,28 @@
                 url: "/clinics/{{ $clinic->id }}/examinations/" + id + "/get",
                 type: 'GET',
                 dataType: 'json', // added data type
-                success: function(examination) {                    
+                success: function(examination) {
+                    let url = '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id }}/examinations/' + examination.id;
                     console.log(examination);
-                    
-                    let url = '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id}}/examinations/' + examination.id;
+                    console.log(url);
+
                     $('#examinations-edit-form').attr('action', url);
                     $('#examinations-edit-diagnostic_test').val(examination.diagnostic_test.term_name); // this input is disabled
 
                     $('#examinations-edit-problem_id').val(examination.problem_id); // Select the option with the problem_id value
                     $('#examinations-edit-problem_id').trigger('change'); // Notify any JS components that the value changed
-                    
-                    $('#examinations-edit-is_pathologic').prop('checked', examination.is_pathologic);
-                    $('#examinations-edit-examination_date').val(examination.examination_date.substring(0,16));
+
+                    $('#examinations-edit-is_pathologic').prop('checked', examination
+                        .is_pathologic);
+                    $('#examinations-edit-examination_date').val(examination
+                        .examination_date.substring(0, 16));
                     $('#examinations-edit-result').val(examination.result);
                     $('#examinations-edit-medical_report').val(examination.medical_report);
                     $('#examinations-edit-notes').val(examination.notes);
-                    $('#examinations-edit-print_notes').prop('checked', examination.print_notes);
-                    $('#examinations-edit-in_evidence').prop('checked', examination.in_evidence);
-                    
-                    
-                    
-                    /*
-                    
-                    $('#examinations-edit-quantity').val(prescription.quantity);
-                    $('#examinations-edit-quantity').val(prescription.quantity);
-                    $('#examinations-edit-quantity').val(prescription.quantity);
-                    $('#examinations-edit-dosage').val(prescription.dosage);
-                    $('#examinations-edit-duration').val(prescription.duration);
-                    
-                    */
+                    $('#examinations-edit-print_notes').prop('checked', examination
+                        .print_notes);
+                    $('#examinations-edit-in_evidence').prop('checked', examination
+                        .in_evidence);
                 }
             });
         });

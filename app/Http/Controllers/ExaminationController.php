@@ -89,16 +89,41 @@ class ExaminationController extends Controller
         //
     }
 
-    /**
+   /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Clinic  $clinic
+     * @param  \App\Models\Owner  $owner
+     * @param  \App\Models\Pet  $pet
      * @param  \App\Models\Examination  $examination
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Examination $examination)
+    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Examination $examination)
     {
-        //
+        $request->validate([
+            'examination_date' => 'required|before:tomorrow',
+        ]);
+
+        # fill prescription information
+        $examination->problem_id = $request->problem_id;
+        $examination->user_id = auth()->user()->id;
+        $examination->examination_date = $request->examination_date;
+        $examination->result = $request->result;
+        $examination->medical_report = $request->medical_report;
+        $examination->is_pathologic = $request->has('is_pathologic');
+        $examination->in_evidence = $request->has('in_evidence');
+        $examination->notes = $request->notes;
+        $examination->print_notes = $request->has('print_notes');
+
+        # update note info
+        if ($examination->update()) {
+            $request->session()->flash('success', __('message.record_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.record_update_error');
+        }
+
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
     }
 
     /**

@@ -41,4 +41,9 @@ class Examination extends Model
     {
         return $this->belongsTo(Problem::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

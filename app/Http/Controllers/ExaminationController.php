@@ -70,12 +70,18 @@ class ExaminationController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \App\Models\Clinic  $clinic
+     * @param  \App\Models\Owner  $owner
+     * @param  \App\Models\Pet  $pet
      * @param  \App\Models\Examination  $examination
      * @return \Illuminate\Http\Response
      */
-    public function show(Examination $examination)
+    public function show(Clinic $clinic, Owner $owner, Pet $pet, Examination $examination)
     {
-        //
+        $result = Examination::where('id', '=', $examination->id)
+            ->with('problem')
+            ->with('diagnostic_test')->first();
+        return view('visits.examinations.show')->with('examination', $result);
     }
 
     /**
@@ -89,7 +95,7 @@ class ExaminationController extends Controller
         //
     }
 
-   /**
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -146,8 +152,8 @@ class ExaminationController extends Controller
     public function get(Clinic $clinic, Examination $examination)
     {
         $result = Examination::where('id', '=', $examination->id)
-                    ->with('problem')
-                    ->with('diagnostic_test')->first();
+            ->with('problem')
+            ->with('diagnostic_test')->first();
         return $result->toJson();
     }
 }

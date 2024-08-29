@@ -73,12 +73,18 @@ class PrescriptionController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \App\Models\Clinic  $clinic
+     * @param  \App\Models\Owner  $owner
+     * @param  \App\Models\Pet  $pet
      * @param  \App\Models\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function show(Prescription $prescription)
+    public function show(Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
     {
-        //
+        $result = Prescription::where('id', '=', $prescription->id)
+            ->with('problem')
+            ->with('medicine')->first();
+        return view('visits.prescriptions.show')->with('prescription', $result);
     }
 
     /**
@@ -153,8 +159,8 @@ class PrescriptionController extends Controller
     public function get(Clinic $clinic, Prescription $prescription)
     {
         $result = Prescription::where('id', '=', $prescription->id)
-                    ->with('problem')
-                    ->with('medicine')->first();
+            ->with('problem')
+            ->with('medicine')->first();
         return $result->toJson();
     }
 }

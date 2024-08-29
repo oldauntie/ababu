@@ -58,6 +58,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Clinic::class, 'role_user');
     }
 
+    public function examinations()
+    {
+        return $this->hasMany(Examination::class);
+    }
+
     public function notes()
     {
         return $this->hasMany(Note::class);
@@ -67,13 +72,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Prescription::class);
     }
-
-
-
-
-
-
-    
 
     public function roles()
     {

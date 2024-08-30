@@ -82,8 +82,10 @@ class PrescriptionController extends Controller
     public function show(Clinic $clinic, Owner $owner, Pet $pet, Prescription $prescription)
     {
         $result = Prescription::where('id', '=', $prescription->id)
+            ->with('pet')
             ->with('problem')
-            ->with('medicine')->first();
+            ->with('medicine')
+            ->first();
         return view('visits.prescriptions.show')->with('prescription', $result);
     }
 

@@ -103,7 +103,6 @@ return [
     'name' => 'name',
     'number_of_pets_per_species' => 'no. of pets per species',
     'new' => 'new',
-    'note' => 'note',
     'no' => 'no',
     'not_applicable' => 'not applicable',
     'note' => 'note',

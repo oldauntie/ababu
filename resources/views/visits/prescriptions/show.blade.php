@@ -27,7 +27,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                {{ __('translate.prescription') }}
+                                {{ __('translate.prescription') }} {{ $prescription->medicine->name }}
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -35,13 +35,27 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.date') }}: {{ $prescription->prescription_date }}
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col">{{ __('translate.problem') }}:
                                         {{ $prescription->problem->diagnosis->term_name }}</div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.date') }}: {{ $prescription->prescription_date }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">{{ __('translate.dosage') }}:
+                                        {{ $prescription->dosage }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.quantity') }}:
+                                        {{ $prescription->quantity }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.duration') }}:
+                                        {{ $prescription->duration }}</div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col">{{ __('translate.notes') }}: {{ $prescription->notes }}</div>
                                 </div>
@@ -56,23 +70,31 @@
 
                         <div class="card mt-3">
                             <div class="card-header">
-                                {{ __('translate.pet') }} {{ $prescription->pet->name }}
+                                {{ __('translate.pet') }}
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">{{ __('translate.age') }} {{ $prescription->pet->age->years }}Y
+                                    <div class="col">{{ __('translate.name') }}: {{ $prescription->pet->name }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.age') }}: {{ $prescription->pet->age->years }}Y
                                         {{ $prescription->pet->age->months }}m
                                         {{ $prescription->pet->age->days }}d</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.breed') }} {{ $prescription->pet->breed }}</div>
+                                    <div class="col">{{ __('translate.breed') }}: {{ $prescription->pet->breed }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.sex') }} {{ $prescription->pet->sex }}</div>
+                                    <div class="col">{{ __('translate.sex') }}: {{ $prescription->pet->sex }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.date_of_birth') }}
+                                    <div class="col">{{ __('translate.date_of_birth') }}:
                                         {{ $prescription->pet->date_of_birth->format(auth()->user()->locale->date_short_format) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.date_of_death') }}:
+                                        {{ !is_null($prescription->pet->date_of_death) ? $prescription->pet->date_of_death->format(auth()->user()->locale->date_short_format) : '' }}
                                     </div>
                                 </div>
                             </div>
@@ -81,24 +103,28 @@
                         <div class="card mt-3">
                             <div class="card-header">
                                 {{ __('translate.owner') }}
-                                {{ $prescription->pet->owner->lastname . ', ' . $prescription->pet->owner->firstname }}
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">{{ __('translate.address') }}
+                                    <div class="col">{{ __('translate.name') }}: {{ $prescription->pet->owner->lastname . ', ' . $prescription->pet->owner->firstname }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.address') }}:
                                         {{ $prescription->pet->owner->address . ', ' . $prescription->pet->owner->postcode . ', ' . $prescription->pet->owner->city }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.ssn') }} {{ $prescription->pet->owner->ssn }}
+                                    <div class="col">{{ __('translate.ssn') }}: {{ $prescription->pet->owner->ssn }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.phone') }} {{ $prescription->pet->owner->phone }}
+                                    <div class="col">{{ __('translate.phone') }}:
+                                        {{ $prescription->pet->owner->phone }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.email') }} {{ $prescription->pet->owner->email }}
+                                    <div class="col">{{ __('translate.email') }}:
+                                        {{ $prescription->pet->owner->email }}
                                     </div>
                                 </div>
                             </div>
@@ -106,38 +132,43 @@
 
                         <div class="card mt-3">
                             <div class="card-header">
-                                {{ __('translate.clinic') }} {{ $prescription->pet->owner->clinic->name }}
+                                {{ __('translate.clinic') }}
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">{{ __('translate.description') }}
+                                    <div class="col">{{ __('translate.name') }}:
+                                        {{ $prescription->pet->owner->clinic->name }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.description') }}:
                                         {{ $prescription->pet->owner->clinic->description }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.manager') }}
+                                    <div class="col">{{ __('translate.manager') }}:
                                         {{ $prescription->pet->owner->clinic->manager }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.code') }}
+                                    <div class="col">{{ __('translate.code') }}:
                                         {{ $prescription->pet->owner->clinic->code }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.address') }}
+                                    <div class="col">{{ __('translate.address') }}:
                                         {{ $prescription->pet->owner->clinic->address }},
                                         {{ $prescription->pet->owner->clinic->postcode }} -
                                         {{ $prescription->pet->owner->clinic->city }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.phone') }}
+                                    <div class="col">{{ __('translate.phone') }}:
                                         {{ $prescription->pet->owner->clinic->phone }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.website') }} <a
+                                    <div class="col">{{ __('translate.website') }}:
+                                        <a
                                             href="http://{{ $prescription->pet->owner->clinic->email }}">{{ $prescription->pet->owner->clinic->website }}</a>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.email') }} <a
+                                    <div class="col">{{ __('translate.email') }}: <a
                                             href="mailto: {{ $prescription->pet->owner->clinic->email }}">{{ $prescription->pet->owner->clinic->email }}</a>
                                     </div>
                                 </div>
@@ -146,30 +177,35 @@
 
                         <div class="card mt-3">
                             <div class="card-header">
-                                {{ __('translate.veterinary') }} {{ $prescription->user->name }}
+                                {{ __('translate.veterinary') }}
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">{{ __('translate.ssn') }} {{ $prescription->user->ssn }}</div>
+                                    <div class="col">{{ __('translate.name') }}:
+                                        {{ $prescription->user->name }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.registration') }}
+                                    <div class="col">{{ __('translate.ssn') }}: {{ $prescription->user->ssn }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.registration') }}:
                                         {{ $prescription->user->registration }}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.phone') }} {{ $prescription->user->phone }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">{{ __('translate.mobile') }} {{ $prescription->user->mobile }}
+                                    <div class="col">{{ __('translate.phone') }}: {{ $prescription->user->phone }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.email') }} {{ $prescription->user->email }}</div>
+                                    <div class="col">{{ __('translate.mobile') }}: {{ $prescription->user->mobile }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ __('translate.email') }}: {{ $prescription->user->email }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        
 
 
 
@@ -179,7 +215,8 @@
 
 
 
-                        
+
+
 
                         <div class="row">
 

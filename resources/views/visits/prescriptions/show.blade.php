@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">{{ __('translate.email') }}:
-                                        {{ $prescription->pet->owner->email }}
+                                        <a href="mailto:{{ $prescription->pet->owner->email }}">{{ $prescription->pet->owner->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,12 +164,12 @@
                                 <div class="row">
                                     <div class="col">{{ __('translate.website') }}:
                                         <a
-                                            href="http://{{ $prescription->pet->owner->clinic->email }}">{{ $prescription->pet->owner->clinic->website }}</a>
+                                            href="http://{{ $prescription->pet->owner->clinic->website }}">{{ $prescription->pet->owner->clinic->website }}</a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">{{ __('translate.email') }}: <a
-                                            href="mailto: {{ $prescription->pet->owner->clinic->email }}">{{ $prescription->pet->owner->clinic->email }}</a>
+                                            href="mailto:{{ $prescription->pet->owner->clinic->email }}">{{ $prescription->pet->owner->clinic->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">{{ __('translate.email') }}: {{ $prescription->user->email }}
+                                    <div class="col">{{ __('translate.email') }}: <a href="mailto:{{ $prescription->user->email }}">{{ $prescription->user->email }}</a>
                                     </div>
                                 </div>
                             </div>

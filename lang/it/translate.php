@@ -141,7 +141,7 @@ return [
     'previous_surgery' => 'precedenti chirurgici',
     'previous_veterinary' => 'precedente veterinario / clinica (nome/indirizzo/telefono)',
     'print' => 'stampa',
-    'print_notes' => 'stampa queste note nella ricetta',
+    'print_notes' => 'stampa le note nella ricetta',
     'problem' => 'problema',
     'problem_active' => 'attivo',
     'problem_closed' => 'chiuso',

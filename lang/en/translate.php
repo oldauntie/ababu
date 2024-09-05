@@ -142,7 +142,7 @@ return [
     'previous_surgery' => 'previous surgery',
     'previous_veterinary' => 'previous veterinarian / hospital (name/address/phone)',
     'print' => 'print',
-    'print_notes' => 'print these notes in prescription',
+    'print_notes' => 'print notes in prescription',
     'problem' => 'problem',
     'problem_active' => 'active',
     'problem_closed' => 'closed',

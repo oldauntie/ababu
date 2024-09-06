@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
+        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" aria-expanded="true" aria-controls="sidebar" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i></a>
+
         <a class="navbar-brand" href="{{ url('/') }}">
             🐾 {{ config('app.name', 'Ababu') }} 🌻 🐢
         </a>

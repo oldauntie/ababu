@@ -33,36 +33,11 @@
                             </div>
                         @endif
 
-                        here are some experiments [body]
 
 
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>Some data here</td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm" data-id="1" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Another data here</td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm" data-id="2" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>More data here</td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm" data-id="3" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">Edit</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
 
-                        <p id="io" class="recentNote">io...</p>
+
+
 
 
 
@@ -76,8 +51,8 @@
 
 
 
-    
 
-@include('esperimenti.modal')
+
+    @include('esperimenti.modal')
 
 @endsection

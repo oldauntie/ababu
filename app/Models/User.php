@@ -83,6 +83,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Locale::class);
     }
 
+    public function setting()
+    {
+        return $this->hasOne(Setting::class)->withDefault([
+            # default settings. no database record is created
+            'show_sidebar' => 1,
+        ]);;
+    }
+
 
     /**
      * Check if user has an exact role

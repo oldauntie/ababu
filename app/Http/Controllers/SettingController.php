@@ -2,30 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Diagnosis;
-use App\Models\Esperimento;
-use App\Models\User;
-
+use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
-class EsperimentoController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        # $password = Hash::make('some_password_here');
-        # echo $password;
-
-        dump(Auth::user());
-        // dump(User::with('setting')->get());
-        dd(Auth::user()->setting);
-
-        return view('esperimenti.index');
+        //
     }
 
     /**
@@ -47,7 +34,7 @@ class EsperimentoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Esperimento $esperimento)
+    public function show(Preference $preference)
     {
         //
     }
@@ -55,7 +42,7 @@ class EsperimentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Esperimento $esperimento)
+    public function edit(Preference $preference)
     {
         //
     }
@@ -63,7 +50,7 @@ class EsperimentoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Esperimento $esperimento)
+    public function update(Request $request, Preference $preference)
     {
         //
     }
@@ -71,7 +58,7 @@ class EsperimentoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Esperimento $esperimento)
+    public function destroy(Preference $preference)
     {
         //
     }

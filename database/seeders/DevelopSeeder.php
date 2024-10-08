@@ -90,6 +90,8 @@ class DevelopSeeder extends Seeder
         $veterinarian->roles()->attach($veterinarianRole, ['clinic_id' => $clinic->id]);
         $nurse->roles()->attach($nurseRole, ['clinic_id' => $clinic->id]);
 
+        # Settings
+        
 
         # CLINIC #2
         $clinic_2 = Clinic::create([

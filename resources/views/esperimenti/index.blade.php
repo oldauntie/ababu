@@ -55,4 +55,21 @@
 
     @include('esperimenti.modal')
 
+
+    <script type="module">
+        $(function() {
+            
+            var io = localStorage.getItem('test');
+            alert(io);
+            var i = 2;
+            localStorage.setItem('test', i);
+            var io = localStorage.getItem('test');
+            alert(io);
+
+            if (io == 1) {
+            }
+
+        });
+    </script>
+
 @endsection

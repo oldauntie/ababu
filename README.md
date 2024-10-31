@@ -2,7 +2,7 @@
 
 Ababu is an open source (free) problem oriented veterinary practice management software / clinical software.
 It can run on a single computer, in a local network (e.g. a veterinary clinic) or on a cloud computing (over the internet)
-Ababu aims to be a multi-platform (Windows, Mac, Linux, any tablet or mobile), free, multi-lingual application to help veterinaries from all over the world in the cure of any kind of animal.
+Ababu aims to be a multi-platform (Windows, Mac, Linux, any tablet or mobile), free, multi-lingual application to help veterinaries from all over the world in the cure any kind of animal.
 Ababu is a free to download / install / redistribute software.
 You can get the source from here (Github).
 It's written in PHP and uses MariaDB to store data.

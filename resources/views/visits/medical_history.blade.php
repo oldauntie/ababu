@@ -164,6 +164,14 @@
     </div>
 
     <div class="form-group row mb-0">
+        <div class="col text-end">
+            <small>
+                {{ __('translate.updated_at') }} {{ $pet->medical_history->updated_at  }}
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group row mb-0">
         <div class="col text-center">
             <button type="submit" class="btn btn-sm btn-outline-success">{{ __('translate.save') }}</button>
         </div>

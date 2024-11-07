@@ -61,12 +61,14 @@
             
             var io = localStorage.getItem('test');
             alert(io);
-            var i = 2;
+            var i = 3;
             localStorage.setItem('test', i);
             var io = localStorage.getItem('test');
             alert(io);
 
-            if (io == 1) {
+            if (io == 1)
+            {
+                
             }
 
         });

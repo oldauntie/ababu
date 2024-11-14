@@ -19,6 +19,7 @@ return [
     'at_age' => 'all\'età',
     'attachments' => 'allegati',
     'back' => 'indietro',
+    'biometrics' => 'caratteristiche biometriche',
     'breed' => 'razza',
     'bug' => 'bug',
     'by' => 'by',

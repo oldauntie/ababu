@@ -9,10 +9,15 @@
                 </a>
             </li>
             <li class="nav-item">
+                
+                {{-- 
+                @todo: check it! null object
                 <a href="{{ route('clinics.show', $clinic) }}" class="nav-link align-middle px-0 text-white">
                     <i class="fs-4 bi-speedometer2"></i> <span
-                        class="ms-1 d-none d-sm-inline">{{ __('translate.dashboard') }}</span>
+                    class="ms-1 d-none d-sm-inline">{{ __('translate.dashboard') }}</span>
                 </a>
+                --}}
+
             </li>
 
             <li class="nav-item">

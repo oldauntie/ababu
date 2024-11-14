@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiometricController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DiagnosticTestController;
 use App\Http\Controllers\EsperimentoController;
@@ -85,6 +86,9 @@ Route::get('clinics/{clinic}/owners/{owner}/pets/{pet}/visit', [PetController::c
 
 # SOAP notes
 Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware('has:nurse');
+
+# biometrics
+Route::resource('clinics.owners.pets.biometrics', BiometricController::class)->middleware('has:nurse');
 
 # Problem
 # Route::resource('clinics.owners.pets.problems', ProblemController::class)->middleware('has:nurse');

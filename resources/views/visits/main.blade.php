@@ -274,7 +274,8 @@
                                             aria-selected="true">{{ __('translate.medical_history') }}</button>
                                         <button class="nav-link" id="nav-biometrics-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-biometrics" type="button" role="tab"
-                                            aria-controls="nav-biometrics" aria-selected="false">Biometrics</button>
+                                            aria-controls="nav-biometrics"
+                                            aria-selected="false">{{ __('translate.biometrics') }}</button>
                                         <button class="nav-link" id="nav-vaccinations-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-vaccinations" type="button" role="tab"
                                             aria-controls="nav-vaccinations" aria-selected="false">Vaccinations</button>
@@ -299,7 +300,7 @@
 
                                     <div class="tab-pane fade" id="nav-biometrics" role="tabpanel"
                                         aria-labelledby="nav-biometrics-tab" tabindex="0">
-                                        @include('visits.biometrics')
+                                        @include('visits.biometrics.index')
                                     </div>
                                     <div class="tab-pane fade" id="nav-vaccinations" role="tabpanel"
                                         aria-labelledby="nav-vaccinations-tab" tabindex="0">
@@ -324,6 +325,17 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Biometric Create Modal -->
+    @include('visits.biometrics.create')
+    <!-- End Of Biometric Create Modal -->
+
+    <!-- Biometric Edit Modal -->
+    @foreach ($pet->biometrics as $biometric)
+        @include('visits.biometrics.edit', ['biometric' => $biometric])
+    @endforeach
+    <!-- End Of Biometric Edit Modal -->
 
     <!-- Problem Create Modal -->
     @include('visits.problems.create')

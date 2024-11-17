@@ -29,7 +29,7 @@
                                 <td>{{ $biometric->updated_at }}</td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-primary" href="#" role="button"
-                                        data-bs-toggle="modal" data-bs-target="#edit-biometric-modal-{{ $biometric->id }}">
+                                        data-bs-toggle="modal" data-bs-target="#biometric-edit-modal-{{ $biometric->id }}">
                                         {{ __('translate.edit') }}
                                     </a>
                                     {{-- 

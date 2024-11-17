@@ -1,12 +1,12 @@
-<div class="modal modal-xl	fade" id="notes-edit-modal-{{ $note->id }}" tabindex="-1"
-    aria-labelledby="notes-edit-modal-label-{{ $note->id }}" aria-hidden="true">
+<div class="modal modal-xl fade" id="note-edit-modal-{{ $note->id }}" tabindex="-1"
+    aria-labelledby="note-edit-modal-label-{{ $note->id }}" aria-hidden="true">
 
     <div class="modal-dialog">
 
         <div class="modal-content">
             {{-- header --}}
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="newNoteModalLabel">{{ __('translate.note') }}:
+                <h1 class="modal-title fs-5">{{ __('translate.note') }}:
                     {{ $note->id }}
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

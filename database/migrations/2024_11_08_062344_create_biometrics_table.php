@@ -15,10 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->char('pet_id', 36);
             $table->char('user_id', 36)->nullable();
-            $table->integer('heigth');
-            $table->integer('length');
-            $table->integer('weigth');
-            $table->integer('temperature');
+            $table->float('heigth');
+            $table->float('length');
+            $table->float('weigth');
+            $table->float('temperature');
             $table->timestamps();
 
             $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');

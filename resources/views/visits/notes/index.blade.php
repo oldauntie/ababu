@@ -29,7 +29,7 @@
                                 <td>{{ $note->updated_at }}</td>
                                 <td>
                                     <a class="btn btn-sm btn-outline-primary" href="#" role="button"
-                                        data-bs-toggle="modal" data-bs-target="#edit-note-modal-{{ $note->id }}">
+                                        data-bs-toggle="modal" data-bs-target="#note-edit-modal-{{ $note->id }}">
                                         {{ __('translate.edit') }}
                                     </a>
                                     <a href="{{ route('clinics.owners.pets.notes.show', [$clinic, $owner, $pet, $note]) }}"

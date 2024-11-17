@@ -1,4 +1,4 @@
-<div class="modal modal-xl	fade" id="biometrics-create-modal" tabindex="-1" aria-labelledby="biometrics-create-modal-label" aria-hidden="true">
+<div class="modal modal-xl fade" id="biometrics-create-modal" tabindex="-1" aria-labelledby="biometrics-create-modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

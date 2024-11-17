@@ -42,21 +42,21 @@ class BiometricController extends Controller
             $request->session()->flash('error', 'message.record_store_error');
         }
 
-        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('notes'));
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('biometrics'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet)
+    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Biometric $biometric)
     {
         # biometrics
-        $pet->biometrics->heigth = $request->heigth;
-        $pet->biometrics->length = $request->length;
-        $pet->biometrics->weigth = $request->weigth;
-        $pet->biometrics->temperature = $request->temperature;
+        $biometric->heigth = $request->heigth;
+        $biometric->length = $request->length;
+        $biometric->weigth = $request->weigth;
+        $biometric->temperature = $request->temperature;
 
-        if ($pet->biometrics->save()) {
+        if ($biometric->save()) {
             $request->session()->flash('success', __('message.record_update_success'));
         } else {
             $request->session()->flash('error', 'message.record_update_error');

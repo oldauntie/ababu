@@ -278,13 +278,16 @@
                                             aria-selected="false">{{ __('translate.biometrics') }}</button>
                                         <button class="nav-link" id="nav-vaccinations-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-vaccinations" type="button" role="tab"
-                                            aria-controls="nav-vaccinations" aria-selected="false">Vaccinations</button>
+                                            aria-controls="nav-vaccinations"
+                                            aria-selected="false">{{ __('translate.vaccinations') }}</button>
                                         <button class="nav-link" id="nav-attachments-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-attachments" type="button" role="tab"
-                                            aria-controls="nav-attachments" aria-selected="false">Attachments</button>
+                                            aria-controls="nav-attachments"
+                                            aria-selected="false">{{ __('translate.attachments') }}</button>
                                         <button class="nav-link" id="nav-materials-tab" data-bs-toggle="tab"
                                             data-bs-target="#nav-materials" type="button" role="tab"
-                                            aria-controls="nav-materials" aria-selected="false">Materials</button>
+                                            aria-controls="nav-materials"
+                                            aria-selected="false">{{ __('translate.materials') }}</button>
                                     </div>
                                 </nav>
 
@@ -304,7 +307,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="nav-vaccinations" role="tabpanel"
                                         aria-labelledby="nav-vaccinations-tab" tabindex="0">
-                                        @include('visits.vaccinations')
+                                        @include('visits.vaccinations.index')
                                     </div>
                                     <div class="tab-pane fade" id="nav-attachments" role="tabpanel"
                                         aria-labelledby="nav-attachments-tab" tabindex="0">
@@ -372,6 +375,16 @@
         @include('visits.notes.edit', ['note' => $note])
     @endforeach
     <!-- End Of Note Edit Modal -->
+
+    <!-- Vaccination Create Modal -->
+    @include('visits.vaccinations.create')
+    <!-- End Of Vaccination Create Modal -->
+
+    <!-- Vaccination Edit Modal -->
+    @foreach ($pet->vaccinations as $vaccination)
+        @include('visits.vaccinations.edit', ['vaccination' => $vaccination])
+    @endforeach
+    <!-- End Of Vaccination Edit Modal -->
 
     @include('layouts.partials.delete', [
         'id' => 'pet_delete_confirmation',

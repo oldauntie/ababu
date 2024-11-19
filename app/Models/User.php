@@ -53,6 +53,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function biometrics()
+    {
+        return $this->hasMany(Biometric::class);
+    }
+
     public function clinics()
     {
         return $this->belongsToMany(Clinic::class, 'role_user');
@@ -89,6 +94,11 @@ class User extends Authenticatable implements MustVerifyEmail
             # default settings. no database record is created
             'show_sidebar' => 1,
         ]);;
+    }
+
+    public function vaccinations()
+    {
+        return $this->hasMany(Vaccination::class);
     }
 
 

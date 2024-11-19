@@ -122,6 +122,11 @@ class Pet extends Model
         return $this->belongsTo(Species::class);
     }
 
+    public function vaccinations()
+    {
+        return $this->hasMany(Vaccination::class);
+    }
+
     # use UUID and soft delete cascade;
     protected static function boot()
     {

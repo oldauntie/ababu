@@ -13,6 +13,7 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VaccinationController;
 use App\Models\Examination;
 use Illuminate\Support\Facades\Route;
 
@@ -105,3 +106,7 @@ Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'sea
 Route::resource('clinics.owners.pets.examinations', ExaminationController::class);
 Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get');
 Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search');
+
+
+# vaccinations
+Route::resource('clinics.owners.pets.vaccinations', VaccinationController::class)->middleware('has:nurse');

@@ -70,9 +70,36 @@ class VaccinationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vaccination $vaccination)
+    public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Vaccination $vaccination)
     {
-        //
+        $request->validate([
+            'vaccine' => 'required',
+            'batch' => 'required',
+            'vaccination_date' => 'required|date|before:tomorrow',
+            'booster_date' => 'nullable|date|after:vaccination_date',
+            'production_date' => 'nullable|date|before:vaccination_date',
+            'expiration_date' => 'nullable|date|after:production_date',
+        ]);
+
+        # vaccination
+        $vaccination->user_id = auth()->user()->id;
+        $vaccination->vaccine = $request->vaccine;
+        $vaccination->batch = $request->batch;
+        $vaccination->vaccination_date = $request->vaccination_date;
+        $vaccination->booster_date = $request->booster_date;
+        $vaccination->production_date = $request->production_date;
+        $vaccination->expiration_date = $request->expiration_date;
+        $vaccination->adverse_reactions = $request->adverse_reactions;
+        $vaccination->notes = $request->notes;
+
+        if ($vaccination->save()) {
+            $request->session()->flash('success', __('message.record_update_success'));
+        } else {
+            $request->session()->flash('error', 'message.record_update_error');
+        }
+
+
+        return redirect()->route('clinics.owners.pets.visit', [$clinic, $owner, $pet])->with('set_active_tab', __('vaccinations'));
     }
 
     /**

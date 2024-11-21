@@ -51,6 +51,7 @@ class BiometricController extends Controller
     public function update(Request $request, Clinic $clinic, Owner $owner, Pet $pet, Biometric $biometric)
     {
         # biometrics
+        $biometric->user_id = auth()->user()->id;
         $biometric->heigth = $request->heigth;
         $biometric->length = $request->length;
         $biometric->weigth = $request->weigth;

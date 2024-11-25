@@ -180,7 +180,7 @@
                                                                     data-id="{{ $prescription->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
-                                                                <a class="btn btn-sm btn-outline-secondary" href="#"
+                                                                <a class="btn btn-sm btn-outline-secondary" href="{{ route('clinics.prescriptions.print', [$clinic, $prescription]) }}"
                                                                     role="button">
                                                                     <i class="bi-printer"></i>
                                                                 </a>

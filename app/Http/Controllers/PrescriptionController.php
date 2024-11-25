@@ -8,6 +8,7 @@ use App\Models\Pet;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 class PrescriptionController extends Controller
 {
     /**
@@ -164,5 +165,29 @@ class PrescriptionController extends Controller
             ->with('problem')
             ->with('medicine')->first();
         return $result->toJson();
+    }
+
+
+    public function print(Clinic $clinic, Pet $pet, Prescription $prescription = null)
+    {
+        // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
+        // $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
+        // return $qrcode;
+
+        // dump($qrcode);
+
+        // dd( $pet->owner );
+   
+        $data = [
+            'title' => 'nanna !!',
+            'clinic' => $clinic,
+            'pet' => $pet,
+            'prescription' => $prescription,
+            // 'qrCurrentUrl' => $qrCurrentUrl,
+            ];
+            
+        $pdf = PDF::loadView('visits.prescriptions.print', $data);
+        
+        return $pdf->stream();
     }
 }

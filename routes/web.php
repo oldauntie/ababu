@@ -102,6 +102,10 @@ Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::cla
 Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.prescriptions.get');
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');
 
+# @todo: set route permission
+Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionController::class, 'print'])->name('clinics.prescriptions.print');
+
+
 # Diagnostic Tests & Examinations
 Route::resource('clinics.owners.pets.examinations', ExaminationController::class);
 Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get');

@@ -103,7 +103,7 @@ Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionCon
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');
 
 # @todo: set route permission
-Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionController::class, 'print'])->name('clinics.prescriptions.print');
+Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionController::class, 'print'])->name('clinics.prescriptions.print')->middleware('has:admin');
 
 
 # Diagnostic Tests & Examinations

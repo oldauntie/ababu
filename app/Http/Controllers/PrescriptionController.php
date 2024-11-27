@@ -9,6 +9,7 @@ use App\Models\Prescription;
 use Illuminate\Http\Request;
 
 use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class PrescriptionController extends Controller
 {
     /**
@@ -168,10 +169,11 @@ class PrescriptionController extends Controller
     }
 
 
-    public function print(Clinic $clinic, Pet $pet, Prescription $prescription = null)
+    public function print(Clinic $clinic, Prescription $prescription = null)
     {
+        // dd($prescription->pet->owner);
         // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
-        // $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
+        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
         // return $qrcode;
 
         // dump($qrcode);
@@ -181,9 +183,8 @@ class PrescriptionController extends Controller
         $data = [
             'title' => 'nanna !!',
             'clinic' => $clinic,
-            'pet' => $pet,
             'prescription' => $prescription,
-            // 'qrCurrentUrl' => $qrCurrentUrl,
+            'qrCurrentUrl' => $qrCurrentUrl,
             ];
             
         $pdf = PDF::loadView('visits.prescriptions.print', $data);

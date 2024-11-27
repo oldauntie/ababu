@@ -12,7 +12,9 @@
         "laravel/passport": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.1"
+        "laravel/ui": "^4.1",
+        "picqer/php-barcode-generator": "^3.2",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

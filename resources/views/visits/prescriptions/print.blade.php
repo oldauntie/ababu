@@ -1,12 +1,12 @@
 @php
-    // $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+    $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
 @endphp
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link href="{{ asset('css/pdf.css') }}" rel="stylesheet">
+    <link href="{{ public_path('css/pdf.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -16,16 +16,14 @@
             <td>
                 {{-- 
                 {!! $generator->getBarcode($prescription->id, $generator::TYPE_CODE_128) !!}
+                <img class="backdrop" src="data:image/svg+xml;base64,{{ $qrCurrentUrl }}" width="71px">
                 --}}
             </td>
             <td>
-                {{-- 
-                {{ route('clinics.visits.show', ['clinic' => $clinic->id, 'pet' => $pet->id]) }}</td>
-                --}}
+                {{ route('clinics.owners.pets.visit', ['clinic' => $clinic->id, 'owner' => $prescription->pet->owner, 'pet' => $prescription->pet]) }}
+            </td>
             <td>
-                {{-- 
                 <img class="backdrop" src="data:image/svg+xml;base64,{{ $qrCurrentUrl }}" width="71px">
-                --}}
             </td>
         </tr>
     </table>
@@ -80,23 +78,20 @@
             <tr>
                 <td class="capitalize bold">{{ __('translate.lastname') . ', ' . __('translate.firstname') }}</td>
                 <td>
-                    {{-- 
-                    {{ $pet->owner->lastname . ', ' . $pet->owner->firstname }}</td>
-                    --}}
+                    {{ $prescription->pet->owner->lastname . ', ' . $prescription->pet->owner->firstname }}
+                </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.address') . ', ' . __('translate.firstname') }}</td>
                 <td>
-                    {{-- 
-                    {{ $pet->owner->address . ', ' . $pet->owner->postcode . ', ' . $pet->owner->city }}</td>
-                    --}}
+                    {{ $prescription->pet->owner->address . ', ' . $prescription->pet->owner->postcode . ', ' . $prescription->pet->owner->city }}
+                </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.ssn') }}</td>
                 <td>
-                    {{-- 
-                    {{ $pet->owner->ssn }}</td>
-                    --}}
+                    {{ $prescription->pet->owner->ssn }}
+                </td>
             </tr>
         </table>
 
@@ -108,49 +103,37 @@
             <tr>
                 <td class="capitalize bold">{{ __('translate.name') }}</td>
                 <td class="uppercase">
-                    {{--     
-                    {{ $pet->clinic->name }}
-                    --}}
+                    {{ $clinic->name }}
                 </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.manager') }}</td>
                 <td class="uppercase">
-                    {{-- 
-                    {{ $pet->clinic->manager }}
-                    --}}
+                    {{ $clinic->manager }}
                 </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.phone') }}</td>
                 <td class="uppercase">
-                    {{-- 
-                    {{ $pet->clinic->phone }}
-                    --}}
+                    {{ $clinic->phone }}
                 </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.code') }}</td>
                 <td class="uppercase">
-                    {{-- 
-                    {{ $pet->clinic->code }}
-                    --}}
+                    {{ $clinic->code }}
                 </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.address') }}</td>
                 <td class="uppercase">
-                    {{-- 
-                    {{ $pet->clinic->address }}
-                    --}}
+                    {{ $clinic->address }}
                 </td>
             </tr>
             <tr>
                 <td class="capitalize bold">{{ __('translate.city') }}</td>
                 <td class="uppercase">
-                    {{-- 
-                    {{ $pet->clinic->city }}
-                    --}}
+                    {{ $clinic->city }}
                 </td>
             </tr>
         </table>
@@ -163,14 +146,10 @@
             </tr>
             <tr>
                 <td colspan="3" class="border-bottom">
-                    {{-- 
                     id: {{ $prescription->medicine->id }} {!! $generator->getBarcode($prescription->medicine->id, $generator::TYPE_CODE_128) !!}
-                    --}} 
                 </td>
                 <td colspan="4" class="border-bottom">external id: {{ $prescription->medicine->external_id }}
-                    {{-- 
                     {!! $generator->getBarcode($prescription->medicine->external_id, $generator::TYPE_CODE_128) !!}</td>
-                    --}}
             </tr>
             <tr>
                 <td class="border bold">{{ __('translate.medicine_external_id') }}</td>

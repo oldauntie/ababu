@@ -183,7 +183,7 @@ class ClinicController extends Controller
                 // user does not exists. check the handshake
                 $handshakeResponse = substr(md5(Auth::user()->email . $clinic->key . Carbon::today()->format('Ymd')), 0, 8);
                 if ($handshakeRequest === $handshakeResponse) {
-                    $veterinarianRole = Role::where('name', 'veterinarian')->first();
+                    $veterinarianRole = Role::where('role', 'veterinarian')->first();
                     $clinic->roles()->attach($veterinarianRole, ['user_id' => Auth::user()->id]);
 
                     $request->session()->flash('success', __('message.clinic_join_success'));

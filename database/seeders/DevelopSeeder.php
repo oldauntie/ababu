@@ -32,7 +32,7 @@ class DevelopSeeder extends Seeder
          */
         $clinic = Clinic::create([
             'country_id' => 'gb',
-            'name' => 'Develop Clinic',
+            'name' => 'Develop Clinic #1',
             'description' => 'A clinic description goes here',
             'manager' => 'Justin A. Manager',
             'code' => 'ACDC-0003',
@@ -62,7 +62,7 @@ class DevelopSeeder extends Seeder
             'locale_id' => 'en-GB',
             'registration' => 'GB-REG-3',
             'mobile' => '3480000000',
-            'name' => 'Admin User',
+            'name' => 'Admin #1',
             'email' => 'admin@ababu.cloud',
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),
@@ -72,7 +72,7 @@ class DevelopSeeder extends Seeder
             'locale_id' => 'it-IT',
             'registration' => 'IT-REG-3',
             'mobile' => '3470000000',
-            'name' => 'Veterinarian',
+            'name' => 'Veterinarian #1',
             'email' => 'veterinarian@ababu.cloud',
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),
@@ -80,7 +80,7 @@ class DevelopSeeder extends Seeder
         
         $nurse = User::create([
             'locale_id' => 'en-US',
-            'name' => 'Nurse',
+            'name' => 'Nurse #1',
             'email' => 'nurse@ababu.cloud',
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),
@@ -111,10 +111,10 @@ class DevelopSeeder extends Seeder
         ]);
 
         $admin_2 = User::create([
-            'locale_id' => 'en-GB',
-            'registration' => 'GB-REG-3',
+            'locale_id' => 'it-IT',
+            'registration' => 'IT-REG-3',
             'mobile' => '3481111111',
-            'name' => 'Admin User #2',
+            'name' => 'Admin #2',
             'email' => 'admin2@ababu.cloud',
             'password' => Hash::make('ababu'),
             'email_verified_at' => Carbon::now(),

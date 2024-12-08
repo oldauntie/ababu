@@ -83,7 +83,7 @@ Route::bind('pet', function ($pet, $route) {
 });
 
 # visit
-Route::get('clinics/{clinic}/owners/{owner}/pets/{pet}/visit', [PetController::class, 'visit'])->name('clinics.owners.pets.visit');
+Route::get('clinics/{clinic}/owners/{owner}/pets/{pet}/visit', [PetController::class, 'visit'])->name('clinics.owners.pets.visit')->middleware('has:nurse');
 
 # SOAP notes
 Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware('has:nurse');
@@ -92,24 +92,23 @@ Route::resource('clinics.owners.pets.notes', NoteController::class)->middleware(
 Route::resource('clinics.owners.pets.biometrics', BiometricController::class)->middleware('has:nurse');
 
 # Problem
-# Route::resource('clinics.owners.pets.problems', ProblemController::class)->middleware('has:nurse');
-Route::resource('clinics.owners.pets.problems', ProblemController::class);
-Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'search'])->name('clinics.problems.search');
+Route::resource('clinics.owners.pets.problems', ProblemController::class)->middleware('has:nurse');
+Route::get('clinics/{clinic}/problems/search', [ProblemController::class, 'search'])->name('clinics.problems.search')->middleware('has:nurse');
 
 
 # Medicines & Prescriptions
-Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::class);
-Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.prescriptions.get');
-Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search');
+Route::resource('clinics.owners.pets.prescriptions', PrescriptionController::class)->middleware('has:nurse');
+Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionController::class, 'get'])->name('clinics.prescriptions.get')->middleware('has:nurse');
+Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search')->middleware('has:nurse');
 
 # @todo: set route permission
 Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionController::class, 'print'])->name('clinics.prescriptions.print')->middleware('has:admin');
 
 
 # Diagnostic Tests & Examinations
-Route::resource('clinics.owners.pets.examinations', ExaminationController::class);
-Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get');
-Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search');
+Route::resource('clinics.owners.pets.examinations', ExaminationController::class)->middleware('has:nurse');
+Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get')->middleware('has:nurse');
+Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search')->middleware('has:nurse');
 
 
 # vaccinations

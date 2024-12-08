@@ -147,6 +147,7 @@ class DevelopSeeder extends Seeder
         /**
          * Species
          */
+        # Clininc #1
         Species::create([
             'tsn' => '726821',
             'clinic_id' => $clinic->id,
@@ -157,6 +158,13 @@ class DevelopSeeder extends Seeder
             'tsn' => '183798',
             'clinic_id' => $clinic->id,
             'familiar_name' => 'Cat',
+        ]);
+
+        # Clininc #2
+        Species::create([
+            'tsn' => '726821',
+            'clinic_id' => $clinic_2->id,
+            'familiar_name' => 'Dog',
         ]);
 
 

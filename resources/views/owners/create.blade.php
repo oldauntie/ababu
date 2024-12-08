@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input id="phone_primary" type="text"
+                                <input id="phone_primary" type="tel"
                                     class="form-control @error('phone_primary') is-invalid @enderror" name="phone_primary"
                                     value="{{ old('phone_primary') }}" maxlength="32" required
                                     placeholder="{{ __('translate.phone_primary') }}">
@@ -71,9 +71,9 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input id="phone_secondary" type="text"
+                                <input id="phone_secondary" type="tel"
                                     class="form-control @error('phone_secondary') is-invalid @enderror"
-                                    name="phone_secondary" value="{{ old('phone_secondary') }}" maxlength="32" required
+                                    name="phone_secondary" value="{{ old('phone_secondary') }}" maxlength="32"
                                     placeholder="{{ __('translate.phone_secondary') }}">
                                 <label for="phone_secondary">{{ __('translate.phone_secondary') }}</label>
                             </div>

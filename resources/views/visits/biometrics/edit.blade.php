@@ -34,9 +34,9 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="number" step=".01" id="biometric-edit-weigth-{{ $biometric->id }}" name="weigth" value="{{ $biometric->weigth }}" class="form-control @error('weigth') is-invalid @enderror"
-                            placeholder="{{ __('translate.weigth') }}" required>
-                        <label for="biometric-edit-weigth-{{ $biometric->id }}">{{ __('translate.weigth') }}</label>
+                        <input type="number" step=".01" id="biometric-edit-weight-{{ $biometric->id }}" name="weight" value="{{ $biometric->weight }}" class="form-control @error('weight') is-invalid @enderror"
+                            placeholder="{{ __('translate.weight') }}" required>
+                        <label for="biometric-edit-weight-{{ $biometric->id }}">{{ __('translate.weight') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">

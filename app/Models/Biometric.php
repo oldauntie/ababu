@@ -20,7 +20,7 @@ class Biometric extends Model
         'user_id',
         'heigth',
         'length',
-        'weigth',
+        'weight',
         'temperature',
     ];
 

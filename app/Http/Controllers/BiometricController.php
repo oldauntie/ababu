@@ -21,7 +21,7 @@ class BiometricController extends Controller
         $request->validate([
             'heigth' => 'required',
             'length' => 'required',
-            'weigth' => 'required',
+            'weight' => 'required',
             'temperature' => 'required',
         ]);
 
@@ -31,7 +31,7 @@ class BiometricController extends Controller
             'user_id' => auth()->user()->id,
             'heigth' => $request->heigth,
             'length' => $request->length,
-            'weigth' => $request->weigth,
+            'weight' => $request->weight,
             'temperature' => $request->temperature,
         ]);
 
@@ -54,7 +54,7 @@ class BiometricController extends Controller
         $biometric->user_id = auth()->user()->id;
         $biometric->heigth = $request->heigth;
         $biometric->length = $request->length;
-        $biometric->weigth = $request->weigth;
+        $biometric->weight = $request->weight;
         $biometric->temperature = $request->temperature;
 
         if ($biometric->save()) {

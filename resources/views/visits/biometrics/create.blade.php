@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="biometrics-create-modal-label">{{ __('translate.biometric_new') }}</h1>
+                <h1 class="modal-title fs-5" id="biometrics-create-modal-label">{{ __('translate.biometric_create') }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -27,9 +27,9 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="number" id="biometrics-create-weigth" name="weigth" value="{{ old('weigth') }}" class="form-control @error('weigth') is-invalid @enderror"
-                            placeholder="{{ __('translate.weigth') }}" required>
-                        <label for="biometrics-create-weigth">{{ __('translate.weigth') }}</label>
+                        <input type="number" id="biometrics-create-weight" name="weight" value="{{ old('weight') }}" class="form-control @error('weight') is-invalid @enderror"
+                            placeholder="{{ __('translate.weight') }}" required>
+                        <label for="biometrics-create-weight">{{ __('translate.weight') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">

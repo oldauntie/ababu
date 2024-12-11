@@ -17,7 +17,7 @@ return new class extends Migration
             $table->char('user_id', 36)->nullable();
             $table->float('heigth');
             $table->float('length');
-            $table->float('weigth');
+            $table->float('weight');
             $table->float('temperature');
             $table->timestamps();
 

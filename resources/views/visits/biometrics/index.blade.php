@@ -11,7 +11,7 @@
                         <tr>
                             <th>{{ __('translate.heigth') }}</th>
                             <th>{{ __('translate.length') }}</th>
-                            <th>{{ __('translate.weigth') }}</th>
+                            <th>{{ __('translate.weight') }}</th>
                             <th>{{ __('translate.temperature') }}</th>
                             <th>{{ __('translate.created_at') }}</th>
                             <th>{{ __('translate.updated_at') }}</th>
@@ -23,7 +23,7 @@
                             <tr>
                                 <td>{{ $biometric->heigth }}</td>
                                 <td>{{ $biometric->length }}</td>
-                                <td>{{ $biometric->weigth }}</td>
+                                <td>{{ $biometric->weight }}</td>
                                 <td>{{ $biometric->temperature }}</td>
                                 <td>{{ $biometric->created_at }}</td>
                                 <td>{{ $biometric->updated_at }}</td>

@@ -191,7 +191,7 @@ return [
     'tatuatge' => 'tatuaggio',
     'tatuatge_location' => 'posizione tatuaggio',
     'terms_of_service' => 'termini del servizio',
-    'temparature' => 'temperatura',
+    'temperature' => 'temperatura',
     'tick_preventive' => 'prevenzione zecche',
     'treatment' => 'trattamento',
     'treatments' => 'trattamenti',

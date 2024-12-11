@@ -5,7 +5,7 @@
             {{-- header --}}
             <div class="modal-header">
                 <h1 class="modal-title fs-5">
-                    {{ __('translate.vaccination_new') }}
+                    {{ __('translate.vaccination') }}: {{ $vaccination->id }}
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

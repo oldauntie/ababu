@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -19,8 +18,10 @@ return [
     'at_age' => 'all\'età',
     'attachments' => 'allegati',
     'back' => 'indietro',
+    'batch' => 'lotto',
     'biometric_create' => 'nuovo record biometrico',
     'biometrics' => 'caratteristiche biometriche',
+    'booster_date' => 'data richiamo',
     'breed' => 'razza',
     'bug' => 'bug',
     'by' => 'by',
@@ -49,7 +50,6 @@ return [
     'date' => 'data',
     'date_of_birth' => 'nascita',
     'date_of_death' => 'morte',
-    'date_of_examination' => 'data esame',
     'days' => 'giorni',
     'delete' => 'elimina',
     'description' => 'descrizione',
@@ -63,12 +63,14 @@ return [
     'edit' => 'modifica',
     'email' => 'email',
     'examination' => 'accertamento',
+    'examination_date' => 'data esame',
     'examination_result' => 'risultato',
     'examinations' => 'accertamenti',
     'examinations_zero_records' => 'nessun esame per il problema selezionato',
     'executed_at' => 'eseguito',
     'expand' => 'espandi',
     'expires_at' => 'scade',
+    'expiration_date' => 'data di scadenza',
     'familiar_name' => 'nome comune',
     'feature' => 'nuova funzionalità',
     'filter_by' => 'filtra per',
@@ -150,6 +152,7 @@ return [
     'print' => 'stampa',
     'print_notes' => 'stampa le note nella ricetta',
     'problem' => 'problema',
+    'production_date' => 'data di produzione',
     'problem_active' => 'attivo',
     'problem_closed' => 'chiuso',
     'problem_filter_by' => 'filtra per problema',
@@ -203,7 +206,10 @@ return [
     'user' => 'utente',
     'users' => 'utenti',
     'vaccination' => 'vaccinazione',
+    'vaccination_create' => 'nuova vaccinazione',
+    'vaccination_date' => 'data vaccinazione',
     'vaccinations' => 'vaccinazioni',
+    'vaccine' => 'vaccino',
     'veterinary' => 'veterinario',
     'view' => 'visualizza',
     'visit' => 'visita',

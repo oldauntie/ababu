@@ -181,7 +181,7 @@
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-outline-secondary" href="{{ route('clinics.prescriptions.print', [$clinic, $prescription]) }}"
-                                                                    role="button">
+                                                                    role="button" target="_BLANK">
                                                                     <i class="bi-printer"></i>
                                                                 </a>
                                                             </td>
@@ -242,7 +242,7 @@
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-outline-secondary" href="{{ route('clinics.examinations.print', [$clinic, $examination]) }}"
-                                                                    role="button">
+                                                                    role="button" target="_BLANK">
                                                                     <i class="bi-printer"></i>
                                                                 </a>
                                                             </td>

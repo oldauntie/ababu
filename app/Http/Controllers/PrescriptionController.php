@@ -171,15 +171,9 @@ class PrescriptionController extends Controller
 
     public function print(Clinic $clinic, Prescription $prescription = null)
     {
-        // dd($prescription->pet->owner);
-        // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
         $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
-        // return $qrcode;
 
-        // dump($qrcode);
-
-        // dd( $pet->owner );
-   
+        # creating data array
         $data = [
             'title' => 'nanna !!',
             'clinic' => $clinic,

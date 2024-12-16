@@ -178,6 +178,7 @@ return [
     'register' => 'register',
     'registration' => 'registration',
     'reproductive_status' => 'reproductive status',
+    'result' => 'result',
     'role' => 'role',
     'roles' => 'roles',
     'save' => 'save',

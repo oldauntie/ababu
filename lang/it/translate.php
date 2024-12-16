@@ -174,6 +174,7 @@ return [
     'register' => 'regitrati',
     'registration' => 'n. iscrizione albo',
     'reproductive_status' => 'stato riproduttivo',
+    'result' => 'risultato',
     'role' => 'ruolo',
     'roles' => 'ruoli',
     'save' => 'salva',

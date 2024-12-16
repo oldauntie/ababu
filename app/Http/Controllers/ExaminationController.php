@@ -8,6 +8,9 @@ use App\Models\Owner;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 class ExaminationController extends Controller
 {
     /**
@@ -155,5 +158,29 @@ class ExaminationController extends Controller
             ->with('problem')
             ->with('diagnostic_test')->first();
         return $result->toJson();
+    }
+
+    public function print(Clinic $clinic, Examination $examination = null)
+    {
+        // dd($prescription->pet->owner);
+        // $qrcode = QrCode::format('svg')->size(200)->errorCorrection('H')->generate('string');
+        $qrCurrentUrl = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate( url()->previous() ));
+        // return $qrcode;
+
+        // dump($examination->diagnostic_test);
+
+        // dd( $pet->owner );
+
+        # creating data array
+        $data = [
+            'title' => 'nanna !!',
+            'clinic' => $clinic,
+            'examination' => $examination,
+            'qrCurrentUrl' => $qrCurrentUrl,
+            ];
+            
+        $pdf = PDF::loadView('visits.examinations.print', $data);
+        
+        return $pdf->stream();
     }
 }

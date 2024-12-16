@@ -241,7 +241,7 @@
                                                                     data-id="{{ $examination->id }}">
                                                                     <i class="bi-pencil"></i>
                                                                 </a>
-                                                                <a class="btn btn-sm btn-outline-secondary" href="#"
+                                                                <a class="btn btn-sm btn-outline-secondary" href="{{ route('clinics.examinations.print', [$clinic, $examination]) }}"
                                                                     role="button">
                                                                     <i class="bi-printer"></i>
                                                                 </a>

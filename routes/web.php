@@ -102,7 +102,7 @@ Route::get('clinics/{clinic}/prescriptions/{prescription}/get', [PrescriptionCon
 Route::get('clinics/{clinic}/medicines/search', [MedicineController::class, 'search'])->name('clinics.medicines.search')->middleware('has:nurse');
 
 # @todo: set route permission
-Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionController::class, 'print'])->name('clinics.prescriptions.print')->middleware('has:admin');
+Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionController::class, 'print'])->name('clinics.prescriptions.print')->middleware('has:nurse');
 
 
 # Diagnostic Tests & Examinations
@@ -110,6 +110,7 @@ Route::resource('clinics.owners.pets.examinations', ExaminationController::class
 Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get')->middleware('has:nurse');
 Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search')->middleware('has:nurse');
 
+Route::get('clinics/{clinic}/examinations/{examination}/print', [ExaminationController::class, 'print'])->name('clinics.examinations.print')->middleware('has:nurse');
 
 # vaccinations
 Route::resource('clinics.owners.pets.vaccinations', VaccinationController::class)->middleware('has:nurse');

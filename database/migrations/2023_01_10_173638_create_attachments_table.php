@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('attachments', function (Blueprint $table)
         {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->char('examination_id', 36);
+            $table->string('description');
             $table->timestamps();
+
+            $table->foreign('examination_id')->references('id')->on('examinations')->onDelete('cascade');
         });
     }
 

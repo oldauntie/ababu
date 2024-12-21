@@ -8,29 +8,25 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('attachments', function (Blueprint $table)
-        {
+        Schema::create('results', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->char('pet_id', 36);
+            $table->char('examination_id', 36);
+            $table->string('file');
             $table->string('description');
             $table->timestamps();
 
-            $table->foreign('pet_id')->references('id')->on('pets')->onDelete('cascade');
+            $table->foreign('examination_id')->references('id')->on('examinations')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('attachments');
+        Schema::dropIfExists('results');
     }
 };

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use SebastianBergmann\GlobalState\Restorer;
 
 class Examination extends Model
 {
@@ -32,9 +33,9 @@ class Examination extends Model
         'examination_date' => 'datetime',
     ];
 
-    public function attachments()
+    public function results()
     {
-        return $this->hasMany(Attachment::class);
+        return $this->hasMany(Result::class);
     }
 
     public function diagnostic_test()

@@ -9,8 +9,8 @@ class Attachment extends Model
 {
     use HasFactory;
 
-    public function examination()
+    public function pet()
     {
-        return $this->belongsTo(Examination::class);
+        return $this->belongsTo(Pet::class);
     }
 }

@@ -44,6 +44,7 @@ class ExaminationController extends Controller
         $request->validate([
             'diagnostic_test_id' => 'required',
             'examination_date' => 'required|before:tomorrow',
+            # 'attachments.*' => 'mimes:pdf,xlx,csv|max:2048',
         ]);
 
         $examination = new Examination([
@@ -59,6 +60,16 @@ class ExaminationController extends Controller
             'notes' => $request->notes,
             'print_notes' => $request->has('print_notes'),
         ]);
+
+        if($request->hasFile('attachments'))
+        {
+            foreach($request->file('attachments') as $key => $file){
+                $file_name = time().rand(1,99).'.'.$file->extension();  
+                $file->move(public_path('uploads'), $file_name);
+                $files[]['name'] = $file_name;
+                dump($file);
+            }
+        }
 
         # save note record
         if ($examination->save()) {

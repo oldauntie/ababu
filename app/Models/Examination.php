@@ -33,9 +33,9 @@ class Examination extends Model
         'examination_date' => 'datetime',
     ];
 
-    public function results()
+    public function examinationAttachments()
     {
-        return $this->hasMany(Result::class);
+        return $this->hasMany(ExaminationAttachment::class);
     }
 
     public function diagnostic_test()

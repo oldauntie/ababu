@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Result;
+use App\Models\ExaminationAttachment;
 use Illuminate\Http\Request;
 
-class ResultController extends Controller
+class ExaminationAttachmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Result $result)
+    public function show(ExaminationAttachment $examinationAttachment)
     {
         //
     }
@@ -42,7 +42,7 @@ class ResultController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Result $result)
+    public function edit(ExaminationAttachment $examinationAttachment)
     {
         //
     }
@@ -50,7 +50,7 @@ class ResultController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Result $result)
+    public function update(Request $request, ExaminationAttachment $examinationAttachment)
     {
         //
     }
@@ -58,7 +58,7 @@ class ResultController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Result $result)
+    public function destroy(ExaminationAttachment $examinationAttachment)
     {
         //
     }

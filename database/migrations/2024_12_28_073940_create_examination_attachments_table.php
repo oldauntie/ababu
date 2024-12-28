@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('examination_attachments', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->char('examination_id', 36);
             $table->string('file');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('examination_attachments');
     }
 };

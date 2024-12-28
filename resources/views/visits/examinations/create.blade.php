@@ -1,25 +1,27 @@
-<div class="modal modal-xl fade" id="examinations-create-modal" tabindex="-1" aria-labelledby="examinations-create-modal-label"
-    aria-hidden="true">
+<div class="modal modal-xl fade" id="examinations-create-modal" tabindex="-1"
+    aria-labelledby="examinations-create-modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="examinations-create-modal-label">{{ __('translate.examination_create') }}</h1>
+                <h1 class="modal-title fs-5" id="examinations-create-modal-label">{{ __('translate.examination_create') }}
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form method="POST"
-                if="examinations-create-form"
+            <form method="POST" if="examinations-create-form"
                 action="{{ route('clinics.owners.pets.examinations.store', [$clinic, $owner, $pet]) }}"
                 enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <select id="examinations-create-diagnostic_test_id" name="diagnostic_test_id" aria-label="" required></select>
+                        <select id="examinations-create-diagnostic_test_id" name="diagnostic_test_id" aria-label=""
+                            required></select>
                     </div>
-                    
+
                     <div class="form-floating mb-3">
-                        <select id="examinations-create-problem_id" name="problem_id" class="form-control" aria-label="">
+                        <select id="examinations-create-problem_id" name="problem_id" class="form-control"
+                            aria-label="">
                             <option value>{{ __('translate.problem_indipendent') }}</option>
                             @foreach ($pet->problems as $problem)
                                 <option value="{{ $problem->id }}">
@@ -30,8 +32,10 @@
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="examinations-create-is_pathologic" name="is_pathologic" class="form-check-input" role="switch">
-                        <label class="form-check-label" for="examinations-create-is_pathologic">{{ __('translate.is_pathologic') }}</label>
+                        <input type="checkbox" id="examinations-create-is_pathologic" name="is_pathologic"
+                            class="form-check-input" role="switch">
+                        <label class="form-check-label"
+                            for="examinations-create-is_pathologic">{{ __('translate.is_pathologic') }}</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -50,7 +54,8 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <textarea id="examinations-create-medical_report" name="medical_report" class="form-control @error('medical_report') is-invalid @enderror"
+                        <textarea id="examinations-create-medical_report" name="medical_report"
+                            class="form-control @error('medical_report') is-invalid @enderror"
                             placeholder="{{ __('translate.medical_report') }}" style="height: 100px">{{ old('medical_report') }}</textarea>
                         <label for="examinations-create-medical_report">{{ __('translate.medical_report') }}</label>
                     </div>
@@ -61,14 +66,25 @@
                         <label for="examinations-create-notes">{{ __('translate.notes') }}</label>
                     </div>
 
-                    <div class="form-check form-switch">
-                        <input type="checkbox" id="examinations-create-print_notes" name="print_notes" class="form-check-input" role="switch">
-                        <label class="form-check-label" for="examinations-create-print_notes">{{ __('translate.print_notes') }}</label>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="file" name="attachments[]" id="examinations-create-examination_attachments"
+                            multiple>
+                        <label for="examinations-create-examination_attachments"
+                            class="form-label">{{ __('translate.examination_attachments') }}</label>
                     </div>
 
                     <div class="form-check form-switch">
-                        <input type="checkbox" id="examinations-create-in_evidence" name="in_evidence" class="form-check-input" role="switch">
-                        <label class="form-check-label" for="examinations-create-in_evidence">{{ __('translate.in_evidence') }}</label>
+                        <input type="checkbox" id="examinations-create-print_notes" name="print_notes"
+                            class="form-check-input" role="switch">
+                        <label class="form-check-label"
+                            for="examinations-create-print_notes">{{ __('translate.print_notes') }}</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input type="checkbox" id="examinations-create-in_evidence" name="in_evidence"
+                            class="form-check-input" role="switch">
+                        <label class="form-check-label"
+                            for="examinations-create-in_evidence">{{ __('translate.in_evidence') }}</label>
                     </div>
 
                 </div>

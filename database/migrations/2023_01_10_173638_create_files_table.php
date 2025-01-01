@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attachments', function (Blueprint $table)
+        Schema::create('files', function (Blueprint $table)
         {
             $table->uuid('id')->primary();
             $table->char('pet_id', 36);
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attachments');
+        Schema::dropIfExists('files');
     }
 };

@@ -18,6 +18,7 @@ return [
     'already_used' => 'already used',
     'assessment' => 'assessment',
     'at_age' => 'at age',
+    'attachment' => 'attachment',
     'attachments' => 'attachments',
     'back' => 'back',
     'batch' => 'batch',

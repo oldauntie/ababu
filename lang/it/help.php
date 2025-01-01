@@ -7,6 +7,13 @@ return [
     | Help Language Lines
     |--------------------------------------------------------------------------
     */
+
+    'examination_attachments_accepted_files' => 'Formati files accettati: PDF, Images',    
+];
+
+# Old translation: momentary kept as reference
+/*
+return [
     
     'animalia_select' => 'Premi e inizia a digitare le prima lettere del nome comune della specie (e.g. Cane, Catto)',
     'clinic_address' => 'Indirizzo della clinica',
@@ -67,3 +74,4 @@ return [
 
 
 ];
+*/

@@ -8,6 +8,14 @@ return [
     |--------------------------------------------------------------------------
     */
 
+    'examination_attachments_accepted_files' => 'Multiple upload supported. Accepted files: PDF, Images',    
+];
+
+
+# Old translation: momentary kept as reference
+/*
+return [
+
     'animalia_select' => 'Click and start writing the first letters of specie scientific name (e.g. Canis Lupus Familiaris)',
     'clinic_address' => 'Clinic address.',
     'clinic_city' => 'City where clinic is located',
@@ -29,6 +37,7 @@ return [
     'clinic_website' => 'Internet address / website',
     'contact_description' => 'report a bug, write an improvement or request a new feature',
     'examination_delete' => 'Do you really want to delete selected examination and all related information?',
+    'examination_attachments_accepted_files' => 'Accepted files: PDF, Images',
     'note_delete' => 'Do you really want to delete selected note and all related information?',
     'owner_address' => '',
     'owner_city' => '',
@@ -66,3 +75,4 @@ return [
     'treatment_notes' => 'Write notes about treatment (optional)',
     
 ];
+*/

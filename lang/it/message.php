@@ -8,6 +8,13 @@ return [
     |--------------------------------------------------------------------------
     */
 
+];
+
+
+# Old translation: momentary kept as reference
+/*
+return [
+
     'are_you_sure' => 'Sei sicuro?',
     'clinic_store_error' => 'Si è verificato un errore durante la creazione della tua clinica.',
     'clinic_store_success' => 'Hai creato la tua clinica con successo.',
@@ -64,3 +71,4 @@ return [
     'user_update_success' => 'L\'utente è stato aggiornato.',
 
 ];
+*/

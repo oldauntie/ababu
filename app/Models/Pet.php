@@ -92,6 +92,11 @@ class Pet extends Model
         return $this->hasMany(Examination::class);
     }
 
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
     public function medical_history()
     {
         return $this->hasOne(MedicalHistory::class);

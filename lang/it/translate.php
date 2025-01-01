@@ -16,6 +16,7 @@ return [
     'already_used' => 'in uso',
     'assessment' => 'valutazione',
     'at_age' => 'all\'età',
+    'attachment' => 'allegato',
     'attachments' => 'allegati',
     'back' => 'indietro',
     'batch' => 'lotto',

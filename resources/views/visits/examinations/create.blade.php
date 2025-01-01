@@ -67,10 +67,12 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="file" name="attachments[]" id="examinations-create-examination_attachments"
-                            multiple>
-                        <label for="examinations-create-examination_attachments"
-                            class="form-label">{{ __('translate.examination_attachments') }}</label>
+                        <input class="form-control" type="file" name="attachments[]" accept="image/*,.pdf"
+                            id="examinations-create-examination_attachments" multiple>
+                        <label for="examinations-create-examination_attachments" class="form-label">
+                            {{ __('translate.examination_attachments') }}
+                            {{ __('help.examination_attachments_accepted_files') }}
+                        </label>
                     </div>
 
                     <div class="form-check form-switch">

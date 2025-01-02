@@ -134,11 +134,11 @@
 
 
 
-                        <div class="row">
+                        <div class="row" style="max-height: 370px;">
                             <div class="col-6">
 
                                 <!-- Prescriptions Card & Table -->
-                                <div class="card h-auto" style="max-height: 370px;">
+                                <div class="card h-auto">
                                     <div class="card-header">
                                         <div class="float-start">
                                             {{ __('translate.prescriptions') }}
@@ -199,7 +199,7 @@
                             </div>
 
                             <div class="col-6">
-                                <div class="card">
+                                <div class="card h-auto">
                                     <div class="card-header">
                                         <div class="float-start">
                                             {{ __('translate.examinations') }}
@@ -211,7 +211,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body overflow-y-auto">
                                         @if ($pet->examinations != null)
                                             <table class="table table-hover">
                                                 <thead class="table-light">

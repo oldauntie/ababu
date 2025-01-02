@@ -9,18 +9,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             {{-- Modal Header --}}
-            
+
             {{-- Nav Bar --}}
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="pills-examination-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-examination" type="button" role="tab" aria-controls="pills-examination"
-                    aria-selected="true">{{ __('translate.examination') }}</button>
+                        data-bs-target="#pills-examination" type="button" role="tab"
+                        aria-controls="pills-examination"
+                        aria-selected="true">{{ __('translate.examination') }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="pills-attachments-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-attachments" type="button" role="tab" aria-controls="pills-attachments"
-                    aria-selected="false">{{ __('translate.attachments') }}</button>
+                        data-bs-target="#pills-attachments" type="button" role="tab"
+                        aria-controls="pills-attachments"
+                        aria-selected="false">{{ __('translate.attachments') }}</button>
                 </li>
             </ul>
             {{-- Nav Bar --}}
@@ -29,7 +31,8 @@
             <div class="tab-content" id="pills-tabContent">
 
                 {{-- Examination Form Begins --}}
-                <div class="tab-pane fade show active" id="pills-examination" role="tabpanel" aria-labelledby="pills-examination-tab">
+                <div class="tab-pane fade show active" id="pills-examination" role="tabpanel"
+                    aria-labelledby="pills-examination-tab">
                     <form method="POST" id="examinations-edit-form" action="" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -128,7 +131,8 @@
 
 
                 {{-- Attachments Begins --}}
-                <div class="tab-pane fade" id="pills-attachments" role="tabpanel" aria-labelledby="pills-attachments-tab">
+                <div class="tab-pane fade" id="pills-attachments" role="tabpanel"
+                    aria-labelledby="pills-attachments-tab">
 
                     <form method="POST" id="examinations-edit-attachments" action=""
                         enctype="multipart/form-data">
@@ -136,35 +140,46 @@
                         @method('PUT')
                         <div class="modal-body">
 
-                            
-                            
-                            
-                            {{-- WORKING AREA --}}
-                            
 
-                            {{dd($examination->attachments)}}
+                            <div class="row overflow-scroll" style="max-height: 180px;">
 
-                            @foreach ($examination->attachments as $attachment)
-                                
-                            @endforeach
-                            
-                            
-                            
-                            <div class="form-check form-switch">
-                                <input type="checkbox" id="examinations-edit-is_pathologic" name="is_pathologic"
-                                    class="form-check-input" role="switch">
-                                <label class="form-check-label"
-                                    for="examinations-edit-is_pathologic">{{ __('translate.is_pathologic') }}</label>
+                                @foreach ($examination->attachments as $attachment)
+                                @endforeach
+
                             </div>
 
 
 
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <label for="attachment" class="form-label">{{ __('translate.attachment') }}
+                                        ({{ __('help.examination_attachments_accepted_files') }} )</label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <label for="examinations-edit-attachment-description"
+                                        class="form-label">{{ __('translate.description') }}</label>
+                                </div>
+                                <div class="col-auto">
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <input type="file" class="form-control" name="attachment" id="attachment"
+                                        accept=".pdf, .doc, .docx, .png, .jpg, .svg, .txt">
+                                </div>
+                                <div class="col-lg-5">
+                                    <input type="text" id="examinations-edit-attachment-description"
+                                        name="description" value="{{ old('description') }}"
+                                        class="form-control @error('result') is-invalid @enderror"
+                                        placeholder = "{{ __('translate.optional') }}" aria-label="">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">{{ __('translate.upload') }}</button>
+                                </div>
+                            </div>
 
-
-
-
-                            {{-- WORKING AREA --}}
 
 
                         </div>
@@ -172,8 +187,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-outline-secondary"
                                 data-bs-dismiss="modal">{{ __('translate.close') }}</button>
-                            <button type="submit"
-                                class="btn btn-sm btn-outline-primary">{{ __('translate.save') }}</button>
+
                         </div>
                     </form>
 

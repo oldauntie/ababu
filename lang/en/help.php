@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'examination_attachments_accepted_files' => 'Multiple upload supported. Accepted files: PDF, Images',    
+    'examination_attachments_accepted_files' => 'Accepted files: .pdf, .doc, .docx, .png, .jpg, .svg, .txt',    
 ];
 
 

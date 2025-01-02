@@ -27,7 +27,7 @@ class EsperimentoController extends Controller
         // dump(User::with('setting')->get());
         // dd(Auth::user()->setting);
 
-        // return view('esperimenti.index');
+        return view('esperimenti.index');
 
 
         $data = [

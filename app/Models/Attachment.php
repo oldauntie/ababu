@@ -3,13 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Attachment extends Model
 {
     protected $fillable = [
+        'id',
+        'examination_id',
+        'name',
         'file',
         'description'
     ];
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
 
 
     public function examination()

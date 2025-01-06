@@ -13,13 +13,13 @@
             {{-- Nav Bar --}}
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-examination-tab" data-bs-toggle="pill"
+                    <button class="nav-link" id="pills-examination-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-examination" type="button" role="tab"
                         aria-controls="pills-examination"
                         aria-selected="true">{{ __('translate.examination') }}</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-attachments-tab" data-bs-toggle="pill"
+                    <button class="nav-link active" id="pills-attachments-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-attachments" type="button" role="tab"
                         aria-controls="pills-attachments"
                         aria-selected="false">{{ __('translate.attachments') }}</button>
@@ -31,7 +31,7 @@
             <div class="tab-content" id="pills-tabContent">
 
                 {{-- Examination Form Begins --}}
-                <div class="tab-pane fade show active" id="pills-examination" role="tabpanel"
+                <div class="tab-pane fade" id="pills-examination" role="tabpanel"
                     aria-labelledby="pills-examination-tab">
                     <form method="POST" id="examinations-edit-form" action="" enctype="multipart/form-data">
                         @csrf
@@ -131,24 +131,46 @@
 
 
                 {{-- Attachments Begins --}}
-                <div class="tab-pane fade" id="pills-attachments" role="tabpanel"
+                <div class="tab-pane fade show active" id="pills-attachments" role="tabpanel"
                     aria-labelledby="pills-attachments-tab">
 
-                    <form method="POST" id="examinations-edit-attachments" action=""
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-body">
 
+                    <div class="modal-body">
 
-                            <div class="row overflow-scroll" style="max-height: 180px;">
+                        {{-- Attachments List Begins --}}
+                        <div class="container overflow-scroll" style="max-height: 180px;">
 
-                                @foreach ($examination->attachments as $attachment)
-                                @endforeach
+                            @foreach ($examination->attachments as $attachment)
+                                <form method="GET" action="" id="{{ $attachment->id }}">
+                                    <div class="row align-baseline">
+                                        <div class="col-5">{{ $attachment->name }}</div>
+                                        <div class="col-5">
+                                            <input type="text" id="examinations-edit-attachment-description"
+                                                name="description" value="{{ $attachment->description }}"
+                                                class="form-control @error('result') is-invalid @enderror"
+                                                placeholder = "{{ __('translate.optional') }}" aria-label="">
+                                        </div>
+                                        <div class="col-2">
+                                            <a class="btn btn-sm btn-outline-secondary" href="#"
+                                                role="button">
+                                                <i class="bi-floppy"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-outline-danger" href="#" role="button">
+                                                <i class="bi-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            @endforeach
 
-                            </div>
+                        </div>
+                        {{-- Attachments List Ends --}}
 
-
+                        {{-- Add Attachment Form Begins --}}
+                        <form method="POST" id="examinations-edit-attachments"
+                            action="{{ route('clinics.examinations.attach', ['clinic' => $clinic, 'examination' => $examination]) }}"
+                            enctype="multipart/form-data">
+                            @csrf
 
                             <div class="row">
                                 <div class="col-lg-5">
@@ -175,21 +197,20 @@
                                         placeholder = "{{ __('translate.optional') }}" aria-label="">
                                 </div>
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-outline-secondary"
-                                        data-bs-dismiss="modal">{{ __('translate.upload') }}</button>
+                                    <button type="submit" id="examinations-edit-attachment-upload"
+                                        class="btn btn-outline-primary">{{ __('translate.upload') }}</button>
                                 </div>
                             </div>
+                        </form>
+                        {{-- Add Attachment Form Ends --}}
 
+                    </div>
 
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                data-bs-dismiss="modal">{{ __('translate.close') }}</button>
-
-                        </div>
-                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                            data-bs-dismiss="modal">{{ __('translate.close') }}
+                        </button>
+                    </div>
 
 
 
@@ -211,12 +232,14 @@
 
 <script type="module">
     $(function() {
+        var id;
         $('#examinations-edit-modal').on('show.bs.modal', function(e) {
             let btn = $(e
                 .relatedTarget
             ); // e.related here is the element that opened the modal, specifically the row button
-            let id = btn.data('id'); // this is how you get the of any `data` attribute of an element
-            console.log('raised show.bs.modal event from button with data-id=' + id);
+
+            // let id = btn.data('id'); // this is how you get the of any `data` attribute of an element
+            id = btn.data('id'); // this is how you get the of any `data` attribute of an element
 
             $.ajax({
                 url: "/clinics/{{ $clinic->id }}/examinations/" + id + "/get",
@@ -226,8 +249,6 @@
                     let url =
                         '/clinics/{{ $clinic->id }}/owners/{{ $owner->id }}/pets/{{ $pet->id }}/examinations/' +
                         examination.id;
-                    console.log(examination);
-                    console.log(url);
 
                     $('#examinations-edit-form').attr('action', url);
                     $('#examinations-edit-diagnostic_test').val(examination.diagnostic_test
@@ -253,6 +274,54 @@
             });
         });
 
+
+
+        /*
+        $('#examinations-edit-attachment-upload').on('click', function(){
+            alert(id);
+            let io = "/clinics/{{ $clinic->id }}/examinations/" + id + "/attach";
+            console.log(io);
+
+            $.ajax({
+                url: "/clinics/{{ $clinic->id }}/examinations/" + id + "/attach",
+                type: 'POST',
+                dataType: 'json',
+                success: function(examination) {
+                    console.log(examination);
+                }
+            });
+        });
+        */
+
+        $('examinations-edit-attachments').on('submit', function(e) {
+            e.preventDefault();
+
+            return;
+
+            let formData = new FormData(this);
+            console.log(e);
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('clinics.examinations.attach', [$clinic, $examination]) }}",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    if (response) {
+                        this.reset();
+                        alert('Image has been uploaded successfully');
+                    }
+                },
+                error: function(response) {
+                    $('#image-input-error').text(response.responseJSON.message);
+                }
+            });
+        });
+
+
+
+
         // transform standard select input into select2
         $("#examinations-edit-problem_id").select2({
             dropdownParent: $('#examinations-edit-modal'),
@@ -261,5 +330,9 @@
             allowClear: true,
             width: '100%',
         });
+
+
+
+
     });
 </script>

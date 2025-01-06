@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\BiometricController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DiagnosticTestController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ProblemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccinationController;
+use App\Models\Attachment;
 use App\Models\Examination;
 use Illuminate\Support\Facades\Route;
 
@@ -107,10 +109,21 @@ Route::get('clinics/{clinic}/prescriptions/{prescription}/print', [PrescriptionC
 
 # Diagnostic Tests & Examinations
 Route::resource('clinics.owners.pets.examinations', ExaminationController::class)->middleware('has:nurse');
+# check permission here
 Route::get('clinics/{clinic}/examinations/{examination}/get', [ExaminationController::class, 'get'])->name('clinics.examinations.get')->middleware('has:nurse');
 Route::get('clinics/{clinic}/diagnostic_tests/search', [DiagnosticTestController::class, 'search'])->name('clinics.diagnostic_tests.search')->middleware('has:nurse');
 
+# check permission here
 Route::get('clinics/{clinic}/examinations/{examination}/print', [ExaminationController::class, 'print'])->name('clinics.examinations.print')->middleware('has:nurse');
+
+# check permission here
+Route::get('clinics/{clinic}/examinations/{examination}/index', [AttachmentController::class, 'index'])->name('clinics.examinations.index')->middleware('has:nurse');
+Route::post('clinics/{clinic}/examinations/{examination}/attach', [AttachmentController::class, 'attach'])->name('clinics.examinations.attach')->middleware('has:nurse');
+
+Route::get('clinics/{clinic}/examinations/{examination}/attachi', [AttachmentController::class, 'attachi'])->name('clinics.examinations.attachi')->middleware('has:nurse');
 
 # vaccinations
 Route::resource('clinics.owners.pets.vaccinations', VaccinationController::class)->middleware('has:nurse');
+
+
+// http://localhost/clinics/8355a94f-a25b-4c80-a020-0d3db7273459/examinations/b2981087-8be7-4b03-a120-513546cf9709/attachi

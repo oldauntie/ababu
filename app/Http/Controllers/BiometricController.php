@@ -26,7 +26,7 @@ class BiometricController extends Controller
         ]);
 
 
-        $note = new Biometric([
+        $biometric = new Biometric([
             'pet_id' => $pet->id,
             'user_id' => auth()->user()->id,
             'heigth' => $request->heigth,
@@ -36,7 +36,7 @@ class BiometricController extends Controller
         ]);
 
         # save biometric record
-        if ($note->save()) {
+        if ($biometric->save()) {
             $request->session()->flash('success', __('message.record_store_success'));
         } else {
             $request->session()->flash('error', 'message.record_store_error');

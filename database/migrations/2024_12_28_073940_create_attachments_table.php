@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->char('examination_id', 36);
+            $table->string('name');
             $table->string('file');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
 
             $table->foreign('examination_id')->references('id')->on('examinations')->onDelete('cascade');

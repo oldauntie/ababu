@@ -89,7 +89,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Ababu <inf class="subtitle m-b-md">v.3</inf><sup class="subtitle m-b-md">beta</sup>
+                <img src="{{ asset('images/logo.png') }}" alt="Ababu" />
             </div>
 
             <div class="row">

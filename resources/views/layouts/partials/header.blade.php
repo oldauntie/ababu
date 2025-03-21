@@ -2,7 +2,8 @@
     <div class="container">
 
         <a class="navbar-brand" href="{{ url('/') }}">
-            🐾 {{ config('app.name', 'Ababu') }} 🌻 🐢
+            <img src="{{ asset('images/logo-32.png')}}" />
+             {{ config('app.name', 'Ababu') }} 🌻 🐢 🐾
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

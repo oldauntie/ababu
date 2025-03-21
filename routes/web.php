@@ -120,7 +120,7 @@ Route::get('clinics/{clinic}/examinations/{examination}/print', [ExaminationCont
 Route::get('clinics/{clinic}/examinations/{examination}/index', [AttachmentController::class, 'index'])->name('clinics.examinations.index')->middleware('has:nurse');
 Route::post('clinics/{clinic}/examinations/{examination}/attach', [AttachmentController::class, 'attach'])->name('clinics.examinations.attach')->middleware('has:nurse');
 
-Route::get('clinics/{clinic}/examinations/{examination}/attachi', [AttachmentController::class, 'attachi'])->name('clinics.examinations.attachi')->middleware('has:nurse');
+// Route::get('clinics/{clinic}/examinations/{examination}/attachi', [AttachmentController::class, 'attachi'])->name('clinics.examinations.attachi')->middleware('has:nurse');
 
 # vaccinations
 Route::resource('clinics.owners.pets.vaccinations', VaccinationController::class)->middleware('has:nurse');

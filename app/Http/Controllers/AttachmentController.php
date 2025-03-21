@@ -26,14 +26,6 @@ class AttachmentController extends Controller
     }
 
 
-    public function attachi(Request $request, Clinic $clinic, Examination $examination)
-    {
-
-
-        return "attachi";
-    }
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -54,9 +46,15 @@ class AttachmentController extends Controller
 
         try {
             $request->attachment->move(public_path('attachments'), $file);
+            return response()
+                ->json([
+                    'message' => 'Incorrect Credentials',
+                    'status' => 400
+                ], 400);
+            return json_encode(['error' => 'message.file_upload_error']);
         } catch (Exception $ex) {
-            $request->session()->flash('error', 'message.file_move_error');
-            return json_encode(['error' => 'message.file_move_error']);
+            $request->session()->flash('error', 'message.file_upload_error');
+            // return json_encode(['error' => 'message.file_upload_error']);
         }
 
         $attachment = new Attachment([

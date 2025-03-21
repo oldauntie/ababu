@@ -275,28 +275,8 @@
         });
 
 
-
-        /*
-        $('#examinations-edit-attachment-upload').on('click', function(){
-            alert(id);
-            let io = "/clinics/{{ $clinic->id }}/examinations/" + id + "/attach";
-            console.log(io);
-
-            $.ajax({
-                url: "/clinics/{{ $clinic->id }}/examinations/" + id + "/attach",
-                type: 'POST',
-                dataType: 'json',
-                success: function(examination) {
-                    console.log(examination);
-                }
-            });
-        });
-        */
-
-        $('examinations-edit-attachments').on('submit', function(e) {
+        $('#examinations-edit-attachments').on('submit', function(e) {
             e.preventDefault();
-
-            return;
 
             let formData = new FormData(this);
             console.log(e);
@@ -314,7 +294,7 @@
                     }
                 },
                 error: function(response) {
-                    $('#image-input-error').text(response.responseJSON.message);
+                    console.log('errore');
                 }
             });
         });

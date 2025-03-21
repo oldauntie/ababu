@@ -33,9 +33,6 @@
 
         <div class="container-fluid">
             <div class="row flex-nowrap">
-                @if (Request::is('clinics/*'))
-                    @include('layouts.partials.sidebar')
-                @endif
                 <div class="col py-3">
                     @yield('content')
                 </div>

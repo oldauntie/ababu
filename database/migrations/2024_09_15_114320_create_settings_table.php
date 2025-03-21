@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->char('user_id', 36);
-            $table->boolean('show_sidebar')->default(false);
             $table->timestamps();
         });
     }

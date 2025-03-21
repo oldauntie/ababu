@@ -90,10 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function setting()
     {
-        return $this->hasOne(Setting::class)->withDefault([
-            # default settings. no database record is created
-            'show_sidebar' => 1,
-        ]);;
+        return $this->hasOne(Setting::class);
     }
 
     public function vaccinations()
